@@ -4,13 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <title>HairOS Library — Coleção Outono/Inverno 2026</title>
+    
+    <!-- ===== SEO METADADOS ===== -->
+    <meta name="description" content="HairOS Library - Coleção Outono/Inverno 2026. Tendências, cortes e produtos profissionais para cabelo." />
+    <meta name="keywords" content="cabelo, cortes, tendências, cabeleireiro, coleção 2026, hairOS" />
+    <meta name="author" content="HairOS" />
+    <meta property="og:title" content="HairOS Library - Outono/Inverno 2026" />
+    <meta property="og:description" content="Explore a nova coleção de tendências, cortes e produtos para cabelo." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hairos.com/library" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- ===== PWA MANIFEST ===== -->
+    <link rel="manifest" href="data:application/json,{
+        &quot;name&quot;: &quot;HairOS Library&quot;,
+        &quot;short_name&quot;: &quot;HairOS&quot;,
+        &quot;start_url&quot;: &quot;.&quot;,
+        &quot;display&quot;: &quot;standalone&quot;,
+        &quot;background_color&quot;: &quot;#faf8f5&quot;,
+        &quot;theme_color&quot;: &quot;#1a1614&quot;
+    }" />
+    
     <style>
         /* ============================================================
-           RESET & BASE
+           RESET & BASE - OTIMIZADO COM MAIS VARIÁVEIS
            ============================================================ */
         *,
         *::before,
@@ -33,6 +54,15 @@
             --radius: 20px;
             --radius-sm: 12px;
             --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            
+            /* Novas variáveis para melhor manutenção */
+            --card-preview-width: 160px;
+            --card-preview-image-height: 140px;
+            --hero-height: 400px;
+            --bottom-nav-height: 60px;
+            --top-bar-height: 60px;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
         }
 
         [data-theme="dark"] {
@@ -52,7 +82,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: var(--font-sans);
             background: var(--white);
             color: var(--black);
             line-height: 1.6;
@@ -73,7 +103,7 @@
         }
 
         /* ============================================================
-           LOADING SCREEN
+           LOADING SCREEN - MELHORADO
            ============================================================ */
         #loadingScreen {
             position: fixed;
@@ -95,7 +125,7 @@
             pointer-events: none;
         }
         .loading__logo {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 2.8rem;
             font-weight: 700;
             color: var(--black);
@@ -211,7 +241,7 @@
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(18px) saturate(1.4);
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            height: 60px;
+            height: var(--top-bar-height);
             transition: background 0.3s;
         }
         [data-theme="dark"] .top-bar {
@@ -245,7 +275,7 @@
             cursor: pointer;
         }
         .top-bar__logo {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: 1px;
@@ -303,7 +333,7 @@
         }
 
         /* ============================================================
-           SEARCH OVERLAY
+           SEARCH OVERLAY - MELHORADO COM ARIA
            ============================================================ */
         .search-overlay {
             position: fixed;
@@ -341,13 +371,15 @@
             padding: 0.9rem 1.2rem;
             border-radius: 40px;
             font-size: 1rem;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             outline: none;
             color: var(--black);
             transition: background 0.2s, color 0.3s;
         }
         .search-overlay__input:focus {
             background: #dcd0c4;
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
         [data-theme="dark"] .search-overlay__input:focus {
             background: #3d352e;
@@ -384,8 +416,10 @@
             transition: background 0.2s;
             border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
-        .search-overlay__results .result-item:hover {
+        .search-overlay__results .result-item:hover,
+        .search-overlay__results .result-item:focus {
             background: var(--beige);
+            outline: none;
         }
         .search-overlay__results .result-item img {
             width: 44px;
@@ -445,7 +479,7 @@
         }
 
         /* ============================================================
-           BOTTOM NAV - FLUTUANTE GLASSMORPHISM
+           BOTTOM NAV - GLASSMORPHISM MELHORADO
            ============================================================ */
         #bottomNav {
             position: fixed;
@@ -493,7 +527,7 @@
             border-radius: 30px;
             font-size: 0.55rem;
             font-weight: 500;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             letter-spacing: 0.3px;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -551,7 +585,7 @@
             border-radius: 0 0 var(--radius) var(--radius);
             overflow: hidden;
             position: relative;
-            height: 400px;
+            height: var(--hero-height);
         }
         .hero__slider {
             width: 100%;
@@ -600,7 +634,7 @@
             margin-bottom: 0.6rem;
         }
         .hero__title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 2.4rem;
             font-weight: 700;
             line-height: 1.1;
@@ -626,7 +660,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
         }
         .hero__cta:hover {
             transform: translateY(-2px);
@@ -680,7 +714,7 @@
             margin-bottom: 1rem;
         }
         .section__title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.3rem;
             font-weight: 600;
             color: var(--black);
@@ -700,7 +734,7 @@
         }
 
         /* ============================================================
-           CARDS - CARROSSEL
+           CARDS - CARROSSEL COM LAZY LOADING
            ============================================================ */
         .cards-scroll {
             display: flex;
@@ -714,7 +748,7 @@
             display: none;
         }
         .card-preview {
-            flex: 0 0 160px;
+            flex: 0 0 var(--card-preview-width);
             scroll-snap-align: start;
             background: var(--white);
             border-radius: var(--radius-sm);
@@ -724,9 +758,12 @@
             cursor: pointer;
             border: 1px solid rgba(0, 0, 0, 0.03);
         }
-        .card-preview:hover {
+        .card-preview:hover,
+        .card-preview:focus {
             transform: translateY(-4px);
             box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
         [data-theme="dark"] .card-preview {
             background: var(--white-pure);
@@ -734,7 +771,7 @@
         }
         .card-preview__image {
             width: 100%;
-            height: 140px;
+            height: var(--card-preview-image-height);
             object-fit: cover;
             display: block;
         }
@@ -794,7 +831,7 @@
             display: block;
         }
         .collection-banner__title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 2.2rem;
             font-weight: 700;
         }
@@ -806,14 +843,14 @@
             transition: background 0.3s;
         }
         .manifesto__title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.2rem;
             color: var(--black);
             margin-bottom: 0.5rem;
         }
         .manifesto__text {
             font-size: 0.95rem;
-            color: var(--brown-dark);
+            color: var(--black);
             font-weight: 300;
             line-height: 1.8;
             font-style: italic;
@@ -845,9 +882,12 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-        .cut-card:hover {
+        .cut-card:hover,
+        .cut-card:focus {
             transform: translateY(-4px);
             box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
         [data-theme="dark"] .cut-card {
             background: var(--white-pure);
@@ -906,7 +946,7 @@
             color: var(--brown);
             cursor: pointer;
             transition: all 0.2s;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
         }
         .filter-btn:hover {
             background: var(--beige);
@@ -951,7 +991,7 @@
             color: white;
         }
         .detail-hero__title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.8rem;
             font-weight: 700;
         }
@@ -976,7 +1016,7 @@
         }
         .detail-body__section p {
             font-size: 0.95rem;
-            color: var(--brown-dark);
+            color: var(--black);
             font-weight: 300;
             line-height: 1.7;
         }
@@ -1015,9 +1055,12 @@
             padding: 0.8rem;
             text-align: center;
         }
-        .product-card:hover {
+        .product-card:hover,
+        .product-card:focus {
             transform: translateY(-3px);
             box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
         [data-theme="dark"] .product-card {
             background: var(--white-pure);
@@ -1071,13 +1114,13 @@
             padding: 1rem 1.2rem 1.2rem;
         }
         .trend-full__title {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.2rem;
             color: var(--black);
         }
         .trend-full__desc {
             font-size: 0.9rem;
-            color: var(--brown-dark);
+            color: var(--black);
             font-weight: 300;
             line-height: 1.7;
             margin-top: 0.3rem;
@@ -1153,9 +1196,12 @@
             transition: all 0.3s;
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
-        .editorial-grid img:hover {
+        .editorial-grid img:hover,
+        .editorial-grid img:focus {
             transform: scale(1.02);
             box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
         .editorial-preview {
             display: grid;
@@ -1171,9 +1217,12 @@
             transition: all 0.3s;
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
-        .editorial-preview img:hover {
+        .editorial-preview img:hover,
+        .editorial-preview img:focus {
             transform: scale(1.02);
             box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
         }
 
         /* ============================================================
@@ -1215,7 +1264,9 @@
             font-size: 0.8rem;
         }
 
-        /* Toggle switch para tema */
+        /* ============================================================
+           THEME TOGGLE
+           ============================================================ */
         .theme-toggle {
             display: flex;
             align-items: center;
@@ -1251,7 +1302,9 @@
             background: var(--gold);
         }
 
-        /* Modal para páginas internas */
+        /* ============================================================
+           MODAL - MELHORADO
+           ============================================================ */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -1299,13 +1352,13 @@
             opacity: 1;
         }
         .modal-content h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 1.5rem;
             color: var(--black);
             margin-bottom: 0.5rem;
         }
         .modal-content p {
-            color: var(--brown-dark);
+            color: var(--black);
             font-weight: 300;
             line-height: 1.8;
             font-size: 0.95rem;
@@ -1328,8 +1381,10 @@
            RESPONSIVE
            ============================================================ */
         @media (max-width: 400px) {
-            .hero {
-                height: 340px;
+            :root {
+                --hero-height: 340px;
+                --card-preview-width: 130px;
+                --card-preview-image-height: 110px;
             }
             .hero__title {
                 font-size: 1.8rem;
@@ -1337,12 +1392,6 @@
             .cuts-grid,
             .products-grid {
                 grid-template-columns: 1fr 1fr;
-            }
-            .card-preview {
-                flex: 0 0 130px;
-            }
-            .card-preview__image {
-                height: 110px;
             }
             #bottomNav {
                 padding: 8px 12px;
@@ -1381,6 +1430,15 @@
             }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
         /* ============================================================
            UTILITIES
            ============================================================ */
@@ -1399,6 +1457,23 @@
         .w-100 {
             width: 100%;
         }
+        
+        /* ============================================================
+           SKELETON LOADING - PARA MELHOR UX
+           ============================================================ */
+        .skeleton {
+            background: linear-gradient(90deg, var(--beige) 25%, var(--white) 50%, var(--beige) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1406,11 +1481,11 @@
     <!-- ============================================ -->
     <!-- LOADING SCREEN                              -->
     <!-- ============================================ -->
-    <div id="loadingScreen">
+    <div id="loadingScreen" role="status" aria-live="polite">
         <div class="loading__logo">HairOS</div>
         <div class="loading__badge">Library</div>
-        <div class="loading__spinner"></div>
-        <div class="loading__bar">
+        <div class="loading__spinner" aria-hidden="true"></div>
+        <div class="loading__bar" aria-hidden="true">
             <div class="loading__bar-fill"></div>
         </div>
         <div class="loading__percent" id="loadingPercent">CARREGANDO</div>
@@ -1419,133 +1494,143 @@
     <!-- ============================================ -->
     <!-- APP                                         -->
     <!-- ============================================ -->
-    <div id="app">
+    <div id="app" role="application">
 
         <!-- ===== TOP BAR ===== -->
-        <header id="topBar" class="top-bar">
-            <button class="top-bar__back" id="backButton" aria-label="Voltar">
-                <i class="fas fa-chevron-left"></i>
+        <header id="topBar" class="top-bar" role="banner">
+            <button class="top-bar__back" id="backButton" aria-label="Voltar para página anterior">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
             </button>
-            <div class="top-bar__brand" onclick="navigateTo('home')">
+            <div class="top-bar__brand" onclick="window.app?.navigateTo('home')" role="button" tabindex="0" aria-label="Ir para página inicial">
                 <span class="top-bar__logo">HairOS</span>
                 <span class="top-bar__badge">Library</span>
             </div>
             <div class="top-bar__actions">
-                <button class="top-bar__action" id="searchToggle" aria-label="Buscar">
-                    <i class="fas fa-search"></i>
+                <button class="top-bar__action" id="searchToggle" aria-label="Buscar cortes, produtos e tendências">
+                    <i class="fas fa-search" aria-hidden="true"></i>
                 </button>
-                <button class="top-bar__action" id="favoriteToggle" aria-label="Favoritos">
-                    <i class="fas fa-heart"></i>
-                    <span class="badge" id="favBadge" style="display:none;">0</span>
+                <button class="top-bar__action" id="favoriteToggle" aria-label="Ver favoritos">
+                    <i class="fas fa-heart" aria-hidden="true"></i>
+                    <span class="badge" id="favBadge" style="display:none;" aria-label="Número de favoritos">0</span>
                 </button>
             </div>
         </header>
 
         <!-- ===== SEARCH OVERLAY ===== -->
-        <div id="searchOverlay" class="search-overlay">
+        <div id="searchOverlay" class="search-overlay" role="dialog" aria-label="Busca">
             <div class="search-overlay__header">
-                <input type="text" id="searchInput" class="search-overlay__input" placeholder="Buscar cortes, produtos, coleções..." autofocus />
-                <button id="searchClose" class="search-overlay__close"><i class="fas fa-times"></i></button>
+                <input type="text" id="searchInput" class="search-overlay__input" placeholder="Buscar cortes, produtos, coleções..." autofocus aria-label="Campo de busca" />
+                <button id="searchClose" class="search-overlay__close" aria-label="Fechar busca">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
             </div>
-            <div id="searchResults" class="search-overlay__results"></div>
+            <div id="searchResults" class="search-overlay__results" role="listbox"></div>
         </div>
 
         <!-- ===== MODAL ===== -->
-        <div id="modalOverlay" class="modal-overlay">
+        <div id="modalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Modal">
             <div class="modal-content" id="modalContent">
-                <button class="modal-content__close" id="modalClose"><i class="fas fa-times"></i></button>
+                <button class="modal-content__close" id="modalClose" aria-label="Fechar modal">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
                 <div id="modalBody"></div>
             </div>
         </div>
 
         <!-- ===== MAIN CONTENT ===== -->
-        <main id="mainContent" class="main-content">
+        <main id="mainContent" class="main-content" role="main">
 
             <!-- ========================================================== -->
             <!-- PAGE: HOME                                                  -->
             <!-- ========================================================== -->
-            <section id="page-home" class="page active" data-page="home">
+            <section id="page-home" class="page active" data-page="home" aria-label="Página inicial">
 
                 <!-- HERO CAROUSEL -->
-                <div class="hero" id="heroCarousel">
+                <div class="hero" id="heroCarousel" aria-label="Carrossel de destaques">
                     <div class="hero__slider" id="heroSlider">
-                        <div class="hero__slide active" style="background-image: url('https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=800&h=600&fit=crop&crop=center');">
+                        <div class="hero__slide active" style="background-image: url('https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=800&h=600&fit=crop&crop=center');" role="img" aria-label="Coleção Outono/Inverno 2026">
                             <div class="overlay"></div>
                             <div class="hero__content">
                                 <span class="hero__badge">Coleção 2026</span>
                                 <h1 class="hero__title">Outono / Inverno</h1>
                                 <p class="hero__subtitle">Inspirada nos tons da natureza e na elegância atemporal</p>
-                                <button class="hero__cta" onclick="navigateTo('collection')">Explorar Coleção <i class="fas fa-arrow-right"></i></button>
+                                <button class="hero__cta" onclick="window.app?.navigateTo('collection')" aria-label="Explorar coleção">
+                                    Explorar Coleção <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </div>
-                        <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=600&fit=crop&crop=center');">
+                        <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=600&fit=crop&crop=center');" role="img" aria-label="Tendências Movimento Natural">
                             <div class="overlay"></div>
                             <div class="hero__content">
                                 <span class="hero__badge">Tendências</span>
                                 <h1 class="hero__title">Movimento Natural</h1>
                                 <p class="hero__subtitle">Texturas que contam histórias e valorizam a individualidade</p>
-                                <button class="hero__cta" onclick="navigateTo('trends')">Ver Tendências <i class="fas fa-arrow-right"></i></button>
+                                <button class="hero__cta" onclick="window.app?.navigateTo('trends')" aria-label="Ver tendências">
+                                    Ver Tendências <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </div>
-                        <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=600&fit=crop&crop=center');">
+                        <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=600&fit=crop&crop=center');" role="img" aria-label="Cortes Novas Silhuetas">
                             <div class="overlay"></div>
                             <div class="hero__content">
                                 <span class="hero__badge">Cortes</span>
                                 <h1 class="hero__title">Novas Silhuetas</h1>
                                 <p class="hero__subtitle">Cortes que celebram a beleza única de cada fio</p>
-                                <button class="hero__cta" onclick="navigateTo('cuts')">Explorar Cortes <i class="fas fa-arrow-right"></i></button>
+                                <button class="hero__cta" onclick="window.app?.navigateTo('cuts')" aria-label="Explorar cortes">
+                                    Explorar Cortes <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div class="hero__indicators" id="heroIndicators">
-                        <button class="hero__indicator active" data-slide="0" aria-label="Slide 1"></button>
-                        <button class="hero__indicator" data-slide="1" aria-label="Slide 2"></button>
-                        <button class="hero__indicator" data-slide="2" aria-label="Slide 3"></button>
+                    <div class="hero__indicators" id="heroIndicators" role="tablist" aria-label="Navegação do carrossel">
+                        <button class="hero__indicator active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1 - Coleção 2026"></button>
+                        <button class="hero__indicator" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2 - Tendências"></button>
+                        <button class="hero__indicator" data-slide="2" role="tab" aria-selected="false" aria-label="Slide 3 - Cortes"></button>
                     </div>
                 </div>
 
                 <!-- TENDÊNCIAS -->
-                <div class="section">
+                <section class="section" aria-label="Tendências da estação">
                     <div class="section__header">
                         <h2 class="section__title">Tendências da Estação</h2>
-                        <a href="#" onclick="navigateTo('trends'); return false;" class="section__see-all">Ver todas</a>
+                        <a href="#" onclick="window.app?.navigateTo('trends'); return false;" class="section__see-all" aria-label="Ver todas as tendências">Ver todas</a>
                     </div>
-                    <div class="cards-scroll" id="trendsPreview"></div>
-                </div>
+                    <div class="cards-scroll" id="trendsPreview" role="list"></div>
+                </section>
 
                 <!-- CORTES -->
-                <div class="section">
+                <section class="section" aria-label="Cortes em destaque">
                     <div class="section__header">
                         <h2 class="section__title">Cortes em Destaque</h2>
-                        <a href="#" onclick="navigateTo('cuts'); return false;" class="section__see-all">Ver todos</a>
+                        <a href="#" onclick="window.app?.navigateTo('cuts'); return false;" class="section__see-all" aria-label="Ver todos os cortes">Ver todos</a>
                     </div>
-                    <div class="cards-scroll" id="cutsPreview"></div>
-                </div>
+                    <div class="cards-scroll" id="cutsPreview" role="list"></div>
+                </section>
 
                 <!-- PRODUTOS -->
-                <div class="section">
+                <section class="section" aria-label="Produtos sugeridos">
                     <div class="section__header">
                         <h2 class="section__title">Produtos Sugeridos</h2>
-                        <a href="#" onclick="navigateTo('products'); return false;" class="section__see-all">Ver todos</a>
+                        <a href="#" onclick="window.app?.navigateTo('products'); return false;" class="section__see-all" aria-label="Ver todos os produtos">Ver todos</a>
                     </div>
-                    <div class="cards-scroll" id="productsPreview"></div>
-                </div>
+                    <div class="cards-scroll" id="productsPreview" role="list"></div>
+                </section>
 
                 <!-- EDITORIAL -->
-                <div class="section">
+                <section class="section" aria-label="Editorial">
                     <div class="section__header">
                         <h2 class="section__title">Editorial</h2>
-                        <a href="#" onclick="navigateTo('editorial'); return false;" class="section__see-all">Ver mais</a>
+                        <a href="#" onclick="window.app?.navigateTo('editorial'); return false;" class="section__see-all" aria-label="Ver mais do editorial">Ver mais</a>
                     </div>
-                    <div class="editorial-preview" id="editorialPreview"></div>
-                </div>
+                    <div class="editorial-preview" id="editorialPreview" role="list"></div>
+                </section>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: COLLECTION                                            -->
             <!-- ========================================================== -->
-            <section id="page-collection" class="page" data-page="collection">
-                <div class="collection-banner" style="background-image: url('https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=400&fit=crop&crop=center');">
+            <section id="page-collection" class="page" data-page="collection" aria-label="Coleção Outono/Inverno 2026">
+                <div class="collection-banner" style="background-image: url('https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=400&fit=crop&crop=center');" role="img" aria-label="Banner da coleção Outono/Inverno 2026">
                     <div class="collection-banner__overlay"></div>
                     <div class="collection-banner__content">
                         <span class="collection-banner__badge">HairOS</span>
@@ -1554,14 +1639,14 @@
                 </div>
 
                 <div class="section">
-                    <div class="manifesto">
+                    <article class="manifesto">
                         <h3 class="manifesto__title">Manifesto</h3>
                         <p class="manifesto__text">"A beleza está no movimento natural, na textura que conta histórias e na elegância que não precisa de esforço. A coleção Outono/Inverno 2026 celebra a individualidade, as camadas que dançam e as franjas que emolduram o olhar."</p>
-                    </div>
+                    </article>
 
                     <div style="margin-bottom:1.5rem;">
                         <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">Conceito</h4>
-                        <p style="font-size:0.95rem;color:var(--brown-dark);font-weight:300;line-height:1.8;">Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.</p>
+                        <p style="font-size:0.95rem;color:var(--black);font-weight:300;line-height:1.8;">Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.</p>
                     </div>
 
                     <div style="margin-bottom:1.5rem;">
@@ -1575,197 +1660,199 @@
                     </div>
 
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.5rem;">
-                        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="openModal('editorialFull')" />
-                        <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="openModal('editorialFull')" />
-                        <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="openModal('editorialFull')" />
-                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="openModal('editorialFull')" />
+                        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=300&fit=crop" alt="Mood 1" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="window.app?.openModal('editorialFull')" loading="lazy" />
+                        <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=300&fit=crop" alt="Mood 2" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="window.app?.openModal('editorialFull')" loading="lazy" />
+                        <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=300&fit=crop" alt="Mood 3" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="window.app?.openModal('editorialFull')" loading="lazy" />
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop" alt="Mood 4" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);cursor:pointer;" onclick="window.app?.openModal('editorialFull')" loading="lazy" />
                     </div>
 
-                    <button class="hero__cta" onclick="navigateTo('cuts')" style="background:var(--black);color:white;width:100%;justify-content:center;padding:0.9rem;">Explorar Cortes <i class="fas fa-arrow-right"></i></button>
+                    <button class="hero__cta" onclick="window.app?.navigateTo('cuts')" style="background:var(--black);color:white;width:100%;justify-content:center;padding:0.9rem;" aria-label="Explorar cortes da coleção">
+                        Explorar Cortes <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </button>
                 </div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: CUTS                                                 -->
             <!-- ========================================================== -->
-            <section id="page-cuts" class="page" data-page="cuts">
+            <section id="page-cuts" class="page" data-page="cuts" aria-label="Cortes">
                 <div style="padding:0.8rem 1.2rem 0;">
                     <h2 class="section__title" style="font-size:1.4rem;">Cortes</h2>
                 </div>
-                <div class="filters" id="cutFilters">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="curtos">Curtos</button>
-                    <button class="filter-btn" data-filter="medios">Médios</button>
-                    <button class="filter-btn" data-filter="longos">Longos</button>
-                    <button class="filter-btn" data-filter="cacheado">Cacheados</button>
-                    <button class="filter-btn" data-filter="masculino">Masculinos</button>
-                    <button class="filter-btn" data-filter="franja">Franjas</button>
-                    <button class="filter-btn" data-filter="camadas">Camadas</button>
+                <div class="filters" id="cutFilters" role="tablist" aria-label="Filtros de cortes">
+                    <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+                    <button class="filter-btn" data-filter="curtos" role="tab" aria-selected="false">Curtos</button>
+                    <button class="filter-btn" data-filter="medios" role="tab" aria-selected="false">Médios</button>
+                    <button class="filter-btn" data-filter="longos" role="tab" aria-selected="false">Longos</button>
+                    <button class="filter-btn" data-filter="cacheado" role="tab" aria-selected="false">Cacheados</button>
+                    <button class="filter-btn" data-filter="masculino" role="tab" aria-selected="false">Masculinos</button>
+                    <button class="filter-btn" data-filter="franja" role="tab" aria-selected="false">Franjas</button>
+                    <button class="filter-btn" data-filter="camadas" role="tab" aria-selected="false">Camadas</button>
                 </div>
-                <div class="cuts-grid" id="cutsGrid"></div>
+                <div class="cuts-grid" id="cutsGrid" role="list"></div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: CUT DETAIL                                           -->
             <!-- ========================================================== -->
-            <section id="page-cut-detail" class="page" data-page="cut-detail">
+            <section id="page-cut-detail" class="page" data-page="cut-detail" aria-label="Detalhe do corte">
                 <div id="cutDetailContent"></div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: TRENDS                                               -->
             <!-- ========================================================== -->
-            <section id="page-trends" class="page" data-page="trends">
+            <section id="page-trends" class="page" data-page="trends" aria-label="Tendências">
                 <div style="padding:0.8rem 1.2rem 0;">
                     <h2 class="section__title" style="font-size:1.4rem;">Tendências</h2>
                 </div>
-                <div class="trends-grid" id="trendsGrid"></div>
+                <div class="trends-grid" id="trendsGrid" role="list"></div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: PRODUCTS                                             -->
             <!-- ========================================================== -->
-            <section id="page-products" class="page" data-page="products">
+            <section id="page-products" class="page" data-page="products" aria-label="Produtos">
                 <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
                     <h2 class="section__title" style="font-size:1.4rem;">Produtos</h2>
-                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap;" id="productFilters">
-                        <button class="filter-btn active" data-filter="all">Todos</button>
-                        <button class="filter-btn" data-filter="shampoo">Shampoo</button>
-                        <button class="filter-btn" data-filter="condicionador">Condicionador</button>
-                        <button class="filter-btn" data-filter="mascara">Máscara</button>
-                        <button class="filter-btn" data-filter="oleo">Óleo</button>
-                        <button class="filter-btn" data-filter="finalizador">Finalizador</button>
+                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap;" id="productFilters" role="tablist" aria-label="Filtros de produtos">
+                        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+                        <button class="filter-btn" data-filter="shampoo" role="tab" aria-selected="false">Shampoo</button>
+                        <button class="filter-btn" data-filter="condicionador" role="tab" aria-selected="false">Condicionador</button>
+                        <button class="filter-btn" data-filter="mascara" role="tab" aria-selected="false">Máscara</button>
+                        <button class="filter-btn" data-filter="oleo" role="tab" aria-selected="false">Óleo</button>
+                        <button class="filter-btn" data-filter="finalizador" role="tab" aria-selected="false">Finalizador</button>
                     </div>
                 </div>
-                <div class="products-grid" id="productsGrid"></div>
+                <div class="products-grid" id="productsGrid" role="list"></div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: PRODUCT DETAIL                                       -->
             <!-- ========================================================== -->
-            <section id="page-product-detail" class="page" data-page="product-detail">
+            <section id="page-product-detail" class="page" data-page="product-detail" aria-label="Detalhe do produto">
                 <div id="productDetailContent"></div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: EDITORIAL                                            -->
             <!-- ========================================================== -->
-            <section id="page-editorial" class="page" data-page="editorial">
+            <section id="page-editorial" class="page" data-page="editorial" aria-label="Editorial">
                 <div style="padding:0.8rem 1.2rem 0;">
                     <h2 class="section__title" style="font-size:1.4rem;">Editorial</h2>
                 </div>
-                <div class="editorial-grid" id="editorialGrid"></div>
+                <div class="editorial-grid" id="editorialGrid" role="list"></div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: FAVORITES                                            -->
             <!-- ========================================================== -->
-            <section id="page-favorites" class="page" data-page="favorites">
+            <section id="page-favorites" class="page" data-page="favorites" aria-label="Favoritos">
                 <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;">
                     <h2 class="section__title" style="font-size:1.4rem;">Favoritos</h2>
                     <span style="font-size:0.8rem;color:var(--brown);opacity:0.5;" id="favCount">0 itens</span>
                 </div>
-                <div class="favorites-list" id="favoritesList"></div>
+                <div class="favorites-list" id="favoritesList" role="list"></div>
             </section>
 
             <!-- ========================================================== -->
             <!-- PAGE: MENU                                                 -->
             <!-- ========================================================== -->
-            <section id="page-menu" class="page" data-page="menu">
+            <section id="page-menu" class="page" data-page="menu" aria-label="Menu">
                 <div style="padding:0.8rem 1.2rem 0;">
                     <h2 class="section__title" style="font-size:1.4rem;">Menu</h2>
                 </div>
-                <div class="menu-list" id="menuList">
-                    <div class="menu-item" onclick="navigateTo('home')">
-                        <i class="fas fa-home"></i>
+                <nav class="menu-list" id="menuList" role="navigation" aria-label="Menu principal">
+                    <div class="menu-item" onclick="window.app?.navigateTo('home')" role="link" tabindex="0">
+                        <i class="fas fa-home" aria-hidden="true"></i>
                         <span class="label">Início</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="navigateTo('collection')">
-                        <i class="fas fa-layer-group"></i>
+                    <div class="menu-item" onclick="window.app?.navigateTo('collection')" role="link" tabindex="0">
+                        <i class="fas fa-layer-group" aria-hidden="true"></i>
                         <span class="label">Coleção</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="navigateTo('cuts')">
-                        <i class="fas fa-cut"></i>
+                    <div class="menu-item" onclick="window.app?.navigateTo('cuts')" role="link" tabindex="0">
+                        <i class="fas fa-cut" aria-hidden="true"></i>
                         <span class="label">Cortes</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="navigateTo('trends')">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="menu-item" onclick="window.app?.navigateTo('trends')" role="link" tabindex="0">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
                         <span class="label">Tendências</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="navigateTo('products')">
-                        <i class="fas fa-flask"></i>
+                    <div class="menu-item" onclick="window.app?.navigateTo('products')" role="link" tabindex="0">
+                        <i class="fas fa-flask" aria-hidden="true"></i>
                         <span class="label">Produtos</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="navigateTo('editorial')">
-                        <i class="fas fa-images"></i>
+                    <div class="menu-item" onclick="window.app?.navigateTo('editorial')" role="link" tabindex="0">
+                        <i class="fas fa-images" aria-hidden="true"></i>
                         <span class="label">Editorial</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="navigateTo('favorites')">
-                        <i class="fas fa-heart"></i>
+                    <div class="menu-item" onclick="window.app?.navigateTo('favorites')" role="link" tabindex="0">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
                         <span class="label">Favoritos</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="openModal('profile')">
-                        <i class="fas fa-user"></i>
+                    <div class="menu-item" onclick="window.app?.openModal('profile')" role="link" tabindex="0">
+                        <i class="fas fa-user" aria-hidden="true"></i>
                         <span class="label">Perfil</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="openModal('about')">
-                        <i class="fas fa-info-circle"></i>
+                    <div class="menu-item" onclick="window.app?.openModal('about')" role="link" tabindex="0">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
                         <span class="label">Sobre</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="openModal('settings')">
-                        <i class="fas fa-cog"></i>
+                    <div class="menu-item" onclick="window.app?.openModal('settings')" role="link" tabindex="0">
+                        <i class="fas fa-cog" aria-hidden="true"></i>
                         <span class="label">Configurações</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
-                        <div class="theme-toggle" onclick="event.stopPropagation();toggleTheme();">
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+                        <div class="theme-toggle" onclick="event.stopPropagation();window.app?.toggleTheme();" role="button" tabindex="0" aria-label="Alternar tema">
                             <div class="theme-toggle__track" id="themeTrack">
                                 <div class="theme-toggle__thumb"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="menu-item" onclick="openModal('help')">
-                        <i class="fas fa-question-circle"></i>
+                    <div class="menu-item" onclick="window.app?.openModal('help')" role="link" tabindex="0">
+                        <i class="fas fa-question-circle" aria-hidden="true"></i>
                         <span class="label">Ajuda</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                    <div class="menu-item" onclick="openModal('contact')">
-                        <i class="fas fa-envelope"></i>
+                    <div class="menu-item" onclick="window.app?.openModal('contact')" role="link" tabindex="0">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <span class="label">Contato</span>
-                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </div>
-                </div>
+                </nav>
             </section>
 
         </main>
 
-        <!-- ===== BOTTOM NAV - FLUTUANTE GLASSMORPHISM ===== -->
-        <nav id="bottomNav">
-            <button class="bottom-nav__item active" data-page="home" onclick="navigateTo('home')">
-                <i class="fas fa-home"></i>
+        <!-- ===== BOTTOM NAV ===== -->
+        <nav id="bottomNav" role="navigation" aria-label="Navegação principal">
+            <button class="bottom-nav__item active" data-page="home" onclick="window.app?.navigateTo('home')" aria-label="Ir para página inicial" aria-current="page">
+                <i class="fas fa-home" aria-hidden="true"></i>
                 <span>Início</span>
             </button>
-            <button class="bottom-nav__item" data-page="collection" onclick="navigateTo('collection')">
-                <i class="fas fa-layer-group"></i>
+            <button class="bottom-nav__item" data-page="collection" onclick="window.app?.navigateTo('collection')" aria-label="Ir para coleção">
+                <i class="fas fa-layer-group" aria-hidden="true"></i>
                 <span>Coleção</span>
             </button>
-            <button class="bottom-nav__item" data-page="cuts" onclick="navigateTo('cuts')">
-                <i class="fas fa-cut"></i>
+            <button class="bottom-nav__item" data-page="cuts" onclick="window.app?.navigateTo('cuts')" aria-label="Ir para cortes">
+                <i class="fas fa-cut" aria-hidden="true"></i>
                 <span>Cortes</span>
             </button>
-            <button class="bottom-nav__item" data-page="trends" onclick="navigateTo('trends')">
-                <i class="fas fa-chart-line"></i>
+            <button class="bottom-nav__item" data-page="trends" onclick="window.app?.navigateTo('trends')" aria-label="Ir para tendências">
+                <i class="fas fa-chart-line" aria-hidden="true"></i>
                 <span>Tendências</span>
             </button>
-            <button class="bottom-nav__item" data-page="menu" onclick="navigateTo('menu')">
-                <i class="fas fa-bars"></i>
+            <button class="bottom-nav__item" data-page="menu" onclick="window.app?.navigateTo('menu')" aria-label="Abrir menu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
                 <span>Menu</span>
                 <span class="nav-badge" id="navFavBadge" style="display:none;">0</span>
             </button>
@@ -1774,12 +1861,1367 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- JAVASCRIPT                                   -->
+    <!-- JAVASCRIPT - VERSÃO MELHORADA              -->
     <!-- ============================================ -->
     <script>
+        /**
+         * ============================================================
+         * HAIROS APP - VERSÃO 2.0
+         * Melhorias: Performance, Acessibilidade, Persistência, Tratamento de erros
+         * ============================================================
+         */
+        class HairOSApp {
+            constructor() {
+                // Estado da aplicação
+                this.state = {
+                    currentPage: 'home',
+                    history: ['home'],
+                    favorites: { cuts: [], products: [] },
+                    filters: { cuts: 'all', products: 'all' },
+                    theme: 'light'
+                };
+
+                this.DATA = null;
+                this.carouselInterval = null;
+                this.initialized = false;
+                this.currentSlide = 0;
+
+                // Bind dos métodos
+                this.init = this.init.bind(this);
+                this.navigateTo = this.navigateTo.bind(this);
+                this.goBack = this.goBack.bind(this);
+                this.toggleTheme = this.toggleTheme.bind(this);
+                this.openModal = this.openModal.bind(this);
+                this.closeModal = this.closeModal.bind(this);
+                this.toggleFavorite = this.toggleFavorite.bind(this);
+                this.isFavorite = this.isFavorite.bind(this);
+                this.renderHome = this.renderHome.bind(this);
+                this.renderCuts = this.renderCuts.bind(this);
+                this.renderCutDetail = this.renderCutDetail.bind(this);
+                this.renderTrends = this.renderTrends.bind(this);
+                this.renderProducts = this.renderProducts.bind(this);
+                this.renderProductDetail = this.renderProductDetail.bind(this);
+                this.renderEditorial = this.renderEditorial.bind(this);
+                this.renderFavorites = this.renderFavorites.bind(this);
+                this.updateFavBadge = this.updateFavBadge.bind(this);
+                this.performSearch = this.performSearch.bind(this);
+                this.renderSearchResults = this.renderSearchResults.bind(this);
+                this.startCarousel = this.startCarousel.bind(this);
+                this.stopCarousel = this.stopCarousel.bind(this);
+                this.goToSlide = this.goToSlide.bind(this);
+                this.nextSlide = this.nextSlide.bind(this);
+
+                // Inicializar
+                this.init();
+            }
+
+            // ============================================================
+            // INICIALIZAÇÃO
+            // ============================================================
+
+            async init() {
+                try {
+                    console.log('🪮 Iniciando HairOS Library v2.0...');
+                    
+                    await this.loadData();
+                    this.loadState();
+                    this.setupEventListeners();
+                    
+                    // Renderizar página inicial
+                    this.navigateTo('home');
+                    this.startCarousel();
+                    
+                    this.initialized = true;
+                    console.log('✅ App inicializado com sucesso!');
+                    console.log(`📊 Dados: ${this.DATA.cuts.length} cortes, ${this.DATA.products.length} produtos, ${this.DATA.trends.length} tendências`);
+                    console.log(`🌓 Tema: ${this.state.theme}`);
+                    console.log(`❤️ Favoritos: ${this.getTotalFavorites()}`);
+                    
+                } catch (error) {
+                    console.error('❌ Erro ao iniciar app:', error);
+                    this.showError('Não foi possível carregar o aplicativo. Recarregue a página.');
+                }
+            }
+
+            // ============================================================
+            // CARREGAMENTO DE DADOS
+            // ============================================================
+
+            loadData() {
+                this.DATA = {
+                    collection: {
+                        id: 'outono-inverno-2026',
+                        name: 'Outono / Inverno 2026',
+                        tagline: 'Inspirada nos tons da natureza e na elegância atemporal',
+                        manifesto: 'A beleza está no movimento natural, na textura que conta histórias e na elegância que não precisa de esforço. A coleção Outono/Inverno 2026 celebra a individualidade, as camadas que dançam e as franjas que emolduram o olhar.',
+                        concept: 'Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.',
+                        mood: ['Elegância natural', 'Movimento livre', 'Texturas vivas', 'Tons terrosos']
+                    },
+                    cuts: [{
+                        id: 'velvet-bob',
+                        name: 'Velvet Bob',
+                        category: 'curtos',
+                        tags: ['bob', 'feminino'],
+                        image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=500&fit=crop&crop=center',
+                        description: 'O Bob clássico com acabamento aveludado e pontas levemente desfiadas. Perfeito para quem busca elegância e praticidade.',
+                        profile: 'Mulheres com rosto oval ou quadrado',
+                        hairType: 'Liso a ondulado',
+                        faceShape: 'Oval, quadrado',
+                        maintenance: 'Médio (visitas a cada 6 semanas)',
+                        techniques: 'Tesoura de precisão, desfiamento, acabamento com navalha',
+                        finishing: 'Finalizar com óleo leve e secar com escova redonda',
+                        time: '45 minutos',
+                        products: ['Óleo Finalizador', 'Protetor Térmico'],
+                        related: ['soft-layers', 'pixie-touch']
+                    }, {
+                        id: 'soft-layers',
+                        name: 'Soft Layers',
+                        category: 'medios',
+                        tags: ['camadas', 'feminino'],
+                        image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=500&fit=crop&crop=center',
+                        description: 'Camadas suaves que criam movimento e leveza, mantendo o comprimento médio com um toque moderno.',
+                        profile: 'Mulheres com cabelos médios a longos',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Baixo',
+                        techniques: 'Camadas longas, desfiamento suave',
+                        finishing: 'Secar com difusor ou escova',
+                        time: '35 minutos',
+                        products: ['Mousse Modeladora', 'Spray Texturizador'],
+                        related: ['long-flow', 'curly-shag']
+                    }, {
+                        id: 'curly-shag',
+                        name: 'Curly Shag',
+                        category: 'cacheado',
+                        tags: ['cacheado', 'camadas', 'feminino'],
+                        image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=500&fit=crop&crop=center',
+                        description: 'O Shaggy repaginado para cabelos cacheados, com camadas que valorizam o volume e a definição natural.',
+                        profile: 'Mulheres com cabelos cacheados ou crespos',
+                        hairType: 'Cacheado, crespo',
+                        faceShape: 'Oval, redondo',
+                        maintenance: 'Médio',
+                        techniques: 'Camadas internas, pontilhado',
+                        finishing: 'Finalizar com creme de pentear e secar com difusor',
+                        time: '50 minutos',
+                        products: ['Máscara Revitalizante', 'Óleo Finalizador'],
+                        related: ['soft-layers', 'long-flow']
+                    }, {
+                        id: 'tintired-men',
+                        name: 'Tintired Men',
+                        category: 'masculino',
+                        tags: ['masculino', 'curtos'],
+                        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=center',
+                        description: 'Corte masculino com textura e movimento, ideal para quem busca um visual moderno e despojado.',
+                        profile: 'Homens com cabelos médios',
+                        hairType: 'Liso a ondulado',
+                        faceShape: 'Todos',
+                        maintenance: 'Baixo a médio',
+                        techniques: 'Tesoura e máquina com desfiamento',
+                        finishing: 'Finalizar com pomada ou cera',
+                        time: '30 minutos',
+                        products: ['Pomada Modeladora', 'Shampoo Nutritivo'],
+                        related: ['pixie-touch']
+                    }, {
+                        id: 'long-flow',
+                        name: 'Long Flow',
+                        category: 'longos',
+                        tags: ['longos', 'feminino'],
+                        image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=500&fit=crop&crop=center',
+                        description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância.',
+                        profile: 'Mulheres que amam cabelos longos',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Médio',
+                        techniques: 'Camadas longas, pontas retas',
+                        finishing: 'Secar com escova e finalizar com óleo',
+                        time: '40 minutos',
+                        products: ['Óleo Finalizador', 'Protetor Térmico'],
+                        related: ['soft-layers', 'curly-shag']
+                    }, {
+                        id: 'pixie-touch',
+                        name: 'Pixie Touch',
+                        category: 'curtos',
+                        tags: ['curtos', 'feminino', 'franja'],
+                        image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=500&fit=crop&crop=center',
+                        description: 'O clássico Pixie com um toque moderno e texturizado, perfeito para quem busca atitude e praticidade.',
+                        profile: 'Mulheres com traços marcantes',
+                        hairType: 'Liso a ondulado',
+                        faceShape: 'Oval, coração',
+                        maintenance: 'Alto (visitas a cada 4 semanas)',
+                        techniques: 'Tesoura e navalha',
+                        finishing: 'Finalizar com spray texturizador',
+                        time: '25 minutos',
+                        products: ['Spray Texturizador', 'Mousse Modeladora'],
+                        related: ['velvet-bob', 'tintired-men']
+                    }, {
+                        id: 'french-fringe',
+                        name: 'French Fringe',
+                        category: 'franja',
+                        tags: ['franja', 'feminino'],
+                        image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=500&fit=crop&crop=center',
+                        description: 'Franja francesa despojada que emoldura o rosto com elegância e suavidade.',
+                        profile: 'Todos os tipos de rosto',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Alto',
+                        techniques: 'Tesoura de precisão, desfiamento',
+                        finishing: 'Secar com escova redonda',
+                        time: '20 minutos',
+                        products: ['Spray Texturizador', 'Óleo Finalizador'],
+                        related: ['soft-layers', 'velvet-bob']
+                    }, {
+                        id: 'layered-shag',
+                        name: 'Layered Shag',
+                        category: 'camadas',
+                        tags: ['camadas', 'feminino', 'medios'],
+                        image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=500&fit=crop&crop=center',
+                        description: 'O Shaggy com camadas marcantes e textura, trazendo volume e personalidade ao visual.',
+                        profile: 'Mulheres que buscam volume e movimento',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Médio',
+                        techniques: 'Camadas curtas, desfiamento intenso',
+                        finishing: 'Finalizar com mousse e difusor',
+                        time: '45 minutos',
+                        products: ['Mousse Modeladora', 'Spray Texturizador'],
+                        related: ['curly-shag', 'soft-layers']
+                    }],
+                    products: [{
+                        id: 'shampoo-nutritivo',
+                        name: 'Shampoo Nutritivo',
+                        category: 'shampoo',
+                        image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
+                        description: 'Limpeza suave e nutricional para fios macios e saudáveis.',
+                        benefits: 'Nutrição profunda, limpeza suave, fios macios',
+                        usage: 'Aplicar nos cabelos molhados, massagear e enxaguar.',
+                        indication: 'Todos os tipos de cabelo',
+                        related: ['condicionador-hidratante', 'mascara-revitalizante']
+                    }, {
+                        id: 'condicionador-hidratante',
+                        name: 'Condicionador Hidratante',
+                        category: 'condicionador',
+                        image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
+                        description: 'Desembaraço e hidratação profundas para fios maleáveis.',
+                        benefits: 'Hidratação, desembaraço, maciez',
+                        usage: 'Aplicar após o shampoo, deixar agir e enxaguar.',
+                        indication: 'Cabelos secos e opacos',
+                        related: ['shampoo-nutritivo', 'mascara-revitalizante']
+                    }, {
+                        id: 'mascara-revitalizante',
+                        name: 'Máscara Revitalizante',
+                        category: 'mascara',
+                        image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
+                        description: 'Nutrição intensa e brilho duradouro para cabelos revitalizados.',
+                        benefits: 'Nutrição intensa, brilho, recuperação',
+                        usage: 'Aplicar nos fios úmidos, deixar 5 minutos e enxaguar.',
+                        indication: 'Cabelos danificados e quimicamente tratados',
+                        related: ['shampoo-nutritivo', 'condicionador-hidratante']
+                    }, {
+                        id: 'oleo-finalizador',
+                        name: 'Óleo Finalizador',
+                        category: 'oleo',
+                        image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
+                        description: 'Brilho, maciez e controle do frizz para um acabamento perfeito.',
+                        benefits: 'Brilho intenso, controle de frizz, maciez',
+                        usage: 'Aplicar nas pontas e comprimentos com cabelo seco ou úmido.',
+                        indication: 'Todos os tipos de cabelo',
+                        related: ['protetor-termico', 'spray-texturizador']
+                    }, {
+                        id: 'protetor-termico',
+                        name: 'Protetor Térmico',
+                        category: 'finalizador',
+                        image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
+                        description: 'Proteção contra o calor e ação antioxidante para fios protegidos.',
+                        benefits: 'Proteção térmica, antioxidante, prevenção de danos',
+                        usage: 'Aplicar antes do uso de secador, prancha ou babyliss.',
+                        indication: 'Cabelos que usam calor frequentemente',
+                        related: ['oleo-finalizador', 'shampoo-nutritivo']
+                    }, {
+                        id: 'spray-texturizador',
+                        name: 'Spray Texturizador',
+                        category: 'finalizador',
+                        image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
+                        description: 'Textura leve e volumosa na medida certa para cabelos com movimento.',
+                        benefits: 'Volume, textura, movimento natural',
+                        usage: 'Aplicar nos cabelos secos antes de finalizar o penteado.',
+                        indication: 'Cabelos finos e sem volume',
+                        related: ['mousse-modeladora', 'oleo-finalizador']
+                    }, {
+                        id: 'mousse-modeladora',
+                        name: 'Mousse Modeladora',
+                        category: 'finalizador',
+                        image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
+                        description: 'Fixação leve e movimento natural para penteados com estilo.',
+                        benefits: 'Fixação leve, volume, modelagem',
+                        usage: 'Aplicar nos cabelos úmidos antes de secar ou modelar.',
+                        indication: 'Cabelos que precisam de definição',
+                        related: ['spray-texturizador', 'oleo-finalizador']
+                    }, {
+                        id: 'pomada-modeladora',
+                        name: 'Pomada Modeladora',
+                        category: 'finalizador',
+                        image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
+                        description: 'Textura e definição para penteados masculinos e femininos.',
+                        benefits: 'Definição, textura, fixação média',
+                        usage: 'Aplicar pequena quantidade nos cabelos secos.',
+                        indication: 'Cortes curtos e médios',
+                        related: ['spray-texturizador', 'oleo-finalizador']
+                    }],
+                    trends: [{
+                        id: 'camadas',
+                        name: 'Camadas Estratégicas',
+                        image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
+                        description: 'Camadas que criam movimento e leveza, valorizando a textura natural dos fios. Perfeitas para todos os comprimentos.'
+                    }, {
+                        id: 'franjas',
+                        name: 'Franjas Sofisticadas',
+                        image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
+                        description: 'Franjas despojadas que emolduram e suavizam o olhar, trazendo personalidade e elegância.'
+                    }, {
+                        id: 'movimento',
+                        name: 'Movimento Natural',
+                        image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
+                        description: 'Texturas naturais e styling que valorizam o movimento dos fios, criando um visual vivo e autêntico.'
+                    }, {
+                        id: 'texturas',
+                        name: 'Texturas Leves',
+                        image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=400&fit=crop&crop=center',
+                        description: 'Acabamentos leves com toque aveludado e brilho natural, mantendo a saúde e a maciez dos fios.'
+                    }, {
+                        id: 'volumes',
+                        name: 'Volumes Orgânicos',
+                        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center',
+                        description: 'Volumes que respeitam a estrutura natural do cabelo, criando formas elegantes e modernas.'
+                    }, {
+                        id: 'acabamentos',
+                        name: 'Acabamentos Brilhantes',
+                        image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
+                        description: 'Brilho intenso e saudável para um resultado elegante, com produtos que valorizam a luminosidade dos fios.'
+                    }],
+                    editorial: [
+                        'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&crop=center'
+                    ]
+                };
+            }
+
+            // ============================================================
+            // PERSISTÊNCIA
+            // ============================================================
+
+            loadState() {
+                try {
+                    // Tema
+                    const savedTheme = localStorage.getItem('hairos-theme');
+                    if (savedTheme) {
+                        this.state.theme = savedTheme;
+                        document.documentElement.setAttribute('data-theme', savedTheme);
+                    }
+
+                    // Favoritos
+                    const savedFavs = localStorage.getItem('hairos-favorites');
+                    if (savedFavs) {
+                        const parsed = JSON.parse(savedFavs);
+                        if (parsed.cuts && parsed.products) {
+                            this.state.favorites = parsed;
+                        }
+                    }
+                } catch (error) {
+                    console.warn('⚠️ Erro ao carregar estado:', error);
+                }
+            }
+
+            saveState() {
+                try {
+                    localStorage.setItem('hairos-theme', this.state.theme);
+                    localStorage.setItem('hairos-favorites', JSON.stringify(this.state.favorites));
+                } catch (error) {
+                    console.warn('⚠️ Erro ao salvar estado:', error);
+                }
+            }
+
+            // ============================================================
+            // EVENT LISTENERS
+            // ============================================================
+
+            setupEventListeners() {
+                // Back button
+                document.getElementById('backButton').addEventListener('click', this.goBack);
+
+                // Search
+                document.getElementById('searchToggle').addEventListener('click', () => {
+                    const overlay = document.getElementById('searchOverlay');
+                    overlay.classList.toggle('open');
+                    if (overlay.classList.contains('open')) {
+                        document.getElementById('searchInput').focus();
+                    }
+                });
+
+                document.getElementById('searchClose').addEventListener('click', () => {
+                    document.getElementById('searchOverlay').classList.remove('open');
+                });
+
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    this.renderSearchResults(e.target.value);
+                });
+
+                // Favorites toggle
+                document.getElementById('favoriteToggle').addEventListener('click', () => {
+                    this.navigateTo('favorites');
+                });
+
+                // Modal
+                document.getElementById('modalClose').addEventListener('click', this.closeModal);
+                document.getElementById('modalOverlay').addEventListener('click', (e) => {
+                    if (e.target === document.getElementById('modalOverlay')) {
+                        this.closeModal();
+                    }
+                });
+
+                // Filter buttons - Cuts
+                document.getElementById('cutFilters').addEventListener('click', (e) => {
+                    const btn = e.target.closest('.filter-btn');
+                    if (btn) {
+                        document.querySelectorAll('#cutFilters .filter-btn').forEach(b => {
+                            b.classList.remove('active');
+                            b.setAttribute('aria-selected', 'false');
+                        });
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-selected', 'true');
+                        this.state.filters.cuts = btn.dataset.filter;
+                        this.renderCuts();
+                    }
+                });
+
+                // Filter buttons - Products
+                document.getElementById('productFilters').addEventListener('click', (e) => {
+                    const btn = e.target.closest('.filter-btn');
+                    if (btn) {
+                        document.querySelectorAll('#productFilters .filter-btn').forEach(b => {
+                            b.classList.remove('active');
+                            b.setAttribute('aria-selected', 'false');
+                        });
+                        btn.classList.add('active');
+                        btn.setAttribute('aria-selected', 'true');
+                        this.state.filters.products = btn.dataset.filter;
+                        this.renderProducts();
+                    }
+                });
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        const searchOverlay = document.getElementById('searchOverlay');
+                        const modalOverlay = document.getElementById('modalOverlay');
+                        if (searchOverlay.classList.contains('open')) {
+                            searchOverlay.classList.remove('open');
+                        }
+                        if (modalOverlay.classList.contains('open')) {
+                            this.closeModal();
+                        }
+                    }
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                        e.preventDefault();
+                        const overlay = document.getElementById('searchOverlay');
+                        overlay.classList.toggle('open');
+                        if (overlay.classList.contains('open')) {
+                            document.getElementById('searchInput').focus();
+                        }
+                    }
+                });
+
+                // Carousel indicators
+                document.querySelectorAll('.hero__indicator').forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        this.stopCarousel();
+                        this.goToSlide(index);
+                        this.startCarousel();
+                    });
+                });
+
+                // Carousel hover pause
+                const hero = document.getElementById('heroCarousel');
+                hero.addEventListener('mouseenter', this.stopCarousel);
+                hero.addEventListener('mouseleave', this.startCarousel);
+                hero.addEventListener('touchstart', this.stopCarousel);
+                hero.addEventListener('touchend', this.startCarousel);
+
+                // Scroll behavior for bottom nav
+                let scrollTimeout;
+                const bottomNav = document.getElementById('bottomNav');
+                let lastScrollY = 0;
+
+                window.addEventListener('scroll', () => {
+                    const scrollY = window.scrollY;
+                    
+                    if (scrollY > 40) {
+                        bottomNav.classList.add('scrolled');
+                    } else {
+                        bottomNav.classList.remove('scrolled');
+                    }
+
+                    if (scrollY > lastScrollY && scrollY > 100) {
+                        bottomNav.style.transform = 'translateX(-50%) scale(0.88)';
+                        bottomNav.style.opacity = '0.7';
+                    } else {
+                        if (scrollY > 40) {
+                            bottomNav.style.transform = 'translateX(-50%) scale(0.92)';
+                            bottomNav.style.opacity = '0.85';
+                        } else {
+                            bottomNav.style.transform = 'translateX(-50%) scale(1)';
+                            bottomNav.style.opacity = '1';
+                        }
+                    }
+
+                    lastScrollY = scrollY;
+
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        if (scrollY > 40) {
+                            bottomNav.style.transform = 'translateX(-50%) scale(0.92)';
+                            bottomNav.style.opacity = '0.85';
+                        } else {
+                            bottomNav.style.transform = 'translateX(-50%) scale(1)';
+                            bottomNav.style.opacity = '1';
+                        }
+                    }, 300);
+                }, { passive: true });
+
+                console.log('🔌 Event listeners configurados');
+            }
+
+            // ============================================================
+            // NAVEGAÇÃO
+            // ============================================================
+
+            navigateTo(page, data = null) {
+                try {
+                    const pages = {
+                        home: document.getElementById('page-home'),
+                        collection: document.getElementById('page-collection'),
+                        cuts: document.getElementById('page-cuts'),
+                        'cut-detail': document.getElementById('page-cut-detail'),
+                        trends: document.getElementById('page-trends'),
+                        products: document.getElementById('page-products'),
+                        'product-detail': document.getElementById('page-product-detail'),
+                        editorial: document.getElementById('page-editorial'),
+                        favorites: document.getElementById('page-favorites'),
+                        menu: document.getElementById('page-menu')
+                    };
+
+                    const target = pages[page];
+                    if (!target) {
+                        console.warn(`⚠️ Página "${page}" não encontrada`);
+                        return this.navigateTo('home');
+                    }
+
+                    // Esconder todas as páginas
+                    Object.values(pages).forEach(p => p.classList.remove('active'));
+
+                    // Mostrar a página alvo
+                    target.classList.add('active');
+
+                    // Atualizar histórico
+                    if (this.state.currentPage !== page) {
+                        this.state.history.push(page);
+                    }
+                    this.state.currentPage = page;
+
+                    // Back button
+                    document.getElementById('backButton').classList.toggle('visible', 
+                        this.state.history.length > 1 && page !== 'home'
+                    );
+
+                    // Bottom nav
+                    document.querySelectorAll('.bottom-nav__item').forEach(item => {
+                        item.classList.toggle('active', item.dataset.page === page);
+                        if (item.dataset.page === page) {
+                            item.setAttribute('aria-current', 'page');
+                        } else {
+                            item.removeAttribute('aria-current');
+                        }
+                    });
+
+                    // Fechar search
+                    document.getElementById('searchOverlay').classList.remove('open');
+
+                    // Controle do carrossel
+                    if (page === 'home') {
+                        this.startCarousel();
+                    } else {
+                        this.stopCarousel();
+                    }
+
+                    // Renderizar conteúdo específico
+                    switch (page) {
+                        case 'home':
+                            this.renderHome();
+                            break;
+                        case 'cuts':
+                            this.renderCuts();
+                            break;
+                        case 'cut-detail':
+                            if (data) this.renderCutDetail(data);
+                            break;
+                        case 'trends':
+                            this.renderTrends();
+                            break;
+                        case 'products':
+                            this.renderProducts();
+                            break;
+                        case 'product-detail':
+                            if (data) this.renderProductDetail(data);
+                            break;
+                        case 'editorial':
+                            this.renderEditorial();
+                            break;
+                        case 'favorites':
+                            this.renderFavorites();
+                            break;
+                    }
+
+                    // Scroll para o topo
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                    // Atualizar badge
+                    this.updateFavBadge();
+
+                } catch (error) {
+                    console.error('❌ Erro na navegação:', error);
+                    // Fallback para home
+                    if (page !== 'home') {
+                        this.navigateTo('home');
+                    }
+                }
+            }
+
+            goBack() {
+                if (this.state.history.length > 1) {
+                    this.state.history.pop();
+                    const prev = this.state.history[this.state.history.length - 1];
+                    this.navigateTo(prev);
+                }
+            }
+
+            // ============================================================
+            // TEMA
+            // ============================================================
+
+            toggleTheme() {
+                const html = document.documentElement;
+                const current = html.getAttribute('data-theme');
+                const newTheme = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                this.state.theme = newTheme;
+                this.saveState();
+            }
+
+            // ============================================================
+            // MODAL
+            // ============================================================
+
+            openModal(type) {
+                const content = {
+                    profile: `
+                        <h2><i class="fas fa-user"></i> Perfil</h2>
+                        <div style="text-align:center;margin:1.5rem 0;">
+                            <div style="width:80px;height:80px;border-radius:50%;background:var(--beige);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--brown);">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 style="margin-top:0.8rem;font-family:'Playfair Display',serif;">Usuário HairOS</h3>
+                            <p style="font-size:0.85rem;color:var(--brown);opacity:0.7;">Cabeleireiro | Especialista em Tendências</p>
+                        </div>
+                        <p><strong>Email:</strong> usuario@hairos.com</p>
+                        <p><strong>Membro desde:</strong> Janeiro 2026</p>
+                        <p><strong>Coleções salvas:</strong> 3</p>
+                        <p><strong>Cortes favoritos:</strong> ${this.state.favorites.cuts.length}</p>
+                        <p><strong>Produtos favoritos:</strong> ${this.state.favorites.products.length}</p>
+                        <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="window.app?.closeModal()">Fechar</button>
+                    `,
+                    about: `
+                        <h2><i class="fas fa-info-circle"></i> Sobre o HairOS</h2>
+                        <p style="margin-top:0.8rem;">O <strong>HairOS Library</strong> é uma biblioteca profissional de tendências, coleções e conhecimento técnico para cabeleireiros.</p>
+                        <p>Nossa missão é inspirar e conectar profissionais da beleza através de conteúdo editorial de alta qualidade.</p>
+                        <div style="margin-top:1rem;padding:1rem;background:var(--beige);border-radius:var(--radius-sm);">
+                            <p style="font-size:0.85rem;"><strong>Versão:</strong> 2.0.0</p>
+                            <p style="font-size:0.85rem;"><strong>Coleção atual:</strong> Outono/Inverno 2026</p>
+                            <p style="font-size:0.85rem;"><strong>Desenvolvido com:</strong> ❤️ HTML + CSS + JS (Class-based)</p>
+                        </div>
+                        <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="window.app?.closeModal()">Fechar</button>
+                    `,
+                    settings: `
+                        <h2><i class="fas fa-cog"></i> Configurações</h2>
+                        <div style="margin-top:1rem;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                                <span><strong>Tema</strong><br /><span style="font-size:0.85rem;opacity:0.6;">${this.state.theme === 'light' ? 'Claro' : 'Escuro'}</span></span>
+                                <button onclick="window.app?.toggleTheme();window.app?.closeModal();" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--black);color:white;min-width:80px;justify-content:center;">
+                                    ${this.state.theme === 'light' ? '🌙 Escuro' : '☀️ Claro'}
+                                </button>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                                <span><strong>Notificações</strong></span>
+                                <button onclick="alert('🔔 Notificações ativadas/desativadas')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
+                                    Ativado
+                                </button>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;">
+                                <span><strong>Idioma</strong><br /><span style="font-size:0.85rem;opacity:0.6;">Português</span></span>
+                                <button onclick="alert('🌐 Alterar idioma')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
+                                    Alterar
+                                </button>
+                            </div>
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-top:1px solid rgba(0,0,0,0.05);margin-top:0.5rem;">
+                                <span><strong>Limpar Favoritos</strong></span>
+                                <button onclick="if(confirm('Deseja remover todos os favoritos?')){ window.app?.clearFavorites(); window.app?.closeModal(); }" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:#d32f2f;color:white;min-width:80px;justify-content:center;">
+                                    Limpar
+                                </button>
+                            </div>
+                        </div>
+                        <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="window.app?.closeModal()">Fechar</button>
+                    `,
+                    help: `
+                        <h2><i class="fas fa-question-circle"></i> Ajuda</h2>
+                        <div style="margin-top:1rem;">
+                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                                <strong>📱 Como navegar?</strong>
+                                <p style="font-size:0.9rem;opacity:0.7;">Use o menu inferior flutuante para acessar as principais seções do app.</p>
+                            </div>
+                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                                <strong>🔍 Como buscar?</strong>
+                                <p style="font-size:0.9rem;opacity:0.7;">Toque no ícone de busca 🔍 na barra superior ou pressione <kbd>Ctrl</kbd> + <kbd>K</kbd>.</p>
+                            </div>
+                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                                <strong>❤️ Como favoritar?</strong>
+                                <p style="font-size:0.9rem;opacity:0.7;">Nos detalhes de um corte ou produto, toque em "Favoritar" para salvar.</p>
+                            </div>
+                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                                <strong>🌓 Tema escuro?</strong>
+                                <p style="font-size:0.9rem;opacity:0.7;">Acesse Menu > Configurações e alterne o tema.</p>
+                            </div>
+                            <div style="padding:0.8rem 0;">
+                                <strong>🎠 Carrossel</strong>
+                                <p style="font-size:0.9rem;opacity:0.7;">O banner principal gira automaticamente. Toque nos indicadores para navegar.</p>
+                            </div>
+                            <div style="padding:0.8rem 0;border-top:1px solid rgba(0,0,0,0.05);margin-top:0.5rem;">
+                                <strong>⌨️ Atalhos</strong>
+                                <p style="font-size:0.9rem;opacity:0.7;"><kbd>Ctrl+K</kbd> Buscar • <kbd>Esc</kbd> Fechar modal/busca</p>
+                            </div>
+                        </div>
+                        <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="window.app?.closeModal()">Fechar</button>
+                    `,
+                    contact: `
+                        <h2><i class="fas fa-envelope"></i> Contato</h2>
+                        <p style="margin-top:0.8rem;">Entre em contato conosco:</p>
+                        <div style="margin-top:1rem;">
+                            <p><strong>📧 Email:</strong> contato@hairos.com</p>
+                            <p><strong>📱 WhatsApp:</strong> +55 (11) 99999-9999</p>
+                            <p><strong>📍 Endereço:</strong> São Paulo, SP - Brasil</p>
+                        </div>
+                        <div class="social-links" style="margin-top:1rem;">
+                            <a href="#" onclick="alert('📸 Instagram @hairos')" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" onclick="alert('🎬 YouTube /hairos')" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="#" onclick="alert('📌 Pinterest /hairos')" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" onclick="alert('🎵 TikTok @hairos')" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                        <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1.5rem;background:var(--gold);color:white;" onclick="window.app?.closeModal()">Fechar</button>
+                    `,
+                    editorialFull: `
+                        <h2><i class="fas fa-images"></i> Editorial</h2>
+                        <p style="margin-top:0.8rem;">Imagem em destaque do editorial da coleção.</p>
+                        <div style="margin-top:1rem;">
+                            <img src="https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=600&h=400&fit=crop&crop=center" alt="Editorial" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-sm);" loading="lazy" />
+                            <p style="margin-top:0.5rem;font-size:0.85rem;opacity:0.7;">"A beleza está no movimento natural, na textura que conta histórias."</p>
+                        </div>
+                        <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="window.app?.closeModal()">Fechar</button>
+                    `
+                };
+
+                document.getElementById('modalBody').innerHTML = content[type] || '<h2>📄 Página em construção</h2><p>Conteúdo em breve.</p>';
+                document.getElementById('modalOverlay').classList.add('open');
+            }
+
+            closeModal() {
+                document.getElementById('modalOverlay').classList.remove('open');
+            }
+
+            // ============================================================
+            // CARROSSEL
+            // ============================================================
+
+            goToSlide(index) {
+                const slides = document.querySelectorAll('.hero__slide');
+                const indicators = document.querySelectorAll('.hero__indicator');
+                
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === index);
+                    indicator.setAttribute('aria-selected', i === index);
+                });
+                this.currentSlide = index;
+            }
+
+            nextSlide() {
+                const next = (this.currentSlide + 1) % document.querySelectorAll('.hero__slide').length;
+                this.goToSlide(next);
+            }
+
+            startCarousel() {
+                this.stopCarousel();
+                this.carouselInterval = setInterval(this.nextSlide, 4000);
+            }
+
+            stopCarousel() {
+                if (this.carouselInterval) {
+                    clearInterval(this.carouselInterval);
+                    this.carouselInterval = null;
+                }
+            }
+
+            // ============================================================
+            // FAVORITOS
+            // ============================================================
+
+            toggleFavorite(type, id) {
+                try {
+                    const key = type === 'cut' ? 'cuts' : 'products';
+                    const index = this.state.favorites[key].indexOf(id);
+
+                    if (index > -1) {
+                        this.state.favorites[key].splice(index, 1);
+                    } else {
+                        this.state.favorites[key].push(id);
+                    }
+
+                    this.saveState();
+
+                    // Re-renderizar se necessário
+                    const currentPage = this.state.currentPage;
+                    if (currentPage === 'cut-detail') {
+                        const cutId = this.state.history[this.state.history.length - 1];
+                        if (cutId) this.renderCutDetail(cutId);
+                    } else if (currentPage === 'product-detail') {
+                        const productId = this.state.history[this.state.history.length - 1];
+                        if (productId) this.renderProductDetail(productId);
+                    } else if (currentPage === 'favorites') {
+                        this.renderFavorites();
+                    }
+
+                    this.updateFavBadge();
+                } catch (error) {
+                    console.error('❌ Erro ao alternar favorito:', error);
+                }
+            }
+
+            isFavorite(type, id) {
+                const key = type === 'cut' ? 'cuts' : 'products';
+                return this.state.favorites[key].includes(id);
+            }
+
+            getTotalFavorites() {
+                return this.state.favorites.cuts.length + this.state.favorites.products.length;
+            }
+
+            clearFavorites() {
+                this.state.favorites = { cuts: [], products: [] };
+                this.saveState();
+                this.updateFavBadge();
+                if (this.state.currentPage === 'favorites') {
+                    this.renderFavorites();
+                }
+            }
+
+            updateFavBadge() {
+                const total = this.getTotalFavorites();
+                const favBadge = document.getElementById('favBadge');
+                const navFavBadge = document.getElementById('navFavBadge');
+
+                if (total > 0) {
+                    favBadge.style.display = 'flex';
+                    favBadge.textContent = total;
+                    navFavBadge.style.display = 'flex';
+                    navFavBadge.textContent = total;
+                } else {
+                    favBadge.style.display = 'none';
+                    navFavBadge.style.display = 'none';
+                }
+            }
+
+            // ============================================================
+            // BUSCA
+            // ============================================================
+
+            performSearch(query) {
+                const results = [];
+                const q = query.toLowerCase().trim();
+
+                if (q.length === 0) return results;
+
+                // Buscar em cortes
+                this.DATA.cuts.forEach(c => {
+                    if (c.name.toLowerCase().includes(q) ||
+                        c.category.includes(q) ||
+                        c.tags.some(t => t.includes(q)) ||
+                        c.description.toLowerCase().includes(q)) {
+                        results.push({ ...c, type: 'cut' });
+                    }
+                });
+
+                // Buscar em produtos
+                this.DATA.products.forEach(p => {
+                    if (p.name.toLowerCase().includes(q) ||
+                        p.category.includes(q) ||
+                        p.description.toLowerCase().includes(q) ||
+                        p.benefits.toLowerCase().includes(q)) {
+                        results.push({ ...p, type: 'product' });
+                    }
+                });
+
+                // Buscar em tendências
+                this.DATA.trends.forEach(t => {
+                    if (t.name.toLowerCase().includes(q) ||
+                        t.description.toLowerCase().includes(q)) {
+                        results.push({ ...t, type: 'trend' });
+                    }
+                });
+
+                return results;
+            }
+
+            renderSearchResults(query) {
+                const container = document.getElementById('searchResults');
+                const results = this.performSearch(query);
+
+                if (query.trim().length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <p>Digite para buscar cortes, produtos e tendências</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                if (results.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                            <p>Nenhum resultado encontrado para "${query}"</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = results.map(item => `
+                    <div class="result-item" onclick="window.app?.navigateTo('${item.type === 'cut' ? 'cut-detail' : item.type === 'product' ? 'product-detail' : 'trends'}', '${item.id || ''}')" role="option">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy" />
+                        <div class="info">
+                            <div class="name">${item.name}</div>
+                            <div class="category">${item.type} • ${item.category || ''}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - HOME
+            // ============================================================
+
+            renderHome() {
+                try {
+                    // Trends preview
+                    const trendsContainer = document.getElementById('trendsPreview');
+                    trendsContainer.innerHTML = this.DATA.trends.slice(0, 4).map(t => `
+                        <div class="card-preview" onclick="window.app?.navigateTo('trends')" role="listitem" tabindex="0">
+                            <img class="card-preview__image" src="${t.image}" alt="${t.name}" loading="lazy" />
+                            <div class="card-preview__body">
+                                <span class="card-preview__name">${t.name}</span>
+                                <span class="card-preview__category">Tendência</span>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // Cuts preview
+                    const cutsContainer = document.getElementById('cutsPreview');
+                    cutsContainer.innerHTML = this.DATA.cuts.slice(0, 4).map(c => `
+                        <div class="card-preview" onclick="window.app?.navigateTo('cut-detail', '${c.id}')" role="listitem" tabindex="0">
+                            <img class="card-preview__image" src="${c.image}" alt="${c.name}" loading="lazy" />
+                            <div class="card-preview__body">
+                                <span class="card-preview__name">${c.name}</span>
+                                <span class="card-preview__category">${c.category}</span>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // Products preview
+                    const productsContainer = document.getElementById('productsPreview');
+                    productsContainer.innerHTML = this.DATA.products.slice(0, 4).map(p => `
+                        <div class="card-preview" onclick="window.app?.navigateTo('product-detail', '${p.id}')" role="listitem" tabindex="0">
+                            <img class="card-preview__image" src="${p.image}" alt="${p.name}" loading="lazy" />
+                            <div class="card-preview__body">
+                                <span class="card-preview__name">${p.name}</span>
+                                <span class="card-preview__category">${p.category}</span>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // Editorial preview
+                    const editorialContainer = document.getElementById('editorialPreview');
+                    editorialContainer.innerHTML = this.DATA.editorial.slice(0, 3).map(img => `
+                        <img src="${img}" alt="Editorial" onclick="window.app?.navigateTo('editorial')" loading="lazy" role="listitem" />
+                    `).join('');
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar home:', error);
+                }
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - CORTES
+            // ============================================================
+
+            renderCuts() {
+                try {
+                    const grid = document.getElementById('cutsGrid');
+                    const filter = this.state.filters.cuts;
+
+                    let filtered = this.DATA.cuts;
+                    if (filter !== 'all') {
+                        filtered = this.DATA.cuts.filter(c => 
+                            c.category === filter || c.tags.includes(filter)
+                        );
+                    }
+
+                    if (filtered.length === 0) {
+                        grid.innerHTML = `
+                            <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
+                                <i class="fas fa-cut" style="font-size:2rem;display:block;margin-bottom:0.8rem;"></i>
+                                <p>Nenhum corte encontrado para este filtro</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    grid.innerHTML = filtered.map(c => `
+                        <div class="cut-card" onclick="window.app?.navigateTo('cut-detail', '${c.id}')" role="listitem" tabindex="0">
+                            <img class="cut-card__image" src="${c.image}" alt="${c.name}" loading="lazy" />
+                            <div class="cut-card__body">
+                                <div class="cut-card__name">${c.name}</div>
+                                <div class="cut-card__category">${c.category}</div>
+                                ${c.tags.slice(0, 2).map(t => `<span class="cut-card__tag">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                    `).join('');
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar cortes:', error);
+                }
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - DETALHE DO CORTE
+            // ============================================================
+
+            renderCutDetail(cutId) {
+                try {
+                    const cut = this.DATA.cuts.find(c => c.id === cutId);
+                    if (!cut) {
+                        console.warn(`⚠️ Corte "${cutId}" não encontrado`);
+                        return this.navigateTo('cuts');
+                    }
+
+                    const container = document.getElementById('cutDetailContent');
+                    const isFav = this.isFavorite('cut', cut.id);
+
+                    container.innerHTML = `
+                        <div class="detail-hero" style="background-image:url('${cut.image}');">
+                            <div class="detail-hero__overlay"></div>
+                            <div class="detail-hero__content">
+                                <h1 class="detail-hero__title">${cut.name}</h1>
+                                <span class="detail-hero__sub">${cut.category} • ${cut.tags.join(', ')}</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-body">
+                            <div class="detail-body__section">
+                                <h4>Descrição</h4>
+                                <p>${cut.description}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Perfil Indicado</h4>
+                                <p>${cut.profile}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Detalhes Técnicos</h4>
+                                <p><strong>Tipo de cabelo:</strong> ${cut.hairType}</p>
+                                <p><strong>Formato de rosto:</strong> ${cut.faceShape}</p>
+                                <p><strong>Manutenção:</strong> ${cut.maintenance}</p>
+                                <p><strong>Tempo médio:</strong> ${cut.time}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Técnicas Utilizadas</h4>
+                                <p>${cut.techniques}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Como Finalizar</h4>
+                                <p>${cut.finishing}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Produtos Sugeridos</h4>
+                                <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+                                    ${cut.products.map(p => `<span class="tag" onclick="window.app?.navigateTo('products')" role="button" tabindex="0">${p}</span>`).join('')}
+                                </div>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Cortes Relacionados</h4>
+                                <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+                                    ${cut.related.map(id => {
+                                        const related = this.DATA.cuts.find(c => c.id === id);
+                                        return related ? `<span class="tag" onclick="window.app?.navigateTo('cut-detail','${related.id}')" role="button" tabindex="0">${related.name}</span>` : '';
+                                    }).join('')}
+                                </div>
+                            </div>
+
+                            <button class="hero__cta" onclick="window.app?.toggleFavorite('cut','${cut.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;" aria-label="${isFav ? 'Remover' : 'Adicionar'} dos favoritos">
+                                <i class="fas fa-heart" aria-hidden="true"></i> ${isFav ? 'Favoritado' : 'Favoritar'}
+                            </button>
+
+                            <button class="hero__cta" onclick="window.app?.navigateTo('cuts')" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para Cortes
+                            </button>
+                        </div>
+                    `;
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar detalhe do corte:', error);
+                }
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - TENDÊNCIAS
+            // ============================================================
+
+            renderTrends() {
+                try {
+                    const container = document.getElementById('trendsGrid');
+                    container.innerHTML = this.DATA.trends.map(t => `
+                        <div class="trend-full" role="listitem">
+                            <img class="trend-full__image" src="${t.image}" alt="${t.name}" loading="lazy" />
+                            <div class="trend-full__body">
+                                <h3 class="trend-full__title">${t.name}</h3>
+                                <p class="trend-full__desc">${t.description}</p>
+                            </div>
+                        </div>
+                    `).join('');
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar tendências:', error);
+                }
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - PRODUTOS
+            // ============================================================
+
+            renderProducts() {
+                try {
+                    const grid = document.getElementById('productsGrid');
+                    const filter = this.state.filters.products;
+
+                    let filtered = this.DATA.products;
+                    if (filter !== 'all') {
+                        filtered = this.DATA.products.filter(p => p.category === filter);
+                    }
+
+                    if (filtered.length === 0) {
+                        grid.innerHTML = `
+                            <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
+                                <i class="fas fa-flask" style="font-size:2rem;display:block;margin-bottom:0.8rem;"></i>
+                                <p>Nenhum produto encontrado para este filtro</p>
+                            </div>
+                        `;
+                        return;
+                    }
+
+                    grid.innerHTML = filtered.map(p => `
+                        <div class="product-card" onclick="window.app?.navigateTo('product-detail', '${p.id}')" role="listitem" tabindex="0">
+                            <img class="product-card__image" src="${p.image}" alt="${p.name}" loading="lazy" />
+                            <div class="product-card__name">${p.name}</div>
+                            <div class="product-card__category">${p.category}</div>
+                        </div>
+                    `).join('');
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar produtos:', error);
+                }
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - DETALHE DO PRODUTO
+            // ============================================================
+
+            renderProductDetail(productId) {
+                try {
+                    const product = this.DATA.products.find(p => p.id === productId);
+                    if (!product) {
+                        console.warn(`⚠️ Produto "${productId}" não encontrado`);
+                        return this.navigateTo('products');
+                    }
+
+                    const container = document.getElementById('productDetailContent');
+                    const isFav = this.isFavorite('product', product.id);
+
+                    container.innerHTML = `
+                        <div style="padding:0 1.2rem 0;">
+                            <img src="${product.image}" alt="${product.name}" style="width:100%;height:280px;object-fit:cover;border-radius:var(--radius);margin-top:0.5rem;" loading="lazy" />
+                        </div>
+
+                        <div class="detail-body">
+                            <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--black);margin-bottom:0.3rem;">${product.name}</h2>
+                            <span style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--brown);opacity:0.5;">${product.category}</span>
+
+                            <div class="detail-body__section" style="margin-top:1.2rem;">
+                                <h4>Descrição</h4>
+                                <p>${product.description}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Benefícios</h4>
+                                <p>${product.benefits}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Modo de Uso</h4>
+                                <p>${product.usage}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Indicação</h4>
+                                <p>${product.indication}</p>
+                            </div>
+
+                            <div class="detail-body__section">
+                                <h4>Produtos Relacionados</h4>
+                                <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+                                    ${product.related.map(id => {
+                                        const related = this.DATA.products.find(p => p.id === id);
+                                        return related ? `<span class="tag" onclick="window.app?.navigateTo('product-detail','${related.id}')" role="button" tabindex="0">${related.name}</span>` : '';
+                                    }).join('')}
+                                </div>
+                            </div>
+
+                            <button class="hero__cta" onclick="window.app?.toggleFavorite('product','${product.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;" aria-label="${isFav ? 'Remover' : 'Adicionar'} dos favoritos">
+                                <i class="fas fa-heart" aria-hidden="true"></i> ${isFav ? 'Favoritado' : 'Favoritar'}
+                            </button>
+
+                            <button class="hero__cta" onclick="window.app?.navigateTo('products')" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para Produtos
+                            </button>
+                        </div>
+                    `;
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar detalhe do produto:', error);
+                }
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - EDITORIAL
+            // ============================================================
+
+            renderEditorial() {
+                try {
+                    const container = document.getElementById('editorialGrid');
+                    container.innerHTML = this.DATA.editorial.map(img => `
+                        <img src="${img}" alt="Editorial" onclick="window.app?.openModal('editorialFull')" loading="lazy" role="listitem" />
+                    `).join('');
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar editorial:', error);
+                }
+            }
+
+            // ============================================================
+            // RENDERIZAÇÃO - FAVORITOS
+            // ============================================================
+
+            renderFavorites() {
+                try {
+                    const container = document.getElementById('favoritesList');
+                    const favCuts = this.DATA.cuts.filter(c => this.state.favorites.cuts.includes(c.id));
+                    const favProducts = this.DATA.products.filter(p => this.state.favorites.products.includes(p.id));
+
+                    const allFavs = [
+                        ...favCuts.map(c => ({ ...c, type: 'cut' })),
+                        ...favProducts.map(p => ({ ...p, type: 'product' }))
+                    ];
+
+                    if (allFavs.length === 0) {
+                        container.innerHTML = `
+                            <div style="text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
+                                <i class="fas fa-heart" style="font-size:2.5rem;display:block;margin-bottom:0.8rem;" aria-hidden="true"></i>
+                                <p style="font-size:0.95rem;">Nenhum favorito ainda</p>
+                                <p style="font-size:0.8rem;">Explore a coleção e salve seus cortes e produtos favoritos</p>
+                            </div>
+                        `;
+                        document.getElementById('favCount').textContent = '0 itens';
+                        return;
+                    }
+
+                    container.innerHTML = allFavs.map(item => `
+                        <div class="fav-item" onclick="window.app?.navigateTo('${item.type === 'cut' ? 'cut-detail' : 'product-detail'}', '${item.id}')" role="listitem" tabindex="0">
+                            <img src="${item.image}" alt="${item.name}" loading="lazy" />
+                            <div class="info">
+                                <div class="name">${item.name}</div>
+                                <div class="category">${item.type === 'cut' ? 'Corte' : 'Produto'} • ${item.category}</div>
+                            </div>
+                            <button class="remove" onclick="event.stopPropagation();window.app?.toggleFavorite('${item.type}','${item.id}')" aria-label="Remover dos favoritos">
+                                <i class="fas fa-times" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    `).join('');
+
+                    document.getElementById('favCount').textContent = `${allFavs.length} itens`;
+
+                } catch (error) {
+                    console.error('❌ Erro ao renderizar favoritos:', error);
+                }
+            }
+
+            // ============================================================
+            // ERROS
+            // ============================================================
+
+            showError(message) {
+                const app = document.getElementById('app');
+                app.innerHTML = `
+                    <div style="text-align:center;padding:4rem 1.5rem;">
+                        <i class="fas fa-exclamation-triangle" style="font-size:3rem;color:var(--gold);display:block;margin-bottom:1rem;"></i>
+                        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--black);">Oops!</h2>
+                        <p style="color:var(--brown);margin-top:0.5rem;">${message}</p>
+                        <button onclick="location.reload()" class="hero__cta" style="margin-top:1.5rem;background:var(--gold);color:white;">
+                            <i class="fas fa-sync" aria-hidden="true"></i> Recarregar
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
         // ============================================================
-        // LOADING SCREEN
+        // LOADING SCREEN - GERENCIAMENTO
         // ============================================================
+
         (function initLoading() {
             const loadingScreen = document.getElementById('loadingScreen');
             const percentText = document.getElementById('loadingPercent');
@@ -1800,7 +3242,7 @@
                     clearInterval(interval);
                     setTimeout(() => {
                         loadingScreen.classList.add('hidden');
-                        initApp();
+                        // O app já foi inicializado pelo DOMContentLoaded
                     }, 400);
                     return;
                 }
@@ -1817,1125 +3259,31 @@
                 }
             }, 30);
 
+            // Fallback: garantir que o loading desapareça após 5 segundos
             setTimeout(() => {
                 if (!loadingScreen.classList.contains('hidden')) {
                     loadingScreen.classList.add('hidden');
-                    initApp();
                 }
             }, 5000);
         })();
 
         // ============================================================
-        // DATA
+        // INICIALIZAR APP
         // ============================================================
 
-        const DATA = {
-            collection: {
-                id: 'outono-inverno-2026',
-                name: 'Outono / Inverno 2026',
-                tagline: 'Inspirada nos tons da natureza e na elegância atemporal',
-                manifesto: 'A beleza está no movimento natural, na textura que conta histórias e na elegância que não precisa de esforço. A coleção Outono/Inverno 2026 celebra a individualidade, as camadas que dançam e as franjas que emolduram o olhar.',
-                concept: 'Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.',
-                mood: ['Elegância natural', 'Movimento livre', 'Texturas vivas', 'Tons terrosos']
-            },
-
-            cuts: [{
-                id: 'velvet-bob',
-                name: 'Velvet Bob',
-                category: 'curtos',
-                tags: ['bob', 'feminino'],
-                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=500&fit=crop&crop=center',
-                description: 'O Bob clássico com acabamento aveludado e pontas levemente desfiadas. Perfeito para quem busca elegância e praticidade.',
-                profile: 'Mulheres com rosto oval ou quadrado',
-                hairType: 'Liso a ondulado',
-                faceShape: 'Oval, quadrado',
-                maintenance: 'Médio (visitas a cada 6 semanas)',
-                techniques: 'Tesoura de precisão, desfiamento, acabamento com navalha',
-                finishing: 'Finalizar com óleo leve e secar com escova redonda',
-                time: '45 minutos',
-                products: ['Óleo Finalizador', 'Protetor Térmico'],
-                related: ['soft-layers', 'pixie-touch']
-            }, {
-                id: 'soft-layers',
-                name: 'Soft Layers',
-                category: 'medios',
-                tags: ['camadas', 'feminino'],
-                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=500&fit=crop&crop=center',
-                description: 'Camadas suaves que criam movimento e leveza, mantendo o comprimento médio com um toque moderno.',
-                profile: 'Mulheres com cabelos médios a longos',
-                hairType: 'Todos os tipos',
-                faceShape: 'Todos',
-                maintenance: 'Baixo',
-                techniques: 'Camadas longas, desfiamento suave',
-                finishing: 'Secar com difusor ou escova',
-                time: '35 minutos',
-                products: ['Mousse Modeladora', 'Spray Texturizador'],
-                related: ['long-flow', 'curly-shag']
-            }, {
-                id: 'curly-shag',
-                name: 'Curly Shag',
-                category: 'cacheado',
-                tags: ['cacheado', 'camadas', 'feminino'],
-                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=500&fit=crop&crop=center',
-                description: 'O Shaggy repaginado para cabelos cacheados, com camadas que valorizam o volume e a definição natural.',
-                profile: 'Mulheres com cabelos cacheados ou crespos',
-                hairType: 'Cacheado, crespo',
-                faceShape: 'Oval, redondo',
-                maintenance: 'Médio',
-                techniques: 'Camadas internas, pontilhado',
-                finishing: 'Finalizar com creme de pentear e secar com difusor',
-                time: '50 minutos',
-                products: ['Máscara Revitalizante', 'Óleo Finalizador'],
-                related: ['soft-layers', 'long-flow']
-            }, {
-                id: 'tintired-men',
-                name: 'Tintired Men',
-                category: 'masculino',
-                tags: ['masculino', 'curtos'],
-                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=center',
-                description: 'Corte masculino com textura e movimento, ideal para quem busca um visual moderno e despojado.',
-                profile: 'Homens com cabelos médios',
-                hairType: 'Liso a ondulado',
-                faceShape: 'Todos',
-                maintenance: 'Baixo a médio',
-                techniques: 'Tesoura e máquina com desfiamento',
-                finishing: 'Finalizar com pomada ou cera',
-                time: '30 minutos',
-                products: ['Pomada Modeladora', 'Shampoo Nutritivo'],
-                related: ['pixie-touch']
-            }, {
-                id: 'long-flow',
-                name: 'Long Flow',
-                category: 'longos',
-                tags: ['longos', 'feminino'],
-                image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=500&fit=crop&crop=center',
-                description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância.',
-                profile: 'Mulheres que amam cabelos longos',
-                hairType: 'Todos os tipos',
-                faceShape: 'Todos',
-                maintenance: 'Médio',
-                techniques: 'Camadas longas, pontas retas',
-                finishing: 'Secar com escova e finalizar com óleo',
-                time: '40 minutos',
-                products: ['Óleo Finalizador', 'Protetor Térmico'],
-                related: ['soft-layers', 'curly-shag']
-            }, {
-                id: 'pixie-touch',
-                name: 'Pixie Touch',
-                category: 'curtos',
-                tags: ['curtos', 'feminino', 'franja'],
-                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=500&fit=crop&crop=center',
-                description: 'O clássico Pixie com um toque moderno e texturizado, perfeito para quem busca atitude e praticidade.',
-                profile: 'Mulheres com traços marcantes',
-                hairType: 'Liso a ondulado',
-                faceShape: 'Oval, coração',
-                maintenance: 'Alto (visitas a cada 4 semanas)',
-                techniques: 'Tesoura e navalha',
-                finishing: 'Finalizar com spray texturizador',
-                time: '25 minutos',
-                products: ['Spray Texturizador', 'Mousse Modeladora'],
-                related: ['velvet-bob', 'tintired-men']
-            }, {
-                id: 'french-fringe',
-                name: 'French Fringe',
-                category: 'franja',
-                tags: ['franja', 'feminino'],
-                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=500&fit=crop&crop=center',
-                description: 'Franja francesa despojada que emoldura o rosto com elegância e suavidade.',
-                profile: 'Todos os tipos de rosto',
-                hairType: 'Todos os tipos',
-                faceShape: 'Todos',
-                maintenance: 'Alto',
-                techniques: 'Tesoura de precisão, desfiamento',
-                finishing: 'Secar com escova redonda',
-                time: '20 minutos',
-                products: ['Spray Texturizador', 'Óleo Finalizador'],
-                related: ['soft-layers', 'velvet-bob']
-            }, {
-                id: 'layered-shag',
-                name: 'Layered Shag',
-                category: 'camadas',
-                tags: ['camadas', 'feminino', 'medios'],
-                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=500&fit=crop&crop=center',
-                description: 'O Shaggy com camadas marcantes e textura, trazendo volume e personalidade ao visual.',
-                profile: 'Mulheres que buscam volume e movimento',
-                hairType: 'Todos os tipos',
-                faceShape: 'Todos',
-                maintenance: 'Médio',
-                techniques: 'Camadas curtas, desfiamento intenso',
-                finishing: 'Finalizar com mousse e difusor',
-                time: '45 minutos',
-                products: ['Mousse Modeladora', 'Spray Texturizador'],
-                related: ['curly-shag', 'soft-layers']
-            }],
-
-            products: [{
-                id: 'shampoo-nutritivo',
-                name: 'Shampoo Nutritivo',
-                category: 'shampoo',
-                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
-                description: 'Limpeza suave e nutricional para fios macios e saudáveis.',
-                benefits: 'Nutrição profunda, limpeza suave, fios macios',
-                usage: 'Aplicar nos cabelos molhados, massagear e enxaguar.',
-                indication: 'Todos os tipos de cabelo',
-                related: ['condicionador-hidratante', 'mascara-revitalizante']
-            }, {
-                id: 'condicionador-hidratante',
-                name: 'Condicionador Hidratante',
-                category: 'condicionador',
-                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
-                description: 'Desembaraço e hidratação profundas para fios maleáveis.',
-                benefits: 'Hidratação, desembaraço, maciez',
-                usage: 'Aplicar após o shampoo, deixar agir e enxaguar.',
-                indication: 'Cabelos secos e opacos',
-                related: ['shampoo-nutritivo', 'mascara-revitalizante']
-            }, {
-                id: 'mascara-revitalizante',
-                name: 'Máscara Revitalizante',
-                category: 'mascara',
-                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
-                description: 'Nutrição intensa e brilho duradouro para cabelos revitalizados.',
-                benefits: 'Nutrição intensa, brilho, recuperação',
-                usage: 'Aplicar nos fios úmidos, deixar 5 minutos e enxaguar.',
-                indication: 'Cabelos danificados e quimicamente tratados',
-                related: ['shampoo-nutritivo', 'condicionador-hidratante']
-            }, {
-                id: 'oleo-finalizador',
-                name: 'Óleo Finalizador',
-                category: 'oleo',
-                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
-                description: 'Brilho, maciez e controle do frizz para um acabamento perfeito.',
-                benefits: 'Brilho intenso, controle de frizz, maciez',
-                usage: 'Aplicar nas pontas e comprimentos com cabelo seco ou úmido.',
-                indication: 'Todos os tipos de cabelo',
-                related: ['protetor-termico', 'spray-texturizador']
-            }, {
-                id: 'protetor-termico',
-                name: 'Protetor Térmico',
-                category: 'finalizador',
-                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
-                description: 'Proteção contra o calor e ação antioxidante para fios protegidos.',
-                benefits: 'Proteção térmica, antioxidante, prevenção de danos',
-                usage: 'Aplicar antes do uso de secador, prancha ou babyliss.',
-                indication: 'Cabelos que usam calor frequentemente',
-                related: ['oleo-finalizador', 'shampoo-nutritivo']
-            }, {
-                id: 'spray-texturizador',
-                name: 'Spray Texturizador',
-                category: 'finalizador',
-                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
-                description: 'Textura leve e volumosa na medida certa para cabelos com movimento.',
-                benefits: 'Volume, textura, movimento natural',
-                usage: 'Aplicar nos cabelos secos antes de finalizar o penteado.',
-                indication: 'Cabelos finos e sem volume',
-                related: ['mousse-modeladora', 'oleo-finalizador']
-            }, {
-                id: 'mousse-modeladora',
-                name: 'Mousse Modeladora',
-                category: 'finalizador',
-                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
-                description: 'Fixação leve e movimento natural para penteados com estilo.',
-                benefits: 'Fixação leve, volume, modelagem',
-                usage: 'Aplicar nos cabelos úmidos antes de secar ou modelar.',
-                indication: 'Cabelos que precisam de definição',
-                related: ['spray-texturizador', 'oleo-finalizador']
-            }, {
-                id: 'pomada-modeladora',
-                name: 'Pomada Modeladora',
-                category: 'finalizador',
-                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
-                description: 'Textura e definição para penteados masculinos e femininos.',
-                benefits: 'Definição, textura, fixação média',
-                usage: 'Aplicar pequena quantidade nos cabelos secos.',
-                indication: 'Cortes curtos e médios',
-                related: ['spray-texturizador', 'oleo-finalizador']
-            }],
-
-            trends: [{
-                id: 'camadas',
-                name: 'Camadas Estratégicas',
-                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
-                description: 'Camadas que criam movimento e leveza, valorizando a textura natural dos fios. Perfeitas para todos os comprimentos.'
-            }, {
-                id: 'franjas',
-                name: 'Franjas Sofisticadas',
-                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
-                description: 'Franjas despojadas que emolduram e suavizam o olhar, trazendo personalidade e elegância.'
-            }, {
-                id: 'movimento',
-                name: 'Movimento Natural',
-                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
-                description: 'Texturas naturais e styling que valorizam o movimento dos fios, criando um visual vivo e autêntico.'
-            }, {
-                id: 'texturas',
-                name: 'Texturas Leves',
-                image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=400&fit=crop&crop=center',
-                description: 'Acabamentos leves com toque aveludado e brilho natural, mantendo a saúde e a maciez dos fios.'
-            }, {
-                id: 'volumes',
-                name: 'Volumes Orgânicos',
-                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center',
-                description: 'Volumes que respeitam a estrutura natural do cabelo, criando formas elegantes e modernas.'
-            }, {
-                id: 'acabamentos',
-                name: 'Acabamentos Brilhantes',
-                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
-                description: 'Brilho intenso e saudável para um resultado elegante, com produtos que valorizam a luminosidade dos fios.'
-            }],
-
-            editorial: [
-                'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=600&h=600&fit=crop&crop=center',
-                'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=600&fit=crop&crop=center',
-                'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600&h=600&fit=crop&crop=center',
-                'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&h=600&fit=crop&crop=center',
-                'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=600&fit=crop&crop=center',
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&crop=center'
-            ]
-        };
-
-        // ============================================================
-        // CAROUSEL
-        // ============================================================
-
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero__slide');
-        const indicators = document.querySelectorAll('.hero__indicator');
-        let carouselInterval;
-
-        function goToSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-            });
-            indicators.forEach((indicator, i) => {
-                indicator.classList.toggle('active', i === index);
-            });
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            const next = (currentSlide + 1) % slides.length;
-            goToSlide(next);
-        }
-
-        function startCarousel() {
-            stopCarousel();
-            carouselInterval = setInterval(nextSlide, 4000);
-        }
-
-        function stopCarousel() {
-            if (carouselInterval) {
-                clearInterval(carouselInterval);
-                carouselInterval = null;
-            }
-        }
-
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', function() {
-                stopCarousel();
-                goToSlide(index);
-                startCarousel();
-            });
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicializar o app e expor globalmente
+            window.app = new HairOSApp();
         });
 
-        const hero = document.getElementById('heroCarousel');
-        hero.addEventListener('mouseenter', stopCarousel);
-        hero.addEventListener('mouseleave', startCarousel);
-        hero.addEventListener('touchstart', stopCarousel);
-        hero.addEventListener('touchend', startCarousel);
-
-        // ============================================================
-        // BOTTOM NAV - SCROLL ANIMATION
-        // ============================================================
-
-        const bottomNav = document.getElementById('bottomNav');
-        let lastScrollY = 0;
-        let scrollTimeout;
-
-        function handleScroll() {
-            const scrollY = window.scrollY;
-
-            if (scrollY > 40) {
-                bottomNav.classList.add('scrolled');
-            } else {
-                bottomNav.classList.remove('scrolled');
-            }
-
-            if (scrollY > lastScrollY && scrollY > 100) {
-                bottomNav.style.transform = 'translateX(-50%) scale(0.88)';
-                bottomNav.style.opacity = '0.7';
-            } else {
-                if (scrollY > 40) {
-                    bottomNav.style.transform = 'translateX(-50%) scale(0.92)';
-                    bottomNav.style.opacity = '0.85';
-                } else {
-                    bottomNav.style.transform = 'translateX(-50%) scale(1)';
-                    bottomNav.style.opacity = '1';
-                }
-            }
-
-            lastScrollY = scrollY;
-
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                if (scrollY > 40) {
-                    bottomNav.style.transform = 'translateX(-50%) scale(0.92)';
-                    bottomNav.style.opacity = '0.85';
-                } else {
-                    bottomNav.style.transform = 'translateX(-50%) scale(1)';
-                    bottomNav.style.opacity = '1';
-                }
-            }, 300);
-        }
-
-        window.addEventListener('scroll', handleScroll, { passive: true });
-
-        // ============================================================
-        // STATE
-        // ============================================================
-
-        const state = {
-            currentPage: 'home',
-            history: ['home'],
-            favorites: {
-                cuts: [],
-                products: []
-            },
-            filters: {
-                cuts: 'all',
-                products: 'all'
-            },
-            theme: 'light',
-            initialized: false
-        };
-
-        // ============================================================
-        // DOM REFS
-        // ============================================================
-
-        const $ = (sel) => document.querySelector(sel);
-        const $$ = (sel) => document.querySelectorAll(sel);
-
-        const pages = {
-            home: $('#page-home'),
-            collection: $('#page-collection'),
-            cuts: $('#page-cuts'),
-            'cut-detail': $('#page-cut-detail'),
-            trends: $('#page-trends'),
-            products: $('#page-products'),
-            'product-detail': $('#page-product-detail'),
-            editorial: $('#page-editorial'),
-            favorites: $('#page-favorites'),
-            menu: $('#page-menu')
-        };
-
-        const backBtn = $('#backButton');
-        const searchOverlay = $('#searchOverlay');
-        const searchInput = $('#searchInput');
-        const searchClose = $('#searchClose');
-        const searchToggle = $('#searchToggle');
-        const favoriteToggle = $('#favoriteToggle');
-        const favBadge = $('#favBadge');
-        const navFavBadge = $('#navFavBadge');
-        const modalOverlay = $('#modalOverlay');
-        const modalBody = $('#modalBody');
-        const modalClose = $('#modalClose');
-
-        // ============================================================
-        // NAVIGATION
-        // ============================================================
-
-        function navigateTo(page, data = null) {
-            Object.values(pages).forEach(p => p.classList.remove('active'));
-
-            const target = pages[page];
-            if (target) {
-                target.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            if (state.currentPage !== page) {
-                state.history.push(page);
-            }
-            state.currentPage = page;
-
-            backBtn.classList.toggle('visible', state.history.length > 1 && page !== 'home');
-
-            $$('.bottom-nav__item').forEach(item => {
-                item.classList.toggle('active', item.dataset.page === page);
-            });
-
-            searchOverlay.classList.remove('open');
-
-            if (page === 'home') {
-                startCarousel();
-            } else {
-                stopCarousel();
-            }
-
-            switch (page) {
-                case 'home':
-                    renderHome();
-                    break;
-                case 'cuts':
-                    renderCuts();
-                    break;
-                case 'cut-detail':
-                    if (data) renderCutDetail(data);
-                    break;
-                case 'trends':
-                    renderTrends();
-                    break;
-                case 'products':
-                    renderProducts();
-                    break;
-                case 'product-detail':
-                    if (data) renderProductDetail(data);
-                    break;
-                case 'editorial':
-                    renderEditorial();
-                    break;
-                case 'favorites':
-                    renderFavorites();
-                    break;
-            }
-
-            updateFavBadge();
-        }
-
-        function goBack() {
-            if (state.history.length > 1) {
-                state.history.pop();
-                const prev = state.history[state.history.length - 1];
-                navigateTo(prev);
-            }
-        }
-
-        // ============================================================
-        // MODAL
-        // ============================================================
-
-        function openModal(type) {
-            const content = {
-                profile: `
-                    <h2><i class="fas fa-user"></i> Perfil</h2>
-                    <div style="text-align:center;margin:1.5rem 0;">
-                        <div style="width:80px;height:80px;border-radius:50%;background:var(--beige);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--brown);">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <h3 style="margin-top:0.8rem;font-family:'Playfair Display',serif;">Usuário HairOS</h3>
-                        <p style="font-size:0.85rem;color:var(--brown);opacity:0.7;">Cabeleireiro | Especialista em Tendências</p>
-                    </div>
-                    <p><strong>Email:</strong> usuario@hairos.com</p>
-                    <p><strong>Membro desde:</strong> Janeiro 2026</p>
-                    <p><strong>Coleções salvas:</strong> 3</p>
-                    <p><strong>Cortes favoritos:</strong> ${state.favorites.cuts.length}</p>
-                    <p><strong>Produtos favoritos:</strong> ${state.favorites.products.length}</p>
-                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
-                `,
-                about: `
-                    <h2><i class="fas fa-info-circle"></i> Sobre o HairOS</h2>
-                    <p style="margin-top:0.8rem;">O <strong>HairOS Library</strong> é uma biblioteca profissional de tendências, coleções e conhecimento técnico para cabeleireiros.</p>
-                    <p>Nossa missão é inspirar e conectar profissionais da beleza através de conteúdo editorial de alta qualidade.</p>
-                    <div style="margin-top:1rem;padding:1rem;background:var(--beige);border-radius:var(--radius-sm);">
-                        <p style="font-size:0.85rem;"><strong>Versão:</strong> 1.0.0</p>
-                        <p style="font-size:0.85rem;"><strong>Coleção atual:</strong> Outono/Inverno 2026</p>
-                        <p style="font-size:0.85rem;"><strong>Desenvolvido com:</strong> ❤️ HTML + CSS + JS</p>
-                    </div>
-                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
-                `,
-                settings: `
-                    <h2><i class="fas fa-cog"></i> Configurações</h2>
-                    <div style="margin-top:1rem;">
-                        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
-                            <span><strong>Tema</strong><br /><span style="font-size:0.85rem;opacity:0.6;">${state.theme === 'light' ? 'Claro' : 'Escuro'}</span></span>
-                            <button onclick="toggleTheme();closeModal();" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--black);color:white;min-width:80px;justify-content:center;">
-                                ${state.theme === 'light' ? '🌙 Escuro' : '☀️ Claro'}
-                            </button>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
-                            <span><strong>Notificações</strong></span>
-                            <button onclick="alert('Notificações ativadas/desativadas')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
-                                Ativado
-                            </button>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;">
-                            <span><strong>Idioma</strong><br /><span style="font-size:0.85rem;opacity:0.6;">Português</span></span>
-                            <button onclick="alert('Alterar idioma')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
-                                Alterar
-                            </button>
-                        </div>
-                    </div>
-                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
-                `,
-                help: `
-                    <h2><i class="fas fa-question-circle"></i> Ajuda</h2>
-                    <div style="margin-top:1rem;">
-                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
-                            <strong>📱 Como navegar?</strong>
-                            <p style="font-size:0.9rem;opacity:0.7;">Use o menu inferior flutuante para acessar as principais seções do app.</p>
-                        </div>
-                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
-                            <strong>🔍 Como buscar?</strong>
-                            <p style="font-size:0.9rem;opacity:0.7;">Toque no ícone de busca 🔍 na barra superior ou pressione <kbd>Ctrl</kbd> + <kbd>K</kbd>.</p>
-                        </div>
-                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
-                            <strong>❤️ Como favoritar?</strong>
-                            <p style="font-size:0.9rem;opacity:0.7;">Nos detalhes de um corte ou produto, toque em "Favoritar" para salvar.</p>
-                        </div>
-                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
-                            <strong>🌓 Tema escuro?</strong>
-                            <p style="font-size:0.9rem;opacity:0.7;">Acesse Menu > Configurações e alterne o tema.</p>
-                        </div>
-                        <div style="padding:0.8rem 0;">
-                            <strong>🎠 Carrossel</strong>
-                            <p style="font-size:0.9rem;opacity:0.7;">O banner principal gira automaticamente. Toque nos indicadores para navegar.</p>
-                        </div>
-                    </div>
-                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
-                `,
-                contact: `
-                    <h2><i class="fas fa-envelope"></i> Contato</h2>
-                    <p style="margin-top:0.8rem;">Entre em contato conosco:</p>
-                    <div style="margin-top:1rem;">
-                        <p><strong>📧 Email:</strong> contato@hairos.com</p>
-                        <p><strong>📱 WhatsApp:</strong> +55 (11) 99999-9999</p>
-                        <p><strong>📍 Endereço:</strong> São Paulo, SP - Brasil</p>
-                    </div>
-                    <div class="social-links" style="margin-top:1rem;">
-                        <a href="#" onclick="alert('Instagram @hairos')"><i class="fab fa-instagram"></i></a>
-                        <a href="#" onclick="alert('YouTube /hairos')"><i class="fab fa-youtube"></i></a>
-                        <a href="#" onclick="alert('Pinterest /hairos')"><i class="fab fa-pinterest"></i></a>
-                        <a href="#" onclick="alert('TikTok @hairos')"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1.5rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
-                `,
-                editorialFull: `
-                    <h2><i class="fas fa-images"></i> Editorial</h2>
-                    <p style="margin-top:0.8rem;">Imagem em destaque do editorial da coleção.</p>
-                    <div style="margin-top:1rem;">
-                        <img src="https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=600&h=400&fit=crop&crop=center" alt="Editorial" style="width:100%;height:200px;object-fit:cover;border-radius:var(--radius-sm);" />
-                        <p style="margin-top:0.5rem;font-size:0.85rem;opacity:0.7;">"A beleza está no movimento natural, na textura que conta histórias."</p>
-                    </div>
-                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
-                `
-            };
-
-            modalBody.innerHTML = content[type] || '<h2>Página em construção</h2><p>Conteúdo em breve.</p>';
-            modalOverlay.classList.add('open');
-        }
-
-        function closeModal() {
-            modalOverlay.classList.remove('open');
-        }
-
-        // ============================================================
-        // THEME
-        // ============================================================
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            const newTheme = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            state.theme = newTheme;
-            localStorage.setItem('hairos-theme', newTheme);
-        }
-
-        function loadTheme() {
-            const saved = localStorage.getItem('hairos-theme');
-            if (saved) {
-                document.documentElement.setAttribute('data-theme', saved);
-                state.theme = saved;
-            }
-        }
-
-        // ============================================================
-        // RENDER FUNCTIONS
-        // ============================================================
-
-        function renderHome() {
-            // Trends preview
-            const trendsContainer = $('#trendsPreview');
-            trendsContainer.innerHTML = DATA.trends.map(t => `
-                <div class="card-preview" onclick="navigateTo('trends')">
-                    <img class="card-preview__image" src="${t.image}" alt="${t.name}" />
-                    <div class="card-preview__body">
-                        <span class="card-preview__name">${t.name}</span>
-                        <span class="card-preview__category">Tendência</span>
-                    </div>
-                </div>
-            `).join('');
-
-            // Cuts preview
-            const cutsContainer = $('#cutsPreview');
-            cutsContainer.innerHTML = DATA.cuts.map(c => `
-                <div class="card-preview" onclick="navigateTo('cut-detail', '${c.id}')">
-                    <img class="card-preview__image" src="${c.image}" alt="${c.name}" />
-                    <div class="card-preview__body">
-                        <span class="card-preview__name">${c.name}</span>
-                        <span class="card-preview__category">${c.category}</span>
-                    </div>
-                </div>
-            `).join('');
-
-            // Products preview
-            const productsContainer = $('#productsPreview');
-            productsContainer.innerHTML = DATA.products.map(p => `
-                <div class="card-preview" onclick="navigateTo('product-detail', '${p.id}')">
-                    <img class="card-preview__image" src="${p.image}" alt="${p.name}" />
-                    <div class="card-preview__body">
-                        <span class="card-preview__name">${p.name}</span>
-                        <span class="card-preview__category">${p.category}</span>
-                    </div>
-                </div>
-            `).join('');
-
-            // Editorial preview
-            const editorialContainer = $('#editorialPreview');
-            editorialContainer.innerHTML = DATA.editorial.slice(0, 3).map(img => `
-                <img src="${img}" alt="Editorial" onclick="navigateTo('editorial')" />
-            `).join('');
-        }
-
-        function renderCuts() {
-            const grid = $('#cutsGrid');
-            const filter = state.filters.cuts;
-
-            let filtered = DATA.cuts;
-            if (filter !== 'all') {
-                filtered = DATA.cuts.filter(c => c.category === filter || c.tags.includes(filter));
-            }
-
-            grid.innerHTML = filtered.map(c => `
-                <div class="cut-card" onclick="navigateTo('cut-detail', '${c.id}')">
-                    <img class="cut-card__image" src="${c.image}" alt="${c.name}" />
-                    <div class="cut-card__body">
-                        <div class="cut-card__name">${c.name}</div>
-                        <div class="cut-card__category">${c.category}</div>
-                        ${c.tags.slice(0, 2).map(t => `<span class="cut-card__tag">${t}</span>`).join('')}
-                    </div>
-                </div>
-            `).join('');
-
-            $$('#cutFilters .filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.filter === filter);
-            });
-        }
-
-        function renderCutDetail(cutId) {
-            const cut = DATA.cuts.find(c => c.id === cutId);
-            if (!cut) {
-                navigateTo('cuts');
-                return;
-            }
-
-            const container = $('#cutDetailContent');
-            container.innerHTML = `
-                <div class="detail-hero" style="background-image:url('${cut.image}');">
-                    <div class="detail-hero__overlay"></div>
-                    <div class="detail-hero__content">
-                        <h1 class="detail-hero__title">${cut.name}</h1>
-                        <span class="detail-hero__sub">${cut.category} • ${cut.tags.join(', ')}</span>
-                    </div>
-                </div>
-
-                <div class="detail-body">
-                    <div class="detail-body__section">
-                        <h4>Descrição</h4>
-                        <p>${cut.description}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Perfil Indicado</h4>
-                        <p>${cut.profile}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Detalhes Técnicos</h4>
-                        <p><strong>Tipo de cabelo:</strong> ${cut.hairType}</p>
-                        <p><strong>Formato de rosto:</strong> ${cut.faceShape}</p>
-                        <p><strong>Manutenção:</strong> ${cut.maintenance}</p>
-                        <p><strong>Tempo médio:</strong> ${cut.time}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Técnicas Utilizadas</h4>
-                        <p>${cut.techniques}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Como Finalizar</h4>
-                        <p>${cut.finishing}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Produtos Sugeridos</h4>
-                        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-                            ${cut.products.map(p => `<span class="tag" onclick="navigateTo('products')">${p}</span>`).join('')}
-                        </div>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Cortes Relacionados</h4>
-                        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-                            ${cut.related.map(id => {
-                                const related = DATA.cuts.find(c => c.id === id);
-                                return related ? `<span class="tag" onclick="navigateTo('cut-detail','${related.id}')">${related.name}</span>` : '';
-                            }).join('')}
-                        </div>
-                    </div>
-
-                    <button class="hero__cta" onclick="toggleFavorite('cut','${cut.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFavorite('cut', cut.id) ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
-                        <i class="fas fa-heart"></i> ${isFavorite('cut', cut.id) ? 'Favoritado' : 'Favoritar'}
-                    </button>
-
-                    <button class="hero__cta" onclick="navigateTo('cuts')" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
-                        <i class="fas fa-arrow-left"></i> Voltar para Cortes
-                    </button>
-                </div>
-            `;
-        }
-
-        function renderTrends() {
-            const container = $('#trendsGrid');
-            container.innerHTML = DATA.trends.map(t => `
-                <div class="trend-full">
-                    <img class="trend-full__image" src="${t.image}" alt="${t.name}" />
-                    <div class="trend-full__body">
-                        <h3 class="trend-full__title">${t.name}</h3>
-                        <p class="trend-full__desc">${t.description}</p>
-                        <button class="hero__cta" onclick="navigateTo('home')" style="margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.5rem 1.5rem;font-size:0.75rem;">
-                            <i class="fas fa-arrow-left"></i> Voltar
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function renderProducts() {
-            const grid = $('#productsGrid');
-            const filter = state.filters.products;
-
-            let filtered = DATA.products;
-            if (filter !== 'all') {
-                filtered = DATA.products.filter(p => p.category === filter);
-            }
-
-            grid.innerHTML = filtered.map(p => `
-                <div class="product-card" onclick="navigateTo('product-detail', '${p.id}')">
-                    <img class="product-card__image" src="${p.image}" alt="${p.name}" />
-                    <div class="product-card__name">${p.name}</div>
-                    <div class="product-card__category">${p.category}</div>
-                </div>
-            `).join('');
-
-            $$('#productFilters .filter-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.filter === filter);
-            });
-        }
-
-        function renderProductDetail(productId) {
-            const product = DATA.products.find(p => p.id === productId);
-            if (!product) {
-                navigateTo('products');
-                return;
-            }
-
-            const container = $('#productDetailContent');
-            container.innerHTML = `
-                <div style="padding:0 1.2rem 0;">
-                    <img src="${product.image}" alt="${product.name}" style="width:100%;height:280px;object-fit:cover;border-radius:var(--radius);margin-top:0.5rem;" />
-                </div>
-
-                <div class="detail-body">
-                    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--black);margin-bottom:0.3rem;">${product.name}</h2>
-                    <span style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--brown);opacity:0.5;">${product.category}</span>
-
-                    <div class="detail-body__section" style="margin-top:1.2rem;">
-                        <h4>Descrição</h4>
-                        <p>${product.description}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Benefícios</h4>
-                        <p>${product.benefits}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Modo de Uso</h4>
-                        <p>${product.usage}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Indicação</h4>
-                        <p>${product.indication}</p>
-                    </div>
-
-                    <div class="detail-body__section">
-                        <h4>Produtos Relacionados</h4>
-                        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-                            ${product.related.map(id => {
-                                const related = DATA.products.find(p => p.id === id);
-                                return related ? `<span class="tag" onclick="navigateTo('product-detail','${related.id}')">${related.name}</span>` : '';
-                            }).join('')}
-                        </div>
-                    </div>
-
-                    <button class="hero__cta" onclick="toggleFavorite('product','${product.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFavorite('product', product.id) ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
-                        <i class="fas fa-heart"></i> ${isFavorite('product', product.id) ? 'Favoritado' : 'Favoritar'}
-                    </button>
-
-                    <button class="hero__cta" onclick="navigateTo('products')" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
-                        <i class="fas fa-arrow-left"></i> Voltar para Produtos
-                    </button>
-                </div>
-            `;
-        }
-
-        function renderEditorial() {
-            const container = $('#editorialGrid');
-            container.innerHTML = DATA.editorial.map(img => `
-                <img src="${img}" alt="Editorial" onclick="openModal('editorialFull')" />
-            `);
-        }
-
-        function renderFavorites() {
-            const container = $('#favoritesList');
-            const favCuts = DATA.cuts.filter(c => state.favorites.cuts.includes(c.id));
-            const favProducts = DATA.products.filter(p => state.favorites.products.includes(p.id));
-
-            const allFavs = [
-                ...favCuts.map(c => ({ ...c, type: 'cut' })),
-                ...favProducts.map(p => ({ ...p, type: 'product' }))
-            ];
-
-            if (allFavs.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
-                        <i class="fas fa-heart" style="font-size:2.5rem;display:block;margin-bottom:0.8rem;"></i>
-                        <p style="font-size:0.95rem;">Nenhum favorito ainda</p>
-                        <p style="font-size:0.8rem;">Explore a coleção e salve seus cortes e produtos favoritos</p>
-                    </div>
-                `;
-                $('#favCount').textContent = '0 itens';
-                return;
-            }
-
-            container.innerHTML = allFavs.map(item => `
-                <div class="fav-item" onclick="navigateTo('${item.type === 'cut' ? 'cut-detail' : 'product-detail'}', '${item.id}')">
-                    <img src="${item.image}" alt="${item.name}" />
-                    <div class="info">
-                        <div class="name">${item.name}</div>
-                        <div class="category">${item.type === 'cut' ? 'Corte' : 'Produto'} • ${item.category}</div>
-                    </div>
-                    <button class="remove" onclick="event.stopPropagation();toggleFavorite('${item.type}','${item.id}')">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `).join('');
-
-            $('#favCount').textContent = `${allFavs.length} itens`;
-        }
-
-        // ============================================================
-        // FAVORITES
-        // ============================================================
-
-        function toggleFavorite(type, id) {
-            const key = type === 'cut' ? 'cuts' : 'products';
-            const index = state.favorites[key].indexOf(id);
-
-            if (index > -1) {
-                state.favorites[key].splice(index, 1);
-            } else {
-                state.favorites[key].push(id);
-            }
-
-            if (state.currentPage === 'cut-detail') {
-                const cutId = state.history[state.history.length - 1];
-                renderCutDetail(cutId);
-            } else if (state.currentPage === 'product-detail') {
-                const productId = state.history[state.history.length - 1];
-                renderProductDetail(productId);
-            } else if (state.currentPage === 'favorites') {
-                renderFavorites();
-            }
-
-            updateFavBadge();
-        }
-
-        function isFavorite(type, id) {
-            const key = type === 'cut' ? 'cuts' : 'products';
-            return state.favorites[key].includes(id);
-        }
-
-        function updateFavBadge() {
-            const total = state.favorites.cuts.length + state.favorites.products.length;
-            if (total > 0) {
-                favBadge.style.display = 'flex';
-                favBadge.textContent = total;
-                navFavBadge.style.display = 'flex';
-                navFavBadge.textContent = total;
-            } else {
-                favBadge.style.display = 'none';
-                navFavBadge.style.display = 'none';
-            }
-        }
-
-        // ============================================================
-        // SEARCH
-        // ============================================================
-
-        function performSearch(query) {
-            const results = [];
-            const q = query.toLowerCase().trim();
-
-            if (q.length === 0) return results;
-
-            DATA.cuts.forEach(c => {
-                if (c.name.toLowerCase().includes(q) ||
-                    c.category.includes(q) ||
-                    c.tags.some(t => t.includes(q))) {
-                    results.push({ ...c, type: 'cut' });
-                }
-            });
-
-            DATA.products.forEach(p => {
-                if (p.name.toLowerCase().includes(q) ||
-                    p.category.includes(q) ||
-                    p.description.toLowerCase().includes(q)) {
-                    results.push({ ...p, type: 'product' });
-                }
-            });
-
-            DATA.trends.forEach(t => {
-                if (t.name.toLowerCase().includes(q) ||
-                    t.description.toLowerCase().includes(q)) {
-                    results.push({ ...t, type: 'trend' });
-                }
-            });
-
-            return results;
-        }
-
-        function renderSearchResults(query) {
-            const container = $('#searchResults');
-            const results = performSearch(query);
-
-            if (query.trim().length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search"></i>
-                        <p>Digite para buscar cortes, produtos e tendências</p>
-                    </div>
-                `;
-                return;
-            }
-
-            if (results.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-search"></i>
-                        <p>Nenhum resultado encontrado para "${query}"</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = results.map(item => `
-                <div class="result-item" onclick="navigateTo('${item.type === 'cut' ? 'cut-detail' : item.type === 'product' ? 'product-detail' : 'trends'}', '${item.id || ''}')">
-                    <img src="${item.image}" alt="${item.name}" />
-                    <div class="info">
-                        <div class="name">${item.name}</div>
-                        <div class="category">${item.type} • ${item.category || ''}</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // ============================================================
-        // INIT APP
-        // ============================================================
-
-        function initApp() {
-            if (state.initialized) return;
-            state.initialized = true;
-
-            loadTheme();
-            navigateTo('home');
-            startCarousel();
-
-            backBtn.addEventListener('click', goBack);
-
-            searchToggle.addEventListener('click', () => {
-                searchOverlay.classList.toggle('open');
-                if (searchOverlay.classList.contains('open')) {
-                    searchInput.focus();
-                }
-            });
-
-            searchClose.addEventListener('click', () => {
-                searchOverlay.classList.remove('open');
-            });
-
-            searchInput.addEventListener('input', (e) => {
-                renderSearchResults(e.target.value);
-            });
-
-            favoriteToggle.addEventListener('click', () => {
-                navigateTo('favorites');
-            });
-
-            modalClose.addEventListener('click', closeModal);
-            modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) closeModal();
-            });
-
-            document.addEventListener('click', (e) => {
-                const btn = e.target.closest('#cutFilters .filter-btn');
-                if (btn) {
-                    state.filters.cuts = btn.dataset.filter;
-                    renderCuts();
-                }
-            });
-
-            document.addEventListener('click', (e) => {
-                const btn = e.target.closest('#productFilters .filter-btn');
-                if (btn) {
-                    state.filters.products = btn.dataset.filter;
-                    renderProducts();
-                }
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (searchOverlay.classList.contains('open')) {
-                        searchOverlay.classList.remove('open');
-                    }
-                    if (modalOverlay.classList.contains('open')) {
-                        closeModal();
-                    }
-                }
-                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                    e.preventDefault();
-                    searchOverlay.classList.toggle('open');
-                    if (searchOverlay.classList.contains('open')) {
-                        searchInput.focus();
-                    }
-                }
-            });
-
-            console.log('🪮 HairOS Library v1.0.0');
-            console.log('📚 Dados carregados:', {
-                cortes: DATA.cuts.length,
-                produtos: DATA.products.length,
-                tendencias: DATA.trends.length
-            });
-            console.log('🌓 Tema:', state.theme);
-            console.log('🎠 Carrossel ativo com 3 imagens');
-            console.log('📱 Menu flutuante glassmorphism com animação no scroll');
-            console.log('✨ App completamente funcional com todas as páginas!');
-        }
+        console.log('🪮 HairOS Library v2.0 carregado!');
+        console.log('📖 Documentação:');
+        console.log('  - Navegação: window.app.navigateTo(page, data)');
+        console.log('  - Favoritos: window.app.toggleFavorite(type, id)');
+        console.log('  - Tema: window.app.toggleTheme()');
+        console.log('  - Modal: window.app.openModal(type) / window.app.closeModal()');
+        console.log('  - Busca: window.app.performSearch(query)');
+        console.log('  - Estado: window.app.state');
     </script>
 
 </body>
