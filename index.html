@@ -1,0 +1,2973 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>HairOS Library — Coleção Outono/Inverno 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1a1614;
+            --brown-dark: #2c241e;
+            --brown: #5c4b3a;
+            --coffee: #8b7355;
+            --beige: #e8ddd0;
+            --gold: #c9a96e;
+            --white: #faf8f5;
+            --white-pure: #ffffff;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Tema escuro */
+        [data-theme="dark"] {
+            --black: #faf8f5;
+            --brown-dark: #e8ddd0;
+            --brown: #c9a96e;
+            --coffee: #a08060;
+            --beige: #2c241e;
+            --gold: #c9a96e;
+            --white: #1a1614;
+            --white-pure: #1a1614;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--beige);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brown);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           LOADING SCREEN
+           ============================================================ */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white-pure);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #loadingScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loading__logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: 4px;
+            margin-bottom: 0.3rem;
+            animation: pulseLogo 1.5s ease-in-out infinite;
+        }
+
+        .loading__badge {
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(201, 169, 110, 0.12);
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .loading__spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--beige);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .loading__bar {
+            width: 200px;
+            height: 3px;
+            background: var(--beige);
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+
+        .loading__bar-fill {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 10px;
+            width: 0%;
+            animation: loadBar 2.2s ease-in-out forwards;
+        }
+
+        .loading__percent {
+            font-size: 0.75rem;
+            font-weight: 300;
+            color: var(--brown);
+            opacity: 0.6;
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulseLogo {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes loadBar {
+            0% {
+                width: 0%;
+            }
+            30% {
+                width: 45%;
+            }
+            60% {
+                width: 75%;
+            }
+            90% {
+                width: 92%;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* ============================================================
+           APP
+           ============================================================ */
+        #app {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--white-pure);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.04);
+            transition: background 0.3s;
+            opacity: 0;
+            animation: fadeInApp 0.6s ease 2.5s forwards;
+        }
+
+        @keyframes fadeInApp {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ============================================================
+           TOP BAR
+           ============================================================ */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(18px) saturate(1.4);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            height: 60px;
+            transition: background 0.3s;
+        }
+        [data-theme="dark"] .top-bar {
+            background: rgba(26, 22, 20, 0.92);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .top-bar__back {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--black);
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+            display: none;
+        }
+        .top-bar__back:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+        [data-theme="dark"] .top-bar__back:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .top-bar__back.visible {
+            display: block;
+        }
+
+        .top-bar__brand {
+            display: flex;
+            align-items: baseline;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+        .top-bar__logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--black);
+            transition: color 0.3s;
+        }
+        .top-bar__badge {
+            font-size: 0.55rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(201, 169, 110, 0.12);
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .top-bar__actions {
+            display: flex;
+            gap: 0.2rem;
+        }
+        .top-bar__action {
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            color: var(--brown);
+            padding: 0.4rem 0.6rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .top-bar__action:hover {
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--black);
+        }
+        [data-theme="dark"] .top-bar__action:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--white);
+        }
+        .top-bar__action .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--gold);
+            color: white;
+            font-size: 0.5rem;
+            font-weight: 600;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(4px, -4px);
+        }
+
+        /* ============================================================
+           SEARCH OVERLAY
+           ============================================================ */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 200;
+            padding: 1.2rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+        }
+        [data-theme="dark"] .search-overlay {
+            background: rgba(26, 22, 20, 0.97);
+        }
+        .search-overlay.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .search-overlay__header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+        .search-overlay__input {
+            flex: 1;
+            border: none;
+            background: var(--beige);
+            padding: 0.9rem 1.2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            color: var(--black);
+            transition: background 0.2s, color 0.3s;
+        }
+        .search-overlay__input:focus {
+            background: #dcd0c4;
+        }
+        [data-theme="dark"] .search-overlay__input:focus {
+            background: #3d352e;
+        }
+        .search-overlay__input::placeholder {
+            color: var(--brown);
+            opacity: 0.5;
+        }
+        .search-overlay__close {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--black);
+            padding: 0.4rem;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .search-overlay__close:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .search-overlay__results {
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 0.2rem 0;
+        }
+        .search-overlay__results .result-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 0.6rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background 0.2s;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .search-overlay__results .result-item:hover {
+            background: var(--beige);
+        }
+        .search-overlay__results .result-item img {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+        .search-overlay__results .result-item .info {
+            flex: 1;
+        }
+        .search-overlay__results .result-item .info .name {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--black);
+        }
+        .search-overlay__results .result-item .info .category {
+            font-size: 0.75rem;
+            color: var(--brown);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .search-overlay__results .empty-state {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--brown);
+            opacity: 0.5;
+        }
+        .search-overlay__results .empty-state i {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        /* ============================================================
+           MAIN CONTENT / PAGES
+           ============================================================ */
+        .main-content {
+            padding-bottom: 100px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeUp 0.4s ease;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           BOTTOM NAV - FLUTUANTE GLASSMORPHISM
+           ============================================================ */
+        #bottomNav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 99;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+
+            padding: 10px 16px;
+            border-radius: 50px;
+
+            background: rgba(20, 20, 20, 0.55);
+            backdrop-filter: blur(16px) saturate(1.6);
+            -webkit-backdrop-filter: blur(16px) saturate(1.6);
+
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25),
+                        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+
+            border: 1px solid rgba(255, 255, 255, 0.06);
+
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            max-width: 440px;
+            width: auto;
+            min-width: 280px;
+        }
+
+        [data-theme="dark"] #bottomNav {
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        #bottomNav.scrolled {
+            transform: translateX(-50%) scale(0.92);
+            opacity: 0.85;
+            bottom: 16px;
+        }
+
+        .bottom-nav__item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 6px 14px;
+            border-radius: 30px;
+
+            font-size: 0.55rem;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            min-width: 52px;
+        }
+
+        .bottom-nav__item i {
+            font-size: 1.1rem;
+            transition: all 0.25s ease;
+        }
+
+        .bottom-nav__item span {
+            opacity: 0.7;
+            transition: all 0.25s ease;
+        }
+
+        .bottom-nav__item:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .bottom-nav__item:hover i {
+            transform: translateY(-1px);
+        }
+
+        .bottom-nav__item.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
+        }
+
+        .bottom-nav__item.active i {
+            transform: scale(1.05);
+        }
+
+        .bottom-nav__item.active span {
+            opacity: 1;
+        }
+
+        .bottom-nav__item .nav-badge {
+            position: absolute;
+            top: 0px;
+            right: 4px;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 0.45rem;
+            font-weight: 700;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(201, 169, 110, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* ============================================================
+           HERO CAROUSEL
+           ============================================================ */
+        .hero {
+            margin: 0 0 1.5rem;
+            border-radius: 0 0 var(--radius) var(--radius);
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+        }
+
+        .hero__slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero__slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero__slide.active {
+            opacity: 1;
+        }
+
+        .hero__slide .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 22, 20, 0.7) 0%, transparent 60%);
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem 1.5rem 2.2rem;
+            color: white;
+            width: 100%;
+        }
+
+        .hero__badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero__subtitle {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.85;
+            max-width: 280px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero__cta {
+            background: var(--white-pure);
+            color: var(--black);
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        .hero__cta i {
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        .hero__cta:hover i {
+            transform: translateX(4px);
+        }
+
+        .hero__indicators {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 3;
+        }
+
+        .hero__indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+
+        .hero__indicator.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .hero__indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
+        .section {
+            padding: 0 1.2rem 1.8rem;
+        }
+
+        .section__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+        }
+
+        .section__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--black);
+            transition: color 0.3s;
+        }
+
+        .section__see-all {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--brown);
+            text-decoration: none;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+        .section__see-all:hover {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           CARDS - CARROSSEL
+           ============================================================ */
+        .cards-scroll {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 0.2rem 0 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .cards-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card-preview {
+            flex: 0 0 160px;
+            scroll-snap-align: start;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .card-preview:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        [data-theme="dark"] .card-preview {
+            background: var(--white-pure);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .card-preview__image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-preview__body {
+            padding: 0.7rem 0.8rem 0.9rem;
+        }
+
+        .card-preview__name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--black);
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-preview__category {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--brown);
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           COLLECTION PAGE
+           ============================================================ */
+        .collection-banner {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border-radius: 0 0 var(--radius) var(--radius);
+            overflow: hidden;
+        }
+
+        .collection-banner__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 22, 20, 0.6), transparent);
+        }
+
+        .collection-banner__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .collection-banner__badge {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            display: block;
+        }
+
+        .collection-banner__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .manifesto {
+            background: var(--beige);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .manifesto__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .manifesto__text {
+            font-size: 0.95rem;
+            color: var(--brown-dark);
+            font-weight: 300;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ============================================================
+           CUTS PAGE (GRID)
+           ============================================================ */
+        .cuts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        .cut-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .cut-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        [data-theme="dark"] .cut-card {
+            background: var(--white-pure);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .cut-card__image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cut-card__body {
+            padding: 0.8rem 0.9rem 1rem;
+        }
+
+        .cut-card__name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--black);
+        }
+
+        .cut-card__category {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--brown);
+            opacity: 0.6;
+        }
+
+        .cut-card__tag {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--beige);
+            padding: 0.1rem 0.7rem;
+            border-radius: 20px;
+            margin-top: 0.3rem;
+            color: var(--brown);
+        }
+
+        /* ============================================================
+           FILTERS
+           ============================================================ */
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0 1.2rem 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--brown);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .filter-btn:hover {
+            background: var(--beige);
+        }
+        .filter-btn.active {
+            background: var(--black);
+            color: white;
+            border-color: var(--black);
+        }
+        [data-theme="dark"] .filter-btn {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        [data-theme="dark"] .filter-btn.active {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+        }
+
+        /* ============================================================
+           DETAIL PAGE
+           ============================================================ */
+        .detail-hero {
+            position: relative;
+            height: 320px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0 0 var(--radius) var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 22, 20, 0.5), transparent 60%);
+        }
+
+        .detail-hero__content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .detail-hero__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .detail-hero__sub {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .detail-body {
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        .detail-body__section {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-body__section h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--brown);
+            opacity: 0.5;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .detail-body__section p {
+            font-size: 0.95rem;
+            color: var(--brown-dark);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .detail-body__section .tag {
+            display: inline-block;
+            background: var(--beige);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            margin: 0.15rem 0.2rem;
+            color: var(--brown);
+            transition: background 0.3s;
+        }
+
+        /* ============================================================
+           PRODUCTS PAGE
+           ============================================================ */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        /* ============================================================
+           TRENDS PAGE
+           ============================================================ */
+        .trends-grid {
+            display: grid;
+            gap: 1.2rem;
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        .trend-full {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        [data-theme="dark"] .trend-full {
+            background: var(--white-pure);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .trend-full__image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .trend-full__body {
+            padding: 1rem 1.2rem 1.2rem;
+        }
+
+        .trend-full__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--black);
+        }
+
+        .trend-full__desc {
+            font-size: 0.9rem;
+            color: var(--brown-dark);
+            font-weight: 300;
+            line-height: 1.7;
+            margin-top: 0.3rem;
+        }
+
+        /* ============================================================
+           FAVORITES
+           ============================================================ */
+        .favorites-list {
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        .fav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.8rem 0.6rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: var(--radius-sm);
+        }
+        .fav-item:hover {
+            background: var(--beige);
+        }
+
+        .fav-item img {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .fav-item .info {
+            flex: 1;
+        }
+        .fav-item .info .name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--black);
+        }
+        .fav-item .info .category {
+            font-size: 0.7rem;
+            color: var(--brown);
+            opacity: 0.6;
+        }
+        .fav-item .remove {
+            background: none;
+            border: none;
+            color: var(--brown);
+            opacity: 0.3;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            transition: opacity 0.2s;
+        }
+        .fav-item .remove:hover {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           EDITORIAL PAGE
+           ============================================================ */
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        .editorial-grid img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .editorial-grid img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow);
+        }
+
+        /* ============================================================
+           MENU PAGE
+           ============================================================ */
+        .menu-list {
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 0.6rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: var(--radius-sm);
+        }
+        .menu-item:hover {
+            background: var(--beige);
+        }
+        [data-theme="dark"] .menu-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .menu-item i {
+            width: 24px;
+            color: var(--brown);
+            font-size: 1.1rem;
+        }
+
+        .menu-item .label {
+            flex: 1;
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--black);
+        }
+
+        .menu-item .arrow {
+            color: var(--brown);
+            opacity: 0.3;
+            font-size: 0.8rem;
+        }
+
+        /* Toggle switch para tema */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-left: auto;
+        }
+
+        .theme-toggle__track {
+            width: 44px;
+            height: 24px;
+            background: var(--beige);
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+            flex-shrink: 0;
+        }
+        .theme-toggle__track:hover {
+            opacity: 0.8;
+        }
+
+        .theme-toggle__thumb {
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+        [data-theme="dark"] .theme-toggle__thumb {
+            transform: translateX(20px);
+            background: var(--gold);
+        }
+
+        /* Modal para páginas internas */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white-pure);
+            border-radius: var(--radius);
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: fadeUp 0.3s ease;
+            position: relative;
+        }
+        [data-theme="dark"] .modal-content {
+            background: var(--white-pure);
+        }
+
+        .modal-content__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--brown);
+            cursor: pointer;
+            transition: opacity 0.2s;
+            opacity: 0.5;
+        }
+        .modal-content__close:hover {
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--black);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-content p {
+            color: var(--brown-dark);
+            font-weight: 300;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .modal-content .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .modal-content .social-links a {
+            color: var(--brown);
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+        .modal-content .social-links a:hover {
+            color: var(--gold);
+        }
+
+        /* ============================================================
+           EDITORIAL PREVIEW (HOME)
+           ============================================================ */
+        .editorial-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .editorial-preview img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .editorial-preview img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 400px) {
+            .hero {
+                height: 340px;
+            }
+            .hero__title {
+                font-size: 1.8rem;
+            }
+            .cuts-grid,
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .card-preview {
+                flex: 0 0 130px;
+            }
+            .card-preview__image {
+                height: 110px;
+            }
+            #bottomNav {
+                padding: 8px 12px;
+                min-width: 220px;
+                gap: 2px;
+                bottom: 16px;
+            }
+            .bottom-nav__item {
+                padding: 4px 10px;
+                min-width: 40px;
+                font-size: 0.5rem;
+            }
+            .bottom-nav__item i {
+                font-size: 0.95rem;
+            }
+            .bottom-nav__item .nav-badge {
+                width: 14px;
+                height: 14px;
+                font-size: 0.4rem;
+                right: 2px;
+                top: -2px;
+            }
+            .loading__logo {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (min-width: 600px) {
+            #app {
+                border-left: 1px solid rgba(0, 0, 0, 0.04);
+                border-right: 1px solid rgba(0, 0, 0, 0.04);
+            }
+            .cuts-grid,
+            .products-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        /* ============================================================
+           UTILITIES
+           ============================================================ */
+        .text-center {
+            text-align: center;
+        }
+        .mt-1 {
+            margin-top: 1rem;
+        }
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+        .gap-1 {
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- LOADING SCREEN                              -->
+    <!-- ============================================ -->
+    <div id="loadingScreen">
+        <div class="loading__logo">HairOS</div>
+        <div class="loading__badge">Library</div>
+        <div class="loading__spinner"></div>
+        <div class="loading__bar">
+            <div class="loading__bar-fill"></div>
+        </div>
+        <div class="loading__percent" id="loadingPercent">CARREGANDO</div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- APP                                         -->
+    <!-- ============================================ -->
+    <div id="app">
+
+        <!-- ===== TOP BAR ===== -->
+        <header id="topBar" class="top-bar">
+            <button class="top-bar__back" id="backButton" aria-label="Voltar">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="top-bar__brand" onclick="navigateTo('home')">
+                <span class="top-bar__logo">HairOS</span>
+                <span class="top-bar__badge">Library</span>
+            </div>
+            <div class="top-bar__actions">
+                <button class="top-bar__action" id="searchToggle" aria-label="Buscar">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="top-bar__action" id="favoriteToggle" aria-label="Favoritos">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="favBadge" style="display:none;">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== SEARCH OVERLAY ===== -->
+        <div id="searchOverlay" class="search-overlay">
+            <div class="search-overlay__header">
+                <input type="text" id="searchInput" class="search-overlay__input" placeholder="Buscar cortes, produtos, coleções..." autofocus />
+                <button id="searchClose" class="search-overlay__close"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="searchResults" class="search-overlay__results"></div>
+        </div>
+
+        <!-- ===== MODAL ===== -->
+        <div id="modalOverlay" class="modal-overlay">
+            <div class="modal-content" id="modalContent">
+                <button class="modal-content__close" id="modalClose"><i class="fas fa-times"></i></button>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main id="mainContent" class="main-content">
+
+            <!-- PAGE: HOME -->
+            <section id="page-home" class="page active" data-page="home">
+
+                <!-- HERO CAROUSEL -->
+                <div class="hero" id="heroCarousel">
+                    <div class="hero__slider" id="heroSlider">
+                        <div class="hero__slide active" style="background-image: url('https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=800&h=600&fit=crop&crop=center');">
+                            <div class="overlay"></div>
+                            <div class="hero__content">
+                                <span class="hero__badge">Coleção 2026</span>
+                                <h1 class="hero__title">Outono / Inverno</h1>
+                                <p class="hero__subtitle">Inspirada nos tons da natureza e na elegância atemporal</p>
+                                <button class="hero__cta" onclick="navigateTo('collection')">Explorar Coleção <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=800&h=600&fit=crop&crop=center');">
+                            <div class="overlay"></div>
+                            <div class="hero__content">
+                                <span class="hero__badge">Tendências</span>
+                                <h1 class="hero__title">Movimento Natural</h1>
+                                <p class="hero__subtitle">Texturas que contam histórias e valorizam a individualidade</p>
+                                <button class="hero__cta" onclick="navigateTo('trends')">Ver Tendências <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="hero__slide" style="background-image: url('https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=600&fit=crop&crop=center');">
+                            <div class="overlay"></div>
+                            <div class="hero__content">
+                                <span class="hero__badge">Cortes</span>
+                                <h1 class="hero__title">Novas Silhuetas</h1>
+                                <p class="hero__subtitle">Cortes que celebram a beleza única de cada fio</p>
+                                <button class="hero__cta" onclick="navigateTo('cuts')">Explorar Cortes <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero__indicators" id="heroIndicators">
+                        <button class="hero__indicator active" data-slide="0" aria-label="Slide 1"></button>
+                        <button class="hero__indicator" data-slide="1" aria-label="Slide 2"></button>
+                        <button class="hero__indicator" data-slide="2" aria-label="Slide 3"></button>
+                    </div>
+                </div>
+
+                <!-- TENDÊNCIAS -->
+                <div class="section">
+                    <div class="section__header">
+                        <h2 class="section__title">Tendências da Estação</h2>
+                        <a href="#" onclick="navigateTo('trends'); return false;" class="section__see-all">Ver todas</a>
+                    </div>
+                    <div class="cards-scroll" id="trendsPreview"></div>
+                </div>
+
+                <!-- CORTES -->
+                <div class="section">
+                    <div class="section__header">
+                        <h2 class="section__title">Cortes em Destaque</h2>
+                        <a href="#" onclick="navigateTo('cuts'); return false;" class="section__see-all">Ver todos</a>
+                    </div>
+                    <div class="cards-scroll" id="cutsPreview"></div>
+                </div>
+
+                <!-- PRODUTOS -->
+                <div class="section">
+                    <div class="section__header">
+                        <h2 class="section__title">Produtos Sugeridos</h2>
+                        <a href="#" onclick="navigateTo('products'); return false;" class="section__see-all">Ver todos</a>
+                    </div>
+                    <div class="cards-scroll" id="productsPreview"></div>
+                </div>
+
+                <!-- EDITORIAL -->
+                <div class="section">
+                    <div class="section__header">
+                        <h2 class="section__title">Editorial</h2>
+                        <a href="#" onclick="navigateTo('editorial'); return false;" class="section__see-all">Ver mais</a>
+                    </div>
+                    <div class="editorial-preview" id="editorialPreview"></div>
+                </div>
+            </section>
+
+            <!-- PAGE: COLLECTION -->
+            <section id="page-collection" class="page" data-page="collection">
+                <div class="collection-banner" style="background-image: url('https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=800&h=400&fit=crop&crop=center');">
+                    <div class="collection-banner__overlay"></div>
+                    <div class="collection-banner__content">
+                        <span class="collection-banner__badge">HairOS</span>
+                        <h1 class="collection-banner__title">Outono / Inverno 2026</h1>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="manifesto">
+                        <h3 class="manifesto__title">Manifesto</h3>
+                        <p class="manifesto__text">"A beleza está no movimento natural, na textura que conta histórias e na elegância que não precisa de esforço. A coleção Outono/Inverno 2026 celebra a individualidade, as camadas que dançam e as franjas que emolduram o olhar."</p>
+                    </div>
+
+                    <div style="margin-bottom:1.5rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">Conceito</h4>
+                        <p style="font-size:0.95rem;color:var(--brown-dark);font-weight:300;line-height:1.8;">Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.</p>
+                    </div>
+
+                    <div style="margin-bottom:1.5rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">Mood</h4>
+                        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+                            <span class="tag" style="background:var(--beige);padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;color:var(--brown);">Elegância natural</span>
+                            <span class="tag" style="background:var(--beige);padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;color:var(--brown);">Movimento livre</span>
+                            <span class="tag" style="background:var(--beige);padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;color:var(--brown);">Texturas vivas</span>
+                            <span class="tag" style="background:var(--beige);padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;color:var(--brown);">Tons terrosos</span>
+                        </div>
+                    </div>
+
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.5rem;">
+                        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);" />
+                        <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);" />
+                        <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);" />
+                        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop" alt="Mood" style="width:100%;height:120px;object-fit:cover;border-radius:var(--radius-sm);" />
+                    </div>
+
+                    <button class="hero__cta" onclick="navigateTo('cuts')" style="background:var(--black);color:white;width:100%;justify-content:center;padding:0.9rem;">Explorar Cortes <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <!-- PAGE: CUTS -->
+            <section id="page-cuts" class="page" data-page="cuts">
+                <div style="padding:0.8rem 1.2rem 0;">
+                    <h2 class="section__title" style="font-size:1.4rem;">Cortes</h2>
+                </div>
+                <div class="filters" id="cutFilters">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="curtos">Curtos</button>
+                    <button class="filter-btn" data-filter="medios">Médios</button>
+                    <button class="filter-btn" data-filter="longos">Longos</button>
+                    <button class="filter-btn" data-filter="cacheado">Cacheados</button>
+                    <button class="filter-btn" data-filter="masculino">Masculinos</button>
+                    <button class="filter-btn" data-filter="franja">Franjas</button>
+                    <button class="filter-btn" data-filter="camadas">Camadas</button>
+                </div>
+                <div class="cuts-grid" id="cutsGrid"></div>
+            </section>
+
+            <!-- PAGE: CUT DETAIL -->
+            <section id="page-cut-detail" class="page" data-page="cut-detail">
+                <div id="cutDetailContent"></div>
+            </section>
+
+            <!-- PAGE: TRENDS -->
+            <section id="page-trends" class="page" data-page="trends">
+                <div style="padding:0.8rem 1.2rem 0;">
+                    <h2 class="section__title" style="font-size:1.4rem;">Tendências</h2>
+                </div>
+                <div class="trends-grid" id="trendsGrid"></div>
+            </section>
+
+            <!-- PAGE: PRODUCTS -->
+            <section id="page-products" class="page" data-page="products">
+                <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                    <h2 class="section__title" style="font-size:1.4rem;">Produtos</h2>
+                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap;" id="productFilters">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="shampoo">Shampoo</button>
+                        <button class="filter-btn" data-filter="condicionador">Condicionador</button>
+                        <button class="filter-btn" data-filter="mascara">Máscara</button>
+                        <button class="filter-btn" data-filter="oleo">Óleo</button>
+                        <button class="filter-btn" data-filter="finalizador">Finalizador</button>
+                    </div>
+                </div>
+                <div class="products-grid" id="productsGrid"></div>
+            </section>
+
+            <!-- PAGE: PRODUCT DETAIL -->
+            <section id="page-product-detail" class="page" data-page="product-detail">
+                <div id="productDetailContent"></div>
+            </section>
+
+            <!-- PAGE: EDITORIAL -->
+            <section id="page-editorial" class="page" data-page="editorial">
+                <div style="padding:0.8rem 1.2rem 0;">
+                    <h2 class="section__title" style="font-size:1.4rem;">Editorial</h2>
+                </div>
+                <div class="editorial-grid" id="editorialGrid"></div>
+            </section>
+
+            <!-- PAGE: FAVORITES -->
+            <section id="page-favorites" class="page" data-page="favorites">
+                <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;">
+                    <h2 class="section__title" style="font-size:1.4rem;">Favoritos</h2>
+                    <span style="font-size:0.8rem;color:var(--brown);opacity:0.5;" id="favCount">0 itens</span>
+                </div>
+                <div class="favorites-list" id="favoritesList"></div>
+            </section>
+
+            <!-- PAGE: MENU -->
+            <section id="page-menu" class="page" data-page="menu">
+                <div style="padding:0.8rem 1.2rem 0;">
+                    <h2 class="section__title" style="font-size:1.4rem;">Menu</h2>
+                </div>
+                <div class="menu-list" id="menuList">
+                    <div class="menu-item" onclick="navigateTo('home')">
+                        <i class="fas fa-home"></i>
+                        <span class="label">Início</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('collection')">
+                        <i class="fas fa-layer-group"></i>
+                        <span class="label">Coleção</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('cuts')">
+                        <i class="fas fa-cut"></i>
+                        <span class="label">Cortes</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('trends')">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="label">Tendências</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('products')">
+                        <i class="fas fa-flask"></i>
+                        <span class="label">Produtos</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('editorial')">
+                        <i class="fas fa-images"></i>
+                        <span class="label">Editorial</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('favorites')">
+                        <i class="fas fa-heart"></i>
+                        <span class="label">Favoritos</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="openModal('profile')">
+                        <i class="fas fa-user"></i>
+                        <span class="label">Perfil</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="openModal('about')">
+                        <i class="fas fa-info-circle"></i>
+                        <span class="label">Sobre</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="openModal('settings')">
+                        <i class="fas fa-cog"></i>
+                        <span class="label">Configurações</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                        <div class="theme-toggle" onclick="event.stopPropagation();toggleTheme();">
+                            <div class="theme-toggle__track" id="themeTrack">
+                                <div class="theme-toggle__thumb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openModal('help')">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="label">Ajuda</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="menu-item" onclick="openModal('contact')">
+                        <i class="fas fa-envelope"></i>
+                        <span class="label">Contato</span>
+                        <span class="arrow"><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ===== BOTTOM NAV - FLUTUANTE GLASSMORPHISM ===== -->
+        <nav id="bottomNav">
+            <button class="bottom-nav__item active" data-page="home" onclick="navigateTo('home')">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </button>
+            <button class="bottom-nav__item" data-page="collection" onclick="navigateTo('collection')">
+                <i class="fas fa-layer-group"></i>
+                <span>Coleção</span>
+            </button>
+            <button class="bottom-nav__item" data-page="cuts" onclick="navigateTo('cuts')">
+                <i class="fas fa-cut"></i>
+                <span>Cortes</span>
+            </button>
+            <button class="bottom-nav__item" data-page="trends" onclick="navigateTo('trends')">
+                <i class="fas fa-chart-line"></i>
+                <span>Tendências</span>
+            </button>
+            <button class="bottom-nav__item" data-page="menu" onclick="navigateTo('menu')">
+                <i class="fas fa-bars"></i>
+                <span>Menu</span>
+                <span class="nav-badge" id="navFavBadge" style="display:none;">0</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT                                   -->
+    <!-- ============================================ -->
+    <script>
+        // ============================================================
+        // LOADING SCREEN
+        // ============================================================
+        (function initLoading() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const percentText = document.getElementById('loadingPercent');
+            const steps = [
+                { progress: 20, text: 'CARREGANDO BIBLIOTECA' },
+                { progress: 45, text: 'CONECTANDO TENDÊNCIAS' },
+                { progress: 70, text: 'PREPARANDO COLEÇÃO' },
+                { progress: 90, text: 'QUASE PRONTO...' },
+                { progress: 100, text: 'PRONTO!' }
+            ];
+
+            let currentStep = 0;
+
+            // Simula o progresso da barra
+            const barFill = document.querySelector('.loading__bar-fill');
+            let progress = 0;
+
+            const interval = setInterval(() => {
+                progress += 2;
+                if (progress > 100) {
+                    clearInterval(interval);
+                    // Esconde loading
+                    setTimeout(() => {
+                        loadingScreen.classList.add('hidden');
+                        // Inicia app
+                        initApp();
+                    }, 400);
+                    return;
+                }
+
+                // Atualiza barra
+                barFill.style.width = progress + '%';
+
+                // Atualiza texto baseado no progresso
+                const step = steps.find(s => progress <= s.progress);
+                if (step && step.text !== percentText.textContent) {
+                    percentText.textContent = step.text;
+                }
+
+                // Se passou de 100, mostra PRONTO
+                if (progress >= 100) {
+                    percentText.textContent = 'PRONTO! ✨';
+                }
+            }, 30);
+
+            // Fallback de segurança
+            setTimeout(() => {
+                if (!loadingScreen.classList.contains('hidden')) {
+                    loadingScreen.classList.add('hidden');
+                    initApp();
+                }
+            }, 5000);
+        })();
+
+        // ============================================================
+        // DATA
+        // ============================================================
+
+        const DATA = {
+            collection: {
+                id: 'outono-inverno-2026',
+                name: 'Outono / Inverno 2026',
+                tagline: 'Inspirada nos tons da natureza e na elegância atemporal',
+                manifesto: 'A beleza está no movimento natural, na textura que conta histórias e na elegância que não precisa de esforço. A coleção Outono/Inverno 2026 celebra a individualidade, as camadas que dançam e as franjas que emolduram o olhar.',
+                concept: 'Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.',
+                mood: ['Elegância natural', 'Movimento livre', 'Texturas vivas', 'Tons terrosos']
+            },
+
+            cuts: [{
+                id: 'velvet-bob',
+                name: 'Velvet Bob',
+                category: 'curtos',
+                tags: ['bob', 'feminino'],
+                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=500&fit=crop&crop=center',
+                description: 'O Bob clássico com acabamento aveludado e pontas levemente desfiadas. Perfeito para quem busca elegância e praticidade.',
+                profile: 'Mulheres com rosto oval ou quadrado',
+                hairType: 'Liso a ondulado',
+                faceShape: 'Oval, quadrado',
+                maintenance: 'Médio (visitas a cada 6 semanas)',
+                techniques: 'Tesoura de precisão, desfiamento, acabamento com navalha',
+                finishing: 'Finalizar com óleo leve e secar com escova redonda',
+                time: '45 minutos',
+                products: ['Óleo Finalizador', 'Protetor Térmico'],
+                related: ['soft-layers', 'pixie-touch']
+            }, {
+                id: 'soft-layers',
+                name: 'Soft Layers',
+                category: 'medios',
+                tags: ['camadas', 'feminino'],
+                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=500&fit=crop&crop=center',
+                description: 'Camadas suaves que criam movimento e leveza, mantendo o comprimento médio com um toque moderno.',
+                profile: 'Mulheres com cabelos médios a longos',
+                hairType: 'Todos os tipos',
+                faceShape: 'Todos',
+                maintenance: 'Baixo',
+                techniques: 'Camadas longas, desfiamento suave',
+                finishing: 'Secar com difusor ou escova',
+                time: '35 minutos',
+                products: ['Mousse Modeladora', 'Spray Texturizador'],
+                related: ['long-flow', 'curly-shag']
+            }, {
+                id: 'curly-shag',
+                name: 'Curly Shag',
+                category: 'cacheado',
+                tags: ['cacheado', 'camadas', 'feminino'],
+                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=500&fit=crop&crop=center',
+                description: 'O Shaggy repaginado para cabelos cacheados, com camadas que valorizam o volume e a definição natural.',
+                profile: 'Mulheres com cabelos cacheados ou crespos',
+                hairType: 'Cacheado, crespo',
+                faceShape: 'Oval, redondo',
+                maintenance: 'Médio',
+                techniques: 'Camadas internas, pontilhado',
+                finishing: 'Finalizar com creme de pentear e secar com difusor',
+                time: '50 minutos',
+                products: ['Máscara Revitalizante', 'Óleo Finalizador'],
+                related: ['soft-layers', 'long-flow']
+            }, {
+                id: 'tintired-men',
+                name: 'Tintired Men',
+                category: 'masculino',
+                tags: ['masculino', 'curtos'],
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=center',
+                description: 'Corte masculino com textura e movimento, ideal para quem busca um visual moderno e despojado.',
+                profile: 'Homens com cabelos médios',
+                hairType: 'Liso a ondulado',
+                faceShape: 'Todos',
+                maintenance: 'Baixo a médio',
+                techniques: 'Tesoura e máquina com desfiamento',
+                finishing: 'Finalizar com pomada ou cera',
+                time: '30 minutos',
+                products: ['Pomada Modeladora', 'Shampoo Nutritivo'],
+                related: ['pixie-touch']
+            }, {
+                id: 'long-flow',
+                name: 'Long Flow',
+                category: 'longos',
+                tags: ['longos', 'feminino'],
+                image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=500&fit=crop&crop=center',
+                description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância.',
+                profile: 'Mulheres que amam cabelos longos',
+                hairType: 'Todos os tipos',
+                faceShape: 'Todos',
+                maintenance: 'Médio',
+                techniques: 'Camadas longas, pontas retas',
+                finishing: 'Secar com escova e finalizar com óleo',
+                time: '40 minutos',
+                products: ['Óleo Finalizador', 'Protetor Térmico'],
+                related: ['soft-layers', 'curly-shag']
+            }, {
+                id: 'pixie-touch',
+                name: 'Pixie Touch',
+                category: 'curtos',
+                tags: ['curtos', 'feminino', 'franja'],
+                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=500&fit=crop&crop=center',
+                description: 'O clássico Pixie com um toque moderno e texturizado, perfeito para quem busca atitude e praticidade.',
+                profile: 'Mulheres com traços marcantes',
+                hairType: 'Liso a ondulado',
+                faceShape: 'Oval, coração',
+                maintenance: 'Alto (visitas a cada 4 semanas)',
+                techniques: 'Tesoura e navalha',
+                finishing: 'Finalizar com spray texturizador',
+                time: '25 minutos',
+                products: ['Spray Texturizador', 'Mousse Modeladora'],
+                related: ['velvet-bob', 'tintired-men']
+            }, {
+                id: 'french-fringe',
+                name: 'French Fringe',
+                category: 'franja',
+                tags: ['franja', 'feminino'],
+                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=500&fit=crop&crop=center',
+                description: 'Franja francesa despojada que emoldura o rosto com elegância e suavidade.',
+                profile: 'Todos os tipos de rosto',
+                hairType: 'Todos os tipos',
+                faceShape: 'Todos',
+                maintenance: 'Alto',
+                techniques: 'Tesoura de precisão, desfiamento',
+                finishing: 'Secar com escova redonda',
+                time: '20 minutos',
+                products: ['Spray Texturizador', 'Óleo Finalizador'],
+                related: ['soft-layers', 'velvet-bob']
+            }, {
+                id: 'layered-shag',
+                name: 'Layered Shag',
+                category: 'camadas',
+                tags: ['camadas', 'feminino', 'medios'],
+                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=500&fit=crop&crop=center',
+                description: 'O Shaggy com camadas marcantes e textura, trazendo volume e personalidade ao visual.',
+                profile: 'Mulheres que buscam volume e movimento',
+                hairType: 'Todos os tipos',
+                faceShape: 'Todos',
+                maintenance: 'Médio',
+                techniques: 'Camadas curtas, desfiamento intenso',
+                finishing: 'Finalizar com mousse e difusor',
+                time: '45 minutos',
+                products: ['Mousse Modeladora', 'Spray Texturizador'],
+                related: ['curly-shag', 'soft-layers']
+            }],
+
+            products: [{
+                id: 'shampoo-nutritivo',
+                name: 'Shampoo Nutritivo',
+                category: 'shampoo',
+                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
+                description: 'Limpeza suave e nutricional para fios macios e saudáveis.',
+                benefits: 'Nutrição profunda, limpeza suave, fios macios',
+                usage: 'Aplicar nos cabelos molhados, massagear e enxaguar.',
+                indication: 'Todos os tipos de cabelo',
+                related: ['condicionador-hidratante', 'mascara-revitalizante']
+            }, {
+                id: 'condicionador-hidratante',
+                name: 'Condicionador Hidratante',
+                category: 'condicionador',
+                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
+                description: 'Desembaraço e hidratação profundas para fios maleáveis.',
+                benefits: 'Hidratação, desembaraço, maciez',
+                usage: 'Aplicar após o shampoo, deixar agir e enxaguar.',
+                indication: 'Cabelos secos e opacos',
+                related: ['shampoo-nutritivo', 'mascara-revitalizante']
+            }, {
+                id: 'mascara-revitalizante',
+                name: 'Máscara Revitalizante',
+                category: 'mascara',
+                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
+                description: 'Nutrição intensa e brilho duradouro para cabelos revitalizados.',
+                benefits: 'Nutrição intensa, brilho, recuperação',
+                usage: 'Aplicar nos fios úmidos, deixar 5 minutos e enxaguar.',
+                indication: 'Cabelos danificados e quimicamente tratados',
+                related: ['shampoo-nutritivo', 'condicionador-hidratante']
+            }, {
+                id: 'oleo-finalizador',
+                name: 'Óleo Finalizador',
+                category: 'oleo',
+                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
+                description: 'Brilho, maciez e controle do frizz para um acabamento perfeito.',
+                benefits: 'Brilho intenso, controle de frizz, maciez',
+                usage: 'Aplicar nas pontas e comprimentos com cabelo seco ou úmido.',
+                indication: 'Todos os tipos de cabelo',
+                related: ['protetor-termico', 'spray-texturizador']
+            }, {
+                id: 'protetor-termico',
+                name: 'Protetor Térmico',
+                category: 'finalizador',
+                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
+                description: 'Proteção contra o calor e ação antioxidante para fios protegidos.',
+                benefits: 'Proteção térmica, antioxidante, prevenção de danos',
+                usage: 'Aplicar antes do uso de secador, prancha ou babyliss.',
+                indication: 'Cabelos que usam calor frequentemente',
+                related: ['oleo-finalizador', 'shampoo-nutritivo']
+            }, {
+                id: 'spray-texturizador',
+                name: 'Spray Texturizador',
+                category: 'finalizador',
+                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
+                description: 'Textura leve e volumosa na medida certa para cabelos com movimento.',
+                benefits: 'Volume, textura, movimento natural',
+                usage: 'Aplicar nos cabelos secos antes de finalizar o penteado.',
+                indication: 'Cabelos finos e sem volume',
+                related: ['mousse-modeladora', 'oleo-finalizador']
+            }, {
+                id: 'mousse-modeladora',
+                name: 'Mousse Modeladora',
+                category: 'finalizador',
+                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
+                description: 'Fixação leve e movimento natural para penteados com estilo.',
+                benefits: 'Fixação leve, volume, modelagem',
+                usage: 'Aplicar nos cabelos úmidos antes de secar ou modelar.',
+                indication: 'Cabelos que precisam de definição',
+                related: ['spray-texturizador', 'oleo-finalizador']
+            }, {
+                id: 'pomada-modeladora',
+                name: 'Pomada Modeladora',
+                category: 'finalizador',
+                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
+                description: 'Textura e definição para penteados masculinos e femininos.',
+                benefits: 'Definição, textura, fixação média',
+                usage: 'Aplicar pequena quantidade nos cabelos secos.',
+                indication: 'Cortes curtos e médios',
+                related: ['spray-texturizador', 'oleo-finalizador']
+            }],
+
+            trends: [{
+                id: 'camadas',
+                name: 'Camadas Estratégicas',
+                image: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&h=400&fit=crop&crop=center',
+                description: 'Camadas que criam movimento e leveza, valorizando a textura natural dos fios. Perfeitas para todos os comprimentos.'
+            }, {
+                id: 'franjas',
+                name: 'Franjas Sofisticadas',
+                image: 'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=400&h=400&fit=crop&crop=center',
+                description: 'Franjas despojadas que emolduram e suavizam o olhar, trazendo personalidade e elegância.'
+            }, {
+                id: 'movimento',
+                name: 'Movimento Natural',
+                image: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400&h=400&fit=crop&crop=center',
+                description: 'Texturas naturais e styling que valorizam o movimento dos fios, criando um visual vivo e autêntico.'
+            }, {
+                id: 'texturas',
+                name: 'Texturas Leves',
+                image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=400&fit=crop&crop=center',
+                description: 'Acabamentos leves com toque aveludado e brilho natural, mantendo a saúde e a maciez dos fios.'
+            }, {
+                id: 'volumes',
+                name: 'Volumes Orgânicos',
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=center',
+                description: 'Volumes que respeitam a estrutura natural do cabelo, criando formas elegantes e modernas.'
+            }, {
+                id: 'acabamentos',
+                name: 'Acabamentos Brilhantes',
+                image: 'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=400&h=400&fit=crop&crop=center',
+                description: 'Brilho intenso e saudável para um resultado elegante, com produtos que valorizam a luminosidade dos fios.'
+            }],
+
+            editorial: [
+                'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=600&h=600&fit=crop&crop=center',
+                'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=600&fit=crop&crop=center',
+                'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600&h=600&fit=crop&crop=center',
+                'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&h=600&fit=crop&crop=center',
+                'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=600&fit=crop&crop=center',
+                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&crop=center'
+            ]
+        };
+
+        // ============================================================
+        // CAROUSEL
+        // ============================================================
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero__slide');
+        const indicators = document.querySelectorAll('.hero__indicator');
+        let carouselInterval;
+
+        function goToSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            const next = (currentSlide + 1) % slides.length;
+            goToSlide(next);
+        }
+
+        function startCarousel() {
+            stopCarousel();
+            carouselInterval = setInterval(nextSlide, 4000);
+        }
+
+        function stopCarousel() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+            }
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', function() {
+                stopCarousel();
+                goToSlide(index);
+                startCarousel();
+            });
+        });
+
+        const hero = document.getElementById('heroCarousel');
+        hero.addEventListener('mouseenter', stopCarousel);
+        hero.addEventListener('mouseleave', startCarousel);
+        hero.addEventListener('touchstart', stopCarousel);
+        hero.addEventListener('touchend', startCarousel);
+
+        // ============================================================
+        // BOTTOM NAV - SCROLL ANIMATION
+        // ============================================================
+
+        const bottomNav = document.getElementById('bottomNav');
+        let lastScrollY = 0;
+        let scrollTimeout;
+
+        function handleScroll() {
+            const scrollY = window.scrollY;
+
+            if (scrollY > 40) {
+                bottomNav.classList.add('scrolled');
+            } else {
+                bottomNav.classList.remove('scrolled');
+            }
+
+            if (scrollY > lastScrollY && scrollY > 100) {
+                bottomNav.style.transform = 'translateX(-50%) scale(0.88)';
+                bottomNav.style.opacity = '0.7';
+            } else {
+                if (scrollY > 40) {
+                    bottomNav.style.transform = 'translateX(-50%) scale(0.92)';
+                    bottomNav.style.opacity = '0.85';
+                } else {
+                    bottomNav.style.transform = 'translateX(-50%) scale(1)';
+                    bottomNav.style.opacity = '1';
+                }
+            }
+
+            lastScrollY = scrollY;
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (scrollY > 40) {
+                    bottomNav.style.transform = 'translateX(-50%) scale(0.92)';
+                    bottomNav.style.opacity = '0.85';
+                } else {
+                    bottomNav.style.transform = 'translateX(-50%) scale(1)';
+                    bottomNav.style.opacity = '1';
+                }
+            }, 300);
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // ============================================================
+        // STATE
+        // ============================================================
+
+        const state = {
+            currentPage: 'home',
+            history: ['home'],
+            favorites: {
+                cuts: [],
+                products: []
+            },
+            filters: {
+                cuts: 'all',
+                products: 'all'
+            },
+            theme: 'light',
+            initialized: false
+        };
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+
+        const $ = (sel) => document.querySelector(sel);
+        const $$ = (sel) => document.querySelectorAll(sel);
+
+        const pages = {
+            home: $('#page-home'),
+            collection: $('#page-collection'),
+            cuts: $('#page-cuts'),
+            'cut-detail': $('#page-cut-detail'),
+            trends: $('#page-trends'),
+            products: $('#page-products'),
+            'product-detail': $('#page-product-detail'),
+            editorial: $('#page-editorial'),
+            favorites: $('#page-favorites'),
+            menu: $('#page-menu')
+        };
+
+        const backBtn = $('#backButton');
+        const searchOverlay = $('#searchOverlay');
+        const searchInput = $('#searchInput');
+        const searchClose = $('#searchClose');
+        const searchToggle = $('#searchToggle');
+        const favoriteToggle = $('#favoriteToggle');
+        const favBadge = $('#favBadge');
+        const navFavBadge = $('#navFavBadge');
+        const modalOverlay = $('#modalOverlay');
+        const modalBody = $('#modalBody');
+        const modalClose = $('#modalClose');
+
+        // ============================================================
+        // NAVIGATION
+        // ============================================================
+
+        function navigateTo(page, data = null) {
+            Object.values(pages).forEach(p => p.classList.remove('active'));
+
+            const target = pages[page];
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            if (state.currentPage !== page) {
+                state.history.push(page);
+            }
+            state.currentPage = page;
+
+            backBtn.classList.toggle('visible', state.history.length > 1 && page !== 'home');
+
+            $$('.bottom-nav__item').forEach(item => {
+                item.classList.toggle('active', item.dataset.page === page);
+            });
+
+            searchOverlay.classList.remove('open');
+
+            if (page === 'home') {
+                startCarousel();
+            } else {
+                stopCarousel();
+            }
+
+            switch (page) {
+                case 'home':
+                    renderHome();
+                    break;
+                case 'cuts':
+                    renderCuts();
+                    break;
+                case 'cut-detail':
+                    if (data) renderCutDetail(data);
+                    break;
+                case 'trends':
+                    renderTrends();
+                    break;
+                case 'products':
+                    renderProducts();
+                    break;
+                case 'product-detail':
+                    if (data) renderProductDetail(data);
+                    break;
+                case 'editorial':
+                    renderEditorial();
+                    break;
+                case 'favorites':
+                    renderFavorites();
+                    break;
+            }
+
+            updateFavBadge();
+        }
+
+        function goBack() {
+            if (state.history.length > 1) {
+                state.history.pop();
+                const prev = state.history[state.history.length - 1];
+                navigateTo(prev);
+            }
+        }
+
+        // ============================================================
+        // MODAL
+        // ============================================================
+
+        function openModal(type) {
+            const content = {
+                profile: `
+                    <h2><i class="fas fa-user"></i> Perfil</h2>
+                    <div style="text-align:center;margin:1.5rem 0;">
+                        <div style="width:80px;height:80px;border-radius:50%;background:var(--beige);margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--brown);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3 style="margin-top:0.8rem;font-family:'Playfair Display',serif;">Usuário HairOS</h3>
+                        <p style="font-size:0.85rem;color:var(--brown);opacity:0.7;">Cabeleireiro | Especialista em Tendências</p>
+                    </div>
+                    <p><strong>Email:</strong> usuario@hairos.com</p>
+                    <p><strong>Membro desde:</strong> Janeiro 2026</p>
+                    <p><strong>Coleções salvas:</strong> 3</p>
+                    <p><strong>Cortes favoritos:</strong> ${state.favorites.cuts.length}</p>
+                    <p><strong>Produtos favoritos:</strong> ${state.favorites.products.length}</p>
+                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
+                `,
+                about: `
+                    <h2><i class="fas fa-info-circle"></i> Sobre o HairOS</h2>
+                    <p style="margin-top:0.8rem;">O <strong>HairOS Library</strong> é uma biblioteca profissional de tendências, coleções e conhecimento técnico para cabeleireiros.</p>
+                    <p>Nossa missão é inspirar e conectar profissionais da beleza através de conteúdo editorial de alta qualidade.</p>
+                    <div style="margin-top:1rem;padding:1rem;background:var(--beige);border-radius:var(--radius-sm);">
+                        <p style="font-size:0.85rem;"><strong>Versão:</strong> 1.0.0</p>
+                        <p style="font-size:0.85rem;"><strong>Coleção atual:</strong> Outono/Inverno 2026</p>
+                        <p style="font-size:0.85rem;"><strong>Desenvolvido com:</strong> ❤️ HTML + CSS + JS</p>
+                    </div>
+                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
+                `,
+                settings: `
+                    <h2><i class="fas fa-cog"></i> Configurações</h2>
+                    <div style="margin-top:1rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <span><strong>Tema</strong><br /><span style="font-size:0.85rem;opacity:0.6;">${state.theme === 'light' ? 'Claro' : 'Escuro'}</span></span>
+                            <button onclick="toggleTheme();closeModal();" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--black);color:white;min-width:80px;justify-content:center;">
+                                ${state.theme === 'light' ? '🌙 Escuro' : '☀️ Claro'}
+                            </button>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <span><strong>Notificações</strong></span>
+                            <button onclick="alert('Notificações ativadas/desativadas')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
+                                Ativado
+                            </button>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;">
+                            <span><strong>Idioma</strong><br /><span style="font-size:0.85rem;opacity:0.6;">Português</span></span>
+                            <button onclick="alert('Alterar idioma')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
+                                Alterar
+                            </button>
+                        </div>
+                    </div>
+                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
+                `,
+                help: `
+                    <h2><i class="fas fa-question-circle"></i> Ajuda</h2>
+                    <div style="margin-top:1rem;">
+                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <strong>📱 Como navegar?</strong>
+                            <p style="font-size:0.9rem;opacity:0.7;">Use o menu inferior flutuante para acessar as principais seções do app.</p>
+                        </div>
+                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <strong>🔍 Como buscar?</strong>
+                            <p style="font-size:0.9rem;opacity:0.7;">Toque no ícone de busca 🔍 na barra superior ou pressione <kbd>Ctrl</kbd> + <kbd>K</kbd>.</p>
+                        </div>
+                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <strong>❤️ Como favoritar?</strong>
+                            <p style="font-size:0.9rem;opacity:0.7;">Nos detalhes de um corte ou produto, toque em "Favoritar" para salvar.</p>
+                        </div>
+                        <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <strong>🌓 Tema escuro?</strong>
+                            <p style="font-size:0.9rem;opacity:0.7;">Acesse Menu > Configurações e alterne o tema.</p>
+                        </div>
+                        <div style="padding:0.8rem 0;">
+                            <strong>🎠 Carrossel</strong>
+                            <p style="font-size:0.9rem;opacity:0.7;">O banner principal gira automaticamente. Toque nos indicadores para navegar.</p>
+                        </div>
+                    </div>
+                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
+                `,
+                contact: `
+                    <h2><i class="fas fa-envelope"></i> Contato</h2>
+                    <p style="margin-top:0.8rem;">Entre em contato conosco:</p>
+                    <div style="margin-top:1rem;">
+                        <p><strong>📧 Email:</strong> contato@hairos.com</p>
+                        <p><strong>📱 WhatsApp:</strong> +55 (11) 99999-9999</p>
+                        <p><strong>📍 Endereço:</strong> São Paulo, SP - Brasil</p>
+                    </div>
+                    <div class="social-links" style="margin-top:1rem;">
+                        <a href="#" onclick="alert('Instagram @hairos')"><i class="fab fa-instagram"></i></a>
+                        <a href="#" onclick="alert('YouTube /hairos')"><i class="fab fa-youtube"></i></a>
+                        <a href="#" onclick="alert('Pinterest /hairos')"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" onclick="alert('TikTok @hairos')"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <button class="hero__cta" style="width:100%;justify-content:center;margin-top:1.5rem;background:var(--gold);color:white;" onclick="closeModal()">Fechar</button>
+                `
+            };
+
+            modalBody.innerHTML = content[type] || '<h2>Página em construção</h2><p>Conteúdo em breve.</p>';
+            modalOverlay.classList.add('open');
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('open');
+        }
+
+        // ============================================================
+        // THEME
+        // ============================================================
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            state.theme = newTheme;
+            localStorage.setItem('hairos-theme', newTheme);
+        }
+
+        function loadTheme() {
+            const saved = localStorage.getItem('hairos-theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                state.theme = saved;
+            }
+        }
+
+        // ============================================================
+        // RENDER FUNCTIONS
+        // ============================================================
+
+        function renderHome() {
+            const trendsContainer = $('#trendsPreview');
+            trendsContainer.innerHTML = DATA.trends.map(t => `
+                <div class="card-preview" onclick="navigateTo('trends')">
+                    <img class="card-preview__image" src="${t.image}" alt="${t.name}" />
+                    <div class="card-preview__body">
+                        <span class="card-preview__name">${t.name}</span>
+                        <span class="card-preview__category">Tendência</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const cutsContainer = $('#cutsPreview');
+            cutsContainer.innerHTML = DATA.cuts.map(c => `
+                <div class="card-preview" onclick="navigateTo('cut-detail', '${c.id}')">
+                    <img class="card-preview__image" src="${c.image}" alt="${c.name}" />
+                    <div class="card-preview__body">
+                        <span class="card-preview__name">${c.name}</span>
+                        <span class="card-preview__category">${c.category}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const productsContainer = $('#productsPreview');
+            productsContainer.innerHTML = DATA.products.map(p => `
+                <div class="card-preview" onclick="navigateTo('product-detail', '${p.id}')">
+                    <img class="card-preview__image" src="${p.image}" alt="${p.name}" />
+                    <div class="card-preview__body">
+                        <span class="card-preview__name">${p.name}</span>
+                        <span class="card-preview__category">${p.category}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            const editorialContainer = $('#editorialPreview');
+            editorialContainer.innerHTML = DATA.editorial.slice(0, 3).map(img => `
+                <img src="${img}" alt="Editorial" onclick="navigateTo('editorial')" />
+            `).join('');
+        }
+
+        function renderCuts() {
+            const grid = $('#cutsGrid');
+            const filter = state.filters.cuts;
+
+            let filtered = DATA.cuts;
+            if (filter !== 'all') {
+                filtered = DATA.cuts.filter(c => c.category === filter || c.tags.includes(filter));
+            }
+
+            grid.innerHTML = filtered.map(c => `
+                <div class="cut-card" onclick="navigateTo('cut-detail', '${c.id}')">
+                    <img class="cut-card__image" src="${c.image}" alt="${c.name}" />
+                    <div class="cut-card__body">
+                        <div class="cut-card__name">${c.name}</div>
+                        <div class="cut-card__category">${c.category}</div>
+                        ${c.tags.slice(0, 2).map(t => `<span class="cut-card__tag">${t}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            $$('#cutFilters .filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === filter);
+            });
+        }
+
+        function renderCutDetail(cutId) {
+            const cut = DATA.cuts.find(c => c.id === cutId);
+            if (!cut) {
+                navigateTo('cuts');
+                return;
+            }
+
+            const container = $('#cutDetailContent');
+            container.innerHTML = `
+                <div class="detail-hero" style="background-image:url('${cut.image}');">
+                    <div class="detail-hero__overlay"></div>
+                    <div class="detail-hero__content">
+                        <h1 class="detail-hero__title">${cut.name}</h1>
+                        <span class="detail-hero__sub">${cut.category} • ${cut.tags.join(', ')}</span>
+                    </div>
+                </div>
+
+                <div class="detail-body">
+                    <div class="detail-body__section">
+                        <h4>Descrição</h4>
+                        <p>${cut.description}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Perfil Indicado</h4>
+                        <p>${cut.profile}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Detalhes Técnicos</h4>
+                        <p><strong>Tipo de cabelo:</strong> ${cut.hairType}</p>
+                        <p><strong>Formato de rosto:</strong> ${cut.faceShape}</p>
+                        <p><strong>Manutenção:</strong> ${cut.maintenance}</p>
+                        <p><strong>Tempo médio:</strong> ${cut.time}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Técnicas Utilizadas</h4>
+                        <p>${cut.techniques}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Como Finalizar</h4>
+                        <p>${cut.finishing}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Produtos Sugeridos</h4>
+                        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+                            ${cut.products.map(p => `<span class="tag" style="background:var(--beige);padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;color:var(--brown);cursor:pointer;" onclick="navigateTo('products')">${p}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Cortes Relacionados</h4>
+                        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+                            ${cut.related.map(id => {
+                                const related = DATA.cuts.find(c => c.id === id);
+                                return related ? `<span class="tag" style="background:var(--beige);padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;color:var(--brown);cursor:pointer;" onclick="navigateTo('cut-detail','${related.id}')">${related.name}</span>` : '';
+                            }).join('')}
+                        </div>
+                    </div>
+
+                    <button class="hero__cta" onclick="toggleFavorite('cut','${cut.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFavorite('cut', cut.id) ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
+                        <i class="fas fa-heart"></i> ${isFavorite('cut', cut.id) ? 'Favoritado' : 'Favoritar'}
+                    </button>
+
+                    <button class="hero__cta" onclick="window.location.href='#page-cuts'" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
+                        <i class="fas fa-arrow-left"></i> Voltar para Cortes
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderTrends() {
+            const container = $('#trendsGrid');
+            container.innerHTML = DATA.trends.map(t => `
+                <div class="trend-full">
+                    <img class="trend-full__image" src="${t.image}" alt="${t.name}" />
+                    <div class="trend-full__body">
+                        <h3 class="trend-full__title">${t.name}</h3>
+                        <p class="trend-full__desc">${t.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProducts() {
+            const grid = $('#productsGrid');
+            const filter = state.filters.products;
+
+            let filtered = DATA.products;
+            if (filter !== 'all') {
+                filtered = DATA.products.filter(p => p.category === filter);
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card" onclick="navigateTo('product-detail', '${p.id}')">
+                    <img class="product-card__image" src="${p.image}" alt="${p.name}" />
+                    <div class="product-card__name">${p.name}</div>
+                    <div class="product-card__category">${p.category}</div>
+                </div>
+            `).join('');
+
+            $$('#productFilters .filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.filter === filter);
+            });
+        }
+
+        function renderProductDetail(productId) {
+            const product = DATA.products.find(p => p.id === productId);
+            if (!product) {
+                navigateTo('products');
+                return;
+            }
+
+            const container = $('#productDetailContent');
+            container.innerHTML = `
+                <div style="padding:0 1.2rem 0;">
+                    <img src="${product.image}" alt="${product.name}" style="width:100%;height:280px;object-fit:cover;border-radius:var(--radius);margin-top:0.5rem;" />
+                </div>
+
+                <div class="detail-body">
+                    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--black);margin-bottom:0.3rem;">${product.name}</h2>
+                    <span style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--brown);opacity:0.5;">${product.category}</span>
+
+                    <div class="detail-body__section" style="margin-top:1.2rem;">
+                        <h4>Descrição</h4>
+                        <p>${product.description}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Benefícios</h4>
+                        <p>${product.benefits}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Modo de Uso</h4>
+                        <p>${product.usage}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Indicação</h4>
+                        <p>${product.indication}</p>
+                    </div>
+
+                    <div class="detail-body__section">
+                        <h4>Produtos Relacionados</h4>
+                        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+                            ${product.related.map(id => {
+                                const related = DATA.products.find(p => p.id === id);
+                                return related ? `<span class="tag" style="background:var(--beige);padding:0.3rem 1rem;border-radius:30px;font-size:0.75rem;color:var(--brown);cursor:pointer;" onclick="navigateTo('product-detail','${related.id}')">${related.name}</span>` : '';
+                            }).join('')}
+                        </div>
+                    </div>
+
+                    <button class="hero__cta" onclick="toggleFavorite('product','${product.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFavorite('product', product.id) ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
+                        <i class="fas fa-heart"></i> ${isFavorite('product', product.id) ? 'Favoritado' : 'Favoritar'}
+                    </button>
+
+                    <button class="hero__cta" onclick="window.location.href='#page-products'" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
+                        <i class="fas fa-arrow-left"></i> Voltar para Produtos
+                    </button>
+                </div>
+            `;
+        }
+
+        function renderEditorial() {
+            const container = $('#editorialGrid');
+            container.innerHTML = DATA.editorial.map(img => `
+                <img src="${img}" alt="Editorial" onclick="openModal('editorialFull')" />
+            `);
+        }
+
+        function renderFavorites() {
+            const container = $('#favoritesList');
+            const favCuts = DATA.cuts.filter(c => state.favorites.cuts.includes(c.id));
+            const favProducts = DATA.products.filter(p => state.favorites.products.includes(p.id));
+
+            const allFavs = [
+                ...favCuts.map(c => ({ ...c, type: 'cut' })),
+                ...favProducts.map(p => ({ ...p, type: 'product' }))
+            ];
+
+            if (allFavs.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
+                        <i class="fas fa-heart" style="font-size:2.5rem;display:block;margin-bottom:0.8rem;"></i>
+                        <p style="font-size:0.95rem;">Nenhum favorito ainda</p>
+                        <p style="font-size:0.8rem;">Explore a coleção e salve seus cortes e produtos favoritos</p>
+                    </div>
+                `;
+                $('#favCount').textContent = '0 itens';
+                return;
+            }
+
+            container.innerHTML = allFavs.map(item => `
+                <div class="fav-item" onclick="navigateTo('${item.type === 'cut' ? 'cut-detail' : 'product-detail'}', '${item.id}')">
+                    <img src="${item.image}" alt="${item.name}" />
+                    <div class="info">
+                        <div class="name">${item.name}</div>
+                        <div class="category">${item.type === 'cut' ? 'Corte' : 'Produto'} • ${item.category}</div>
+                    </div>
+                    <button class="remove" onclick="event.stopPropagation();toggleFavorite('${item.type}','${item.id}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            $('#favCount').textContent = `${allFavs.length} itens`;
+        }
+
+        // ============================================================
+        // FAVORITES
+        // ============================================================
+
+        function toggleFavorite(type, id) {
+            const key = type === 'cut' ? 'cuts' : 'products';
+            const index = state.favorites[key].indexOf(id);
+
+            if (index > -1) {
+                state.favorites[key].splice(index, 1);
+            } else {
+                state.favorites[key].push(id);
+            }
+
+            if (state.currentPage === 'cut-detail') {
+                const cutId = state.history[state.history.length - 1];
+                renderCutDetail(cutId);
+            } else if (state.currentPage === 'product-detail') {
+                const productId = state.history[state.history.length - 1];
+                renderProductDetail(productId);
+            } else if (state.currentPage === 'favorites') {
+                renderFavorites();
+            }
+
+            updateFavBadge();
+        }
+
+        function isFavorite(type, id) {
+            const key = type === 'cut' ? 'cuts' : 'products';
+            return state.favorites[key].includes(id);
+        }
+
+        function updateFavBadge() {
+            const total = state.favorites.cuts.length + state.favorites.products.length;
+            if (total > 0) {
+                favBadge.style.display = 'flex';
+                favBadge.textContent = total;
+                navFavBadge.style.display = 'flex';
+                navFavBadge.textContent = total;
+            } else {
+                favBadge.style.display = 'none';
+                navFavBadge.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        // SEARCH
+        // ============================================================
+
+        function performSearch(query) {
+            const results = [];
+            const q = query.toLowerCase().trim();
+
+            if (q.length === 0) return results;
+
+            DATA.cuts.forEach(c => {
+                if (c.name.toLowerCase().includes(q) ||
+                    c.category.includes(q) ||
+                    c.tags.some(t => t.includes(q))) {
+                    results.push({ ...c, type: 'cut' });
+                }
+            });
+
+            DATA.products.forEach(p => {
+                if (p.name.toLowerCase().includes(q) ||
+                    p.category.includes(q) ||
+                    p.description.toLowerCase().includes(q)) {
+                    results.push({ ...p, type: 'product' });
+                }
+            });
+
+            DATA.trends.forEach(t => {
+                if (t.name.toLowerCase().includes(q) ||
+                    t.description.toLowerCase().includes(q)) {
+                    results.push({ ...t, type: 'trend' });
+                }
+            });
+
+            return results;
+        }
+
+        function renderSearchResults(query) {
+            const container = $('#searchResults');
+            const results = performSearch(query);
+
+            if (query.trim().length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <p>Digite para buscar cortes, produtos e tendências</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (results.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search"></i>
+                        <p>Nenhum resultado encontrado para "${query}"</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = results.map(item => `
+                <div class="result-item" onclick="navigateTo('${item.type === 'cut' ? 'cut-detail' : item.type === 'product' ? 'product-detail' : 'trends'}', '${item.id || ''}')">
+                    <img src="${item.image}" alt="${item.name}" />
+                    <div class="info">
+                        <div class="name">${item.name}</div>
+                        <div class="category">${item.type} • ${item.category || ''}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================
+        // INIT APP
+        // ============================================================
+
+        function initApp() {
+            if (state.initialized) return;
+            state.initialized = true;
+
+            loadTheme();
+            navigateTo('home');
+            startCarousel();
+
+            // Event listeners
+            backBtn.addEventListener('click', goBack);
+
+            searchToggle.addEventListener('click', () => {
+                searchOverlay.classList.toggle('open');
+                if (searchOverlay.classList.contains('open')) {
+                    searchInput.focus();
+                }
+            });
+
+            searchClose.addEventListener('click', () => {
+                searchOverlay.classList.remove('open');
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                renderSearchResults(e.target.value);
+            });
+
+            favoriteToggle.addEventListener('click', () => {
+                navigateTo('favorites');
+            });
+
+            modalClose.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) closeModal();
+            });
+
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('#cutFilters .filter-btn');
+                if (btn) {
+                    state.filters.cuts = btn.dataset.filter;
+                    renderCuts();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('#productFilters .filter-btn');
+                if (btn) {
+                    state.filters.products = btn.dataset.filter;
+                    renderProducts();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (searchOverlay.classList.contains('open')) {
+                        searchOverlay.classList.remove('open');
+                    }
+                    if (modalOverlay.classList.contains('open')) {
+                        closeModal();
+                    }
+                }
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchOverlay.classList.toggle('open');
+                    if (searchOverlay.classList.contains('open')) {
+                        searchInput.focus();
+                    }
+                }
+            });
+
+            console.log('🪮 HairOS Library v1.0.0');
+            console.log('📚 Dados carregados:', {
+                cortes: DATA.cuts.length,
+                produtos: DATA.products.length,
+                tendencias: DATA.trends.length
+            });
+            console.log('🌓 Tema:', state.theme);
+            console.log('🎠 Carrossel ativo com 3 imagens');
+            console.log('📱 Menu flutuante glassmorphism com animação no scroll');
+            console.log('✨ App completamente funcional!');
+        }
+    </script>
+
+</body>
+</html>
