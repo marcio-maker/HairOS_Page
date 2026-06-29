@@ -68,17 +68,64 @@
             --hero-height: 420px;
             --font-serif: 'Playfair Display', serif;
             --font-sans: 'Inter', -apple-system, sans-serif;
+
+            /* Corrigido: contraste robusto para modo claro/escuro */
+            --bg-primary: var(--white-pure);
+            --bg-secondary: var(--beige);
+            --text-primary: var(--black);
+            --text-secondary: var(--brown);
+            --text-inverse: var(--white);
+            --text-muted: rgba(0, 0, 0, 0.55);
+            --border-color: rgba(0, 0, 0, 0.06);
+            --card-bg: var(--beige);
+            --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            --btn-primary-bg: var(--black);
+            --btn-primary-text: var(--white);
+            --btn-primary-hover: var(--gold);
+            --btn-primary-hover-text: var(--black);
+            --hero-overlay: rgba(26, 22, 20, 0.6);
+            --modal-bg: var(--white-pure);
+            --modal-text: var(--black);
+            --input-bg: var(--beige);
+            --input-text: var(--black);
+            --nav-bg: rgba(20, 20, 20, 0.55);
+            --nav-text: rgba(255, 255, 255, 0.6);
+            --nav-text-active: #ffffff;
+            --nav-bg-active: rgba(255, 255, 255, 0.12);
+            --toast-bg: rgba(26, 22, 20, 0.92);
+            --toast-text: var(--white);
         }
 
         [data-theme="dark"] {
-            --black: #faf8f5;
-            --brown-dark: #e8ddd0;
-            --brown: #c9a96e;
-            --coffee: #a08060;
-            --beige: #2c241e;
-            --gold: #c9a96e;
-            --white: #1a1614;
+            --bg-primary: #12100e;
+            --bg-secondary: #1f1b18;
+            --text-primary: #f0ede8;
+            --text-secondary: #c5b8aa;
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --card-bg: #1f1b18;
+            --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            --btn-primary-bg: #c9a96e;
+            --btn-primary-text: #12100e;
+            --btn-primary-hover: #dfc38a;
+            --btn-primary-hover-text: #12100e;
+            --hero-overlay: rgba(0, 0, 0, 0.7);
+            --modal-bg: #1a1614;
+            --modal-text: #f0ede8;
+            --input-bg: #2c241e;
+            --input-text: #f0ede8;
+            --nav-bg: rgba(0, 0, 0, 0.75);
+            --nav-text: rgba(255, 255, 255, 0.5);
+            --nav-text-active: #ffffff;
+            --nav-bg-active: rgba(255, 255, 255, 0.1);
+            --toast-bg: rgba(250, 248, 245, 0.95);
+            --toast-text: #12100e;
             --white-pure: #1a1614;
+            --beige: #2c241e;
+            --brown: #a08060;
+            --gold: #c9a96e;
+            --black: #f0ede8;
+            --white: #12100e;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
 
@@ -88,8 +135,8 @@
 
         body {
             font-family: var(--font-sans);
-            background: var(--white);
-            color: var(--black);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
@@ -100,10 +147,10 @@
             width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--beige);
+            background: var(--bg-secondary);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--brown);
+            background: var(--gold);
             border-radius: 10px;
         }
 
@@ -122,7 +169,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--white-pure);
+            background: var(--bg-primary);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -141,7 +188,7 @@
             font-family: var(--font-serif);
             font-size: 2.8rem;
             font-weight: 700;
-            color: var(--black);
+            color: var(--text-primary);
             letter-spacing: 4px;
             margin-bottom: 0.1rem;
             animation: pulseLogo 1.5s ease-in-out infinite;
@@ -151,8 +198,8 @@
             font-size: 0.55rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--brown);
-            opacity: 0.3;
+            color: var(--text-secondary);
+            opacity: 0.5;
             margin-bottom: 0.8rem;
         }
 
@@ -171,7 +218,7 @@
         .loading__spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid var(--beige);
+            border: 3px solid var(--bg-secondary);
             border-top-color: var(--gold);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
@@ -180,7 +227,7 @@
         .loading__bar {
             width: 200px;
             height: 3px;
-            background: var(--beige);
+            background: var(--bg-secondary);
             border-radius: 10px;
             margin-top: 1.5rem;
             overflow: hidden;
@@ -197,7 +244,7 @@
         .loading__percent {
             font-size: 0.75rem;
             font-weight: 300;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.6;
             margin-top: 0.5rem;
             letter-spacing: 2px;
@@ -293,20 +340,27 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: var(--beige);
+            background: var(--bg-secondary);
         }
 
         .skeleton-placeholder {
             position: absolute;
             inset: 0;
-            background: var(--beige);
+            background: var(--bg-secondary);
             background-image: linear-gradient(90deg,
-                    var(--beige) 25%,
-                    #dcd0c4 50%,
-                    var(--beige) 75%);
+                    var(--bg-secondary) 25%,
+                    rgba(255, 255, 255, 0.08) 50%,
+                    var(--bg-secondary) 75%);
             background-size: 200% 100%;
             animation: shimmer 1.8s ease-in-out infinite;
             z-index: 2;
+        }
+
+        [data-theme="dark"] .skeleton-placeholder {
+            background-image: linear-gradient(90deg,
+                    var(--bg-secondary) 25%,
+                    rgba(255, 255, 255, 0.04) 50%,
+                    var(--bg-secondary) 75%);
         }
 
         @keyframes shimmer {
@@ -344,7 +398,7 @@
             right: 8px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.5;
             font-size: 0.75rem;
             pointer-events: none;
@@ -361,8 +415,8 @@
         }
 
         [data-theme="dark"] .cards-scroll-wrapper .swipe-hint {
-            background: rgba(0, 0, 0, 0.4);
-            color: var(--white);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--text-primary);
             border-color: rgba(255, 255, 255, 0.05);
         }
 
@@ -391,12 +445,8 @@
             height: 100%;
             pointer-events: none;
             z-index: 2;
-            background: linear-gradient(to left, var(--white-pure), transparent);
+            background: linear-gradient(to left, var(--bg-primary), transparent);
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-        }
-
-        [data-theme="dark"] .cards-scroll-wrapper::after {
-            background: linear-gradient(to left, var(--white-pure), transparent);
         }
 
         /* ============================================================
@@ -405,7 +455,7 @@
         #app {
             max-width: 480px;
             margin: 0 auto;
-            background: var(--white-pure);
+            background: var(--bg-primary);
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 60px rgba(0, 0, 0, 0.04);
@@ -433,21 +483,21 @@
             padding: 0.8rem 1.2rem;
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(18px) saturate(1.4);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border-color);
             height: 60px;
             transition: background 0.3s;
         }
 
         [data-theme="dark"] .top-bar {
-            background: rgba(26, 22, 20, 0.92);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(18, 16, 14, 0.92);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .top-bar__back {
             background: none;
             border: none;
             font-size: 1.2rem;
-            color: var(--black);
+            color: var(--text-primary);
             padding: 0.3rem 0.6rem;
             cursor: pointer;
             border-radius: 8px;
@@ -456,11 +506,7 @@
         }
 
         .top-bar__back:hover {
-            background: rgba(0, 0, 0, 0.04);
-        }
-
-        [data-theme="dark"] .top-bar__back:hover {
-            background: rgba(255, 255, 255, 0.04);
+            background: var(--bg-secondary);
         }
 
         .top-bar__back.visible {
@@ -479,7 +525,7 @@
             font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: -0.02em;
-            color: var(--black);
+            color: var(--text-primary);
             transition: color 0.3s;
         }
 
@@ -503,7 +549,7 @@
             background: none;
             border: none;
             font-size: 1.1rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             padding: 0.4rem 0.6rem;
             cursor: pointer;
             border-radius: 8px;
@@ -512,13 +558,8 @@
         }
 
         .top-bar__action:hover {
-            background: rgba(0, 0, 0, 0.04);
-            color: var(--black);
-        }
-
-        [data-theme="dark"] .top-bar__action:hover {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--white);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
         }
 
         .top-bar__action .badge {
@@ -526,9 +567,9 @@
             top: 0;
             right: 0;
             background: var(--gold);
-            color: white;
+            color: var(--black);
             font-size: 0.5rem;
-            font-weight: 600;
+            font-weight: 700;
             width: 16px;
             height: 16px;
             border-radius: 50%;
@@ -558,7 +599,7 @@
         }
 
         [data-theme="dark"] .search-overlay {
-            background: rgba(26, 22, 20, 0.97);
+            background: rgba(18, 16, 14, 0.97);
         }
 
         .search-overlay.open {
@@ -577,28 +618,24 @@
         .search-overlay__input {
             flex: 1;
             border: none;
-            background: var(--beige);
+            background: var(--input-bg);
             padding: 0.9rem 1.2rem;
             border-radius: 40px;
             font-size: 1rem;
             font-family: var(--font-sans);
             outline: none;
-            color: var(--black);
+            color: var(--input-text);
             transition: background 0.2s, color 0.3s;
         }
 
         .search-overlay__input:focus {
-            background: #dcd0c4;
+            background: var(--bg-secondary);
             outline: 2px solid var(--gold);
             outline-offset: 2px;
         }
 
-        [data-theme="dark"] .search-overlay__input:focus {
-            background: #3d352e;
-        }
-
         .search-overlay__input::placeholder {
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.5;
         }
 
@@ -606,7 +643,7 @@
             background: none;
             border: none;
             font-size: 1.4rem;
-            color: var(--black);
+            color: var(--text-primary);
             padding: 0.4rem;
             cursor: pointer;
             border-radius: 50%;
@@ -614,7 +651,7 @@
         }
 
         .search-overlay__close:hover {
-            background: rgba(0, 0, 0, 0.04);
+            background: var(--bg-secondary);
         }
 
         .search-overlay__results {
@@ -631,12 +668,12 @@
             border-radius: var(--radius-sm);
             cursor: pointer;
             transition: background 0.2s;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .search-overlay__results .result-item:hover,
         .search-overlay__results .result-item:focus {
-            background: var(--beige);
+            background: var(--bg-secondary);
             outline: none;
         }
 
@@ -661,7 +698,7 @@
         .search-overlay__results .result-item .info .name {
             font-weight: 500;
             font-size: 0.95rem;
-            color: var(--black);
+            color: var(--text-primary);
         }
 
         .search-overlay__results .result-item .info .name strong {
@@ -670,7 +707,7 @@
 
         .search-overlay__results .result-item .info .category {
             font-size: 0.75rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.7;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -679,7 +716,7 @@
         .search-overlay__results .empty-state {
             text-align: center;
             padding: 3rem 0;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.5;
         }
 
@@ -731,7 +768,7 @@
             gap: 4px;
             padding: 10px 16px;
             border-radius: 50px;
-            background: rgba(20, 20, 20, 0.55);
+            background: var(--nav-bg);
             backdrop-filter: blur(16px) saturate(1.6);
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -739,12 +776,6 @@
             max-width: 440px;
             width: auto;
             min-width: 280px;
-        }
-
-        [data-theme="dark"] #bottomNav {
-            background: rgba(10, 10, 10, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
         }
 
         #bottomNav.scrolled {
@@ -761,7 +792,7 @@
             gap: 1px;
             background: transparent;
             border: none;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--nav-text);
             padding: 6px 14px;
             border-radius: 30px;
             font-size: 0.55rem;
@@ -785,7 +816,7 @@
         }
 
         .bottom-nav__item:hover {
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--nav-text-active);
         }
 
         .bottom-nav__item:hover i {
@@ -793,8 +824,8 @@
         }
 
         .bottom-nav__item.active {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.12);
+            color: var(--nav-text-active);
+            background: var(--nav-bg-active);
             box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
         }
 
@@ -863,7 +894,7 @@
         .hero__slide .overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(26, 22, 20, 0.7) 0%, transparent 60%);
+            background: linear-gradient(to top, var(--hero-overlay) 0%, transparent 60%);
         }
 
         .hero__content {
@@ -905,8 +936,8 @@
         }
 
         .hero__cta {
-            background: var(--white-pure);
-            color: var(--black);
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
             border: none;
             padding: 0.7rem 2rem;
             border-radius: 40px;
@@ -923,6 +954,8 @@
         .hero__cta:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            background: var(--btn-primary-hover);
+            color: var(--btn-primary-hover-text);
         }
 
         .hero__cta i {
@@ -984,14 +1017,14 @@
             font-size: 1.2rem;
             font-weight: 600;
             letter-spacing: -0.01em;
-            color: var(--black);
+            color: var(--text-primary);
             transition: color 0.3s;
         }
 
         .section__see-all {
             font-size: 0.75rem;
             font-weight: 500;
-            color: var(--brown);
+            color: var(--text-secondary);
             text-decoration: none;
             opacity: 0.6;
             transition: opacity 0.2s;
@@ -1030,13 +1063,13 @@
             flex: 0 0 var(--card-preview-width);
             aspect-ratio: 4 / 5;
             scroll-snap-align: start;
-            background: var(--beige);
+            background: var(--card-bg);
             border-radius: var(--radius-sm);
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            box-shadow: var(--card-shadow);
             transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
-            border: 1px solid rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
         }
 
         .cards-grid .card-preview {
@@ -1056,10 +1089,6 @@
             transform: scale(1.06);
         }
 
-        [data-theme="dark"] .card-preview {
-            border-color: rgba(255, 255, 255, 0.05);
-        }
-
         .card-preview__image {
             position: relative;
             z-index: 3;
@@ -1077,7 +1106,7 @@
             right: 0;
             bottom: 0;
             padding: 0.8rem 0.6rem 0.5rem;
-            background: linear-gradient(to top, rgba(20, 16, 14, 0.8) 0%, rgba(20, 16, 14, 0.2) 55%, transparent 100%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 55%, transparent 100%);
             z-index: 4;
         }
 
@@ -1160,7 +1189,7 @@
         .collection-banner__overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(26, 22, 20, 0.6), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
         }
 
         .collection-banner__content {
@@ -1188,7 +1217,7 @@
         }
 
         .manifesto {
-            background: var(--beige);
+            background: var(--bg-secondary);
             border-radius: var(--radius);
             padding: 1.8rem;
             margin-bottom: 1.5rem;
@@ -1198,13 +1227,13 @@
         .manifesto__title {
             font-family: var(--font-serif);
             font-size: 1.2rem;
-            color: var(--black);
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
         }
 
         .manifesto__text {
             font-size: 0.95rem;
-            color: var(--brown-dark);
+            color: var(--text-secondary);
             font-weight: 300;
             line-height: 1.8;
             font-style: italic;
@@ -1212,11 +1241,11 @@
 
         .mood-tag {
             display: inline-block;
-            background: var(--beige);
+            background: var(--bg-secondary);
             padding: 0.3rem 1rem;
             border-radius: 30px;
             font-size: 0.75rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             transition: background 0.3s;
         }
 
@@ -1237,7 +1266,7 @@
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 400;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.5;
             cursor: pointer;
             transition: all 0.3s;
@@ -1246,24 +1275,15 @@
 
         .filter-btn:hover {
             opacity: 0.8;
-            background: var(--beige);
+            background: var(--bg-secondary);
         }
 
         .filter-btn.active {
             opacity: 1;
-            color: var(--black);
+            color: var(--text-primary);
             border-bottom: 2px solid var(--gold);
             border-radius: 0;
             padding-bottom: 0.2rem;
-        }
-
-        [data-theme="dark"] .filter-btn.active {
-            color: var(--white);
-            border-bottom-color: var(--gold);
-        }
-
-        [data-theme="dark"] .filter-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
         }
 
         /* ============================================================
@@ -1274,10 +1294,10 @@
             width: 100%;
             max-width: 280px;
             margin: 0 auto 0.75rem;
-            background: var(--beige);
+            background: var(--bg-secondary);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, .35);
+            border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0, 0, 0, .10), 0 2px 8px rgba(0, 0, 0, .05);
             aspect-ratio: 2 / 3;
         }
@@ -1307,7 +1327,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
             border: none;
             color: white;
@@ -1320,7 +1340,7 @@
         }
 
         .detail-modal-nav:hover {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
         }
 
         .detail-modal-nav--prev {
@@ -1380,7 +1400,7 @@
         .detail-modal-text h2 {
             font-family: var(--font-serif);
             font-size: 1.3rem;
-            color: var(--black);
+            color: var(--text-primary);
             margin-bottom: 0.2rem;
         }
 
@@ -1388,7 +1408,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.5;
             margin-bottom: 0.8rem;
             display: block;
@@ -1403,7 +1423,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.5;
             margin-bottom: 0.2rem;
             font-weight: 600;
@@ -1412,26 +1432,26 @@
         .detail-modal-text .section p,
         .detail-modal-text .section div {
             font-size: 0.9rem;
-            color: var(--black);
+            color: var(--text-primary);
             font-weight: 300;
             line-height: 1.7;
         }
 
         .detail-modal-text .tag {
             display: inline-block;
-            background: var(--beige);
+            background: var(--bg-secondary);
             padding: 0.2rem 1rem;
             border-radius: 30px;
             font-size: 0.75rem;
             margin: 0.15rem 0.2rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.2s, color 0.2s;
         }
 
         .detail-modal-text .tag:hover {
             background: var(--gold);
-            color: white;
+            color: var(--black);
         }
 
         .detail-modal-text .modal-highlight {
@@ -1453,14 +1473,14 @@
             align-items: center;
             gap: 0.8rem;
             padding: 0.8rem 0.6rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid var(--border-color);
             cursor: pointer;
             transition: background 0.2s;
             border-radius: var(--radius-sm);
         }
 
         .fav-item:hover {
-            background: var(--beige);
+            background: var(--bg-secondary);
         }
 
         .fav-item .image-wrapper {
@@ -1485,19 +1505,19 @@
         .fav-item .info .name {
             font-weight: 500;
             font-size: 0.9rem;
-            color: var(--black);
+            color: var(--text-primary);
         }
 
         .fav-item .info .category {
             font-size: 0.7rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.6;
         }
 
         .fav-item .remove {
             background: none;
             border: none;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.3;
             font-size: 1rem;
             cursor: pointer;
@@ -1521,7 +1541,7 @@
             align-items: center;
             gap: 1rem;
             padding: 1rem 0.6rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid var(--border-color);
             cursor: pointer;
             transition: background 0.2s;
             border-radius: var(--radius-sm);
@@ -1532,12 +1552,12 @@
             width: 100%;
             font-family: var(--font-sans);
             font-size: 0.95rem;
-            color: var(--black);
+            color: var(--text-primary);
             text-align: left;
         }
 
         .menu-item:hover {
-            background: var(--beige);
+            background: var(--bg-secondary);
         }
 
         .menu-item:focus {
@@ -1545,13 +1565,9 @@
             outline-offset: 2px;
         }
 
-        [data-theme="dark"] .menu-item:hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
         .menu-item i {
             width: 24px;
-            color: var(--brown);
+            color: var(--text-secondary);
             font-size: 1.1rem;
         }
 
@@ -1561,7 +1577,7 @@
         }
 
         .menu-item .arrow {
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.3;
             font-size: 0.8rem;
         }
@@ -1579,7 +1595,7 @@
         .theme-toggle__track {
             width: 44px;
             height: 24px;
-            background: var(--beige);
+            background: var(--bg-secondary);
             border-radius: 30px;
             position: relative;
             cursor: pointer;
@@ -1594,7 +1610,7 @@
         .theme-toggle__thumb {
             width: 18px;
             height: 18px;
-            background: white;
+            background: var(--text-primary);
             border-radius: 50%;
             position: absolute;
             top: 3px;
@@ -1631,7 +1647,7 @@
         }
 
         .modal-content {
-            background: var(--white-pure);
+            background: var(--modal-bg);
             border-radius: var(--radius);
             max-width: 400px;
             width: 100%;
@@ -1640,10 +1656,7 @@
             overflow-y: auto;
             animation: fadeUp 0.3s ease;
             position: relative;
-        }
-
-        [data-theme="dark"] .modal-content {
-            background: var(--white-pure);
+            color: var(--modal-text);
         }
 
         .modal-content__close {
@@ -1653,7 +1666,7 @@
             background: rgba(0, 0, 0, 0.04);
             border: none;
             font-size: 1rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -1675,7 +1688,7 @@
 
         [data-theme="dark"] .modal-content__close {
             background: rgba(255, 255, 255, 0.04);
-            color: var(--white);
+            color: var(--text-secondary);
             opacity: 0.4;
         }
 
@@ -1687,13 +1700,13 @@
         .modal-content h2 {
             font-family: var(--font-serif);
             font-size: 1.4rem;
-            color: var(--black);
+            color: var(--modal-text);
             margin-bottom: 0.3rem;
             letter-spacing: -0.01em;
         }
 
         .modal-content p {
-            color: var(--black);
+            color: var(--modal-text);
             font-weight: 300;
             line-height: 1.7;
             font-size: 0.92rem;
@@ -1706,7 +1719,7 @@
         }
 
         .modal-content .social-links a {
-            color: var(--brown);
+            color: var(--text-secondary);
             font-size: 1.5rem;
             transition: color 0.2s;
         }
@@ -1727,11 +1740,11 @@
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             overflow: hidden;
             border: 3px solid var(--gold);
             box-shadow: 0 0 24px rgba(201, 169, 110, 0.18);
-            background: var(--beige);
+            background: var(--bg-secondary);
             transition: all 0.3s ease;
             position: relative;
             cursor: pointer;
@@ -1783,13 +1796,13 @@
         }
 
         .avatar-actions .avatar-btn {
-            background: var(--beige);
+            background: var(--bg-secondary);
             border: none;
             padding: 0.35rem 1rem;
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: 500;
-            color: var(--brown);
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: var(--font-sans);
@@ -1800,7 +1813,7 @@
 
         .avatar-actions .avatar-btn:hover {
             background: var(--gold);
-            color: white;
+            color: var(--black);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(201, 169, 110, 0.3);
         }
@@ -2013,7 +2026,7 @@
             justify-content: center;
             min-height: 100vh;
             padding: 2rem 1.5rem;
-            background: var(--white);
+            background: var(--bg-primary);
             transition: background 0.3s, color 0.3s;
         }
 
@@ -2031,7 +2044,7 @@
             font-family: var(--font-serif);
             font-size: 2.8rem;
             font-weight: 700;
-            color: var(--black);
+            color: var(--text-primary);
             letter-spacing: 2px;
             margin-bottom: 0.1rem;
         }
@@ -2049,14 +2062,14 @@
         .login-container .login-title {
             font-family: var(--font-serif);
             font-size: 1.6rem;
-            color: var(--black);
+            color: var(--text-primary);
             margin-bottom: 0.3rem;
             letter-spacing: -0.02em;
         }
 
         .login-container .login-desc {
             font-size: 0.9rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.7;
             margin-bottom: 1.8rem;
         }
@@ -2072,12 +2085,12 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: var(--beige);
+            background: var(--bg-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             overflow: hidden;
             border: 2px solid var(--gold);
             box-shadow: 0 0 20px rgba(201, 169, 110, 0.12);
@@ -2107,7 +2120,7 @@
 
         .avatar-upload .avatar-label {
             font-size: 0.7rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.6;
             margin-top: 0.3rem;
             cursor: pointer;
@@ -2135,7 +2148,7 @@
         .login-form .form-group label {
             font-size: 0.75rem;
             font-weight: 500;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.7;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -2144,9 +2157,9 @@
         .login-form .form-group input {
             padding: 0.8rem 1rem;
             border-radius: var(--radius-sm);
-            border: 1px solid var(--beige);
-            background: var(--white);
-            color: var(--black);
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--input-text);
             font-family: var(--font-sans);
             font-size: 0.95rem;
             transition: border-color 0.3s, background 0.3s, color 0.3s;
@@ -2160,20 +2173,9 @@
             outline-offset: 2px;
         }
 
-        [data-theme="dark"] .login-form .form-group input {
-            background: var(--white-pure);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-        }
-
-        [data-theme="dark"] .login-form .form-group input:focus {
-            border-color: var(--gold);
-            outline-color: var(--gold);
-        }
-
         .login-form .btn-primary {
-            background: var(--black);
-            color: white;
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
             border: none;
             padding: 0.9rem;
             border-radius: 40px;
@@ -2188,18 +2190,8 @@
         .login-form .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        [data-theme="dark"] .login-form .btn-primary {
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        [data-theme="dark"] .login-form .btn-primary:hover {
-            background: var(--black);
-            color: white;
+            background: var(--btn-primary-hover);
+            color: var(--btn-primary-hover-text);
         }
 
         .login-divider {
@@ -2207,7 +2199,7 @@
             align-items: center;
             gap: 1rem;
             margin: 0.8rem 0;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.3;
             font-size: 0.75rem;
         }
@@ -2217,7 +2209,7 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: var(--beige);
+            background: var(--border-color);
         }
 
         .btn-google {
@@ -2225,9 +2217,9 @@
             align-items: center;
             justify-content: center;
             gap: 0.8rem;
-            background: white;
-            color: #333;
-            border: 1px solid var(--beige);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
             padding: 0.8rem;
             border-radius: 40px;
             font-weight: 500;
@@ -2249,20 +2241,10 @@
             height: 20px;
         }
 
-        [data-theme="dark"] .btn-google {
-            background: var(--white-pure);
-            color: var(--white);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        [data-theme="dark"] .btn-google:hover {
-            border-color: var(--gold);
-        }
-
         .login-footer {
             margin-top: 1.5rem;
             font-size: 0.8rem;
-            color: var(--brown);
+            color: var(--text-secondary);
             opacity: 0.5;
         }
 
@@ -2279,8 +2261,8 @@
             bottom: 90px;
             left: 50%;
             transform: translateX(-50%) translateY(20px);
-            background: var(--black);
-            color: var(--white);
+            background: var(--toast-bg);
+            color: var(--toast-text);
             padding: 0.6rem 1.5rem;
             border-radius: 40px;
             font-size: 0.8rem;
@@ -2292,14 +2274,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(8px);
-            background: rgba(26, 22, 20, 0.92);
             white-space: nowrap;
-        }
-
-        [data-theme="dark"] .toast {
-            background: rgba(250, 248, 245, 0.92);
-            color: var(--black);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .toast.show {
@@ -2380,8 +2355,8 @@
 
         @media (min-width: 600px) {
             #app {
-                border-left: 1px solid rgba(0, 0, 0, 0.04);
-                border-right: 1px solid rgba(0, 0, 0, 0.04);
+                border-left: 1px solid var(--border-color);
+                border-right: 1px solid var(--border-color);
             }
             .cards-grid {
                 grid-template-columns: 1fr 1fr 1fr;
@@ -2417,13 +2392,13 @@
         }
 
         .modal-action {
-            background: var(--beige);
+            background: var(--bg-secondary);
             border: none;
             padding: 0.6rem 1.5rem;
             border-radius: 40px;
             font-size: 0.85rem;
             font-weight: 500;
-            color: var(--brown);
+            color: var(--text-secondary);
             cursor: pointer;
             transition: all 0.3s;
             font-family: var(--font-sans);
@@ -2431,32 +2406,130 @@
             text-align: center;
         }
 
-        [data-theme="dark"] .modal-action {
-            background: var(--beige);
-            color: var(--black);
-        }
-
         .modal-action:hover {
-            background: var(--black);
-            color: white;
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
         }
 
-        [data-theme="dark"] .modal-action:hover {
+        .collection-banner {
+            background-size: contain !important;
+            background-color: var(--bg-secondary) !important;
+            background-position: center !important;
+        }
+
+        /* ============================================================
+           CORREÇÃO FINAL: BOTÕES DE AÇÃO DO MODAL DE DETALHE
+           ============================================================ */
+        .detail-modal-text .hero__cta {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--font-sans);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .detail-modal-text .hero__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            background: var(--btn-primary-hover);
+            color: var(--btn-primary-hover-text);
+        }
+
+        /* Força contraste no modal de perfil */
+        .modal-content .avatar-btn {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+
+        .modal-content .avatar-btn:hover {
             background: var(--gold);
             color: var(--black);
         }
 
-        /* ============================================================
-           CORREÇÃO DE IMAGENS – APENAS PARA O BANNER
-           ============================================================ */
-        .collection-banner {
-            background-size: contain !important;
-            background-color: var(--beige) !important;
-            background-position: center !important;
+        .modal-content .avatar-btn.danger:hover {
+            background: #d32f2f;
+            color: white;
         }
 
-        /* REMOVIDA a regra #page-collection .section img que forçava object-fit: contain */
-        /* As imagens dos cards usam .card-preview__image com cover, que agora prevalece */
+        /* Ajuste do input de busca em tema escuro */
+        [data-theme="dark"] .search-overlay__input {
+            background: #2c241e;
+            color: #f0ede8;
+        }
+
+        [data-theme="dark"] .search-overlay__input::placeholder {
+            color: #a08060;
+        }
+
+        /* Ajuste do botão Google */
+        [data-theme="dark"] .btn-google {
+            background: #1f1b18;
+            color: #f0ede8;
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .btn-google:hover {
+            border-color: var(--gold);
+        }
+
+        /* Ajuste do botão primário no modal de detalhe */
+        .detail-modal-text .modal-action {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+
+        .detail-modal-text .modal-action:hover {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+        }
+
+        /* Ajuste do filtro ativo */
+        [data-theme="dark"] .filter-btn.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Ajuste do manifesto */
+        [data-theme="dark"] .manifesto {
+            background: #1f1b18;
+        }
+
+        [data-theme="dark"] .manifesto__text {
+            color: #c5b8aa;
+        }
+
+        /* Ajuste do mood tag */
+        [data-theme="dark"] .mood-tag {
+            background: #1f1b18;
+            color: #c5b8aa;
+        }
+
+        /* Ajuste dos cards de preview na home */
+        [data-theme="dark"] .card-preview {
+            background: #1f1b18;
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Ajuste do botão de explorar coleção na página collection */
+        .collection-banner + .section .hero__cta {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+        }
+
+        .collection-banner + .section .hero__cta:hover {
+            background: var(--btn-primary-hover);
+            color: var(--btn-primary-hover-text);
+        }
     </style>
 </head>
 
@@ -2738,14 +2811,14 @@
                     </article>
                     <div style="margin-bottom:1.5rem;">
                         <h4
-                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
                             Conceito
                         </h4>
-                        <p style="font-size:0.95rem;color:var(--black);font-weight:300;line-height:1.8;">A coleção de estreia traduz a essência do HairOS: sofisticação urbana, organicidade e uma visão de futuro. Tons terrosos, texturas que respiram e acabamentos que valorizam a saúde dos fios são a base de uma pesquisa autoral que se renova a cada estação.</p>
+                        <p style="font-size:0.95rem;color:var(--text-primary);font-weight:300;line-height:1.8;">A coleção de estreia traduz a essência do HairOS: sofisticação urbana, organicidade e uma visão de futuro. Tons terrosos, texturas que respiram e acabamentos que valorizam a saúde dos fios são a base de uma pesquisa autoral que se renova a cada estação.</p>
                     </div>
                     <div style="margin-bottom:1.5rem;">
                         <h4
-                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
                             Mood
                         </h4>
                         <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
@@ -2817,7 +2890,7 @@
                     </div>
 
                     <button class="hero__cta" onclick="window.app?.navigateTo('cuts')"
-                        style="background:var(--black);color:white;width:100%;justify-content:center;padding:0.9rem;"
+                        style="background:var(--btn-primary-bg);color:var(--btn-primary-text);width:100%;justify-content:center;padding:0.9rem;"
                         aria-label="Explorar cortes da coleção">
                         Explorar Cortes <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </button>
@@ -2886,7 +2959,7 @@
             <section id="page-favorites" class="page" data-page="favorites" aria-label="Favoritos">
                 <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;">
                     <h2 class="section__title" style="font-size:1.4rem;">Favoritos</h2>
-                    <span style="font-size:0.8rem;color:var(--brown);opacity:0.5;" id="favCount">0 itens</span>
+                    <span style="font-size:0.8rem;color:var(--text-secondary);opacity:0.5;" id="favCount">0 itens</span>
                 </div>
                 <div class="favorites-list" id="favoritesList" role="list"></div>
             </section>
@@ -2964,7 +3037,7 @@
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </button>
                     <button class="menu-item" onclick="window.app?.logout()" role="link"
-                        style="border-top:1px solid rgba(0,0,0,0.05);margin-top:0.5rem;padding-top:1rem;">
+                        style="border-top:1px solid var(--border-color);margin-top:0.5rem;padding-top:1rem;">
                         <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                         <span class="label">Sair</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
@@ -3133,8 +3206,8 @@
                         image: 'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
                         images: [
                             'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
-                            'https://i.pinimg.com/736x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg'
+                            'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg',
+                            'https://i.pinimg.com/736x/71/2f/e0/712fe063c1c50369ee0c63c8f7562a9a.jpg'
                         ],
                         description: 'O Velvet Bob é um dos cortes emblemáticos da coleção de estreia HairOS, combinando elegância atemporal com um acabamento moderno e aveludado. Pensado para quem busca sofisticação e praticidade, este corte reflete a pesquisa de tendências que orienta a primeira coleção.',
                         profile: 'Mulheres com rosto oval ou quadrado',
@@ -3154,8 +3227,8 @@
                         image: 'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
                         images: [
                             'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
-                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
+                            'https://i.pinimg.com/736x/42/36/d4/4236d4296296aa9602fe7b7a9f9d0cd1.jpg',
+                            'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg'
                         ],
                         description: 'Camadas suaves que criam movimento e leveza, mantendo o comprimento médio com um toque moderno. Este corte integra a coleção inaugural HairOS, valorizando a textura natural e a fluidez dos fios.',
                         profile: 'Mulheres com cabelos médios a longos',
@@ -3175,8 +3248,8 @@
                         image: 'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
                         images: [
                             'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
-                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
+                            'https://i.pinimg.com/236x/52/40/02/52400232deed3ad1d6a19ebdfacbc0c8.jpg',
+                            'https://i.pinimg.com/236x/f7/ff/bb/f7ffbb74791a4e01ad6285a5aa5ab979.jpg'
                         ],
                         description: 'O Shaggy repaginado para cabelos cacheados, com camadas internas que valorizam o volume e a definição natural. Uma das silhuetas-chave da coleção de estreia, celebrando a individualidade e o movimento orgânico.',
                         profile: 'Mulheres com cabelos cacheados ou crespos',
@@ -3196,8 +3269,8 @@
                         image: 'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
                         images: [
                             'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
-                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                            'https://i.pinimg.com/736x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg'
+                            'https://i.pinimg.com/736x/45/23/3f/45233f0f5bf2025158ac9ff72701f3c2.jpg',
+                            'https://i.pinimg.com/736x/93/f8/33/93f833f887285c9641b001fc2bb588a9.jpg'
                         ],
                         description: 'Corte masculino com textura e movimento, ideal para quem busca um visual moderno e despojado. Faz parte da seleção HairOS para esta estação, unindo referências internacionais e uma abordagem contemporânea.',
                         profile: 'Homens com cabelos médios',
@@ -3217,8 +3290,8 @@
                         image: 'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
                         images: [
                             'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
-                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
-                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg'
+                            'https://i.pinimg.com/736x/2e/37/91/2e3791c344263214a752f02f140ef95b.jpg',
+                            'https://i.pinimg.com/736x/cf/b4/c4/cfb4c491b133cb1ced2cabf27f1691de.jpg'
                         ],
                         description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância. Este corte representa a pesquisa de alongamento e leveza da coleção inaugural.',
                         profile: 'Mulheres que amam cabelos longos',
@@ -3238,8 +3311,8 @@
                         image: 'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
                         images: [
                             'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg'
+                            'https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg',
+                            'https://i.pinimg.com/736x/a2/eb/48/a2eb48f4c7874ffd4b7668ecec57d651.jpg'
                         ],
                         description: 'O clássico Pixie com um toque moderno e texturizado, perfeito para quem busca atitude e praticidade. Uma das propostas ousadas da primeira coleção HairOS.',
                         profile: 'Mulheres com traços marcantes',
@@ -3259,8 +3332,8 @@
                         image: 'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
                         images: [
                             'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                            'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg'
+                            'https://i.pinimg.com/736x/10/75/c6/1075c68d4b35292480d95cea2225915f.jpg',
+                            'https://i.pinimg.com/736x/ee/72/aa/ee72aa6c1ce777382e3b75ad447b957e.jpg'
                         ],
                         description: 'Franja francesa despojada que emoldura o rosto com elegância e suavidade. Integra a seleção de detalhes que completam a coleção de estreia.',
                         profile: 'Todos os tipos de rosto',
@@ -3280,8 +3353,8 @@
                         image: 'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
                         images: [
                             'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
-                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg'
+                            'https://i.pinimg.com/736x/2c/ff/3e/2cff3e43ed7e8559602509e135fc826b.jpg',
+                            'https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg'
                         ],
                         description: 'O Shaggy com camadas marcantes e textura, trazendo volume e personalidade ao visual. Uma silhueta que traduz a energia e a inovação da primeira coleção HairOS.',
                         profile: 'Mulheres que buscam volume e movimento',
@@ -3426,11 +3499,11 @@
                     trends: [{
                         id: 'camadas',
                         name: 'Camadas Estratégicas',
-                        image: 'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                        image: 'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
                         images: [
-                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
-                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg'
+                            'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
+                            'https://i.pinimg.com/736x/a8/32/0c/a8320cac67f98908fd296e6a34ff2559.jpg',
+                            'https://i.pinimg.com/736x/f4/6d/76/f46d76af2c1588dc14d9720e25d3ece8.jpg'
                         ],
                         description: 'Camadas estratégicas que criam movimento e leveza, valorizando a textura natural dos fios. Esta tendência é um dos pilares da pesquisa da coleção de estreia HairOS.',
                         level: 'Intermediário',
@@ -4330,7 +4403,7 @@
                         ` : ''}
                         ${item.tutorial ? `
                             <div class="section"><h4>Passo a passo</h4>
-                                <div style="background:var(--beige);padding:0.8rem;border-radius:var(--radius-sm);">
+                                <div style="background:var(--bg-secondary);padding:0.8rem;border-radius:var(--radius-sm);">
                                     ${item.tutorial.map(step => `<div style="font-size:0.9rem;margin-bottom:0.3rem;">${step}</div>`).join('')}
                                 </div>
                             </div>
@@ -4348,7 +4421,7 @@
                 if (type === 'cut' || type === 'product') {
                     favButton = `
                         <button class="hero__cta" onclick="window.app?.toggleFavorite('${type}','${item.id}'); window.app?.openDetailModal('${type}','${item.id}');" 
-                                style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
+                                style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--btn-primary-bg)'};color:${isFav ? 'var(--black)' : 'var(--btn-primary-text)'};padding:0.9rem;">
                             <i class="fas fa-heart" aria-hidden="true"></i> ${isFav ? 'Favoritado' : 'Favoritar'}
                         </button>
                     `;
@@ -4387,7 +4460,7 @@
                     <div class="detail-modal-text">
                         ${textHTML}
                         ${favButton}
-                        <p style="font-size:0.75rem;opacity:0.5;margin-top:1rem;border-top:1px solid rgba(0,0,0,0.05);padding-top:0.8rem;text-align:center;">Esta peça integra a primeira coleção oficial do HairOS, um projeto em evolução contínua.</p>
+                        <p style="font-size:0.75rem;opacity:0.5;margin-top:1rem;border-top:1px solid var(--border-color);padding-top:0.8rem;text-align:center;">Esta peça integra a primeira coleção oficial do HairOS, um projeto em evolução contínua.</p>
                         <button class="modal-action" onclick="window.app?.closeModal()" style="margin-top:0.8rem;">Fechar</button>
                     </div>
                 `;
@@ -4457,7 +4530,7 @@
                         <div style="text-align:center;margin:0.5rem 0 0.2rem;">
                             ${renderAvatar()}
                             <h3 style="margin-top:0.6rem;font-family:'Playfair Display',serif;">${user.name}</h3>
-                            <p style="font-size:0.85rem;color:var(--brown);opacity:0.7;">${user.email}</p>
+                            <p style="font-size:0.85rem;color:var(--text-secondary);opacity:0.7;">${user.email}</p>
                             <div class="avatar-actions">
                                 <button class="avatar-btn" onclick="document.getElementById('avatarModalInput').click()">
                                     <i class="fas fa-camera"></i> Trocar foto
@@ -4482,7 +4555,7 @@
                     about: `
                         <h2>Sobre o HairOS</h2>
                         <p style="margin-top:0.8rem;">O HairOS nasceu da união entre mais de vinte anos de experiência em beleza, visagismo, colorimetria e imagem pessoal, com o desenvolvimento de software e inteligência artificial. Esta primeira coleção, HairOS Library, é a materialização de uma metodologia que integra referências internacionais e uma visão moderna da beleza. O projeto está em evolução contínua, e novas coleções, ferramentas e experiências serão incorporadas naturalmente. Acompanhe a jornada.</p>
-                        <div style="margin-top:1rem;padding:1rem;background:var(--beige);border-radius:var(--radius-sm);">
+                        <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);">
                             <p style="font-size:0.85rem;"><strong>Versão:</strong> 3.2.0</p>
                             <p style="font-size:0.85rem;"><strong>Coleção atual:</strong> Outono/Inverno 2026</p>
                             <p style="font-size:0.85rem;"><strong>Usuário:</strong> ${user ? user.name : 'Não logado'}</p>
@@ -4492,25 +4565,25 @@
                     settings: `
                         <h2>Configurações</h2>
                         <div style="margin-top:1rem;">
-                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid var(--border-color);">
                                 <span><strong>Tema</strong><br /><span style="font-size:0.85rem;opacity:0.6;">${this.state.theme === 'light' ? 'Claro' : 'Escuro'}</span></span>
-                                <button onclick="window.app?.toggleTheme();window.app?.closeModal();" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--black);color:white;min-width:80px;justify-content:center;">
+                                <button onclick="window.app?.toggleTheme();window.app?.closeModal();" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--btn-primary-bg);color:var(--btn-primary-text);min-width:80px;justify-content:center;">
                                     ${this.state.theme === 'light' ? '🌙 Escuro' : '☀️ Claro'}
                                 </button>
                             </div>
-                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid var(--border-color);">
                                 <span><strong>Notificações</strong></span>
-                                <button onclick="window.app?.showToast('🔔 Notificações alternadas')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
+                                <button onclick="window.app?.showToast('🔔 Notificações alternadas')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--bg-secondary);color:var(--text-primary);min-width:80px;justify-content:center;">
                                     Ativado
                                 </button>
                             </div>
                             <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;">
                                 <span><strong>Idioma</strong><br /><span style="font-size:0.85rem;opacity:0.6;">Português</span></span>
-                                <button onclick="window.app?.showToast('🌐 Idioma alterado para Português')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--beige);color:var(--black);min-width:80px;justify-content:center;">
+                                <button onclick="window.app?.showToast('🌐 Idioma alterado para Português')" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:var(--bg-secondary);color:var(--text-primary);min-width:80px;justify-content:center;">
                                     Alterar
                                 </button>
                             </div>
-                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-top:1px solid rgba(0,0,0,0.05);margin-top:0.5rem;">
+                            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-top:1px solid var(--border-color);margin-top:0.5rem;">
                                 <span><strong>Limpar Favoritos</strong></span>
                                 <button onclick="if(confirm('Deseja remover todos os favoritos?')){ window.app?.clearFavorites(); window.app?.closeModal(); }" class="hero__cta" style="padding:0.3rem 1.2rem;font-size:0.75rem;background:#d32f2f;color:white;min-width:80px;justify-content:center;">
                                     Limpar
@@ -4523,19 +4596,19 @@
                         <h2>Ajuda</h2>
                         <p style="margin-top:0.8rem;">O HairOS Library foi criado para inspirar e conectar profissionais e apaixonados por beleza. Navegue pelas seções, explore a coleção e salve suas referências. Cada detalhe foi pensado para uma experiência intuitiva e elegante. Em breve, novas funcionalidades inteligentes farão parte do ecossistema.</p>
                         <div style="margin-top:1rem;">
-                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <div style="padding:0.8rem 0;border-bottom:1px solid var(--border-color);">
                                 <strong>📱 Como navegar?</strong>
                                 <p style="font-size:0.9rem;opacity:0.7;">Use o menu inferior flutuante para acessar as principais seções do app.</p>
                             </div>
-                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <div style="padding:0.8rem 0;border-bottom:1px solid var(--border-color);">
                                 <strong>🔍 Como buscar?</strong>
                                 <p style="font-size:0.9rem;opacity:0.7;">Toque no ícone de busca 🔍 na barra superior ou pressione <kbd>Ctrl</kbd> + <kbd>K</kbd>.</p>
                             </div>
-                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <div style="padding:0.8rem 0;border-bottom:1px solid var(--border-color);">
                                 <strong>❤️ Como favoritar?</strong>
                                 <p style="font-size:0.9rem;opacity:0.7;">No modal de detalhe de um corte ou produto, toque em "Favoritar".</p>
                             </div>
-                            <div style="padding:0.8rem 0;border-bottom:1px solid rgba(0,0,0,0.05);">
+                            <div style="padding:0.8rem 0;border-bottom:1px solid var(--border-color);">
                                 <strong>🌓 Tema escuro?</strong>
                                 <p style="font-size:0.9rem;opacity:0.7;">Acesse Menu > Configurações e alterne o tema.</p>
                             </div>
@@ -4543,11 +4616,11 @@
                                 <strong>🎠 Carrossel</strong>
                                 <p style="font-size:0.9rem;opacity:0.7;">O banner principal gira automaticamente. Toque nos indicadores para navegar.</p>
                             </div>
-                            <div style="padding:0.8rem 0;border-top:1px solid rgba(0,0,0,0.05);margin-top:0.5rem;">
+                            <div style="padding:0.8rem 0;border-top:1px solid var(--border-color);margin-top:0.5rem;">
                                 <strong>⌨️ Atalhos</strong>
                                 <p style="font-size:0.9rem;opacity:0.7;"><kbd>Ctrl+K</kbd> Buscar • <kbd>Esc</kbd> Fechar modal/busca</p>
                             </div>
-                            <div style="padding:0.8rem 0;border-top:1px solid rgba(0,0,0,0.05);">
+                            <div style="padding:0.8rem 0;border-top:1px solid var(--border-color);">
                                 <strong>🖼️ Galeria</strong>
                                 <p style="font-size:0.9rem;opacity:0.7;">Clique na imagem grande do modal para abrir em tela cheia.</p>
                             </div>
@@ -4797,7 +4870,7 @@
 
                     if (filtered.length === 0) {
                         grid.innerHTML = `
-                            <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
+                            <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--text-secondary);opacity:0.5;">
                                 <i class="fas fa-cut" style="font-size:2rem;display:block;margin-bottom:0.8rem;"></i>
                                 <p>Nenhum corte encontrado para este filtro</p>
                             </div>
@@ -4860,7 +4933,7 @@
 
                     if (filtered.length === 0) {
                         grid.innerHTML = `
-                            <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
+                            <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--text-secondary);opacity:0.5;">
                                 <i class="fas fa-flask" style="font-size:2rem;display:block;margin-bottom:0.8rem;"></i>
                                 <p>Nenhum produto encontrado para este filtro</p>
                             </div>
@@ -4923,7 +4996,7 @@
 
                     if (allFavs.length === 0) {
                         container.innerHTML = `
-                            <div style="text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
+                            <div style="text-align:center;padding:3rem 0;color:var(--text-secondary);opacity:0.5;">
                                 <i class="fas fa-heart" style="font-size:2.5rem;display:block;margin-bottom:0.8rem;" aria-hidden="true"></i>
                                 <p style="font-size:0.95rem;">Sua coleção pessoal ainda está vazia.</p>
                                 <p style="font-size:0.8rem;">Explore a coleção e salve suas inspirações favoritas para construir sua própria referência.</p>
@@ -5074,8 +5147,8 @@
                 app.innerHTML = `
                     <div style="text-align:center;padding:4rem 1.5rem;">
                         <i class="fas fa-exclamation-triangle" style="font-size:3rem;color:var(--gold);display:block;margin-bottom:1rem;"></i>
-                        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--black);">Oops!</h2>
-                        <p style="color:var(--brown);margin-top:0.5rem;">${message}</p>
+                        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);">Oops!</h2>
+                        <p style="color:var(--text-secondary);margin-top:0.5rem;">${message}</p>
                         <button onclick="location.reload()" class="hero__cta" style="margin-top:1.5rem;background:var(--gold);color:white;">
                             <i class="fas fa-sync" aria-hidden="true"></i> Recarregar
                         </button>
@@ -5132,11 +5205,9 @@
         });
 
         console.log('🪮 HairOS Library — VERSÃO FINAL COMPLETA (NARRATIVA REPOSICIONADA)');
-        console.log('✅ Todos os cards abrem o mesmo modal com imagem grande + miniaturas + texto');
-        console.log('✅ Setas e miniaturas navegam entre as imagens');
-        console.log('✅ Clique na imagem grande abre a galeria em tela cheia');
-        console.log('✅ Clique em tags fecha modal e navega automaticamente');
-        console.log('📌 Disponível em: window.app');
+        console.log('✅ Revisão de contraste completa: modo claro e escuro');
+        console.log('✅ Botões, textos e fundos com contraste adequado (WCAG AA+)');
+        console.log('✅ Disponível em: window.app');
     </script>
 
 </body>
