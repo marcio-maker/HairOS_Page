@@ -39,7 +39,6 @@
         frame-ancestors 'none';
     " />
 
-    <!-- ===== Anti-Clickjacking ===== -->
     <style>
         /* ============================================================
            RESET & BASE
@@ -2651,7 +2650,8 @@
                             <div class="hero__content">
                                 <span class="hero__badge">Tendências</span>
                                 <h1 class="hero__title">Movimento Natural</h1>
-                                <p class="hero__subtitle">Texturas que contam histórias e valorizam a individualidade</p>
+                                <p class="hero__subtitle">Texturas que contam histórias e valorizam a individualidade
+                                </p>
                                 <button class="hero__cta" onclick="window.app?.navigateTo('trends')"
                                     aria-label="Ver tendências">
                                     Ver Tendências <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -2752,7 +2752,8 @@
                             individualidade, as camadas que dançam e as franjas que emolduram o olhar."</p>
                     </article>
                     <div style="margin-bottom:1.5rem;">
-                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
+                        <h4
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
                             Conceito
                         </h4>
                         <p style="font-size:0.95rem;color:var(--black);font-weight:300;line-height:1.8;">Uma fusão entre
@@ -2760,7 +2761,8 @@
                             vento e acabamentos que valorizam a saúde dos fios.</p>
                     </div>
                     <div style="margin-bottom:1.5rem;">
-                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
+                        <h4
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
                             Mood
                         </h4>
                         <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
@@ -2869,7 +2871,8 @@
 
             <!-- ===== PAGE: PRODUCTS ===== -->
             <section id="page-products" class="page" data-page="products" aria-label="Produtos">
-                <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                <div
+                    style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
                     <h2 class="section__title" style="font-size:1.4rem;">Produtos</h2>
                     <div style="display:flex;gap:0.3rem;flex-wrap:wrap;" id="productFilters" role="tablist"
                         aria-label="Filtros de produtos">
@@ -3026,7 +3029,7 @@
     <script>
         /**
          * ============================================================
-         * HAIROS LIBRARY — PADRÃO ÚNICO DE MODAL DE DETALHE
+         * HAiROS LIBRARY — VERSÃO FINAL COMPLETA
          * ============================================================
          */
         class HairOSApp {
@@ -3054,12 +3057,14 @@
                 this.detailItem = null;
                 this.detailType = null;
 
+                // Bind dos métodos
                 this.init = this.init.bind(this);
                 this.navigateTo = this.navigateTo.bind(this);
                 this.goBack = this.goBack.bind(this);
                 this.toggleTheme = this.toggleTheme.bind(this);
                 this.openModal = this.openModal.bind(this);
                 this.closeModal = this.closeModal.bind(this);
+                this.closeModalAndNavigate = this.closeModalAndNavigate.bind(this);
                 this.toggleFavorite = this.toggleFavorite.bind(this);
                 this.isFavorite = this.isFavorite.bind(this);
                 this.renderHome = this.renderHome.bind(this);
@@ -3091,13 +3096,12 @@
                 this.clearFavorites = this.clearFavorites.bind(this);
                 this.showToast = this.showToast.bind(this);
                 this.setupScrollReveal = this.setupScrollReveal.bind(this);
-
-                // Novos métodos
                 this.openDetailModal = this.openDetailModal.bind(this);
                 this.detailPrev = this.detailPrev.bind(this);
                 this.detailNext = this.detailNext.bind(this);
                 this.detailThumb = this.detailThumb.bind(this);
                 this.renderDetailModal = this.renderDetailModal.bind(this);
+                this.updateDetailModal = this.updateDetailModal.bind(this);
 
                 this.init();
             }
@@ -3117,6 +3121,14 @@
                 if (!query || query.trim().length === 0) return text;
                 const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
                 return text.replace(regex, '<strong style="color:var(--gold);">$1</strong>');
+            }
+
+            // ---- FECHAR MODAL E NAVEGAR ----
+            closeModalAndNavigate(page, data = null) {
+                this.closeModal();
+                setTimeout(() => {
+                    this.navigateTo(page, data);
+                }, 150);
             }
 
             // ---- DADOS ----
@@ -3831,7 +3843,7 @@
 
             init() {
                 try {
-                    console.log('🪮 HairOS Library — Padrão único de modal de detalhe');
+                    console.log('🪮 HairOS Library — Versão Final Completa');
                     this.loadData();
                     this.loadState();
                     this.setupEventListeners();
@@ -3866,7 +3878,6 @@
                 document.getElementById('mainContent').style.display = 'block';
                 document.getElementById('bottomNav').style.display = 'flex';
                 this.updateProfileIcon();
-                // Após renderizar tudo, ativar scroll reveal
                 setTimeout(() => this.setupScrollReveal(), 300);
             }
 
@@ -3886,7 +3897,8 @@
                 const avatar = this.state.user?.avatar;
                 const profileToggle = document.getElementById('profileToggle');
                 if (avatar) {
-                    profileToggle.innerHTML = `<img src="${avatar}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;" alt="Perfil" />`;
+                    profileToggle.innerHTML =
+                        `<img src="${avatar}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;" alt="Perfil" />`;
                 } else {
                     profileToggle.innerHTML = `<i class="fas fa-user-circle" aria-hidden="true"></i>`;
                 }
@@ -4119,7 +4131,6 @@
 
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                     this.updateFavBadge();
-                    // Ativar scroll reveal após renderização
                     setTimeout(() => this.setupScrollReveal(), 200);
 
                 } catch (error) {
@@ -4293,14 +4304,14 @@
                         <div class="section"><h4>Como Finalizar</h4><p>${item.finishing}</p></div>
                         ${item.products ? `
                             <div class="section"><h4>Produtos Sugeridos</h4>
-                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.navigateTo('products')">${p}</span>`).join('')}</div>
+                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.closeModalAndNavigate('products')">${p}</span>`).join('')}</div>
                             </div>
                         ` : ''}
                         ${item.related ? `
                             <div class="section"><h4>Relacionados</h4>
                                 <div>${item.related.map(id => {
                                     const rel = this.DATA.cuts.find(c => c.id === id);
-                                    return rel ? `<span class="tag" onclick="window.app?.openDetailModal('cut','${rel.id}')">${rel.name}</span>` : '';
+                                    return rel ? `<span class="tag" onclick="window.app?.closeModal(); setTimeout(() => window.app?.openDetailModal('cut','${rel.id}'), 150)">${rel.name}</span>` : '';
                                 }).join('')}</div>
                             </div>
                         ` : ''}
@@ -4331,7 +4342,7 @@
                         <div class="section"><h4>Tempo</h4><p>${item.time || '30 min'}</p></div>
                         ${item.products ? `
                             <div class="section"><h4>Produtos</h4>
-                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.navigateTo('products')">${p}</span>`).join('')}</div>
+                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.closeModalAndNavigate('products')">${p}</span>`).join('')}</div>
                             </div>
                         ` : ''}
                         ${item.tutorial ? `
@@ -4905,20 +4916,6 @@
                                 </div>
                             </div>
                         `).join('');
-                    } else {
-                        // fallback
-                        container.innerHTML = this.DATA.editorial.map(img => `
-                            <div class="card-preview" onclick="window.app?.openModal('editorialFull')" role="listitem" tabindex="0">
-                                <div class="image-wrapper">
-                                    <div class="skeleton-placeholder"></div>
-                                    <img class="card-preview__image" src="${img}" alt="Editorial" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
-                                </div>
-                                <div class="card-preview__body">
-                                    <span class="card-preview__name">Editorial</span>
-                                    <span class="card-preview__category">Inspiração</span>
-                                </div>
-                            </div>
-                        `).join('');
                     }
 
                 } catch (error) {
@@ -5147,10 +5144,11 @@
             window.app = new HairOSApp();
         });
 
-        console.log('🪮 HairOS Library — PADRÃO ÚNICO DE MODAL DE DETALHE');
+        console.log('🪮 HairOS Library — VERSÃO FINAL COMPLETA');
         console.log('✅ Todos os cards abrem o mesmo modal com imagem grande + miniaturas + texto');
         console.log('✅ Setas e miniaturas navegam entre as imagens');
         console.log('✅ Clique na imagem grande abre a galeria em tela cheia');
+        console.log('✅ Clique em tags fecha modal e navega automaticamente');
         console.log('📌 Disponível em: window.app');
     </script>
 
