@@ -1283,23 +1283,15 @@
 
         .detail-modal-image-wrap {
             position: relative;
-            width: 240px;
-            height: 360px;
+            width: 100%;
+            max-width: 280px;
             margin: 0 auto 0.75rem;
             background: var(--beige);
-
-            /* Bordas arredondadas */
             border-radius: 20px;
-
             overflow: hidden;
-
-            /* Moldura elegante */
             border: 1px solid rgba(255, 255, 255, .35);
-
-            /* Sombra suave */
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, .10),
-                0 2px 8px rgba(0, 0, 0, .05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .10), 0 2px 8px rgba(0, 0, 0, .05);
+            aspect-ratio: 2 / 3;
         }
 
         .detail-modal-image-wrap .image-wrapper {
@@ -2015,7 +2007,8 @@
             }
 
             .detail-modal-image-wrap {
-                height: 180px;
+                max-width: 200px;
+                aspect-ratio: 2 / 3;
             }
 
             .detail-modal-thumbs .image-wrapper {
