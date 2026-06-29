@@ -28,6 +28,18 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
+    <!-- ===== CSP (Content Security Policy) ===== -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+        font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+        img-src 'self' data: https://i.pinimg.com https://tse1.mm.bing.net https://tse4.mm.bing.net https://th.bing.com https://lojasrede.vtexassets.com;
+        connect-src 'self';
+        frame-ancestors 'none';
+    " />
+
+    <!-- ===== Anti-Clickjacking ===== -->
     <style>
         /* ============================================================
            RESET & BASE
@@ -88,11 +100,9 @@
         ::-webkit-scrollbar {
             width: 4px;
         }
-
         ::-webkit-scrollbar-track {
             background: var(--beige);
         }
-
         ::-webkit-scrollbar-thumb {
             background: var(--brown);
             border-radius: 10px;
@@ -201,12 +211,10 @@
         }
 
         @keyframes pulseLogo {
-
             0%,
             100% {
                 opacity: 1;
             }
-
             50% {
                 opacity: 0.5;
             }
@@ -216,31 +224,25 @@
             0% {
                 width: 0%;
             }
-
             30% {
                 width: 45%;
             }
-
             60% {
                 width: 75%;
             }
-
             90% {
                 width: 92%;
             }
-
             100% {
                 width: 100%;
             }
         }
 
         @keyframes favPulse {
-
             0%,
             100% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.25);
             }
@@ -268,23 +270,18 @@
         .card-preview:nth-child(1) {
             transition-delay: 0.05s;
         }
-
         .card-preview:nth-child(2) {
             transition-delay: 0.10s;
         }
-
         .card-preview:nth-child(3) {
             transition-delay: 0.15s;
         }
-
         .card-preview:nth-child(4) {
             transition-delay: 0.20s;
         }
-
         .card-preview:nth-child(5) {
             transition-delay: 0.25s;
         }
-
         .card-preview:nth-child(6) {
             transition-delay: 0.30s;
         }
@@ -317,7 +314,6 @@
             0% {
                 background-position: -200% 0;
             }
-
             100% {
                 background-position: 200% 0;
             }
@@ -376,13 +372,11 @@
         }
 
         @keyframes swipePulse {
-
             0%,
             100% {
                 opacity: 0.4;
                 transform: translateY(-50%) translateX(0);
             }
-
             50% {
                 opacity: 0.9;
                 transform: translateY(-50%) translateX(6px);
@@ -717,7 +711,6 @@
                 opacity: 0;
                 transform: translateY(16px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1132,15 +1125,12 @@
             .card-preview__name {
                 font-size: 0.7rem;
             }
-
             .card-preview__category {
                 font-size: 0.5rem;
             }
-
             .card-preview__body {
                 padding: 0.7rem 0.5rem 0.4rem;
             }
-
             .cards-grid {
                 gap: 0.8rem;
             }
@@ -1278,9 +1268,8 @@
         }
 
         /* ============================================================
-   MODAL DE DETALHE - IMAGEM RETRATO (HairOS)
-   ============================================================ */
-
+           MODAL DE DETALHE - IMAGEM RETRATO (HairOS)
+           ============================================================ */
         .detail-modal-image-wrap {
             position: relative;
             width: 100%;
@@ -1344,19 +1333,15 @@
         }
 
         /* ============================================================
-   MINIATURAS DO MODAL
-   ============================================================ */
-
+           MINIATURAS DO MODAL
+           ============================================================ */
         .detail-modal-thumbs {
             display: flex;
             justify-content: center;
-            /* Centraliza as miniaturas */
             align-items: center;
             gap: 10px;
             width: 240px;
-            /* Mesma largura da imagem principal */
             margin: 0 auto 1rem;
-            /* Centraliza o conjunto */
         }
 
         .detail-modal-thumbs .image-wrapper {
@@ -1366,6 +1351,13 @@
             overflow: hidden;
             cursor: pointer;
             transition: all .25s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .detail-modal-thumbs .image-wrapper.active {
+            border-color: var(--gold);
+            box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
         }
 
         .detail-modal-thumbs .image-wrapper img {
@@ -1885,7 +1877,6 @@
                 opacity: 0;
                 transform: scale(0.9);
             }
-
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -1978,29 +1969,23 @@
                 height: 36px;
                 font-size: 1rem;
             }
-
             .gallery-overlay__nav--prev {
                 left: 0.5rem;
             }
-
             .gallery-overlay__nav--next {
                 right: 0.5rem;
             }
-
             .gallery-overlay__image {
                 max-width: 95%;
                 max-height: 70vh;
             }
-
             .gallery-overlay__thumbnails {
                 bottom: 4rem;
             }
-
             .gallery-overlay__thumb {
                 width: 32px;
                 height: 32px;
             }
-
             .gallery-overlay__counter {
                 bottom: 1.5rem;
                 font-size: 0.7rem;
@@ -2010,12 +1995,10 @@
                 max-width: 200px;
                 aspect-ratio: 2 / 3;
             }
-
             .detail-modal-thumbs .image-wrapper {
                 width: 48px;
                 height: 48px;
             }
-
             .detail-modal-text {
                 max-height: 35vh;
             }
@@ -2341,28 +2324,23 @@
             :root {
                 --hero-height: 340px;
             }
-
             .hero__title {
                 font-size: 1.8rem;
             }
-
             #bottomNav {
                 padding: 8px 12px;
                 min-width: 220px;
                 gap: 2px;
                 bottom: 16px;
             }
-
             .bottom-nav__item {
                 padding: 4px 10px;
                 min-width: 40px;
                 font-size: 0.5rem;
             }
-
             .bottom-nav__item i {
                 font-size: 0.95rem;
             }
-
             .bottom-nav__item .nav-badge {
                 width: 14px;
                 height: 14px;
@@ -2370,40 +2348,32 @@
                 right: 2px;
                 top: -2px;
             }
-
             .loading__logo {
                 font-size: 2.2rem;
             }
-
             .login-container .login-logo {
                 font-size: 2.2rem;
             }
-
             .login-container .login-title {
                 font-size: 1.3rem;
             }
-
             .login-form .form-group input {
                 font-size: 0.85rem;
                 padding: 0.7rem 0.9rem;
             }
-
             .login-form .btn-primary,
             .btn-google {
                 padding: 0.7rem;
                 font-size: 0.85rem;
             }
-
             .avatar-upload .avatar-preview {
                 width: 64px;
                 height: 64px;
                 font-size: 2rem;
             }
-
             .cards-grid {
                 gap: 0.8rem;
             }
-
             .modal-content {
                 padding: 1.2rem;
             }
@@ -2414,7 +2384,6 @@
                 border-left: 1px solid rgba(0, 0, 0, 0.04);
                 border-right: 1px solid rgba(0, 0, 0, 0.04);
             }
-
             .cards-grid {
                 grid-template-columns: 1fr 1fr 1fr;
             }
@@ -2435,19 +2404,15 @@
         .text-center {
             text-align: center;
         }
-
         .mt-1 {
             margin-top: 1rem;
         }
-
         .mb-1 {
             margin-bottom: 1rem;
         }
-
         .gap-1 {
             gap: 1rem;
         }
-
         .w-100 {
             width: 100%;
         }
@@ -2587,8 +2552,8 @@
 
                 <p class="login-footer">
                     Ao continuar, você concorda com nossos <a href="#"
-                        onclick="event.preventDefault();alert('Termos de uso')">Termos</a> e <a href="#"
-                        onclick="event.preventDefault();alert('Política de privacidade')">Política de Privacidade</a>.
+                        onclick="event.preventDefault();window.app?.openModal('terms')">Termos</a> e <a href="#"
+                        onclick="event.preventDefault();window.app?.openModal('privacy')">Política de Privacidade</a>.
                 </p>
             </div>
         </section>
@@ -2641,8 +2606,7 @@
         </div>
 
         <!-- ===== GALERIA ZOOM ===== -->
-        <div id="galleryOverlay" class="gallery-overlay" role="dialog" aria-modal="true"
-            aria-label="Galeria de imagens">
+        <div id="galleryOverlay" class="gallery-overlay" role="dialog" aria-modal="true" aria-label="Galeria de imagens">
             <button class="gallery-overlay__close" id="galleryClose" aria-label="Fechar galeria">
                 <i class="fas fa-times" aria-hidden="true"></i>
             </button>
@@ -2687,8 +2651,7 @@
                             <div class="hero__content">
                                 <span class="hero__badge">Tendências</span>
                                 <h1 class="hero__title">Movimento Natural</h1>
-                                <p class="hero__subtitle">Texturas que contam histórias e valorizam a individualidade
-                                </p>
+                                <p class="hero__subtitle">Texturas que contam histórias e valorizam a individualidade</p>
                                 <button class="hero__cta" onclick="window.app?.navigateTo('trends')"
                                     aria-label="Ver tendências">
                                     Ver Tendências <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -2789,8 +2752,7 @@
                             individualidade, as camadas que dançam e as franjas que emolduram o olhar."</p>
                     </article>
                     <div style="margin-bottom:1.5rem;">
-                        <h4
-                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
                             Conceito
                         </h4>
                         <p style="font-size:0.95rem;color:var(--black);font-weight:300;line-height:1.8;">Uma fusão entre
@@ -2798,8 +2760,7 @@
                             vento e acabamentos que valorizam a saúde dos fios.</p>
                     </div>
                     <div style="margin-bottom:1.5rem;">
-                        <h4
-                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--brown);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
                             Mood
                         </h4>
                         <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
@@ -2908,8 +2869,7 @@
 
             <!-- ===== PAGE: PRODUCTS ===== -->
             <section id="page-products" class="page" data-page="products" aria-label="Produtos">
-                <div
-                    style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
                     <h2 class="section__title" style="font-size:1.4rem;">Produtos</h2>
                     <div style="display:flex;gap:0.3rem;flex-wrap:wrap;" id="productFilters" role="tablist"
                         aria-label="Filtros de produtos">
@@ -3170,524 +3130,492 @@
                         concept: 'Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.',
                         mood: ['Elegância natural', 'Movimento livre', 'Texturas vivas', 'Tons terrosos']
                     },
-                    cuts: [
-                        {
-                            id: 'velvet-bob',
-                            name: 'Velvet Bob',
-                            category: 'curtos',
-                            tags: ['bob', 'feminino'],
-                            image: 'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
-                                'https://i.pinimg.com/736x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                                'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg'
-                            ],
-                            description: 'O Bob clássico com acabamento aveludado e pontas levemente desfiadas. Perfeito para quem busca elegância e praticidade.',
-                            profile: 'Mulheres com rosto oval ou quadrado',
-                            hairType: 'Liso a ondulado',
-                            faceShape: 'Oval, quadrado',
-                            maintenance: 'Médio (visitas a cada 6 semanas)',
-                            techniques: 'Tesoura de precisão, desfiamento, acabamento com navalha',
-                            finishing: 'Finalizar com óleo leve e secar com escova redonda',
-                            time: '45 minutos',
-                            products: ['Óleo Finalizador', 'Protetor Térmico'],
-                            related: ['soft-layers', 'pixie-touch']
-                        },
-                        {
-                            id: 'soft-layers',
-                            name: 'Soft Layers',
-                            category: 'medios',
-                            tags: ['camadas', 'feminino'],
-                            image: 'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                                'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
-                            ],
-                            description: 'Camadas suaves que criam movimento e leveza, mantendo o comprimento médio com um toque moderno.',
-                            profile: 'Mulheres com cabelos médios a longos',
-                            hairType: 'Todos os tipos',
-                            faceShape: 'Todos',
-                            maintenance: 'Baixo',
-                            techniques: 'Camadas longas, desfiamento suave',
-                            finishing: 'Secar com difusor ou escova',
-                            time: '35 minutos',
-                            products: ['Mousse Modeladora', 'Spray Texturizador'],
-                            related: ['long-flow', 'curly-shag']
-                        },
-                        {
-                            id: 'curly-shag',
-                            name: 'Curly Shag',
-                            category: 'cacheado',
-                            tags: ['cacheado', 'camadas', 'feminino'],
-                            image: 'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                                'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
-                            ],
-                            description: 'O Shaggy repaginado para cabelos cacheados, com camadas que valorizam o volume e a definição natural.',
-                            profile: 'Mulheres com cabelos cacheados ou crespos',
-                            hairType: 'Cacheado, crespo',
-                            faceShape: 'Oval, redondo',
-                            maintenance: 'Médio',
-                            techniques: 'Camadas internas, pontilhado',
-                            finishing: 'Finalizar com creme de pentear e secar com difusor',
-                            time: '50 minutos',
-                            products: ['Máscara Revitalizante', 'Óleo Finalizador'],
-                            related: ['soft-layers', 'long-flow']
-                        },
-                        {
-                            id: 'tintired-men',
-                            name: 'Tintired Men',
-                            category: 'masculino',
-                            tags: ['masculino', 'curtos'],
-                            image: 'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
-                                'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                                'https://i.pinimg.com/736x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg'
-                            ],
-                            description: 'Corte masculino com textura e movimento, ideal para quem busca um visual moderno e despojado.',
-                            profile: 'Homens com cabelos médios',
-                            hairType: 'Liso a ondulado',
-                            faceShape: 'Todos',
-                            maintenance: 'Baixo a médio',
-                            techniques: 'Tesoura e máquina com desfiamento',
-                            finishing: 'Finalizar com pomada ou cera',
-                            time: '30 minutos',
-                            products: ['Pomada Modeladora', 'Shampoo Nutritivo'],
-                            related: ['pixie-touch']
-                        },
-                        {
-                            id: 'long-flow',
-                            name: 'Long Flow',
-                            category: 'longos',
-                            tags: ['longos', 'feminino'],
-                            image: 'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
-                                'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg'
-                            ],
-                            description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância.',
-                            profile: 'Mulheres que amam cabelos longos',
-                            hairType: 'Todos os tipos',
-                            faceShape: 'Todos',
-                            maintenance: 'Médio',
-                            techniques: 'Camadas longas, pontas retas',
-                            finishing: 'Secar com escova e finalizar com óleo',
-                            time: '40 minutos',
-                            products: ['Óleo Finalizador', 'Protetor Térmico'],
-                            related: ['soft-layers', 'curly-shag']
-                        },
-                        {
-                            id: 'pixie-touch',
-                            name: 'Pixie Touch',
-                            category: 'curtos',
-                            tags: ['curtos', 'feminino', 'franja'],
-                            image: 'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                                'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                                'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg'
-                            ],
-                            description: 'O clássico Pixie com um toque moderno e texturizado, perfeito para quem busca atitude e praticidade.',
-                            profile: 'Mulheres com traços marcantes',
-                            hairType: 'Liso a ondulado',
-                            faceShape: 'Oval, coração',
-                            maintenance: 'Alto (visitas a cada 4 semanas)',
-                            techniques: 'Tesoura e navalha',
-                            finishing: 'Finalizar com spray texturizador',
-                            time: '25 minutos',
-                            products: ['Spray Texturizador', 'Mousse Modeladora'],
-                            related: ['velvet-bob', 'tintired-men']
-                        },
-                        {
-                            id: 'french-fringe',
-                            name: 'French Fringe',
-                            category: 'franja',
-                            tags: ['franja', 'feminino'],
-                            image: 'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                                'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                                'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg'
-                            ],
-                            description: 'Franja francesa despojada que emoldura o rosto com elegância e suavidade.',
-                            profile: 'Todos os tipos de rosto',
-                            hairType: 'Todos os tipos',
-                            faceShape: 'Todos',
-                            maintenance: 'Alto',
-                            techniques: 'Tesoura de precisão, desfiamento',
-                            finishing: 'Secar com escova redonda',
-                            time: '20 minutos',
-                            products: ['Spray Texturizador', 'Óleo Finalizador'],
-                            related: ['soft-layers', 'velvet-bob']
-                        },
-                        {
-                            id: 'layered-shag',
-                            name: 'Layered Shag',
-                            category: 'camadas',
-                            tags: ['camadas', 'feminino', 'medios'],
-                            image: 'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                                'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg'
-                            ],
-                            description: 'O Shaggy com camadas marcantes e textura, trazendo volume e personalidade ao visual.',
-                            profile: 'Mulheres que buscam volume e movimento',
-                            hairType: 'Todos os tipos',
-                            faceShape: 'Todos',
-                            maintenance: 'Médio',
-                            techniques: 'Camadas curtas, desfiamento intenso',
-                            finishing: 'Finalizar com mousse e difusor',
-                            time: '45 minutos',
-                            products: ['Mousse Modeladora', 'Spray Texturizador'],
-                            related: ['curly-shag', 'soft-layers']
-                        }
-                    ],
-                    products: [
-                        {
-                            id: 'shampoo-vitamino-color',
-                            name: 'Shampoo Vitamino Color 750ml',
-                            category: 'shampoo',
-                            image: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            images: [
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0'
-                            ],
-                            link: 'https://mercadolivre.com/sec/2wJK2SK',
-                            description: 'Shampoo L\'Oréal Professionnel Vitamino Color para cabelos coloridos. Fórmula com proteção da cor e brilho intenso.',
-                            benefits: 'Proteção da cor, brilho intenso, maciez, limpeza suave',
-                            usage: 'Aplicar nos cabelos molhados, massagear o couro cabeludo e enxaguar. Repita se necessário.',
-                            indication: 'Cabelos coloridos ou com mechas',
-                            related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
-                        },
-                        {
-                            id: 'mascara-absolut-repair',
-                            name: 'Máscara Absolut Repair 250ml',
-                            category: 'mascara',
-                            image: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            images: [
-                                'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0'
-                            ],
-                            link: 'https://mercadolivre.com/sec/1T8Ucwp',
-                            description: 'Máscara L\'Oréal Professionnel Absolut Repair para reconstrução capilar profunda. Com Quinoa e Proteína.',
-                            benefits: 'Reconstrução, nutrição profunda, brilho, força',
-                            usage: 'Aplicar nos fios úmidos após o shampoo, deixar agir por 5 minutos e enxaguar.',
-                            indication: 'Cabelos danificados e quimicamente tratados',
-                            related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
-                        },
-                        {
-                            id: 'mascara-kerastase',
-                            name: 'Máscara Kérastase Résistance 200ml',
-                            category: 'mascara',
-                            image: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            images: [
-                                'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
-                            ],
-                            link: 'https://mercadolivre.com/sec/2VVxFB1',
-                            description: 'Máscara Kérastase Résistance Thérapiste - reconstrução profunda para cabelos muito danificados.',
-                            benefits: 'Reconstrução intensa, força renovada, reparação, elasticidade',
-                            usage: 'Aplicar após o shampoo, deixar agir e enxaguar completamente.',
-                            indication: 'Cabelos muito danificados e fragilizados',
-                            related: ['mascara-absolut-repair', 'condicionador-joico']
-                        },
-                        {
-                            id: 'spray-silhouette',
-                            name: 'Silhouette Hair Spray 500ml',
-                            category: 'finalizador',
-                            image: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            images: [
-                                'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
-                            ],
-                            link: 'https://mercadolivre.com/sec/1jdT4rg',
-                            description: 'Spray de fixação forte Silhouette Schwarzkopf Professional para penteados duradouros.',
-                            benefits: 'Fixação forte, brilho, duração prolongada, controle de frizz',
-                            usage: 'Aplicar a 30cm dos cabelos secos para finalizar o penteado.',
-                            indication: 'Todos os tipos de cabelo',
-                            related: ['spray-texturizador', 'oleo-finalizador']
-                        },
-                        {
-                            id: 'lowell-cacho-magico',
-                            name: 'Lowell Cacho Mágico 200ml',
-                            category: 'finalizador',
-                            image: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            images: [
-                                'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
-                            ],
-                            link: 'https://mercadolivre.com/sec/1RKdy8e',
-                            description: 'Fluido ativador de cachos Lowell Cacho Mágico para definição natural e hidratação.',
-                            benefits: 'Definição de cachos, hidratação, controle de frizz, maciez',
-                            usage: 'Aplicar nos cabelos úmidos e modelar os cachos com as mãos ou difusor.',
-                            indication: 'Cabelos cacheados e crespos',
-                            related: ['spray-silhouette', 'mousse-modeladora']
-                        },
-                        {
-                            id: 'shampoo-silver',
-                            name: 'Shampoo L\'Oréal Silver 300ml',
-                            category: 'shampoo',
-                            image: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            images: [
-                                'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
-                            ],
-                            link: 'https://mercadolivre.com/sec/1uQ9ppW',
-                            description: 'Shampoo matizador L\'Oréal Professionnel Silver para cabelos grisalhos, brancos e com mechas.',
-                            benefits: 'Matização, brilho, neutraliza tons amarelos, hidratação',
-                            usage: 'Aplicar e deixar agir 2-5 minutos antes de enxaguar completamente.',
-                            indication: 'Cabelos grisalhos, brancos ou descoloridos',
-                            related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
-                        },
-                        {
-                            id: 'shampoo-absolut-repair-gold',
-                            name: 'Shampoo Absolut Repair Gold 750ml',
-                            category: 'shampoo',
-                            image: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
-                            images: [
-                                'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
-                            ],
-                            link: 'https://mercadolivre.com/sec/1jX3Cvq',
-                            description: 'Shampoo L\'Oréal Professionnel Absolut Repair Gold com Quinoa e Proteína para cabelos danificados.',
-                            benefits: 'Reconstrução, nutrição, brilho, força renovada',
-                            usage: 'Aplicar nos cabelos molhados, massagear e enxaguar. Repita se necessário.',
-                            indication: 'Cabelos danificados e ressecados',
-                            related: ['shampoo-vitamino-color', 'mascara-absolut-repair']
-                        },
-                        {
-                            id: 'condicionador-joico',
-                            name: 'Condicionador Joico Moisture Recovery 250ml',
-                            category: 'condicionador',
-                            image: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
-                            images: [
-                                'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
-                                'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                                'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
-                            ],
-                            link: 'https://mercadolivre.com/sec/26hayjy',
-                            description: 'Condicionador Joico Moisture Recovery para hidratação profunda de cabelos secos e grossos.',
-                            benefits: 'Hidratação intensa, desembaraço, maciez, brilho',
-                            usage: 'Aplicar após o shampoo, deixar agir por 2-3 minutos e enxaguar.',
-                            indication: 'Cabelos secos, grossos e ressecados',
-                            related: ['shampoo-absolut-repair-gold', 'mascara-kerastase']
-                        }
-                    ],
-                    trends: [
-                        {
-                            id: 'camadas',
-                            name: 'Camadas Estratégicas',
-                            image: 'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                                'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
-                                'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg'
-                            ],
-                            description: 'Camadas que criam movimento e leveza, valorizando a textura natural dos fios.',
-                            level: 'Intermediário',
-                            time: '30 min',
-                            products: ['Spray Texturizador', 'Mousse Modeladora', 'Óleo Finalizador'],
-                            tip: 'Mantenha as pontas leves para melhor movimento.',
-                            tutorial: [
-                                '1. Divida o cabelo em seções com prendedores',
-                                '2. Comece cortando as camadas inferiores primeiro',
-                                '3. Use tesoura de precisão para as pontas levemente desfiadas',
-                                '4. Finalize com spray texturizador para mais volume'
-                            ]
-                        },
-                        {
-                            id: 'franjas',
-                            name: 'Franjas Sofisticadas',
-                            image: 'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
-                                'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                                'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg'
-                            ],
-                            description: 'Franjas despojadas que emolduram o olhar com elegância e personalidade.',
-                            level: 'Iniciante',
-                            time: '15 min',
-                            products: ['Spray Texturizador', 'Mousse Modeladora'],
-                            tip: 'Seque com escova redonda para acabamento sofisticado.',
-                            tutorial: [
-                                '1. Separe a franja do restante do cabelo',
-                                '2. Corte no comprimento desejado (abaixo da sobrancelha)',
-                                '3. Desfie levemente as pontas para movimento natural',
-                                '4. Finalize com spray texturizador'
-                            ]
-                        },
-                        {
-                            id: 'movimento',
-                            name: 'Movimento Natural',
-                            image: 'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                                'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg'
-                            ],
-                            description: 'Texturas que valorizam o movimento natural e a autenticidade dos fios.',
-                            level: 'Fácil',
-                            time: '20 min',
-                            products: ['Óleo Finalizador', 'Spray Texturizador'],
-                            tip: 'Use difusor para potencializar o movimento dos fios.',
-                            tutorial: [
-                                '1. Lave com shampoo suave e condicionador',
-                                '2. Aplique leave-in e amasse os fios com as mãos',
-                                '3. Seque com difusor em movimentos circulares',
-                                '4. Finalize com óleo leve para brilho'
-                            ]
-                        },
-                        {
-                            id: 'texturas',
-                            name: 'Texturas Leves',
-                            image: 'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
-                            images: [
-                                'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                                'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
-                            ],
-                            description: 'Toque aveludado e brilho natural para fios saudáveis e macios.',
-                            level: 'Intermediário',
-                            time: '25 min',
-                            products: ['Óleo Finalizador', 'Protetor Térmico', 'Máscara Revitalizante'],
-                            tip: 'Use produtos com ativos naturais para potencializar o brilho.',
-                            tutorial: [
-                                '1. Aplique máscara hidratante nos fios',
-                                '2. Deixe agir por 5 minutos e enxágue',
-                                '3. Seque com escova redonda e finalize com protetor térmico',
-                                '4. Aplique óleo nas pontas para brilho intenso'
-                            ]
-                        },
-                        {
-                            id: 'volumes',
-                            name: 'Volumes Orgânicos',
-                            image: 'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg',
-                                'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
-                                'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg'
-                            ],
-                            description: 'Volumes que respeitam a estrutura natural do cabelo com elegância.',
-                            level: 'Avançado',
-                            time: '40 min',
-                            products: ['Mousse Modeladora', 'Spray Texturizador', 'Pomada Modeladora'],
-                            tip: 'Backcombing suave para dar volume sem agredir os fios.',
-                            tutorial: [
-                                '1. Aplique mousse na raiz do cabelo úmido',
-                                '2. Seque com a cabeça virada para baixo',
-                                '3. Use escova redonda para modelar as camadas',
-                                '4. Finalize com spray texturizador para fixação leve'
-                            ]
-                        },
-                        {
-                            id: 'acabamentos',
-                            name: 'Acabamentos Brilhantes',
-                            image: 'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg',
-                                'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
-                                'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg'
-                            ],
-                            description: 'Brilho intenso e saudável para um resultado elegante e radiante.',
-                            level: 'Fácil',
-                            time: '15 min',
-                            products: ['Óleo Finalizador', 'Máscara Revitalizante', 'Spray Texturizador'],
-                            tip: 'Enxágue com água fria para fechar as cutículas e potencializar o brilho.',
-                            tutorial: [
-                                '1. Lave com shampoo nutritivo',
-                                '2. Aplique máscara revitalizante e deixe agir',
-                                '3. Enxágue com água fria para fechar as cutículas',
-                                '4. Finalize com óleo nas pontas'
-                            ]
-                        }
-                    ],
-                    editorialItems: [
-                        {
-                            id: 'editorial-1',
-                            image: 'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
-                                'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                                'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg'
-                            ],
-                            title: 'O Movimento da Natureza',
-                            description: 'A coleção celebra a fluidez dos fios em movimento, capturando a essência do vento e da liberdade.',
-                            concept: 'Fotografias que registram a beleza efêmera do cabelo em movimento, com iluminação natural que valoriza cada textura.'
-                        },
-                        {
-                            id: 'editorial-2',
-                            image: 'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                                'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
-                                'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg'
-                            ],
-                            title: 'Tons Terrosos e Sofisticação',
-                            description: 'Paleta que evoca a natureza em sua forma mais elegante, do café ao caramelo, do ocre ao bronze.',
-                            concept: 'Cores que contam histórias ancestrais, combinadas com cortes modernos que respeitam a textura natural do cabelo.'
-                        },
-                        {
-                            id: 'editorial-3',
-                            image: 'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
-                                'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                                'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg'
-                            ],
-                            title: 'Texturas que Respiram',
-                            description: 'Cabelos que vivem em camadas, com movimento orgânico e acabamentos que parecem não ter esforço.',
-                            concept: 'A beleza está na imperfeição controlada, em fios que dançam livremente e contam histórias de autenticidade.'
-                        },
-                        {
-                            id: 'editorial-4',
-                            image: 'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
-                                'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
-                                'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg'
-                            ],
-                            title: 'Silhuetas Contemporâneas',
-                            description: 'Cortes que redefinem o que é moderno, combinando estrutura e leveza em formas inesperadas.',
-                            concept: 'Arquitetura capilar que respeita a individualidade, criando silhuetas que se adaptam ao movimento natural do corpo.'
-                        },
-                        {
-                            id: 'editorial-5',
-                            image: 'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg',
-                                'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
-                                'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg'
-                            ],
-                            title: 'Brilho e Naturalidade',
-                            description: 'Acabamentos que realçam a saúde dos fios, com luminosidade que vem de dentro para fora.',
-                            concept: 'Cabelos que brilham com vida própria, evidenciando a saúde capilar através de técnicas suaves e produtos que nutrem.'
-                        },
-                        {
-                            id: 'editorial-6',
-                            image: 'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
-                            images: [
-                                'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
-                                'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
-                                'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg'
-                            ],
-                            title: 'O Poder das Camadas',
-                            description: 'Camadas estratégicas que criam dimensão e movimento, transformando o cabelo em uma obra de arte.',
-                            concept: 'Cada camada é desenhada para valorizar o formato do rosto e a textura natural, criando um visual único e personalizado.'
-                        }
-                    ]
+                    cuts: [{
+                        id: 'velvet-bob',
+                        name: 'Velvet Bob',
+                        category: 'curtos',
+                        tags: ['bob', 'feminino'],
+                        image: 'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
+                            'https://i.pinimg.com/736x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
+                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg'
+                        ],
+                        description: 'O Bob clássico com acabamento aveludado e pontas levemente desfiadas. Perfeito para quem busca elegância e praticidade.',
+                        profile: 'Mulheres com rosto oval ou quadrado',
+                        hairType: 'Liso a ondulado',
+                        faceShape: 'Oval, quadrado',
+                        maintenance: 'Médio (visitas a cada 6 semanas)',
+                        techniques: 'Tesoura de precisão, desfiamento, acabamento com navalha',
+                        finishing: 'Finalizar com óleo leve e secar com escova redonda',
+                        time: '45 minutos',
+                        products: ['Óleo Finalizador', 'Protetor Térmico'],
+                        related: ['soft-layers', 'pixie-touch']
+                    }, {
+                        id: 'soft-layers',
+                        name: 'Soft Layers',
+                        category: 'medios',
+                        tags: ['camadas', 'feminino'],
+                        image: 'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
+                        ],
+                        description: 'Camadas suaves que criam movimento e leveza, mantendo o comprimento médio com um toque moderno.',
+                        profile: 'Mulheres com cabelos médios a longos',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Baixo',
+                        techniques: 'Camadas longas, desfiamento suave',
+                        finishing: 'Secar com difusor ou escova',
+                        time: '35 minutos',
+                        products: ['Mousse Modeladora', 'Spray Texturizador'],
+                        related: ['long-flow', 'curly-shag']
+                    }, {
+                        id: 'curly-shag',
+                        name: 'Curly Shag',
+                        category: 'cacheado',
+                        tags: ['cacheado', 'camadas', 'feminino'],
+                        image: 'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
+                        ],
+                        description: 'O Shaggy repaginado para cabelos cacheados, com camadas que valorizam o volume e a definição natural.',
+                        profile: 'Mulheres com cabelos cacheados ou crespos',
+                        hairType: 'Cacheado, crespo',
+                        faceShape: 'Oval, redondo',
+                        maintenance: 'Médio',
+                        techniques: 'Camadas internas, pontilhado',
+                        finishing: 'Finalizar com creme de pentear e secar com difusor',
+                        time: '50 minutos',
+                        products: ['Máscara Revitalizante', 'Óleo Finalizador'],
+                        related: ['soft-layers', 'long-flow']
+                    }, {
+                        id: 'tintired-men',
+                        name: 'Tintired Men',
+                        category: 'masculino',
+                        tags: ['masculino', 'curtos'],
+                        image: 'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
+                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
+                            'https://i.pinimg.com/736x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg'
+                        ],
+                        description: 'Corte masculino com textura e movimento, ideal para quem busca um visual moderno e despojado.',
+                        profile: 'Homens com cabelos médios',
+                        hairType: 'Liso a ondulado',
+                        faceShape: 'Todos',
+                        maintenance: 'Baixo a médio',
+                        techniques: 'Tesoura e máquina com desfiamento',
+                        finishing: 'Finalizar com pomada ou cera',
+                        time: '30 minutos',
+                        products: ['Pomada Modeladora', 'Shampoo Nutritivo'],
+                        related: ['pixie-touch']
+                    }, {
+                        id: 'long-flow',
+                        name: 'Long Flow',
+                        category: 'longos',
+                        tags: ['longos', 'feminino'],
+                        image: 'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
+                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg'
+                        ],
+                        description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância.',
+                        profile: 'Mulheres que amam cabelos longos',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Médio',
+                        techniques: 'Camadas longas, pontas retas',
+                        finishing: 'Secar com escova e finalizar com óleo',
+                        time: '40 minutos',
+                        products: ['Óleo Finalizador', 'Protetor Térmico'],
+                        related: ['soft-layers', 'curly-shag']
+                    }, {
+                        id: 'pixie-touch',
+                        name: 'Pixie Touch',
+                        category: 'curtos',
+                        tags: ['curtos', 'feminino', 'franja'],
+                        image: 'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
+                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
+                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg'
+                        ],
+                        description: 'O clássico Pixie com um toque moderno e texturizado, perfeito para quem busca atitude e praticidade.',
+                        profile: 'Mulheres com traços marcantes',
+                        hairType: 'Liso a ondulado',
+                        faceShape: 'Oval, coração',
+                        maintenance: 'Alto (visitas a cada 4 semanas)',
+                        techniques: 'Tesoura e navalha',
+                        finishing: 'Finalizar com spray texturizador',
+                        time: '25 minutos',
+                        products: ['Spray Texturizador', 'Mousse Modeladora'],
+                        related: ['velvet-bob', 'tintired-men']
+                    }, {
+                        id: 'french-fringe',
+                        name: 'French Fringe',
+                        category: 'franja',
+                        tags: ['franja', 'feminino'],
+                        image: 'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
+                            'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
+                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg'
+                        ],
+                        description: 'Franja francesa despojada que emoldura o rosto com elegância e suavidade.',
+                        profile: 'Todos os tipos de rosto',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Alto',
+                        techniques: 'Tesoura de precisão, desfiamento',
+                        finishing: 'Secar com escova redonda',
+                        time: '20 minutos',
+                        products: ['Spray Texturizador', 'Óleo Finalizador'],
+                        related: ['soft-layers', 'velvet-bob']
+                    }, {
+                        id: 'layered-shag',
+                        name: 'Layered Shag',
+                        category: 'camadas',
+                        tags: ['camadas', 'feminino', 'medios'],
+                        image: 'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg'
+                        ],
+                        description: 'O Shaggy com camadas marcantes e textura, trazendo volume e personalidade ao visual.',
+                        profile: 'Mulheres que buscam volume e movimento',
+                        hairType: 'Todos os tipos',
+                        faceShape: 'Todos',
+                        maintenance: 'Médio',
+                        techniques: 'Camadas curtas, desfiamento intenso',
+                        finishing: 'Finalizar com mousse e difusor',
+                        time: '45 minutos',
+                        products: ['Mousse Modeladora', 'Spray Texturizador'],
+                        related: ['curly-shag', 'soft-layers']
+                    }],
+                    products: [{
+                        id: 'shampoo-vitamino-color',
+                        name: 'Shampoo Vitamino Color 750ml',
+                        category: 'shampoo',
+                        image: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                        images: [
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0'
+                        ],
+                        link: 'https://mercadolivre.com/sec/2wJK2SK',
+                        description: 'Shampoo L\'Oréal Professionnel Vitamino Color para cabelos coloridos. Fórmula com proteção da cor e brilho intenso.',
+                        benefits: 'Proteção da cor, brilho intenso, maciez, limpeza suave',
+                        usage: 'Aplicar nos cabelos molhados, massagear o couro cabeludo e enxaguar. Repita se necessário.',
+                        indication: 'Cabelos coloridos ou com mechas',
+                        related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
+                    }, {
+                        id: 'mascara-absolut-repair',
+                        name: 'Máscara Absolut Repair 250ml',
+                        category: 'mascara',
+                        image: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                        images: [
+                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0'
+                        ],
+                        link: 'https://mercadolivre.com/sec/1T8Ucwp',
+                        description: 'Máscara L\'Oréal Professionnel Absolut Repair para reconstrução capilar profunda. Com Quinoa e Proteína.',
+                        benefits: 'Reconstrução, nutrição profunda, brilho, força',
+                        usage: 'Aplicar nos fios úmidos após o shampoo, deixar agir por 5 minutos e enxaguar.',
+                        indication: 'Cabelos danificados e quimicamente tratados',
+                        related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
+                    }, {
+                        id: 'mascara-kerastase',
+                        name: 'Máscara Kérastase Résistance 200ml',
+                        category: 'mascara',
+                        image: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                        images: [
+                            'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+                        ],
+                        link: 'https://mercadolivre.com/sec/2VVxFB1',
+                        description: 'Máscara Kérastase Résistance Thérapiste - reconstrução profunda para cabelos muito danificados.',
+                        benefits: 'Reconstrução intensa, força renovada, reparação, elasticidade',
+                        usage: 'Aplicar após o shampoo, deixar agir e enxaguar completamente.',
+                        indication: 'Cabelos muito danificados e fragilizados',
+                        related: ['mascara-absolut-repair', 'condicionador-joico']
+                    }, {
+                        id: 'spray-silhouette',
+                        name: 'Silhouette Hair Spray 500ml',
+                        category: 'finalizador',
+                        image: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                        images: [
+                            'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+                        ],
+                        link: 'https://mercadolivre.com/sec/1jdT4rg',
+                        description: 'Spray de fixação forte Silhouette Schwarzkopf Professional para penteados duradouros.',
+                        benefits: 'Fixação forte, brilho, duração prolongada, controle de frizz',
+                        usage: 'Aplicar a 30cm dos cabelos secos para finalizar o penteado.',
+                        indication: 'Todos os tipos de cabelo',
+                        related: ['spray-texturizador', 'oleo-finalizador']
+                    }, {
+                        id: 'lowell-cacho-magico',
+                        name: 'Lowell Cacho Mágico 200ml',
+                        category: 'finalizador',
+                        image: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                        images: [
+                            'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+                        ],
+                        link: 'https://mercadolivre.com/sec/1RKdy8e',
+                        description: 'Fluido ativador de cachos Lowell Cacho Mágico para definição natural e hidratação.',
+                        benefits: 'Definição de cachos, hidratação, controle de frizz, maciez',
+                        usage: 'Aplicar nos cabelos úmidos e modelar os cachos com as mãos ou difusor.',
+                        indication: 'Cabelos cacheados e crespos',
+                        related: ['spray-silhouette', 'mousse-modeladora']
+                    }, {
+                        id: 'shampoo-silver',
+                        name: 'Shampoo L\'Oréal Silver 300ml',
+                        category: 'shampoo',
+                        image: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                        images: [
+                            'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+                        ],
+                        link: 'https://mercadolivre.com/sec/1uQ9ppW',
+                        description: 'Shampoo matizador L\'Oréal Professionnel Silver para cabelos grisalhos, brancos e com mechas.',
+                        benefits: 'Matização, brilho, neutraliza tons amarelos, hidratação',
+                        usage: 'Aplicar e deixar agir 2-5 minutos antes de enxaguar completamente.',
+                        indication: 'Cabelos grisalhos, brancos ou descoloridos',
+                        related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
+                    }, {
+                        id: 'shampoo-absolut-repair-gold',
+                        name: 'Shampoo Absolut Repair Gold 750ml',
+                        category: 'shampoo',
+                        image: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
+                        images: [
+                            'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+                        ],
+                        link: 'https://mercadolivre.com/sec/1jX3Cvq',
+                        description: 'Shampoo L\'Oréal Professionnel Absolut Repair Gold com Quinoa e Proteína para cabelos danificados.',
+                        benefits: 'Reconstrução, nutrição, brilho, força renovada',
+                        usage: 'Aplicar nos cabelos molhados, massagear e enxaguar. Repita se necessário.',
+                        indication: 'Cabelos danificados e ressecados',
+                        related: ['shampoo-vitamino-color', 'mascara-absolut-repair']
+                    }, {
+                        id: 'condicionador-joico',
+                        name: 'Condicionador Joico Moisture Recovery 250ml',
+                        category: 'condicionador',
+                        image: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
+                        images: [
+                            'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
+                        ],
+                        link: 'https://mercadolivre.com/sec/26hayjy',
+                        description: 'Condicionador Joico Moisture Recovery para hidratação profunda de cabelos secos e grossos.',
+                        benefits: 'Hidratação intensa, desembaraço, maciez, brilho',
+                        usage: 'Aplicar após o shampoo, deixar agir por 2-3 minutos e enxaguar.',
+                        indication: 'Cabelos secos, grossos e ressecados',
+                        related: ['shampoo-absolut-repair-gold', 'mascara-kerastase']
+                    }],
+                    trends: [{
+                        id: 'camadas',
+                        name: 'Camadas Estratégicas',
+                        image: 'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
+                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg'
+                        ],
+                        description: 'Camadas que criam movimento e leveza, valorizando a textura natural dos fios.',
+                        level: 'Intermediário',
+                        time: '30 min',
+                        products: ['Spray Texturizador', 'Mousse Modeladora', 'Óleo Finalizador'],
+                        tip: 'Mantenha as pontas leves para melhor movimento.',
+                        tutorial: [
+                            '1. Divida o cabelo em seções com prendedores',
+                            '2. Comece cortando as camadas inferiores primeiro',
+                            '3. Use tesoura de precisão para as pontas levemente desfiadas',
+                            '4. Finalize com spray texturizador para mais volume'
+                        ]
+                    }, {
+                        id: 'franjas',
+                        name: 'Franjas Sofisticadas',
+                        image: 'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
+                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
+                            'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg'
+                        ],
+                        description: 'Franjas despojadas que emolduram o olhar com elegância e personalidade.',
+                        level: 'Iniciante',
+                        time: '15 min',
+                        products: ['Spray Texturizador', 'Mousse Modeladora'],
+                        tip: 'Seque com escova redonda para acabamento sofisticado.',
+                        tutorial: [
+                            '1. Separe a franja do restante do cabelo',
+                            '2. Corte no comprimento desejado (abaixo da sobrancelha)',
+                            '3. Desfie levemente as pontas para movimento natural',
+                            '4. Finalize com spray texturizador'
+                        ]
+                    }, {
+                        id: 'movimento',
+                        name: 'Movimento Natural',
+                        image: 'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                            'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg'
+                        ],
+                        description: 'Texturas que valorizam o movimento natural e a autenticidade dos fios.',
+                        level: 'Fácil',
+                        time: '20 min',
+                        products: ['Óleo Finalizador', 'Spray Texturizador'],
+                        tip: 'Use difusor para potencializar o movimento dos fios.',
+                        tutorial: [
+                            '1. Lave com shampoo suave e condicionador',
+                            '2. Aplique leave-in e amasse os fios com as mãos',
+                            '3. Seque com difusor em movimentos circulares',
+                            '4. Finalize com óleo leve para brilho'
+                        ]
+                    }, {
+                        id: 'texturas',
+                        name: 'Texturas Leves',
+                        image: 'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
+                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
+                        ],
+                        description: 'Toque aveludado e brilho natural para fios saudáveis e macios.',
+                        level: 'Intermediário',
+                        time: '25 min',
+                        products: ['Óleo Finalizador', 'Protetor Térmico', 'Máscara Revitalizante'],
+                        tip: 'Use produtos com ativos naturais para potencializar o brilho.',
+                        tutorial: [
+                            '1. Aplique máscara hidratante nos fios',
+                            '2. Deixe agir por 5 minutos e enxágue',
+                            '3. Seque com escova redonda e finalize com protetor térmico',
+                            '4. Aplique óleo nas pontas para brilho intenso'
+                        ]
+                    }, {
+                        id: 'volumes',
+                        name: 'Volumes Orgânicos',
+                        image: 'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg',
+                            'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
+                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg'
+                        ],
+                        description: 'Volumes que respeitam a estrutura natural do cabelo com elegância.',
+                        level: 'Avançado',
+                        time: '40 min',
+                        products: ['Mousse Modeladora', 'Spray Texturizador', 'Pomada Modeladora'],
+                        tip: 'Backcombing suave para dar volume sem agredir os fios.',
+                        tutorial: [
+                            '1. Aplique mousse na raiz do cabelo úmido',
+                            '2. Seque com a cabeça virada para baixo',
+                            '3. Use escova redonda para modelar as camadas',
+                            '4. Finalize com spray texturizador para fixação leve'
+                        ]
+                    }, {
+                        id: 'acabamentos',
+                        name: 'Acabamentos Brilhantes',
+                        image: 'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg',
+                            'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
+                            'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg'
+                        ],
+                        description: 'Brilho intenso e saudável para um resultado elegante e radiante.',
+                        level: 'Fácil',
+                        time: '15 min',
+                        products: ['Óleo Finalizador', 'Máscara Revitalizante', 'Spray Texturizador'],
+                        tip: 'Enxágue com água fria para fechar as cutículas e potencializar o brilho.',
+                        tutorial: [
+                            '1. Lave com shampoo nutritivo',
+                            '2. Aplique máscara revitalizante e deixe agir',
+                            '3. Enxágue com água fria para fechar as cutículas',
+                            '4. Finalize com óleo nas pontas'
+                        ]
+                    }],
+                    editorialItems: [{
+                        id: 'editorial-1',
+                        image: 'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
+                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
+                            'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg'
+                        ],
+                        title: 'O Movimento da Natureza',
+                        description: 'A coleção celebra a fluidez dos fios em movimento, capturando a essência do vento e da liberdade.',
+                        concept: 'Fotografias que registram a beleza efêmera do cabelo em movimento, com iluminação natural que valoriza cada textura.'
+                    }, {
+                        id: 'editorial-2',
+                        image: 'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
+                            'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
+                            'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg'
+                        ],
+                        title: 'Tons Terrosos e Sofisticação',
+                        description: 'Paleta que evoca a natureza em sua forma mais elegante, do café ao caramelo, do ocre ao bronze.',
+                        concept: 'Cores que contam histórias ancestrais, combinadas com cortes modernos que respeitam a textura natural do cabelo.'
+                    }, {
+                        id: 'editorial-3',
+                        image: 'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
+                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
+                            'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg'
+                        ],
+                        title: 'Texturas que Respiram',
+                        description: 'Cabelos que vivem em camadas, com movimento orgânico e acabamentos que parecem não ter esforço.',
+                        concept: 'A beleza está na imperfeição controlada, em fios que dançam livremente e contam histórias de autenticidade.'
+                    }, {
+                        id: 'editorial-4',
+                        image: 'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
+                            'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
+                            'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg'
+                        ],
+                        title: 'Silhuetas Contemporâneas',
+                        description: 'Cortes que redefinem o que é moderno, combinando estrutura e leveza em formas inesperadas.',
+                        concept: 'Arquitetura capilar que respeita a individualidade, criando silhuetas que se adaptam ao movimento natural do corpo.'
+                    }, {
+                        id: 'editorial-5',
+                        image: 'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg',
+                            'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
+                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg'
+                        ],
+                        title: 'Brilho e Naturalidade',
+                        description: 'Acabamentos que realçam a saúde dos fios, com luminosidade que vem de dentro para fora.',
+                        concept: 'Cabelos que brilham com vida própria, evidenciando a saúde capilar através de técnicas suaves e produtos que nutrem.'
+                    }, {
+                        id: 'editorial-6',
+                        image: 'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
+                        images: [
+                            'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
+                            'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
+                            'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg'
+                        ],
+                        title: 'O Poder das Camadas',
+                        description: 'Camadas estratégicas que criam dimensão e movimento, transformando o cabelo em uma obra de arte.',
+                        concept: 'Cada camada é desenhada para valorizar o formato do rosto e a textura natural, criando um visual único e personalizado.'
+                    }]
                 };
 
                 // Garantir que todos os itens tenham images array
@@ -3810,7 +3738,8 @@
                         const interactive = target.closest(
                             '[onclick], [role="button"], [role="link"], .menu-item, .card-preview, .fav-item, .tag, .mood-tag, .hero__cta'
                         );
-                        if (interactive && interactive !== target && target.tagName !== 'BUTTON' && target.tagName !== 'A') {
+                        if (interactive && interactive !== target && target.tagName !== 'BUTTON' && target
+                            .tagName !== 'A') {
                             e.preventDefault();
                             const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
                             interactive.dispatchEvent(clickEvent);
@@ -4168,12 +4097,24 @@
                     }
 
                     switch (page) {
-                        case 'home': this.renderHome(); break;
-                        case 'cuts': this.renderCuts(); break;
-                        case 'trends': this.renderTrends(); break;
-                        case 'products': this.renderProducts(); break;
-                        case 'editorial': this.renderEditorial(); break;
-                        case 'favorites': this.renderFavorites(); break;
+                        case 'home':
+                            this.renderHome();
+                            break;
+                        case 'cuts':
+                            this.renderCuts();
+                            break;
+                        case 'trends':
+                            this.renderTrends();
+                            break;
+                        case 'products':
+                            this.renderProducts();
+                            break;
+                        case 'editorial':
+                            this.renderEditorial();
+                            break;
+                        case 'favorites':
+                            this.renderFavorites();
+                            break;
                     }
 
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -4358,9 +4299,9 @@
                         ${item.related ? `
                             <div class="section"><h4>Relacionados</h4>
                                 <div>${item.related.map(id => {
-                        const rel = this.DATA.cuts.find(c => c.id === id);
-                        return rel ? `<span class="tag" onclick="window.app?.openDetailModal('cut','${rel.id}')">${rel.name}</span>` : '';
-                    }).join('')}</div>
+                                    const rel = this.DATA.cuts.find(c => c.id === id);
+                                    return rel ? `<span class="tag" onclick="window.app?.openDetailModal('cut','${rel.id}')">${rel.name}</span>` : '';
+                                }).join('')}</div>
                             </div>
                         ` : ''}
                         ${item.link ? `
@@ -4632,6 +4573,28 @@
                             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                         <button class="modal-action" onclick="window.app?.closeModal()">Fechar</button>
+                    `,
+                    terms: `
+                        <h2>Termos de Uso</h2>
+                        <p style="margin-top:0.8rem;">Ao utilizar o HairOS Library, você concorda com os seguintes termos:</p>
+                        <div style="margin-top:1rem;font-size:0.9rem;line-height:1.8;">
+                            <p><strong>1. Conteúdo</strong><br/>Todo o conteúdo disponível é fornecido apenas para fins informativos e educacionais.</p>
+                            <p><strong>2. Propriedade</strong><br/>Os direitos autorais das imagens e textos pertencem aos seus respectivos proprietários.</p>
+                            <p><strong>3. Responsabilidade</strong><br/>O HairOS não se responsabiliza por danos decorrentes do uso das informações.</p>
+                            <p><strong>4. Modificações</strong><br/>Os termos podem ser atualizados a qualquer momento sem aviso prévio.</p>
+                        </div>
+                        <button class="modal-action" onclick="window.app?.closeModal()" style="margin-top:1rem;">Fechar</button>
+                    `,
+                    privacy: `
+                        <h2>Política de Privacidade</h2>
+                        <p style="margin-top:0.8rem;">O HairOS Library valoriza sua privacidade. Saiba como protegemos seus dados:</p>
+                        <div style="margin-top:1rem;font-size:0.9rem;line-height:1.8;">
+                            <p><strong>📌 Coleta de dados</strong><br/>Armazenamos apenas nome, e-mail e foto de perfil fornecidos voluntariamente.</p>
+                            <p><strong>🔒 Segurança</strong><br/>Todos os dados são armazenados localmente no seu navegador (localStorage).</p>
+                            <p><strong>🍪 Cookies</strong><br/>Utilizamos apenas localStorage, sem cookies de rastreamento externos.</p>
+                            <p><strong>📧 Contato</strong><br/>Para dúvidas sobre privacidade, entre em contato pelo e-mail: ma.gemelli2020@gmail.com</p>
+                        </div>
+                        <button class="modal-action" onclick="window.app?.closeModal()" style="margin-top:1rem;">Fechar</button>
                     `
                 };
 
