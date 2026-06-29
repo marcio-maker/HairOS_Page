@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -2146,6 +2145,51 @@
         }
 
         /* ============================================================
+           TOAST NOTIFICATION
+           ============================================================ */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--black);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            z-index: 500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            background: rgba(26, 22, 20, 0.92);
+            white-space: nowrap;
+        }
+
+        [data-theme="dark"] .toast {
+            background: rgba(250, 248, 245, 0.92);
+            color: var(--black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 400px) {
+            .toast {
+                font-size: 0.7rem;
+                padding: 0.5rem 1.2rem;
+                bottom: 80px;
+            }
+        }
+
+        /* ============================================================
            RESPONSIVE
            ============================================================ */
         @media (max-width: 400px) {
@@ -2307,51 +2351,6 @@
         .modal-content img {
             object-fit: cover !important;
             background-color: var(--beige);
-        }
-
-        /* ============================================================
-           TOAST NOTIFICATION
-           ============================================================ */
-        .toast {
-            position: fixed;
-            bottom: 90px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: var(--black);
-            color: var(--white);
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            z-index: 500;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(8px);
-            background: rgba(26, 22, 20, 0.92);
-            white-space: nowrap;
-        }
-
-        [data-theme="dark"] .toast {
-            background: rgba(250, 248, 245, 0.92);
-            color: var(--black);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .toast.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        @media (max-width: 400px) {
-            .toast {
-                font-size: 0.7rem;
-                padding: 0.5rem 1.2rem;
-                bottom: 80px;
-            }
         }
     </style>
 </head>
@@ -2893,7 +2892,7 @@
     <script>
         /**
          * ============================================================
-         * HAIROS LIBRARY — VERSÃO COMPLETA CORRIGIDA
+         * HAIROS LIBRARY — VERSÃO FINAL COM TROCA DE AVATAR + LINKS ML
          * ============================================================
          */
         class HairOSApp {
@@ -2914,6 +2913,7 @@
                 this.currentSlide = 0;
                 this.galleryImages = [];
                 this.galleryCurrentIndex = 0;
+                this.toastTimeout = null;
 
                 this.init = this.init.bind(this);
                 this.navigateTo = this.navigateTo.bind(this);
@@ -2953,7 +2953,6 @@
                 this.highlightText = this.highlightText.bind(this);
                 this.clearFavorites = this.clearFavorites.bind(this);
                 this.showToast = this.showToast.bind(this);
-                this.showError = this.showError.bind(this);
 
                 this.init();
             }
@@ -2976,7 +2975,7 @@
 
             init() {
                 try {
-                    console.log('🪮 HairOS Library — Versão Completa Corrigida');
+                    console.log('🪮 HairOS Library — Versão com troca de avatar + links ML');
                     this.loadData();
                     this.loadState();
                     this.setupEventListeners();
@@ -3003,20 +3002,6 @@
                     console.error('❌ Erro ao iniciar app:', error);
                     this.showError('Não foi possível carregar o aplicativo. Recarregue a página.');
                 }
-            }
-
-            showError(message) {
-                const app = document.getElementById('app');
-                app.innerHTML = `
-                    <div style="text-align:center;padding:4rem 1.5rem;">
-                        <i class="fas fa-exclamation-triangle" style="font-size:3rem;color:var(--gold);display:block;margin-bottom:1rem;"></i>
-                        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--black);">Oops!</h2>
-                        <p style="color:var(--brown);margin-top:0.5rem;">${message}</p>
-                        <button onclick="location.reload()" class="hero__cta" style="margin-top:1.5rem;background:var(--gold);color:white;">
-                            <i class="fas fa-sync" aria-hidden="true"></i> Recarregar
-                        </button>
-                    </div>
-                `;
             }
 
             showApp() {
@@ -3065,6 +3050,146 @@
                 }
             }
 
+            handleLogin(e) {
+                e.preventDefault();
+                const name = document.getElementById('loginName').value.trim();
+                const email = document.getElementById('loginEmail').value.trim();
+                const password = document.getElementById('loginPassword').value;
+
+                if (!name || !email || !password) {
+                    this.showToast('⚠️ Preencha todos os campos.');
+                    return;
+                }
+                if (password.length < 6) {
+                    this.showToast('⚠️ A senha deve ter pelo menos 6 caracteres.');
+                    return;
+                }
+
+                const existing = localStorage.getItem('hairos-users');
+                let users = existing ? JSON.parse(existing) : [];
+                const found = users.find(u => u.email === email);
+                if (found) {
+                    this.state.user = { name: found.name, email: found.email, avatar: found.avatar || null };
+                    this.showToast('👋 Bem-vindo de volta, ' + found.name + '!');
+                } else {
+                    const avatar = this.state.user?.avatar || null;
+                    const newUser = { name, email, password, avatar };
+                    users.push(newUser);
+                    localStorage.setItem('hairos-users', JSON.stringify(users));
+                    this.state.user = { name, email, avatar };
+                    this.showToast('🎉 Conta criada com sucesso!');
+                }
+
+                localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
+                this.showApp();
+                this.navigateTo('home');
+            }
+
+            handleGoogleLogin() {
+                const googleUser = {
+                    name: 'Usuário Google',
+                    email: 'usuario.google@gmail.com',
+                    avatar: null
+                };
+
+                const existing = localStorage.getItem('hairos-users');
+                let users = existing ? JSON.parse(existing) : [];
+                const found = users.find(u => u.email === googleUser.email);
+                if (!found) {
+                    users.push({ ...googleUser, password: 'google_oauth' });
+                    localStorage.setItem('hairos-users', JSON.stringify(users));
+                }
+
+                this.state.user = googleUser;
+                localStorage.setItem('hairos-session', JSON.stringify(googleUser));
+                this.showApp();
+                this.navigateTo('home');
+                this.showToast('👋 Login com Google realizado!');
+            }
+
+            handleAvatarUpload(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const imageData = event.target.result;
+                    const img = document.getElementById('avatarImage');
+                    const placeholder = document.getElementById('avatarPlaceholder');
+                    img.src = imageData;
+                    img.style.display = 'block';
+                    placeholder.style.display = 'none';
+
+                    if (!this.state.user) {
+                        this.state.user = {};
+                    }
+                    this.state.user.avatar = imageData;
+                    if (this.state.user && this.state.user.email) {
+                        const existing = localStorage.getItem('hairos-users');
+                        let users = existing ? JSON.parse(existing) : [];
+                        const idx = users.findIndex(u => u.email === this.state.user.email);
+                        if (idx > -1) {
+                            users[idx].avatar = imageData;
+                            localStorage.setItem('hairos-users', JSON.stringify(users));
+                        }
+                        localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
+                        this.updateProfileIcon();
+                        this.showToast('📸 Foto de perfil atualizada!');
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+
+            handleAvatarUploadFromModal(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const imageData = event.target.result;
+                    if (!this.state.user) {
+                        this.state.user = {};
+                    }
+                    this.state.user.avatar = imageData;
+                    if (this.state.user && this.state.user.email) {
+                        const existing = localStorage.getItem('hairos-users');
+                        let users = existing ? JSON.parse(existing) : [];
+                        const idx = users.findIndex(u => u.email === this.state.user.email);
+                        if (idx > -1) {
+                            users[idx].avatar = imageData;
+                            localStorage.setItem('hairos-users', JSON.stringify(users));
+                        }
+                        localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
+                        this.updateProfileIcon();
+                        this.closeModal();
+                        this.showToast('📸 Foto de perfil atualizada!');
+                        setTimeout(() => this.openModal('profile'), 300);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+
+            handleAvatarRemove() {
+                if (!this.state.user) return;
+                if (!confirm('Deseja remover sua foto de perfil?')) return;
+
+                this.state.user.avatar = null;
+                if (this.state.user.email) {
+                    const existing = localStorage.getItem('hairos-users');
+                    let users = existing ? JSON.parse(existing) : [];
+                    const idx = users.findIndex(u => u.email === this.state.user.email);
+                    if (idx > -1) {
+                        users[idx].avatar = null;
+                        localStorage.setItem('hairos-users', JSON.stringify(users));
+                    }
+                    localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
+                }
+                this.updateProfileIcon();
+                this.closeModal();
+                this.showToast('🗑️ Foto removida com sucesso!');
+                setTimeout(() => this.openModal('profile'), 300);
+            }
+
             loadData() {
                 this.DATA = {
                     collection: {
@@ -3081,11 +3206,6 @@
                         category: 'curtos',
                         tags: ['bob', 'feminino'],
                         image: 'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
-                        images: [
-                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
-                            'https://i.pinimg.com/736x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg'
-                        ],
                         description: 'O Bob clássico com acabamento aveludado e pontas levemente desfiadas. Perfeito para quem busca elegância e praticidade.',
                         profile: 'Mulheres com rosto oval ou quadrado',
                         hairType: 'Liso a ondulado',
@@ -3102,11 +3222,6 @@
                         category: 'medios',
                         tags: ['camadas', 'feminino'],
                         image: 'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
-                        images: [
-                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg',
-                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
-                        ],
                         description: 'Camadas suaves que criam movimento e leveza, mantendo o comprimento médio com um toque moderno.',
                         profile: 'Mulheres com cabelos médios a longos',
                         hairType: 'Todos os tipos',
@@ -3123,11 +3238,6 @@
                         category: 'cacheado',
                         tags: ['cacheado', 'camadas', 'feminino'],
                         image: 'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
-                        images: [
-                            'https://i.pinimg.com/1200x/27/55/f7/2755f7df5f13920e7b4d978a02b03258.jpg',
-                            'https://i.pinimg.com/1200x/18/9b/bd/189bbd0413031b38fafb74f1061a0213.jpg',
-                            'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg'
-                        ],
                         description: 'O Shaggy repaginado para cabelos cacheados, com camadas que valorizam o volume e a definição natural.',
                         profile: 'Mulheres com cabelos cacheados ou crespos',
                         hairType: 'Cacheado, crespo',
@@ -3144,11 +3254,6 @@
                         category: 'masculino',
                         tags: ['masculino', 'curtos'],
                         image: 'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
-                        images: [
-                            'https://i.pinimg.com/736x/46/fc/b4/46fcb4e7663c05d237bd61b614fbd97d.jpg',
-                            'https://i.pinimg.com/736x/4a/de/38/4ade382b2cd77dc4f30d6bfce78c87b4.jpg',
-                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg'
-                        ],
                         description: 'Corte masculino com textura e movimento, ideal para quem busca um visual moderno e despojado.',
                         profile: 'Homens com cabelos médios',
                         hairType: 'Liso a ondulado',
@@ -3165,11 +3270,6 @@
                         category: 'longos',
                         tags: ['longos', 'feminino'],
                         image: 'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
-                        images: [
-                            'https://i.pinimg.com/1200x/ee/e4/d5/eee4d555851a2572e5ec0efaf36095cd.jpg',
-                            'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
-                            'https://i.pinimg.com/736x/d0/37/7e/d0377e6a0cd7f33fd4e69ac9d36c5c16.jpg'
-                        ],
                         description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância.',
                         profile: 'Mulheres que amam cabelos longos',
                         hairType: 'Todos os tipos',
@@ -3186,11 +3286,6 @@
                         category: 'curtos',
                         tags: ['curtos', 'feminino', 'franja'],
                         image: 'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                        images: [
-                            'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg',
-                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
-                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg'
-                        ],
                         description: 'O clássico Pixie com um toque moderno e texturizado, perfeito para quem busca atitude e praticidade.',
                         profile: 'Mulheres com traços marcantes',
                         hairType: 'Liso a ondulado',
@@ -3207,11 +3302,6 @@
                         category: 'franja',
                         tags: ['franja', 'feminino'],
                         image: 'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                        images: [
-                            'https://i.pinimg.com/736x/fc/c2/7f/fcc27f5b89691032d14dfaee277cf170.jpg',
-                            'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
-                            'https://i.pinimg.com/1200x/94/c2/3a/94c23a31d28d3291e80bf575516aa45c.jpg'
-                        ],
                         description: 'Franja francesa despojada que emoldura o rosto com elegância e suavidade.',
                         profile: 'Todos os tipos de rosto',
                         hairType: 'Todos os tipos',
@@ -3228,11 +3318,6 @@
                         category: 'camadas',
                         tags: ['camadas', 'feminino', 'medios'],
                         image: 'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
-                        images: [
-                            'https://i.pinimg.com/1200x/52/ad/1d/52ad1d7935feaf8f25f7d4f3b0c4b1c3.jpg',
-                            'https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg',
-                            'https://i.pinimg.com/1200x/15/1e/7b/151e7b39efc3a12fd3eedf3971e567f0.jpg'
-                        ],
                         description: 'O Shaggy com camadas marcantes e textura, trazendo volume e personalidade ao visual.',
                         profile: 'Mulheres que buscam volume e movimento',
                         hairType: 'Todos os tipos',
@@ -3249,7 +3334,7 @@
                         name: 'Shampoo Vitamino Color 750ml',
                         category: 'shampoo',
                         image: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        link: '#',
+                        link: 'https://mercadolivre.com/sec/2wJK2SK',
                         description: 'Shampoo L\'Oréal Professionnel Vitamino Color para cabelos coloridos. Fórmula com proteção da cor e brilho intenso.',
                         benefits: 'Proteção da cor, brilho intenso, maciez, limpeza suave',
                         usage: 'Aplicar nos cabelos molhados, massagear o couro cabeludo e enxaguar. Repita se necessário.',
@@ -3260,7 +3345,7 @@
                         name: 'Máscara Absolut Repair 250ml',
                         category: 'mascara',
                         image: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        link: '#',
+                        link: 'https://mercadolivre.com/sec/1T8Ucwp',
                         description: 'Máscara L\'Oréal Professionnel Absolut Repair para reconstrução capilar profunda. Com Quinoa e Proteína.',
                         benefits: 'Reconstrução, nutrição profunda, brilho, força',
                         usage: 'Aplicar nos fios úmidos após o shampoo, deixar agir por 5 minutos e enxaguar.',
@@ -3271,7 +3356,7 @@
                         name: 'Máscara Kérastase Résistance 200ml',
                         category: 'mascara',
                         image: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        link: '#',
+                        link: 'https://mercadolivre.com/sec/2VVxFB1',
                         description: 'Máscara Kérastase Résistance Thérapiste - reconstrução profunda para cabelos muito danificados.',
                         benefits: 'Reconstrução intensa, força renovada, reparação, elasticidade',
                         usage: 'Aplicar após o shampoo, deixar agir e enxaguar completamente.',
@@ -3282,7 +3367,7 @@
                         name: 'Silhouette Hair Spray 500ml',
                         category: 'finalizador',
                         image: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        link: '#',
+                        link: 'https://mercadolivre.com/sec/1jdT4rg',
                         description: 'Spray de fixação forte Silhouette Schwarzkopf Professional para penteados duradouros.',
                         benefits: 'Fixação forte, brilho, duração prolongada, controle de frizz',
                         usage: 'Aplicar a 30cm dos cabelos secos para finalizar o penteado.',
@@ -3293,7 +3378,7 @@
                         name: 'Lowell Cacho Mágico 200ml',
                         category: 'finalizador',
                         image: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        link: '#',
+                        link: 'https://mercadolivre.com/sec/1RKdy8e',
                         description: 'Fluido ativador de cachos Lowell Cacho Mágico para definição natural e hidratação.',
                         benefits: 'Definição de cachos, hidratação, controle de frizz, maciez',
                         usage: 'Aplicar nos cabelos úmidos e modelar os cachos com as mãos ou difusor.',
@@ -3304,7 +3389,7 @@
                         name: 'Shampoo L\'Oréal Silver 300ml',
                         category: 'shampoo',
                         image: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        link: '#',
+                        link: 'https://mercadolivre.com/sec/1uQ9ppW',
                         description: 'Shampoo matizador L\'Oréal Professionnel Silver para cabelos grisalhos, brancos e com mechas.',
                         benefits: 'Matização, brilho, neutraliza tons amarelos, hidratação',
                         usage: 'Aplicar e deixar agir 2-5 minutos antes de enxaguar completamente.',
@@ -3314,8 +3399,8 @@
                         id: 'shampoo-absolut-repair-gold',
                         name: 'Shampoo Absolut Repair Gold 750ml',
                         category: 'shampoo',
-                        image: 'https://tse2.mm.bing.net/th/id/OIP.T-0AeN2WPMoqyVv83MRHjAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        link: '#',
+                        image: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
+                        link: 'https://mercadolivre.com/sec/1jX3Cvq',
                         description: 'Shampoo L\'Oréal Professionnel Absolut Repair Gold com Quinoa e Proteína para cabelos danificados.',
                         benefits: 'Reconstrução, nutrição, brilho, força renovada',
                         usage: 'Aplicar nos cabelos molhados, massagear e enxaguar. Repita se necessário.',
@@ -3326,7 +3411,7 @@
                         name: 'Condicionador Joico Moisture Recovery 250ml',
                         category: 'condicionador',
                         image: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
-                        link: '#',
+                        link: 'https://mercadolivre.com/sec/26hayjy',
                         description: 'Condicionador Joico Moisture Recovery para hidratação profunda de cabelos secos e grossos.',
                         benefits: 'Hidratação intensa, desembaraço, maciez, brilho',
                         usage: 'Aplicar após o shampoo, deixar agir por 2-3 minutos e enxaguar.',
@@ -3460,7 +3545,15 @@
                         title: 'O Poder das Camadas',
                         description: 'Camadas estratégicas que criam dimensão e movimento, transformando o cabelo em uma obra de arte.',
                         concept: 'Cada camada é desenhada para valorizar o formato do rosto e a textura natural, criando um visual único e personalizado.'
-                    }]
+                    }],
+                    editorial: [
+                        'https://images.unsplash.com/photo-1560869713-7d0a2943081e?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&h=600&fit=crop&crop=center',
+                        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&fit=crop&crop=center'
+                    ]
                 };
             }
 
@@ -3764,7 +3857,6 @@
                 this.showToast(newTheme === 'dark' ? '🌙 Tema escuro ativado' : '☀️ Tema claro ativado');
             }
 
-            // ===== MÉTODOS DE GALERIA =====
             openGallery(images, startIndex = 0) {
                 if (!images || images.length === 0) {
                     console.warn('⚠️ Nenhuma imagem para abrir na galeria');
@@ -3859,22 +3951,8 @@
                 });
             }
 
-            // ===== MÉTODOS DE MODAL =====
-            openModal(type, data = null) {
+            openModal(type) {
                 const user = this.state.user;
-
-                // Se for um modal de detalhe de corte
-                if (type === 'cutDetail') {
-                    const cut = this.DATA.cuts.find(c => c.id === data);
-                    if (!cut) {
-                        document.getElementById('modalBody').innerHTML = '<p>Corte não encontrado</p>';
-                        document.getElementById('modalOverlay').classList.add('open');
-                        return;
-                    }
-                    document.getElementById('modalBody').innerHTML = this.buildCutDetailModal(cut);
-                    document.getElementById('modalOverlay').classList.add('open');
-                    return;
-                }
 
                 // Função para renderizar o avatar com overlay hover
                 const renderAvatar = () => {
@@ -4114,7 +4192,7 @@
                         <p style="margin-top:0.8rem;">O <strong>HairOS Library</strong> é uma biblioteca profissional de tendências, coleções e conhecimento técnico para cabeleireiros.</p>
                         <p>Nossa missão é inspirar e conectar profissionais da beleza através de conteúdo editorial de alta qualidade.</p>
                         <div style="margin-top:1rem;padding:1rem;background:var(--beige);border-radius:var(--radius-sm);">
-                            <p style="font-size:0.85rem;"><strong>Versão:</strong> 3.2.0</p>
+                            <p style="font-size:0.85rem;"><strong>Versão:</strong> 3.1.0</p>
                             <p style="font-size:0.85rem;"><strong>Coleção atual:</strong> Outono/Inverno 2026</p>
                             <p style="font-size:0.85rem;"><strong>Usuário:</strong> ${user ? user.name : 'Não logado'}</p>
                         </div>
@@ -4216,55 +4294,15 @@
                 document.getElementById('modalOverlay').classList.add('open');
             }
 
-            buildCutDetailModal(cut) {
-                const images = cut.images || [cut.image, cut.image, cut.image];
-                return `
-                    <h2>✂️ ${cut.name}</h2>
-                    <div class="modal-image-grid">
-                        <div class="grid-item" onclick="window.app?.openGallery([
-                            '${images[0]}',
-                            '${images[1]}',
-                            '${images[2]}'
-                        ], 0)">
-                            <img src="${images[0]}" alt="Frente" loading="lazy" onerror="this.parentElement.style.display='none'" />
-                            <span class="label">FRENTE</span>
-                        </div>
-                        <div class="grid-item" onclick="window.app?.openGallery([
-                            '${images[0]}',
-                            '${images[1]}',
-                            '${images[2]}'
-                        ], 1)">
-                            <img src="${images[1]}" alt="Lado" loading="lazy" onerror="this.parentElement.style.display='none'" />
-                            <span class="label">LADO</span>
-                        </div>
-                        <div class="grid-item" onclick="window.app?.openGallery([
-                            '${images[0]}',
-                            '${images[1]}',
-                            '${images[2]}'
-                        ], 2)">
-                            <img src="${images[2]}" alt="Costas" loading="lazy" onerror="this.parentElement.style.display='none'" />
-                            <span class="label">COSTAS</span>
-                        </div>
-                    </div>
-                    <h3 style="font-family:'Playfair Display',serif;color:var(--black);font-size:1.2rem;margin-top:0.2rem;">${cut.name}</h3>
-                    <p>${cut.description}</p>
-                    <p class="modal-highlight">"${cut.profile || 'Perfeito para quem busca elegância e praticidade.'}"</p>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin:0.5rem 0;">
-                        ${cut.tags.map(t => `<span class="tag">#${t}</span>`).join('')}
-                    </div>
-                    <button class="modal-action" onclick="window.app?.closeModal()">Fechar</button>
-                `;
-            }
-
             closeModal() {
                 document.getElementById('modalOverlay').classList.remove('open');
+                // Limpa o input de avatar do modal
                 const avatarInput = document.getElementById('avatarModalInput');
                 if (avatarInput) {
                     avatarInput.value = '';
                 }
             }
 
-            // ===== MÉTODOS DE CARROSSEL =====
             goToSlide(index) {
                 const slides = document.querySelectorAll('.hero__slide');
                 const indicators = document.querySelectorAll('.hero__indicator');
@@ -4296,7 +4334,6 @@
                 }
             }
 
-            // ===== MÉTODOS DE FAVORITOS =====
             toggleFavorite(type, id) {
                 try {
                     const key = type === 'cut' ? 'cuts' : 'products';
@@ -4322,6 +4359,7 @@
                         this.renderFavorites();
                     }
 
+                    // Animação do coração
                     const btns = document.querySelectorAll(`[onclick*="toggleFavorite"][onclick*="${id}"]`);
                     btns.forEach(btn => {
                         btn.classList.add('fav-animate');
@@ -4369,7 +4407,6 @@
                 }
             }
 
-            // ===== MÉTODOS DE BUSCA =====
             performSearch(query) {
                 const results = [];
                 const q = query.toLowerCase().trim();
@@ -4442,9 +4479,15 @@
                 }
 
                 container.innerHTML = results.map(item => {
-                    if (item.type === 'editorial') {
+                    let targetPage = 'trends';
+                    let targetId = item.id || '';
+                    if (item.type === 'cut') {
+                        targetPage = 'cut-detail';
+                    } else if (item.type === 'product') {
+                        targetPage = 'product-detail';
+                    } else if (item.type === 'editorial') {
                         return `
-                            <div class="result-item" onclick="window.app?.openModal('editorial-${item.id}')" role="option">
+                            <div class="result-item" onclick="window.app?.navigateTo('editorial')" role="option">
                                 <img src="${item.image}" alt="${item.title}" loading="lazy" />
                                 <div class="info">
                                     <div class="name">${this.highlightText(item.title, q)}</div>
@@ -4453,215 +4496,26 @@
                             </div>
                         `;
                     } else if (item.type === 'trend') {
-                        return `
-                            <div class="result-item" onclick="window.app?.openModal('trend-${item.id}')" role="option">
-                                <img src="${item.image}" alt="${item.name}" loading="lazy" />
-                                <div class="info">
-                                    <div class="name">${this.highlightText(item.name, q)}</div>
-                                    <div class="category">Tendência</div>
-                                </div>
-                            </div>
-                        `;
-                    } else {
-                        const targetPage = item.type === 'cut' ? 'cut-detail' : 'product-detail';
-                        return `
-                            <div class="result-item" onclick="window.app?.navigateTo('${targetPage}', '${item.id}')" role="option">
-                                <img src="${item.image}" alt="${item.name}" loading="lazy" />
-                                <div class="info">
-                                    <div class="name">${this.highlightText(item.name, q)}</div>
-                                    <div class="category">${item.type === 'cut' ? 'Corte' : 'Produto'}</div>
-                                </div>
-                            </div>
-                        `;
+                        targetPage = 'trends';
+                        targetId = '';
                     }
+                    return `
+                        <div class="result-item" onclick="window.app?.navigateTo('${targetPage}', '${targetId}')" role="option">
+                            <img src="${item.image}" alt="${item.name || item.title}" loading="lazy" />
+                            <div class="info">
+                                <div class="name">${this.highlightText(item.name || item.title, q)}</div>
+                                <div class="category">${item.type}</div>
+                            </div>
+                        </div>
+                    `;
                 }).join('');
             }
 
-            // ===== MÉTODOS DE LOGIN =====
-            handleLogin(e) {
-                e.preventDefault();
-                const name = document.getElementById('loginName').value.trim();
-                const email = document.getElementById('loginEmail').value.trim();
-                const password = document.getElementById('loginPassword').value;
-
-                if (!name || !email || !password) {
-                    this.showToast('⚠️ Preencha todos os campos.');
-                    return;
-                }
-                if (password.length < 6) {
-                    this.showToast('⚠️ A senha deve ter pelo menos 6 caracteres.');
-                    return;
-                }
-
-                const existing = localStorage.getItem('hairos-users');
-                let users = existing ? JSON.parse(existing) : [];
-                const found = users.find(u => u.email === email);
-
-                // Verifica se tem avatar da sessão atual
-                const currentAvatar = this.state.user?.avatar || null;
-
-                if (found) {
-                    this.state.user = { 
-                        name: found.name, 
-                        email: found.email, 
-                        avatar: found.avatar || currentAvatar || null 
-                    };
-                    
-                    // Atualiza o avatar na tela de login
-                    const img = document.getElementById('avatarImage');
-                    const placeholder = document.getElementById('avatarPlaceholder');
-                    if (this.state.user.avatar) {
-                        img.src = this.state.user.avatar;
-                        img.style.display = 'block';
-                        placeholder.style.display = 'none';
-                    } else {
-                        img.style.display = 'none';
-                        placeholder.style.display = 'block';
-                    }
-                    
-                    this.showToast('👋 Bem-vindo de volta, ' + found.name + '!');
-                } else {
-                    const avatar = currentAvatar || null;
-                    const newUser = { name, email, password, avatar };
-                    users.push(newUser);
-                    localStorage.setItem('hairos-users', JSON.stringify(users));
-                    this.state.user = { name, email, avatar };
-                    this.showToast('🎉 Conta criada com sucesso!');
-                }
-
-                localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
-                this.showApp();
-                this.navigateTo('home');
-            }
-
-            handleGoogleLogin() {
-                const googleUser = {
-                    name: 'Usuário Google',
-                    email: 'usuario.google@gmail.com',
-                    avatar: null
-                };
-
-                const existing = localStorage.getItem('hairos-users');
-                let users = existing ? JSON.parse(existing) : [];
-                const found = users.find(u => u.email === googleUser.email);
-                if (!found) {
-                    users.push({ ...googleUser, password: 'google_oauth' });
-                    localStorage.setItem('hairos-users', JSON.stringify(users));
-                }
-
-                this.state.user = googleUser;
-                localStorage.setItem('hairos-session', JSON.stringify(googleUser));
-                this.showApp();
-                this.navigateTo('home');
-                this.showToast('👋 Login com Google realizado!');
-            }
-
-            handleAvatarUpload(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const imageData = event.target.result;
-                    const img = document.getElementById('avatarImage');
-                    const placeholder = document.getElementById('avatarPlaceholder');
-                    img.src = imageData;
-                    img.style.display = 'block';
-                    placeholder.style.display = 'none';
-
-                    if (!this.state.user) {
-                        this.state.user = { name: 'Usuário', email: 'usuario@email.com' };
-                    }
-                    this.state.user.avatar = imageData;
-                    if (this.state.user && this.state.user.email) {
-                        const existing = localStorage.getItem('hairos-users');
-                        let users = existing ? JSON.parse(existing) : [];
-                        const idx = users.findIndex(u => u.email === this.state.user.email);
-                        if (idx > -1) {
-                            users[idx].avatar = imageData;
-                            localStorage.setItem('hairos-users', JSON.stringify(users));
-                        } else {
-                            // Se não encontrou, adiciona como novo usuário
-                            users.push({ 
-                                name: this.state.user.name || 'Usuário', 
-                                email: this.state.user.email, 
-                                password: 'avatar_upload',
-                                avatar: imageData 
-                            });
-                            localStorage.setItem('hairos-users', JSON.stringify(users));
-                        }
-                        localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
-                        this.updateProfileIcon();
-                        this.showToast('📸 Foto de perfil atualizada!');
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-
-            handleAvatarUploadFromModal(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const imageData = event.target.result;
-                    if (!this.state.user) {
-                        this.state.user = { name: 'Usuário', email: 'usuario@email.com' };
-                    }
-                    this.state.user.avatar = imageData;
-                    if (this.state.user && this.state.user.email) {
-                        const existing = localStorage.getItem('hairos-users');
-                        let users = existing ? JSON.parse(existing) : [];
-                        const idx = users.findIndex(u => u.email === this.state.user.email);
-                        if (idx > -1) {
-                            users[idx].avatar = imageData;
-                            localStorage.setItem('hairos-users', JSON.stringify(users));
-                        } else {
-                            users.push({ 
-                                name: this.state.user.name || 'Usuário', 
-                                email: this.state.user.email, 
-                                password: 'avatar_upload',
-                                avatar: imageData 
-                            });
-                            localStorage.setItem('hairos-users', JSON.stringify(users));
-                        }
-                        localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
-                        this.updateProfileIcon();
-                        this.closeModal();
-                        this.showToast('📸 Foto de perfil atualizada!');
-                        setTimeout(() => this.openModal('profile'), 300);
-                    }
-                };
-                reader.readAsDataURL(file);
-            }
-
-            handleAvatarRemove() {
-                if (!this.state.user) return;
-                if (!confirm('Deseja remover sua foto de perfil?')) return;
-
-                this.state.user.avatar = null;
-                if (this.state.user.email) {
-                    const existing = localStorage.getItem('hairos-users');
-                    let users = existing ? JSON.parse(existing) : [];
-                    const idx = users.findIndex(u => u.email === this.state.user.email);
-                    if (idx > -1) {
-                        users[idx].avatar = null;
-                        localStorage.setItem('hairos-users', JSON.stringify(users));
-                    }
-                    localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
-                }
-                this.updateProfileIcon();
-                this.closeModal();
-                this.showToast('🗑️ Foto removida com sucesso!');
-                setTimeout(() => this.openModal('profile'), 300);
-            }
-
-            // ===== MÉTODOS DE RENDERIZAÇÃO =====
             renderHome() {
                 try {
                     const trendsContainer = document.getElementById('trendsPreview');
                     trendsContainer.innerHTML = this.DATA.trends.slice(0, 4).map(t => `
-                        <div class="card-preview" onclick="window.app?.openModal('trend-${t.id}')" role="listitem" tabindex="0">
+                        <div class="card-preview" onclick="window.app?.navigateTo('trends')" role="listitem" tabindex="0">
                             <img class="card-preview__image" src="${t.image}" alt="${t.name}" loading="lazy" />
                             <div class="card-preview__body">
                                 <span class="card-preview__name">${t.name}</span>
@@ -4695,7 +4549,7 @@
                     const editorialContainer = document.getElementById('editorialPreview');
                     if (this.DATA.editorialItems && this.DATA.editorialItems.length > 0) {
                         editorialContainer.innerHTML = this.DATA.editorialItems.slice(0, 3).map(item => `
-                            <div class="card-preview" onclick="window.app?.openModal('editorial-${item.id}')" role="listitem" tabindex="0">
+                            <div class="card-preview" onclick="window.app?.navigateTo('editorial')" role="listitem" tabindex="0">
                                 <img class="card-preview__image" src="${item.image}" alt="${item.title}" loading="lazy" />
                                 <div class="card-preview__body">
                                     <span class="card-preview__name">${item.title}</span>
@@ -4733,7 +4587,7 @@
                     }
 
                     grid.innerHTML = filtered.map(c => `
-                        <div class="card-preview" onclick="window.app?.openModal('cutDetail', '${c.id}')" role="listitem" tabindex="0">
+                        <div class="card-preview" onclick="window.app?.navigateTo('cut-detail', '${c.id}')" role="listitem" tabindex="0">
                             <img class="card-preview__image" src="${c.image}" alt="${c.name}" loading="lazy" />
                             <div class="card-preview__body">
                                 <span class="card-preview__name">${c.name}</span>
@@ -4760,10 +4614,9 @@
 
                     const container = document.getElementById('cutDetailContent');
                     const isFav = this.isFavorite('cut', cut.id);
-                    const images = cut.images || [cut.image, cut.image, cut.image];
 
                     container.innerHTML = `
-                        <div class="detail-hero" style="background-image:url('${cut.image}');" onclick="window.app?.openGallery(['${images[0]}','${images[1]}','${images[2]}'], 0)">
+                        <div class="detail-hero" style="background-image:url('${cut.image}');" onclick="window.app?.openGallery(['${cut.image}'], 0)">
                             <div class="detail-hero__overlay"></div>
                             <div class="detail-hero__content">
                                 <h1 class="detail-hero__title">${cut.name}</h1>
@@ -4817,14 +4670,13 @@
                                 </div>
                             </div>
 
-                            <div style="display:flex;gap:0.5rem;flex-direction:column;">
-                                <button class="hero__cta" onclick="window.app?.toggleFavorite('cut','${cut.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
-                                    <i class="fas fa-heart" aria-hidden="true"></i> ${isFav ? 'Favoritado' : 'Favoritar'}
-                                </button>
-                                <button class="hero__cta" onclick="window.app?.navigateTo('cuts')" style="width:100%;justify-content:center;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
-                                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para Cortes
-                                </button>
-                            </div>
+                            <button class="hero__cta" onclick="window.app?.toggleFavorite('cut','${cut.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
+                                <i class="fas fa-heart" aria-hidden="true"></i> ${isFav ? 'Favoritado' : 'Favoritar'}
+                            </button>
+
+                            <button class="hero__cta" onclick="window.app?.navigateTo('cuts')" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para Cortes
+                            </button>
                         </div>
                     `;
 
@@ -4936,14 +4788,13 @@
                                 </a>
                             ` : ''}
 
-                            <div style="display:flex;gap:0.5rem;flex-direction:column;">
-                                <button class="hero__cta" onclick="window.app?.toggleFavorite('product','${product.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
-                                    <i class="fas fa-heart" aria-hidden="true"></i> ${isFav ? 'Favoritado' : 'Favoritar'}
-                                </button>
-                                <button class="hero__cta" onclick="window.app?.navigateTo('products')" style="width:100%;justify-content:center;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
-                                    <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para Produtos
-                                </button>
-                            </div>
+                            <button class="hero__cta" onclick="window.app?.toggleFavorite('product','${product.id}')" style="width:100%;justify-content:center;margin-top:0.5rem;background:${isFav ? 'var(--gold)' : 'var(--black)'};color:white;padding:0.9rem;">
+                                <i class="fas fa-heart" aria-hidden="true"></i> ${isFav ? 'Favoritado' : 'Favoritar'}
+                            </button>
+
+                            <button class="hero__cta" onclick="window.app?.navigateTo('products')" style="width:100%;justify-content:center;margin-top:0.5rem;background:transparent;color:var(--black);border:1px solid var(--beige);padding:0.9rem;">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para Produtos
+                            </button>
                         </div>
                     `;
 
@@ -4955,41 +4806,28 @@
             renderEditorial() {
                 try {
                     const container = document.getElementById('editorialGrid');
-                    const items = this.DATA.editorialItems || [];
 
-                    if (items.length === 0) {
-                        // Fallback para compatibilidade
-                        const fallbackImages = this.DATA.editorial || [];
-                        if (fallbackImages.length > 0) {
-                            container.innerHTML = fallbackImages.map(img => `
-                                <div class="card-preview" onclick="window.app?.openModal('editorialFull')" role="listitem" tabindex="0">
-                                    <img class="card-preview__image" src="${img}" alt="Editorial" loading="lazy" />
-                                    <div class="card-preview__body">
-                                        <span class="card-preview__name">Editorial</span>
-                                        <span class="card-preview__category">Inspiração</span>
-                                    </div>
+                    if (this.DATA.editorialItems && this.DATA.editorialItems.length > 0) {
+                        container.innerHTML = this.DATA.editorialItems.map(item => `
+                            <div class="card-preview" onclick="window.app?.openModal('editorial-${item.id}')" role="listitem" tabindex="0">
+                                <img class="card-preview__image" src="${item.image}" alt="${item.title}" loading="lazy" />
+                                <div class="card-preview__body">
+                                    <span class="card-preview__name">${item.title}</span>
+                                    <span class="card-preview__category">Editorial</span>
                                 </div>
-                            `).join('');
-                        } else {
-                            container.innerHTML = `
-                                <div style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--brown);opacity:0.5;">
-                                    <i class="fas fa-images" style="font-size:2rem;display:block;margin-bottom:0.8rem;"></i>
-                                    <p>Nenhum conteúdo editorial disponível</p>
-                                </div>
-                            `;
-                        }
-                        return;
-                    }
-
-                    container.innerHTML = items.map(item => `
-                        <div class="card-preview" onclick="window.app?.openModal('editorial-${item.id}')" role="listitem" tabindex="0">
-                            <img class="card-preview__image" src="${item.image}" alt="${item.title}" loading="lazy" />
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">${item.title}</span>
-                                <span class="card-preview__category">Editorial</span>
                             </div>
-                        </div>
-                    `).join('');
+                        `).join('');
+                    } else {
+                        container.innerHTML = this.DATA.editorial.map(img => `
+                            <div class="card-preview" onclick="window.app?.openModal('editorialFull')" role="listitem" tabindex="0">
+                                <img class="card-preview__image" src="${img}" alt="Editorial" loading="lazy" />
+                                <div class="card-preview__body">
+                                    <span class="card-preview__name">Editorial</span>
+                                    <span class="card-preview__category">Inspiração</span>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
 
                 } catch (error) {
                     console.error('❌ Erro ao renderizar editorial:', error);
@@ -4999,8 +4837,8 @@
             renderFavorites() {
                 try {
                     const container = document.getElementById('favoritesList');
-                    const favCuts = (this.DATA.cuts || []).filter(c => this.state.favorites.cuts.includes(c.id));
-                    const favProducts = (this.DATA.products || []).filter(p => this.state.favorites.products.includes(p.id));
+                    const favCuts = this.DATA.cuts.filter(c => this.state.favorites.cuts.includes(c.id));
+                    const favProducts = this.DATA.products.filter(p => this.state.favorites.products.includes(p.id));
 
                     const allFavs = [
                         ...favCuts.map(c => ({ ...c, type: 'cut' })),
@@ -5038,9 +4876,22 @@
                     console.error('❌ Erro ao renderizar favoritos:', error);
                 }
             }
+
+            showError(message) {
+                const app = document.getElementById('app');
+                app.innerHTML = `
+                    <div style="text-align:center;padding:4rem 1.5rem;">
+                        <i class="fas fa-exclamation-triangle" style="font-size:3rem;color:var(--gold);display:block;margin-bottom:1rem;"></i>
+                        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--black);">Oops!</h2>
+                        <p style="color:var(--brown);margin-top:0.5rem;">${message}</p>
+                        <button onclick="location.reload()" class="hero__cta" style="margin-top:1.5rem;background:var(--gold);color:white;">
+                            <i class="fas fa-sync" aria-hidden="true"></i> Recarregar
+                        </button>
+                    </div>
+                `;
+            }
         }
 
-        // ===== INICIALIZAÇÃO DO LOADING =====
         (function initLoading() {
             const loadingScreen = document.getElementById('loadingScreen');
             const percentText = document.getElementById('loadingPercent');
@@ -5084,13 +4935,15 @@
             }, 5000);
         })();
 
-        // ===== INICIALIZAÇÃO DO APP =====
         document.addEventListener('DOMContentLoaded', () => {
             window.app = new HairOSApp();
         });
 
-        console.log('🪮 HairOS Library — VERSÃO COMPLETA CORRIGIDA');
-        console.log('✅ Todas as correções aplicadas');
+        console.log('🪮 HairOS Library — VERSÃO FINAL COM TROCA DE AVATAR + LINKS ML');
+        console.log('✅ Trocar foto: clique no avatar no perfil');
+        console.log('✅ Remover foto: botão "Remover" no modal de perfil');
+        console.log('✅ Links oficiais do Mercado Livre nos produtos');
+        console.log('✅ Toast notifications para feedback');
         console.log('📌 Disponível em: window.app');
     </script>
 
