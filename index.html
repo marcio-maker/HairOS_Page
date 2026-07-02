@@ -1285,128 +1285,116 @@
         }
 
         /* ============================================================
-           MODAL DE DETALHE
+           MODAL - VERSÃO EDITORIAL MINIMALIST
            ============================================================ */
-        .detail-modal-image-wrap {
-            position: relative;
-            width: 100%;
-            max-width: 280px;
-            margin: 0 auto 0.75rem;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .10), 0 2px 8px rgba(0, 0, 0, .05);
-            aspect-ratio: 2 / 3;
-        }
-
-        .detail-modal-image-wrap .image-wrapper {
-            width: 100%;
-            height: 100%;
-            border-radius: inherit;
-            overflow: hidden;
-        }
-
-        .detail-modal-image-wrap .image-wrapper img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover;
-            border-radius: inherit;
-            cursor: pointer;
-            transition: transform .35s ease;
-        }
-
-        .detail-modal-image-wrap .image-wrapper img:hover {
-            transform: scale(1.03);
-        }
-
-        .detail-modal-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            border: none;
-            color: white;
-            font-size: 1.6rem;
-            padding: 0.3rem 0.7rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.2s;
-            z-index: 5;
-        }
-
-        .detail-modal-nav:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .detail-modal-nav--prev {
-            left: 0.5rem;
-        }
-
-        .detail-modal-nav--next {
-            right: 0.5rem;
-        }
-
-        .detail-modal-thumbs {
-            display: flex;
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 300;
+            display: none;
+            align-items: flex-start;
             justify-content: center;
-            align-items: center;
-            gap: 10px;
-            width: 240px;
-            margin: 0 auto 1rem;
+            padding: 1.5rem;
+            overflow-y: auto;
         }
 
-        .detail-modal-thumbs .image-wrapper {
-            width: 64px;
-            height: 64px;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all .25s ease;
-            border: 2px solid transparent;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        .modal-overlay.open {
+            display: flex;
         }
 
-        .detail-modal-thumbs .image-wrapper.active {
-            border-color: var(--gold);
-            box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
-        }
-
-        .detail-modal-thumbs .image-wrapper img {
+        .modal-content {
+            background: var(--modal-bg);
+            border-radius: var(--radius);
+            max-width: 400px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            padding: 1.8rem;
+            max-height: none;
+            overflow-y: visible;
+            animation: fadeUp 0.3s ease;
+            position: relative;
+            color: var(--modal-text);
+            margin: 1rem auto;
         }
 
-        .detail-modal-thumbs .image-wrapper:hover {
-            transform: translateY(-2px);
+        .modal-content__close {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            background: rgba(0, 0, 0, 0.04);
+            border: none;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0.5;
+            font-weight: 300;
+        }
+
+        .modal-content__close:hover {
+            background: rgba(0, 0, 0, 0.08);
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+
+        [data-theme="dark"] .modal-content__close {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+            opacity: 0.4;
+        }
+
+        [data-theme="dark"] .modal-content__close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 1;
+        }
+
+        .modal-content h2 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--modal-text);
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .modal-content p {
+            color: var(--modal-text);
+            font-weight: 300;
+            line-height: 1.7;
+            font-size: 0.92rem;
+        }
+
+        .modal-content .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .modal-content .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .modal-content .social-links a:hover {
+            color: var(--gold);
         }
 
         .detail-modal-text {
-            max-height: 40vh;
-            overflow-y: auto;
-            padding-right: 0.2rem;
+            max-height: none;
+            overflow-y: visible;
+            padding-right: 0;
             margin-top: 0.5rem;
-        }
-
-        .detail-modal-text h2 {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            color: var(--text-primary);
-            margin-bottom: 0.2rem;
-        }
-
-        .detail-modal-text .sub {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            opacity: 0.5;
-            margin-bottom: 0.8rem;
-            display: block;
         }
 
         .detail-modal-text .section {
@@ -1454,6 +1442,199 @@
             opacity: 0.7;
             border-left: 3px solid var(--gold);
             padding-left: 0.8rem;
+        }
+
+        .detail-modal-text .hero__cta {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            border: none;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--font-sans);
+            width: 100%;
+            justify-content: center;
+        }
+
+        .detail-modal-text .hero__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            background: var(--btn-primary-hover);
+            color: var(--btn-primary-hover-text);
+        }
+
+        .detail-modal-text .modal-action {
+            background: var(--bg-secondary);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-sans);
+            width: 100%;
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+
+        .detail-modal-text .modal-action:hover {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+        }
+
+        /* ===== IMAGEM DO MODAL - ESTILO EDITORIAL ===== */
+        .detail-modal-image-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08), 0 2px 8px rgba(0, 0, 0, .04);
+            aspect-ratio: 2 / 3;
+        }
+
+        .detail-modal-image-wrap .image-wrapper {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            overflow: hidden;
+        }
+
+        .detail-modal-image-wrap .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: inherit;
+            cursor: pointer;
+            transition: transform .4s ease;
+        }
+
+        .detail-modal-image-wrap .image-wrapper img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Ícone de ampliar - sutil, aparece no hover */
+        .detail-modal-zoom-icon {
+            position: absolute;
+            top: 0.6rem;
+            right: 0.6rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            z-index: 6;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            background: rgba(0, 0, 0, 0.3);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-modal-image-wrap:hover .detail-modal-zoom-icon {
+            opacity: 1;
+        }
+
+        .detail-modal-zoom-icon:hover {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Contador discreto no canto inferior */
+        .detail-modal-counter {
+            position: absolute;
+            bottom: 0.6rem;
+            right: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.6rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            z-index: 6;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Traço indicador - elegante (em vez de bolinhas) */
+        .detail-modal-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            margin: 0.2rem 0 0.6rem;
+        }
+
+        .detail-modal-indicator .bar {
+            width: 18px;
+            height: 1.5px;
+            background: var(--border-color);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+
+        .detail-modal-indicator .bar.active {
+            background: var(--gold);
+            width: 28px;
+            opacity: 0.8;
+        }
+
+        .detail-modal-indicator .bar:hover {
+            opacity: 0.6;
+        }
+
+        /* Setas de navegação - finas e discretas */
+        .detail-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.2rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        .detail-modal-image-wrap:hover .detail-modal-nav {
+            opacity: 1;
+        }
+
+        .detail-modal-nav:hover {
+            background: rgba(0, 0, 0, 0.4);
+            color: #fff;
+        }
+
+        .detail-modal-nav--prev {
+            left: 0.3rem;
+        }
+
+        .detail-modal-nav--next {
+            right: 0.3rem;
         }
 
         /* ============================================================
@@ -1617,110 +1798,6 @@
         [data-theme="dark"] .theme-toggle__thumb {
             transform: translateX(20px);
             background: var(--gold);
-        }
-
-        /* ============================================================
-           MODAL - COM BOTÃO FECHAR ARREDONDADO E DISCRETO
-           ============================================================ */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            z-index: 300;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--modal-bg);
-            border-radius: var(--radius);
-            max-width: 400px;
-            width: 100%;
-            padding: 1.8rem;
-            max-height: 85vh;
-            overflow-y: auto;
-            animation: fadeUp 0.3s ease;
-            position: relative;
-            color: var(--modal-text);
-        }
-
-        .modal-content__close {
-            position: absolute;
-            top: 0.8rem;
-            right: 0.8rem;
-            background: rgba(0, 0, 0, 0.04);
-            border: none;
-            font-size: 1rem;
-            color: var(--text-secondary);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            opacity: 0.5;
-            font-weight: 300;
-        }
-
-        .modal-content__close:hover {
-            background: rgba(0, 0, 0, 0.08);
-            opacity: 1;
-            transform: rotate(90deg);
-        }
-
-        [data-theme="dark"] .modal-content__close {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-secondary);
-            opacity: 0.4;
-        }
-
-        [data-theme="dark"] .modal-content__close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            opacity: 1;
-        }
-
-        .modal-content h2 {
-            font-family: var(--font-serif);
-            font-size: 1.4rem;
-            color: var(--modal-text);
-            margin-bottom: 0.3rem;
-            letter-spacing: -0.01em;
-        }
-
-        .modal-content p {
-            color: var(--modal-text);
-            font-weight: 300;
-            line-height: 1.7;
-            font-size: 0.92rem;
-        }
-
-        .modal-content .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .modal-content .social-links a {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            transition: color 0.2s;
-        }
-
-        .modal-content .social-links a:hover {
-            color: var(--gold);
         }
 
         /* ============================================================
@@ -2001,13 +2078,6 @@
             .detail-modal-image-wrap {
                 max-width: 200px;
                 aspect-ratio: 2 / 3;
-            }
-            .detail-modal-thumbs .image-wrapper {
-                width: 48px;
-                height: 48px;
-            }
-            .detail-modal-text {
-                max-height: 35vh;
             }
         }
 
@@ -2386,61 +2456,12 @@
             width: 100%;
         }
 
-        .modal-action {
-            background: var(--bg-secondary);
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: var(--font-sans);
-            width: 100%;
-            text-align: center;
-        }
-
-        .modal-action:hover {
-            background: var(--btn-primary-bg);
-            color: var(--btn-primary-text);
-        }
-
         .collection-banner {
             background-size: contain !important;
             background-color: var(--bg-secondary) !important;
             background-position: center !important;
         }
 
-        /* ============================================================
-           CORREÇÃO FINAL: BOTÕES DE AÇÃO DO MODAL DE DETALHE
-           ============================================================ */
-        .detail-modal-text .hero__cta {
-            background: var(--btn-primary-bg);
-            color: var(--btn-primary-text);
-            border: none;
-            padding: 0.7rem 2rem;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-family: var(--font-sans);
-            width: 100%;
-            justify-content: center;
-        }
-
-        .detail-modal-text .hero__cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            background: var(--btn-primary-hover);
-            color: var(--btn-primary-hover-text);
-        }
-
-        /* Força contraste no modal de perfil */
         .modal-content .avatar-btn {
             background: var(--bg-secondary);
             color: var(--text-secondary);
@@ -2456,7 +2477,6 @@
             color: white;
         }
 
-        /* Ajuste do input de busca em tema escuro */
         [data-theme="dark"] .search-overlay__input {
             background: #2c241e;
             color: #f0ede8;
@@ -2466,7 +2486,6 @@
             color: #a08060;
         }
 
-        /* Ajuste do botão Google */
         [data-theme="dark"] .btn-google {
             background: #1f1b18;
             color: #f0ede8;
@@ -2477,24 +2496,11 @@
             border-color: var(--gold);
         }
 
-        /* Ajuste do botão primário no modal de detalhe */
-        .detail-modal-text .modal-action {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-        }
-
-        .detail-modal-text .modal-action:hover {
-            background: var(--btn-primary-bg);
-            color: var(--btn-primary-text);
-        }
-
-        /* Ajuste do filtro ativo */
         [data-theme="dark"] .filter-btn.active {
             color: var(--text-primary);
             border-bottom-color: var(--gold);
         }
 
-        /* Ajuste do manifesto */
         [data-theme="dark"] .manifesto {
             background: #1f1b18;
         }
@@ -2503,25 +2509,22 @@
             color: #c5b8aa;
         }
 
-        /* Ajuste do mood tag */
         [data-theme="dark"] .mood-tag {
             background: #1f1b18;
             color: #c5b8aa;
         }
 
-        /* Ajuste dos cards de preview na home */
         [data-theme="dark"] .card-preview {
             background: #1f1b18;
             border-color: rgba(255, 255, 255, 0.05);
         }
 
-        /* Ajuste do botão de explorar coleção na página collection */
-        .collection-banner + .section .hero__cta {
+        .collection-banner+.section .hero__cta {
             background: var(--btn-primary-bg);
             color: var(--btn-primary-text);
         }
 
-        .collection-banner + .section .hero__cta:hover {
+        .collection-banner+.section .hero__cta:hover {
             background: var(--btn-primary-hover);
             color: var(--btn-primary-hover-text);
         }
@@ -3074,8 +3077,9 @@
     <script>
         /**
          * ============================================================
-         * HAiROS LIBRARY — VERSÃO COMPLETA, FUNCIONAL E SEGURA
-         * Cortes: 4 | Tendências: 4 | Produtos: 8 | Editorial: 4
+         * HAiROS LIBRARY — VERSÃO ORIGINAL COM PNG (EDITORIAL MINIMALIST)
+         * Imagens originais do Pinterest e Bing
+         * Com indicadores elegantes: traços, contador discreto, ícone de ampliar
          * ============================================================
          */
         class HairOSApp {
@@ -3215,7 +3219,7 @@
                             'https://i.pinimg.com/736x/42/36/d4/4236d4296296aa9602fe7b7a9f9d0cd1.jpg',
                             'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg'
                         ],
-                        description: 'Camadas suaves e arredondadas que criam movimento e leveza. Inspirado no movimento felino, é o corte que está conquistando os salões em 2026.',
+                        description: 'Camadas arredondadas que criam movimento e leveza. Inspirado no movimento felino, é o corte que conquistou 2026.',
                         profile: 'Mulheres com cabelo médio a longo que buscam um visual moderno com movimento e volume controlado.',
                         hairType: 'Todos os tipos',
                         faceShape: 'Todos',
@@ -3274,9 +3278,7 @@
                         category: 'shampoo',
                         image: 'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
                         images: [
-                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            'https://i.pinimg.com/1200x/49/13/db/4913db0aeb90eaa39af627682e595518.jpg',
-                            'https://i.pinimg.com/736x/da/fe/12/dafe123ec0af05e28c1284fa75b7413d.jpg'
+                            'https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
                         ],
                         link: 'https://mercadolivre.com/sec/2wJK2SK',
                         description: 'Protege a cor e mantém o brilho. Limpeza suave sem agredir a fibra.',
@@ -3289,9 +3291,7 @@
                         category: 'mascara',
                         image: 'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
                         images: [
-                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            'https://i.pinimg.com/736x/34/59/ce/3459cebc3044e956410bb887d8a53457.jpg',
-                            'https://i.pinimg.com/736x/5c/fb/bc/5cfbbc5d6d6967494e0c536185551fac.jpg'
+                            'https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
                         ],
                         link: 'https://mercadolivre.com/sec/1T8Ucwp',
                         description: 'Reconstrução profunda com proteína de trigo. Devolve força e elasticidade.',
@@ -3304,9 +3304,7 @@
                         category: 'mascara',
                         image: 'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
                         images: [
-                            'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            'https://i.pinimg.com/736x/f7/c2/e3/f7c2e3d49a4f6e4af307529e5cc5932f.jpg',
-                            'https://i.pinimg.com/736x/78/8d/23/788d2303aa3cf99214dcae3c74401cd2.jpg'
+                            'https://tse4.mm.bing.net/th/id/OIP.4CYgPmI6kHvfZB8Iw_jRWwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
                         ],
                         link: 'https://mercadolivre.com/sec/2VVxFB1',
                         description: 'Reconstrução intensa. Restaura a fibra capilar e devolve elasticidade.',
@@ -3319,9 +3317,7 @@
                         category: 'finalizador',
                         image: 'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
                         images: [
-                            'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            'https://i.pinimg.com/736x/c3/28/5b/c3285b4bc5e8eb0bf3126eb695c8c1ac.jpg',
-                            'https://i.pinimg.com/736x/cd/12/a9/cd12a9ed93db2fde11af4ec7f3151d8d.jpg'
+                            'https://tse3.mm.bing.net/th/id/OIP.-ivouUWSbPJDNla69_AtdAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
                         ],
                         link: 'https://mercadolivre.com/sec/1jdT4rg',
                         description: 'Fixação forte para penteados duradouros. Mantém a forma sem pesar.',
@@ -3334,9 +3330,7 @@
                         category: 'finalizador',
                         image: 'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
                         images: [
-                            'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            'https://i.pinimg.com/1200x/3d/55/ff/3d55ff810947174c1b831725ce01d4e5.jpg',
-                            'https://i.pinimg.com/1200x/98/b9/5a/98b95a2d7ff1873bfbfc8b83cbb508f4.jpg'
+                            'https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
                         ],
                         link: 'https://mercadolivre.com/sec/1RKdy8e',
                         description: 'Ativador de cachos que define e hidrata sem deixar o fio duro.',
@@ -3349,9 +3343,7 @@
                         category: 'shampoo',
                         image: 'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
                         images: [
-                            'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            'https://i.pinimg.com/1200x/02/ff/b3/02ffb31d69b8890b1b01c2222a821e74.jpg',
-                            'https://i.pinimg.com/1200x/52/77/45/5277459ef9364596d15fa25439659bb9.jpg'
+                            'https://tse1.mm.bing.net/th/id/OIP.iuk1wVxNLMu52ff_CTMqwQHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'
                         ],
                         link: 'https://mercadolivre.com/sec/1uQ9ppW',
                         description: 'Matizador para cabelos grisalhos e com mechas. Neutraliza tons amarelos.',
@@ -3364,9 +3356,7 @@
                         category: 'shampoo',
                         image: 'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
                         images: [
-                            'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0',
-                            'https://i.pinimg.com/1200x/78/dd/06/78dd0605f1f607b98881d9b62cdefe8a.jpg',
-                            'https://i.pinimg.com/736x/ee/5d/ab/ee5dabfab9fa5b8e016ebc8931dd3492.jpg'
+                            'https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0'
                         ],
                         link: 'https://mercadolivre.com/sec/1jX3Cvq',
                         description: 'Reconstructor com Quinoa e Proteína. Devolve força a cabelos danificados.',
@@ -3379,9 +3369,7 @@
                         category: 'condicionador',
                         image: 'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
                         images: [
-                            'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000',
-                            'https://i.pinimg.com/736x/9a/aa/9d/9aaa9db9764ac6550439b1d9f9fd8368.jpg',
-                            'https://i.pinimg.com/1200x/5b/53/8f/5b538f30589b753ff074ef689bc5d13c.jpg'
+                            'https://lojasrede.vtexassets.com/arquivos/ids/347466/801981-1-Condicionar-Joico-Moisture-Recovery-250ml.jpg?v=638207070979630000'
                         ],
                         link: 'https://mercadolivre.com/sec/26hayjy',
                         description: 'Hidratação profunda para cabelos secos e grossos.',
@@ -3394,9 +3382,7 @@
                         name: 'Butterfly Cut',
                         image: 'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
-                            'https://i.pinimg.com/736x/a8/32/0c/a8320cac67f98908fd296e6a34ff2559.jpg',
-                            'https://i.pinimg.com/736x/f4/6d/76/f46d76af2c1588dc14d9720e25d3ece8.jpg'
+                            'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg'
                         ],
                         description: 'O corte que dominou 2026: camadas suaves que se abrem como asas. Volume e movimento em equilíbrio.',
                         level: 'Intermediário',
@@ -3414,9 +3400,7 @@
                         name: 'Curtain Bangs',
                         image: 'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
-                            'https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg',
-                            'https://i.pinimg.com/736x/e1/69/0a/e1690a55e7cc557de8fc4d8d9a29b171.jpg'
+                            'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg'
                         ],
                         description: 'A franja cortina que emoldura o rosto. Mais longa e despojada que a versão anos 70.',
                         level: 'Iniciante',
@@ -3434,9 +3418,7 @@
                         name: 'Textura em Movimento',
                         image: 'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
                         images: [
-                            'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg',
-                            'https://i.pinimg.com/736x/3e/08/65/3e0865833599c47473882c25165ecbfc.jpg',
-                            'https://i.pinimg.com/736x/01/85/d2/0185d2431d7e7f789a5725665c3f37c5.jpg'
+                            'https://i.pinimg.com/1200x/02/ba/8e/02ba8e2d674cab825f832834658f7416.jpg'
                         ],
                         description: 'Cabelo que se move. Cortes que acompanham o gesto, com camadas que respiram e finalizações leves.',
                         level: 'Fácil',
@@ -3454,9 +3436,7 @@
                         name: 'Volume Raiz',
                         image: 'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg',
-                            'https://i.pinimg.com/736x/b0/f1/d6/b0f1d6fdfc4df443e6409aeea819567d.jpg',
-                            'https://i.pinimg.com/1200x/6f/a5/d2/6fa5d295a950aa8e62b690d2b6d7cb16.jpg'
+                            'https://i.pinimg.com/736x/15/08/58/150858c430b1700f450781e3c093375c.jpg'
                         ],
                         description: 'Raiz levantada e camadas soltas. O volume na raiz é a grande pedida do inverno 2026.',
                         level: 'Avançado',
@@ -3474,9 +3454,7 @@
                         id: 'editorial-1',
                         image: 'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
-                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                            'https://i.pinimg.com/736x/86/95/8b/86958b5ee0a8cbf5e0082666ef203ed7.jpg'
+                            'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg'
                         ],
                         title: 'Mel Puro',
                         description: 'Para peles quentes e claras. Base 7 ou 7.1 com babylights douradas que iluminam sem queimar. A cor que traz leveza e movimento.',
@@ -3485,9 +3463,7 @@
                         id: 'editorial-2',
                         image: 'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                            'https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg',
-                            'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg'
+                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg'
                         ],
                         title: 'Avelã Média',
                         description: 'Para peles quentes e escuras. Base 6 ou 6.3 com mechas caramelizadas que criam profundidade e brilho.',
@@ -3496,9 +3472,7 @@
                         id: 'editorial-3',
                         image: 'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
-                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                            'https://i.pinimg.com/736x/66/6b/3a/666b3aa0af989efb98bba97180e71a88.jpg'
+                            'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg'
                         ],
                         title: 'Castanho Neutro',
                         description: 'Para peles frias e claras. Base 6.1 ou 7.1 com mechas chocolate frio que adicionam luz sem calor indesejado.',
@@ -3507,9 +3481,7 @@
                         id: 'editorial-4',
                         image: 'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg',
-                            'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
-                            'https://i.pinimg.com/736x/01/f6/b8/01f6b8f1aa7b90c91f5262f11d01d552.jpg'
+                            'https://i.pinimg.com/736x/4d/51/c5/4d51c50495b5b3be6b1625830b742603.jpg'
                         ],
                         title: 'Mogno Suave',
                         description: 'Para peles frias e escuras. Base 5 ou 6 com mechas mogno suave que aquecem sem perder a intensidade.',
@@ -3524,17 +3496,17 @@
                 });
                 this.DATA.products.forEach(p => {
                     if (!p.images || p.images.length === 0) {
-                        p.images = [p.image, p.image, p.image];
+                        p.images = [p.image];
                     }
                 });
                 this.DATA.trends.forEach(t => {
                     if (!t.images || t.images.length === 0) {
-                        t.images = [t.image, t.image, t.image];
+                        t.images = [t.image];
                     }
                 });
                 this.DATA.editorialItems.forEach(e => {
                     if (!e.images || e.images.length === 0) {
-                        e.images = [e.image, e.image, e.image];
+                        e.images = [e.image];
                     }
                 });
             }
@@ -3728,7 +3700,9 @@
 
             init() {
                 try {
-                    console.log('🪮 HairOS Library — Versão Completa, Funcional e Segura');
+                    console.log('🪮 HairOS Library — Versão Original com PNG');
+                    console.log('📸 Com indicadores elegantes: traços, contador, ícone de ampliar');
+
                     this.loadData();
                     this.loadState();
                     this.setupEventListeners();
@@ -4170,6 +4144,7 @@
                 const isFav = (type === 'cut' || type === 'product') ? this.isFavorite(type, item.id) : false;
                 const name = item.name || item.title || 'Item';
                 const category = item.category || '';
+                const showNav = images.length > 1;
 
                 let textHTML = '';
                 if (type === 'cut') {
@@ -4247,19 +4222,26 @@
                     `;
                 }
 
-                let thumbsHTML = '';
-                if (images.length > 1) {
-                    thumbsHTML = `
-                        <div class="detail-modal-thumbs" id="detailModalThumbs">
-                            ${images.map((img, i) => `
-                                <div class="image-wrapper ${i === 0 ? 'active' : ''}" onclick="window.app?.detailThumb(${i})">
-                                    <div class="skeleton-placeholder"></div>
-                                    <img src="${img}" alt="Miniatura ${i + 1}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
-                                </div>
-                            `).join('')}
-                        </div>
-                    `;
-                }
+                // Ícone de ampliar (zoom) - aparece no hover
+                const zoomIcon = showNav ? `
+                    <div class="detail-modal-zoom-icon" onclick="window.app?.openGallery(window.app.detailImages, window.app.detailIndex)">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                ` : '';
+
+                // Contador discreto
+                const counter = showNav ? `
+                    <span class="detail-modal-counter">${1} / ${images.length}</span>
+                ` : '';
+
+                // Traço indicador (em vez de bolinhas)
+                const indicator = showNav ? `
+                    <div class="detail-modal-indicator">
+                        ${images.map((_, i) => `
+                            <span class="bar ${i === 0 ? 'active' : ''}" onclick="window.app?.detailThumb(${i})"></span>
+                        `).join('')}
+                    </div>
+                ` : '';
 
                 return `
                     <h2>${name}</h2>
@@ -4272,31 +4254,33 @@
                                  onclick="window.app?.openGallery(window.app.detailImages, window.app.detailIndex)"
                                  onload="this.previousElementSibling.style.display='none'" />
                         </div>
-                        ${images.length > 1 ? `
+                        ${zoomIcon}
+                        ${counter}
+                        ${showNav ? `
                             <button class="detail-modal-nav detail-modal-nav--prev" onclick="window.app?.detailPrev()">‹</button>
                             <button class="detail-modal-nav detail-modal-nav--next" onclick="window.app?.detailNext()">›</button>
                         ` : ''}
                     </div>
 
-                    ${thumbsHTML}
+                    ${indicator}
 
                     <div class="detail-modal-text">
                         ${textHTML}
                         ${favButton}
                         <p style="font-size:0.75rem;opacity:0.5;margin-top:1rem;border-top:1px solid var(--border-color);padding-top:0.8rem;text-align:center;">HairOS Library — Outono/Inverno 2026</p>
-                        <button class="modal-action" onclick="window.app?.closeModal()" style="margin-top:0.8rem;">Fechar</button>
+                        <button class="modal-action" onclick="window.app?.closeModal()">Fechar</button>
                     </div>
                 `;
             }
 
             detailPrev() {
-                if (!this.detailImages || this.detailImages.length === 0) return;
+                if (!this.detailImages || this.detailImages.length <= 1) return;
                 this.detailIndex = (this.detailIndex - 1 + this.detailImages.length) % this.detailImages.length;
                 this.updateDetailModal();
             }
 
             detailNext() {
-                if (!this.detailImages || this.detailImages.length === 0) return;
+                if (!this.detailImages || this.detailImages.length <= 1) return;
                 this.detailIndex = (this.detailIndex + 1) % this.detailImages.length;
                 this.updateDetailModal();
             }
@@ -4311,11 +4295,29 @@
                 const mainImg = document.getElementById('detailModalMainImg');
                 if (!mainImg) return;
                 const idx = this.detailIndex;
+                const total = this.detailImages.length;
+
+                // Atualiza imagem principal
                 mainImg.src = this.detailImages[idx];
+
+                // Atualiza contador
+                const counter = document.querySelector('.detail-modal-counter');
+                if (counter) {
+                    counter.textContent = `${idx + 1} / ${total}`;
+                }
+
+                // Atualiza traços indicadores
+                const bars = document.querySelectorAll('.detail-modal-indicator .bar');
+                bars.forEach((bar, i) => {
+                    bar.classList.toggle('active', i === idx);
+                });
+
+                // Atualiza thumbnails (se existirem)
                 const thumbs = document.querySelectorAll('#detailModalThumbs .image-wrapper');
                 thumbs.forEach((wrapper, i) => {
                     wrapper.classList.toggle('active', i === idx);
                 });
+
                 mainImg.onclick = () => this.openGallery(this.detailImages, idx);
             }
 
@@ -4975,10 +4977,9 @@
             window.app = new HairOSApp();
         });
 
-        console.log('🪮 HairOS Library — VERSÃO COMPLETA, FUNCIONAL E SEGURA');
-        console.log('✅ Cortes: 4 (Velvet Bob, Kitty Cut, Curly Shag, Pixie Touch)');
-        console.log('✅ Tendências: 4 (Butterfly Cut, Curtain Bangs, Textura em Movimento, Volume Raiz)');
-        console.log('✅ Produtos: 8 | Editorial: 4');
+        console.log('🪮 HairOS Library — VERSÃO ORIGINAL COM PNG (EDITORIAL MINIMALIST)');
+        console.log('📸 Imagens originais do Pinterest e Bing');
+        console.log('✨ Indicadores elegantes: traços, contador discreto, ícone de ampliar');
         console.log('✅ Disponível em: window.app');
     </script>
 
