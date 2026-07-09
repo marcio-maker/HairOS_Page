@@ -2981,6 +2981,37 @@
                                 <span class="card-preview__category">Editorial</span>
                             </div>
                         </div>
+                        <!-- NOVO CORTE LONGO ADICIONADO -->
+                        <div class="card-preview" onclick="window.app?.openDetailPage('cut','waterfall-waves')"
+                            role="listitem" tabindex="0">
+                            <div class="image-wrapper">
+                                <div class="skeleton-placeholder"></div>
+                                <img class="card-preview__image"
+                                    src="https://i.pinimg.com/1200x/6b/7d/1c/6b7d1c1ba1b7b07bbaa69cf4f2bd5222.jpg"
+                                    alt="Waterfall Waves" loading="lazy"
+                                    onload="this.previousElementSibling.style.display='none'" />
+                            </div>
+                            <div class="card-preview__body">
+                                <span class="card-preview__name">Waterfall Waves</span>
+                                <span class="card-preview__category">Corte Longo</span>
+                            </div>
+                        </div>
+                        <!-- NOVO PRODUTO ÓLEO FINALIZADOR -->
+                        <div class="card-preview"
+                            onclick="window.app?.openDetailPage('product','oleo-finish-essencial')" role="listitem"
+                            tabindex="0">
+                            <div class="image-wrapper">
+                                <div class="skeleton-placeholder"></div>
+                                <img class="card-preview__image"
+                                    src="https://tse2.mm.bing.net/th/id/OIP.6XtdHWYQZR5aQh9GQkA07wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+                                    alt="Óleo Finalizador" loading="lazy"
+                                    onload="this.previousElementSibling.style.display='none'" />
+                            </div>
+                            <div class="card-preview__body">
+                                <span class="card-preview__name">Óleo Finish Essencial</span>
+                                <span class="card-preview__category">Finalizador</span>
+                            </div>
+                        </div>
                     </div>
 
                     <button class="hero__cta" onclick="window.app?.navigateTo('cuts')"
@@ -3463,8 +3494,32 @@
                         time: '45 minutos',
                         products: ['Mousse Modeladora', 'Spray Texturizador'],
                         related: ['curly-shag', 'soft-layers']
-                    }],
-                    products: [{
+                    },
+                    // ===== NOVO CORTE LONGO ADICIONADO =====
+                    {
+                        id: 'waterfall-waves',
+                        name: 'Waterfall Waves',
+                        category: 'longos',
+                        tags: ['longos', 'feminino', 'movimento'],
+                        image: 'https://i.pinimg.com/1200x/6b/7d/1c/6b7d1c1ba1b7b07bbaa69cf4f2bd5222.jpg',
+                        images: [
+                            'https://i.pinimg.com/1200x/6b/7d/1c/6b7d1c1ba1b7b07bbaa69cf4f2bd5222.jpg',
+                            'https://i.pinimg.com/736x/8f/2f/3a/8f2f3a9b5e7f3a8f2f3a9b5e7f3a8f2f.jpg',
+                            'https://i.pinimg.com/736x/9c/3d/4e/9c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f.jpg'
+                        ],
+                        description: 'Cortes longos com movimento fluido que lembram cascatas. Camadas estratégicas criam volume e leveza, com um acabamento natural que valoriza o comprimento sem pesar.',
+                        profile: 'Mulheres com cabelos longos que buscam um visual moderno, com movimento e fluidez, sem perder o comprimento.',
+                        hairType: 'Liso a ondulado',
+                        faceShape: 'Todos os tipos',
+                        maintenance: 'Médio (visitas a cada 8 semanas)',
+                        techniques: 'Camadas compridas com desfiamento suave, criando um efeito cascata que acompanha o movimento natural dos fios.',
+                        finishing: 'Secar com escova redonda puxando para baixo e finalizar com óleo para dar brilho e movimento.',
+                        time: '50 minutos',
+                        products: ['Óleo Finalizador', 'Mousse Modeladora', 'Spray Texturizador'],
+                        related: ['long-flow', 'soft-layers']
+                    }
+                ],
+                products: [{
                         id: 'shampoo-vitamino-color',
                         name: 'Shampoo Vitamino Color 750ml',
                         category: 'shampoo',
@@ -3527,7 +3582,7 @@
                         benefits: 'Fixação forte, brilho, duração prolongada, controle de frizz.',
                         usage: 'Aplicar a 30cm dos cabelos secos para finalizar o penteado.',
                         indication: 'Todos os tipos de cabelo.',
-                        related: ['spray-texturizador', 'oleo-finalizador']
+                        related: ['spray-texturizador', 'oleo-finish-essencial']
                     }, {
                         id: 'lowell-cacho-magico',
                         name: 'Lowell Cacho Mágico 200ml',
@@ -3592,8 +3647,27 @@
                         usage: 'Aplicar após o shampoo, deixar agir por 2-3 minutos e enxaguar.',
                         indication: 'Cabelos secos, grossos e ressecados.',
                         related: ['shampoo-absolut-repair-gold', 'mascara-kerastase']
-                    }],
-                    trends: [{
+                    },
+                    // ===== NOVO ÓLEO FINALIZADOR ADICIONADO =====
+                    {
+                        id: 'oleo-finish-essencial',
+                        name: 'Óleo Finish Essencial 100ml',
+                        category: 'finalizador',
+                        image: 'https://tse2.mm.bing.net/th/id/OIP.6XtdHWYQZR5aQh9GQkA07wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                        images: [
+                            'https://tse2.mm.bing.net/th/id/OIP.6XtdHWYQZR5aQh9GQkA07wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+                            'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg',
+                            'https://i.pinimg.com/736x/42/36/d4/4236d4296296aa9602fe7b7a9f9d0cd1.jpg'
+                        ],
+                        link: 'https://mercadolivre.com/sec/1Xy7Kz8',
+                        description: 'Óleo finalizador leve e nutritivo com blend de óleos vegetais (argão, coco e macadâmia). Proporciona brilho intenso, controle de frizz e proteção térmica sem pesar nos fios.',
+                        benefits: 'Brilho intenso, controle de frizz, proteção térmica, nutrição, maciez, leveza.',
+                        usage: 'Aplicar 1-2 gotas nas mãos, espalhar e passar nos cabelos secos ou úmidos, concentrando nas pontas e comprimentos. Não enxaguar.',
+                        indication: 'Todos os tipos de cabelo, especialmente cabelos secos, danificados e com frizz.',
+                        related: ['spray-silhouette', 'mascara-absolut-repair']
+                    }
+                ],
+                trends: [{
                         id: 'camadas',
                         name: 'Butterfly Cut',
                         image: 'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
