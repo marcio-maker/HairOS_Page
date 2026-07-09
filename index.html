@@ -1536,7 +1536,7 @@
         }
 
         /* ============================================================
-           NOVOS COMPONENTES DA HOME - APENAS CSS ADICIONAL
+           NOVOS COMPONENTES DA HOME - APENAS O QUE É NECESSÁRIO
            ============================================================ */
 
         /* ---- CHIPS NAVIGATION ---- */
@@ -1587,137 +1587,7 @@
             transform: scale(0.95);
         }
 
-        /* ---- EDITORIAL DESTAQUE ---- */
-        .editorial-highlight {
-            margin: 0 1.2rem 1.5rem;
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--bg-secondary);
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--card-shadow);
-        }
-
-        .editorial-highlight:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-            outline: 2px solid var(--gold);
-            outline-offset: 2px;
-        }
-
-        .editorial-highlight__image {
-            height: 180px;
-            background: var(--bg-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .editorial-highlight__image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .editorial-highlight:hover .editorial-highlight__image img {
-            transform: scale(1.05);
-        }
-
-        .editorial-highlight__badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--gold);
-            color: var(--black);
-            font-size: 0.6rem;
-            font-weight: 700;
-            padding: 0.25rem 0.9rem;
-            border-radius: 20px;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
-        }
-
-        .editorial-highlight__body {
-            padding: 1rem 1.2rem 1.2rem;
-        }
-
-        .editorial-highlight__body h4 {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin: 0 0 0.25rem;
-            opacity: 0.6;
-        }
-
-        .editorial-highlight__body p {
-            font-size: 1.1rem;
-            font-weight: 700;
-            font-family: var(--font-serif);
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .editorial-highlight__body .editorial-highlight__link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        /* ---- CORES E FINALIZAÇÕES ---- */
-        .colors-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            padding: 0 1.2rem 1.5rem;
-        }
-
-        .color-card {
-            background: var(--bg-secondary);
-            border-radius: var(--radius-sm);
-            padding: 1rem;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        .color-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow);
-            outline: 2px solid var(--gold);
-            outline-offset: 2px;
-        }
-
-        .color-card:active {
-            transform: scale(0.96);
-        }
-
-        .color-swatch {
-            width: 100%;
-            height: 80px;
-            border-radius: 10px;
-            margin-bottom: 0.75rem;
-        }
-
-        .color-name {
-            display: block;
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-        }
-
-        .color-finish {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            opacity: 0.7;
-        }
-
-        /* ---- STATUS CARD ---- */
+        /* ---- STATUS CARD (ÚNICO NOVO QUE FAZ SENTIDO) ---- */
         .status-card {
             display: flex;
             align-items: center;
@@ -1791,148 +1661,17 @@
             opacity: 1;
         }
 
-        /* ---- PRODUTOS RECOMENDADOS ---- */
-        .products-scroll {
-            display: flex;
-            gap: 1rem;
-            padding: 0 1.2rem 1.5rem;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .products-scroll::-webkit-scrollbar {
-            display: none;
-        }
-
-        .product-card {
-            min-width: 160px;
-            max-width: 180px;
-            background: var(--bg-secondary);
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--border-color);
-        }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow);
-            outline: 2px solid var(--gold);
-            outline-offset: 2px;
-        }
-
-        .product-card:active {
-            transform: scale(0.96);
-        }
-
-        .product-card__image {
-            height: 120px;
-            background: var(--bg-secondary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card__image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product-card__badge {
-            position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
-            background: var(--gold);
-            color: var(--black);
-            font-size: 0.55rem;
-            font-weight: 700;
-            padding: 0.2rem 0.6rem;
-            border-radius: 8px;
-        }
-
-        .product-card__body {
-            padding: 0.75rem;
-        }
-
-        .product-card__body h5 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: 0 0 0.25rem;
-        }
-
-        .product-card__body p {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            margin: 0 0 0.75rem;
-            line-height: 1.3;
-            opacity: 0.7;
-        }
-
-        .product-card__footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-card__price {
-            font-weight: 700;
-            color: var(--gold);
-            font-size: 0.95rem;
-        }
-
-        .product-card__add {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: none;
-            background: var(--gold);
-            color: var(--black);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-card__add:hover {
-            transform: scale(1.1);
-        }
-
-        .product-card__add:active {
-            transform: scale(0.9);
-        }
-
         @media (max-width: 400px) {
-            .colors-grid {
-                gap: 0.75rem;
+            .status-card {
+                padding: 0.8rem 1rem;
             }
 
-            .product-card {
-                min-width: 140px;
+            .status-icon {
+                font-size: 1.6rem;
             }
 
-            .editorial-highlight__image {
-                height: 140px;
-            }
-
-            .color-swatch {
-                height: 60px;
-            }
-        }
-
-        @media (min-width: 600px) {
-            .colors-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .product-card {
-                min-width: 200px;
+            .status-content h4 {
+                font-size: 0.8rem;
             }
         }
 
@@ -4228,6 +3967,7 @@
                     <button class="chip" onclick="window.app?.navigateTo('products')">🧴 Produtos</button>
                 </div>
 
+                <!-- ===== SEÇÃO: TENDÊNCIAS ===== -->
                 <section class="section" aria-label="Tendências da estação">
                     <div class="section__header">
                         <h2 class="section__title">Tendências em Destaque</h2>
@@ -4240,6 +3980,7 @@
                     </div>
                 </section>
 
+                <!-- ===== SEÇÃO: CORTES ===== -->
                 <section class="section" aria-label="Cortes em destaque">
                     <div class="section__header">
                         <h2 class="section__title">Cortes em Destaque</h2>
@@ -4252,6 +3993,7 @@
                     </div>
                 </section>
 
+                <!-- ===== SEÇÃO: PRODUTOS ===== -->
                 <section class="section" aria-label="Produtos sugeridos">
                     <div class="section__header">
                         <h2 class="section__title">Sugestões de Produtos</h2>
@@ -4264,6 +4006,7 @@
                     </div>
                 </section>
 
+                <!-- ===== SEÇÃO: EDITORIAL ===== -->
                 <section class="section" aria-label="Editorial">
                     <div class="section__header">
                         <h2 class="section__title">Inspiração Editorial</h2>
@@ -4276,49 +4019,7 @@
                     </div>
                 </section>
 
-                <!-- ===== EDITORIAL DESTAQUE (NOVO) ===== -->
-                <div class="editorial-highlight" onclick="window.app?.navigateTo('editorial')">
-                    <div class="editorial-highlight__image">
-                        <span class="editorial-highlight__badge">DESTAQUE</span>
-                        <img src="https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg" 
-                             alt="Editorial da Semana" loading="lazy" />
-                    </div>
-                    <div class="editorial-highlight__body">
-                        <h4>Editorial da Semana</h4>
-                        <p>NARRATIVA VISUAL: O NOVO LUXO</p>
-                        <span class="editorial-highlight__link">Explorar editorial →</span>
-                    </div>
-                </div>
-
-                <!-- ===== CORES E FINALIZAÇÕES (NOVO) ===== -->
-                <div class="section__header" style="padding: 0 1.2rem 0.5rem;">
-                    <h2 class="section__title">Cores e Finalizações</h2>
-                    <a href="#" onclick="window.app?.navigateTo('editorial'); return false;" class="section__see-all">Ver tudo →</a>
-                </div>
-                <div class="colors-grid">
-                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #8B7355, #D4A574);"></div>
-                        <span class="color-name">Nerútico</span>
-                        <span class="color-finish">Finalização Glossy</span>
-                    </div>
-                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #2C1810, #6B3A2A);"></div>
-                        <span class="color-name">Mogno</span>
-                        <span class="color-finish">Finalização Matte</span>
-                    </div>
-                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #4A2C2A, #8B5A4B);"></div>
-                        <span class="color-name">Avelã</span>
-                        <span class="color-finish">Finalização Natural</span>
-                    </div>
-                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
-                        <div class="color-swatch" style="background: linear-gradient(135deg, #C49A6C, #E8C9A0);"></div>
-                        <span class="color-name">Mel</span>
-                        <span class="color-finish">Finalização Glossy</span>
-                    </div>
-                </div>
-
-                <!-- ===== STATUS CARD (NOVO) ===== -->
+                <!-- ===== STATUS CARD (ÚNICO NOVO) ===== -->
                 <div class="status-card" onclick="window.app?.navigateTo('favorites')">
                     <div class="status-icon">📊</div>
                     <div class="status-content">
@@ -4329,77 +4030,6 @@
                         <span class="progress-text">3 de 5 módulos explorados</span>
                     </div>
                     <button class="status-arrow">→</button>
-                </div>
-
-                <!-- ===== PRODUTOS RECOMENDADOS (NOVO) ===== -->
-                <div class="section__header" style="padding: 0 1.2rem 0.5rem;">
-                    <h2 class="section__title">Produtos Recomendados</h2>
-                    <a href="#" onclick="window.app?.navigateTo('products'); return false;" class="section__see-all">Ver tudo →</a>
-                </div>
-                <div class="products-scroll">
-                    <div class="product-card" onclick="window.app?.openDetailPage('product','shampoo-vitamino-color')">
-                        <div class="product-card__image">
-                            <span class="product-card__badge">BEST SELLER</span>
-                            <img src="https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
-                                 alt="HairOS Gloss Serum" loading="lazy" />
-                        </div>
-                        <div class="product-card__body">
-                            <h5>HairOS Gloss Serum</h5>
-                            <p>Finalização glossy com brilho intenso</p>
-                            <div class="product-card__footer">
-                                <span class="product-card__price">$19.90</span>
-                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" onclick="window.app?.openDetailPage('product','mascara-absolut-repair')">
-                        <div class="product-card__image">
-                            <span class="product-card__badge">NOVO</span>
-                            <img src="https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
-                                 alt="HairOS Volume Mousse" loading="lazy" />
-                        </div>
-                        <div class="product-card__body">
-                            <h5>HairOS Volume Mousse</h5>
-                            <p>Volume e textura sem peso</p>
-                            <div class="product-card__footer">
-                                <span class="product-card__price">$19.90</span>
-                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" onclick="window.app?.openDetailPage('product','lowell-cacho-magico')">
-                        <div class="product-card__image">
-                            <span class="product-card__badge">PROMOÇÃO</span>
-                            <img src="https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
-                                 alt="HairOS Gloss" loading="lazy" />
-                        </div>
-                        <div class="product-card__body">
-                            <h5>HairOS Gloss</h5>
-                            <p>Acabamento profissional</p>
-                            <div class="product-card__footer">
-                                <span class="product-card__price">$19.90</span>
-                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" onclick="window.app?.openDetailPage('product','shampoo-absolut-repair-gold')">
-                        <div class="product-card__image">
-                            <span class="product-card__badge">LANÇAMENTO</span>
-                            <img src="https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0" 
-                                 alt="HairOS Repair Mask" loading="lazy" />
-                        </div>
-                        <div class="product-card__body">
-                            <h5>HairOS Repair Mask</h5>
-                            <p>Recuperação intensiva</p>
-                            <div class="product-card__footer">
-                                <span class="product-card__price">$24.90</span>
-                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </section>
@@ -5159,7 +4789,6 @@
                         <span class="label">Favoritos</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </button>
-                    <!-- BOTÃO ASSINATURA COM BADGE -->
                     <button class="menu-item" onclick="window.app?.openModal('assinatura')" role="link">
                         <i class="fas fa-crown" aria-hidden="true"></i>
                         <span class="label">Assinatura</span>
@@ -7961,7 +7590,7 @@
         console.log('✅ UI/UX do modal de assinatura melhorada');
         console.log('✅ Estado centralizado e sincronizado');
         console.log('🔑 Códigos ativos:', PIX_CONFIG.validCodes);
-        console.log('🏠 HOME com novos componentes: Chips, Editorial Destaque, Cores, Status e Produtos Recomendados');
+        console.log('🏠 HOME com Chips e Status Card apenas (sem duplicidades)');
     </script>
 
 </body>
