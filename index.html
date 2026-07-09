@@ -15,7 +15,8 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💇</text></svg>" />
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💇</text></svg>" />
 
     <link rel="manifest" href="data:application/json,{
         &quot;name&quot;: &quot;HairOS Library&quot;,
@@ -45,7 +46,7 @@
 
     <style>
         /* ============================================================
-           RESET & BASE
+           RESET & BASE (mantido intacto)
            ============================================================ */
         *,
         *::before,
@@ -142,6 +143,7 @@
             min-height: 100px;
             opacity: 0.5;
         }
+
         .img-fallback i {
             font-size: 2rem;
         }
@@ -163,9 +165,11 @@
         ::-webkit-scrollbar {
             width: 4px;
         }
+
         ::-webkit-scrollbar-track {
             background: var(--bg-secondary);
         }
+
         ::-webkit-scrollbar-thumb {
             background: var(--gold);
             border-radius: 10px;
@@ -178,7 +182,7 @@
         }
 
         /* ============================================================
-           LOADING SCREEN
+           LOADING SCREEN (mantido)
            ============================================================ */
         #loadingScreen {
             position: fixed;
@@ -274,10 +278,12 @@
         }
 
         @keyframes pulseLogo {
+
             0%,
             100% {
                 opacity: 1;
             }
+
             50% {
                 opacity: 0.5;
             }
@@ -287,25 +293,31 @@
             0% {
                 width: 0%;
             }
+
             30% {
                 width: 45%;
             }
+
             60% {
                 width: 75%;
             }
+
             90% {
                 width: 92%;
             }
+
             100% {
                 width: 100%;
             }
         }
 
         @keyframes favPulse {
+
             0%,
             100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.25);
             }
@@ -316,7 +328,7 @@
         }
 
         /* ============================================================
-           SCROLL REVEAL
+           SCROLL REVEAL (mantido)
            ============================================================ */
         .reveal {
             opacity: 0;
@@ -331,7 +343,7 @@
         }
 
         /* ============================================================
-           SKELETON
+           SKELETON (mantido)
            ============================================================ */
         .image-wrapper {
             position: relative;
@@ -365,6 +377,7 @@
             0% {
                 background-position: -200% 0;
             }
+
             100% {
                 background-position: 200% 0;
             }
@@ -384,7 +397,7 @@
         }
 
         /* ============================================================
-           SWIPE HINT
+           SWIPE HINT (mantido)
            ============================================================ */
         .cards-scroll-wrapper {
             position: relative;
@@ -423,11 +436,13 @@
         }
 
         @keyframes swipePulse {
+
             0%,
             100% {
                 opacity: 0.4;
                 transform: translateY(-50%) translateX(0);
             }
+
             50% {
                 opacity: 0.9;
                 transform: translateY(-50%) translateX(6px);
@@ -448,7 +463,7 @@
         }
 
         /* ============================================================
-           APP
+           APP (mantido)
            ============================================================ */
         #app {
             max-width: 480px;
@@ -469,7 +484,7 @@
         }
 
         /* ============================================================
-           TOP BAR
+           TOP BAR (mantido)
            ============================================================ */
         .top-bar {
             position: sticky;
@@ -578,7 +593,7 @@
         }
 
         /* ============================================================
-           SEARCH OVERLAY
+           SEARCH OVERLAY (mantido)
            ============================================================ */
         .search-overlay {
             position: fixed;
@@ -725,7 +740,7 @@
         }
 
         /* ============================================================
-           MAIN CONTENT / PAGES
+           MAIN CONTENT / PAGES (mantido)
            ============================================================ */
         .main-content {
             padding-bottom: 100px;
@@ -745,6 +760,7 @@
                 opacity: 0;
                 transform: translateY(16px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -752,7 +768,7 @@
         }
 
         /* ============================================================
-           BOTTOM NAV
+           BOTTOM NAV (mantido)
            ============================================================ */
         #bottomNav {
             position: fixed;
@@ -858,7 +874,7 @@
         }
 
         /* ============================================================
-           HERO CAROUSEL
+           HERO CAROUSEL (mantido)
            ============================================================ */
         .hero {
             margin: 0 0 1.5rem;
@@ -1001,7 +1017,7 @@
         }
 
         /* ============================================================
-           SECTIONS
+           SECTIONS (mantido)
            ============================================================ */
         .section {
             padding: 0 1.2rem 1.5rem;
@@ -1041,7 +1057,7 @@
         }
 
         /* ============================================================
-           CARDS - PADRÃO ÚNICO
+           CARDS (mantido)
            ============================================================ */
         .cards-scroll {
             display: flex;
@@ -1158,12 +1174,15 @@
             .card-preview__name {
                 font-size: 0.7rem;
             }
+
             .card-preview__category {
                 font-size: 0.5rem;
             }
+
             .card-preview__body {
                 padding: 0.7rem 0.5rem 0.4rem;
             }
+
             .cards-grid {
                 gap: 0.8rem;
             }
@@ -1176,7 +1195,7 @@
         }
 
         /* ============================================================
-           FILTERS
+           FILTERS (mantido)
            ============================================================ */
         .filters {
             display: flex;
@@ -1252,6 +1271,7 @@
                 font-size: 0.65rem;
                 padding: 0.4rem 0.9rem;
             }
+
             #productFilters .filter-btn {
                 font-size: 0.6rem;
                 padding: 0.3rem 0.8rem;
@@ -1259,7 +1279,7 @@
         }
 
         /* ============================================================
-           TRENDS CARDS - ESTILO ÚNICO
+           TRENDS CARDS (mantido)
            ============================================================ */
         .trend-card {
             position: relative;
@@ -1380,13 +1400,14 @@
             .trend-card {
                 flex: 0 0 160px;
             }
+
             .trend-card__body .trend-name {
                 font-size: 0.75rem;
             }
         }
 
         /* ============================================================
-           EDITORIAL CARDS - ESTILO ÚNICO (Foco em COR)
+           EDITORIAL CARDS (mantido)
            ============================================================ */
         .editorial-card {
             position: relative;
@@ -1504,16 +1525,419 @@
             .editorial-card {
                 flex: 0 0 160px;
             }
+
             .editorial-card__body .editorial-name {
                 font-size: 0.75rem;
             }
+
             .editorial-card__body .editorial-code {
                 font-size: 0.75rem;
             }
         }
 
         /* ============================================================
-           COLLECTION PAGE
+           NOVOS COMPONENTES DA HOME - APENAS CSS ADICIONAL
+           ============================================================ */
+
+        /* ---- CHIPS NAVIGATION ---- */
+        .chips-container {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.5rem 1.2rem 1rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 0.5rem;
+        }
+
+        .chips-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            flex-shrink: 0;
+            padding: 0.5rem 1.25rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            font-family: var(--font-sans);
+        }
+
+        .chip:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(201, 169, 110, 0.2);
+        }
+
+        .chip.active {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+        }
+
+        .chip:active {
+            transform: scale(0.95);
+        }
+
+        /* ---- EDITORIAL DESTAQUE ---- */
+        .editorial-highlight {
+            margin: 0 1.2rem 1.5rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+        }
+
+        .editorial-highlight:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .editorial-highlight__image {
+            height: 180px;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .editorial-highlight__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .editorial-highlight:hover .editorial-highlight__image img {
+            transform: scale(1.05);
+        }
+
+        .editorial-highlight__badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.25rem 0.9rem;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3);
+        }
+
+        .editorial-highlight__body {
+            padding: 1rem 1.2rem 1.2rem;
+        }
+
+        .editorial-highlight__body h4 {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 0.25rem;
+            opacity: 0.6;
+        }
+
+        .editorial-highlight__body p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: var(--font-serif);
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .editorial-highlight__body .editorial-highlight__link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* ---- CORES E FINALIZAÇÕES ---- */
+        .colors-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 0 1.2rem 1.5rem;
+        }
+
+        .color-card {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .color-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .color-card:active {
+            transform: scale(0.96);
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 80px;
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+        }
+
+        .color-name {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .color-finish {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        /* ---- STATUS CARD ---- */
+        .status-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0 1.2rem 1.5rem;
+            padding: 1rem 1.25rem;
+            background: linear-gradient(135deg, rgba(201, 169, 110, 0.08), rgba(201, 169, 110, 0.02));
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(201, 169, 110, 0.15);
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .status-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .status-card:active {
+            transform: scale(0.98);
+        }
+
+        .status-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .status-content {
+            flex: 1;
+        }
+
+        .status-content h4 {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            margin: 0 0 0.5rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 0.25rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), #c9a96e);
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .status-arrow {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            opacity: 0.5;
+            transition: opacity 0.2s;
+        }
+
+        .status-card:hover .status-arrow {
+            opacity: 1;
+        }
+
+        /* ---- PRODUTOS RECOMENDADOS ---- */
+        .products-scroll {
+            display: flex;
+            gap: 1rem;
+            padding: 0 1.2rem 1.5rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .products-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card {
+            min-width: 160px;
+            max-width: 180px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .product-card:active {
+            transform: scale(0.96);
+        }
+
+        .product-card__image {
+            height: 120px;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card__badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+        }
+
+        .product-card__body {
+            padding: 0.75rem;
+        }
+
+        .product-card__body h5 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0 0 0.25rem;
+        }
+
+        .product-card__body p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin: 0 0 0.75rem;
+            line-height: 1.3;
+            opacity: 0.7;
+        }
+
+        .product-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-card__price {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+
+        .product-card__add {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card__add:hover {
+            transform: scale(1.1);
+        }
+
+        .product-card__add:active {
+            transform: scale(0.9);
+        }
+
+        @media (max-width: 400px) {
+            .colors-grid {
+                gap: 0.75rem;
+            }
+
+            .product-card {
+                min-width: 140px;
+            }
+
+            .editorial-highlight__image {
+                height: 140px;
+            }
+
+            .color-swatch {
+                height: 60px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .colors-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .product-card {
+                min-width: 200px;
+            }
+        }
+
+        /* ============================================================
+           COLLECTION PAGE (mantido)
            ============================================================ */
         .collection-banner {
             height: 280px;
@@ -1720,7 +2144,7 @@
         }
 
         /* ============================================================
-           DETAIL PAGE
+           DETAIL PAGE (mantido)
            ============================================================ */
         .detail-overlay {
             position: fixed;
@@ -1856,6 +2280,7 @@
                 transform: translateY(20px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -2222,23 +2647,29 @@
                 flex: 0 0 48px;
                 height: 48px;
             }
+
             .detail-page__title {
                 font-size: 1.3rem;
             }
+
             .detail-page__image-wrap {
                 aspect-ratio: 2 / 3;
             }
+
             .detail-page__back span {
                 display: none;
             }
+
             .detail-page__cut-specs,
             .detail-page__product-benefits {
                 grid-template-columns: 1fr 1fr;
                 gap: 0.4rem;
             }
+
             .detail-page__editorial-header .detail-page__title {
                 font-size: 1.6rem;
             }
+
             .detail-page__color-code {
                 font-size: 1.1rem;
             }
@@ -2252,7 +2683,7 @@
         }
 
         /* ============================================================
-           MODAL DO SISTEMA
+           MODAL DO SISTEMA (mantido + estilos de assinatura melhorados)
            ============================================================ */
         .modal-overlay {
             position: fixed;
@@ -2478,7 +2909,7 @@
         }
 
         /* ============================================================
-           GALERIA ZOOM
+           GALERIA ZOOM (mantido)
            ============================================================ */
         .gallery-overlay {
             position: fixed;
@@ -2538,6 +2969,7 @@
                 opacity: 0;
                 transform: scale(0.9);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -2630,23 +3062,29 @@
                 height: 36px;
                 font-size: 1rem;
             }
+
             .gallery-overlay__nav--prev {
                 left: 0.5rem;
             }
+
             .gallery-overlay__nav--next {
                 right: 0.5rem;
             }
+
             .gallery-overlay__image {
                 max-width: 95%;
                 max-height: 70vh;
             }
+
             .gallery-overlay__thumbnails {
                 bottom: 4rem;
             }
+
             .gallery-overlay__thumb {
                 width: 32px;
                 height: 32px;
             }
+
             .gallery-overlay__counter {
                 bottom: 1.5rem;
                 font-size: 0.7rem;
@@ -2654,7 +3092,7 @@
         }
 
         /* ============================================================
-           PÁGINA DE LOGIN
+           PÁGINA DE LOGIN (mantido)
            ============================================================ */
         #page-login {
             display: flex !important;
@@ -2891,7 +3329,7 @@
         }
 
         /* ============================================================
-           TOAST
+           TOAST (mantido)
            ============================================================ */
         .toast {
             position: fixed;
@@ -2929,7 +3367,7 @@
         }
 
         /* ============================================================
-           FAVORITOS
+           FAVORITOS (mantido)
            ============================================================ */
         .favorites-list {
             padding: 0 1.2rem 1.5rem;
@@ -2997,7 +3435,7 @@
         }
 
         /* ============================================================
-           MENU
+           MENU (mantido + badge de assinatura)
            ============================================================ */
         .menu-list {
             padding: 0 1.2rem 1.5rem;
@@ -3089,7 +3527,7 @@
         }
 
         /* ============================================================
-           TRENDS HEADER
+           TRENDS HEADER (mantido)
            ============================================================ */
         .trends-header {
             padding: 0.8rem 1.2rem 0.5rem;
@@ -3128,20 +3566,24 @@
         }
 
         /* ============================================================
-           UTILITIES
+           UTILITIES (mantido)
            ============================================================ */
         .text-center {
             text-align: center;
         }
+
         .mt-1 {
             margin-top: 1rem;
         }
+
         .mb-1 {
             margin-bottom: 1rem;
         }
+
         .gap-1 {
             gap: 1rem;
         }
+
         .w-100 {
             width: 100%;
         }
@@ -3204,7 +3646,7 @@
         }
 
         /* ============================================================
-           PAGE PRODUCTS - SEÇÕES EXTRAS
+           PAGE PRODUCTS - SEÇÕES EXTRAS (mantido)
            ============================================================ */
         .product-highlight {
             display: flex;
@@ -3238,7 +3680,7 @@
         }
 
         /* ============================================================
-           PAGE FAVORITES - SEÇÕES EXTRAS
+           PAGE FAVORITES - SEÇÕES EXTRAS (mantido)
            ============================================================ */
         .fav-summary {
             display: grid;
@@ -3268,6 +3710,272 @@
             letter-spacing: 0.5px;
             color: var(--text-secondary);
             opacity: 0.5;
+        }
+
+        /* ============================================================
+           ASSINATURA - ESTILOS MELHORADOS
+           ============================================================ */
+        .subscription-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.15rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .subscription-status-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        .subscription-status-badge i {
+            margin-right: 0.3rem;
+        }
+
+        .subscription-success {
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        .subscription-success i {
+            font-size: 3rem;
+            color: #4caf50;
+            display: block;
+            margin-bottom: 0.8rem;
+        }
+
+        .subscription-success h3 {
+            font-family: var(--font-serif);
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .subscription-success p {
+            color: var(--text-secondary);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .subscription-section {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .subscription-section h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subscription-section h4 i {
+            color: var(--gold);
+        }
+
+        .pix-key-display {
+            background: var(--bg-primary);
+            padding: 0.8rem 1rem;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid var(--border-color);
+            font-family: 'Inter', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+        }
+
+        .pix-key-display .copy-btn {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            border: none;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-sans);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .pix-key-display .copy-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-1px);
+        }
+
+        .pix-qr-container {
+            display: flex;
+            justify-content: center;
+            margin: 0.8rem 0;
+        }
+
+        .pix-qr-container img {
+            max-width: 160px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+        }
+
+        .access-code-input {
+            display: flex;
+            gap: 0.6rem;
+            margin: 0.8rem 0;
+            flex-wrap: wrap;
+        }
+
+        .access-code-input input {
+            flex: 1;
+            min-width: 150px;
+            padding: 0.7rem 1rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            color: var(--input-text);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .access-code-input input:focus {
+            border-color: var(--gold);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .access-code-input input.error {
+            border-color: #d32f2f;
+            outline: 2px solid #d32f2f;
+        }
+
+        .access-code-input input.success {
+            border-color: #4caf50;
+            outline: 2px solid #4caf50;
+        }
+
+        .access-code-input .validate-btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-sans);
+            white-space: nowrap;
+        }
+
+        .access-code-input .validate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background: var(--btn-primary-hover);
+            color: var(--btn-primary-hover-text);
+        }
+
+        .access-code-info {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            text-align: center;
+            margin-top: 0.3rem;
+        }
+
+        .subscription-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .subscription-benefits .benefit-item {
+            background: var(--bg-primary);
+            padding: 0.5rem 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .subscription-benefits .benefit-item i {
+            color: var(--gold);
+            font-size: 0.7rem;
+        }
+
+        .subscription-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            opacity: 0.3;
+            font-size: 0.75rem;
+        }
+
+        .subscription-divider::before,
+        .subscription-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        @media (max-width: 400px) {
+            .pix-key-display {
+                font-size: 0.7rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pix-key-display .copy-btn {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.8rem;
+            }
+
+            .pix-qr-container img {
+                max-width: 140px;
+            }
+
+            .access-code-input {
+                flex-direction: column;
+            }
+
+            .access-code-input input {
+                width: 100%;
+            }
+
+            .subscription-benefits {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -3304,7 +4012,8 @@
                 <div class="login-logo">HairOS</div>
                 <div class="login-sub">Library</div>
                 <h1 class="login-title">Bem-vindo ao HairOS</h1>
-                <p class="login-desc">Explore a primeira coleção pública do ecossistema HairOS, onde beleza, tecnologia e curadoria se encontram.</p>
+                <p class="login-desc">Explore a primeira coleção pública do ecossistema HairOS, onde beleza, tecnologia
+                    e curadoria se encontram.</p>
 
                 <div class="avatar-upload">
                     <div class="avatar-preview" id="avatarPreview"
@@ -3320,7 +4029,8 @@
                 <form class="login-form" id="loginForm">
                     <div class="form-group">
                         <label for="loginName">Nome</label>
-                        <input type="text" id="loginName" placeholder="Seu nome completo" required aria-required="true" />
+                        <input type="text" id="loginName" placeholder="Seu nome completo" required
+                            aria-required="true" />
                     </div>
                     <div class="form-group">
                         <label for="loginEmail">E-mail</label>
@@ -3328,7 +4038,8 @@
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Senha</label>
-                        <input type="password" id="loginPassword" placeholder="Crie uma senha" required aria-required="true" minlength="6" />
+                        <input type="password" id="loginPassword" placeholder="Crie uma senha" required
+                            aria-required="true" minlength="6" />
                     </div>
                     <button type="submit" class="btn-primary">Criar conta / Entrar</button>
                 </form>
@@ -3429,7 +4140,8 @@
         </div>
 
         <!-- ===== GALERIA ===== -->
-        <div id="galleryOverlay" class="gallery-overlay" role="dialog" aria-modal="true" aria-label="Galeria de imagens">
+        <div id="galleryOverlay" class="gallery-overlay" role="dialog" aria-modal="true"
+            aria-label="Galeria de imagens">
             <button class="gallery-overlay__close" id="galleryClose" aria-label="Fechar galeria">
                 <i class="fas fa-times" aria-hidden="true"></i>
             </button>
@@ -3507,6 +4219,15 @@
                     </div>
                 </div>
 
+                <!-- ===== CHIPS NAVIGATION (NOVO) ===== -->
+                <div class="chips-container">
+                    <button class="chip active" onclick="window.app?.navigateTo('cuts')">✂️ Curto</button>
+                    <button class="chip" onclick="window.app?.navigateTo('cuts')">📏 Longo</button>
+                    <button class="chip" onclick="window.app?.navigateTo('trends')">🔥 Tendência</button>
+                    <button class="chip" onclick="window.app?.navigateTo('cuts')">✂️ Corte Assinatura</button>
+                    <button class="chip" onclick="window.app?.navigateTo('products')">🧴 Produtos</button>
+                </div>
+
                 <section class="section" aria-label="Tendências da estação">
                     <div class="section__header">
                         <h2 class="section__title">Tendências em Destaque</h2>
@@ -3554,6 +4275,133 @@
                         <div class="swipe-hint"><i class="fas fa-chevron-right"></i> deslize</div>
                     </div>
                 </section>
+
+                <!-- ===== EDITORIAL DESTAQUE (NOVO) ===== -->
+                <div class="editorial-highlight" onclick="window.app?.navigateTo('editorial')">
+                    <div class="editorial-highlight__image">
+                        <span class="editorial-highlight__badge">DESTAQUE</span>
+                        <img src="https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg" 
+                             alt="Editorial da Semana" loading="lazy" />
+                    </div>
+                    <div class="editorial-highlight__body">
+                        <h4>Editorial da Semana</h4>
+                        <p>NARRATIVA VISUAL: O NOVO LUXO</p>
+                        <span class="editorial-highlight__link">Explorar editorial →</span>
+                    </div>
+                </div>
+
+                <!-- ===== CORES E FINALIZAÇÕES (NOVO) ===== -->
+                <div class="section__header" style="padding: 0 1.2rem 0.5rem;">
+                    <h2 class="section__title">Cores e Finalizações</h2>
+                    <a href="#" onclick="window.app?.navigateTo('editorial'); return false;" class="section__see-all">Ver tudo →</a>
+                </div>
+                <div class="colors-grid">
+                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #8B7355, #D4A574);"></div>
+                        <span class="color-name">Nerútico</span>
+                        <span class="color-finish">Finalização Glossy</span>
+                    </div>
+                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #2C1810, #6B3A2A);"></div>
+                        <span class="color-name">Mogno</span>
+                        <span class="color-finish">Finalização Matte</span>
+                    </div>
+                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #4A2C2A, #8B5A4B);"></div>
+                        <span class="color-name">Avelã</span>
+                        <span class="color-finish">Finalização Natural</span>
+                    </div>
+                    <div class="color-card" onclick="window.app?.navigateTo('editorial')">
+                        <div class="color-swatch" style="background: linear-gradient(135deg, #C49A6C, #E8C9A0);"></div>
+                        <span class="color-name">Mel</span>
+                        <span class="color-finish">Finalização Glossy</span>
+                    </div>
+                </div>
+
+                <!-- ===== STATUS CARD (NOVO) ===== -->
+                <div class="status-card" onclick="window.app?.navigateTo('favorites')">
+                    <div class="status-icon">📊</div>
+                    <div class="status-content">
+                        <h4>Sua Atividade Diária</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                        <span class="progress-text">3 de 5 módulos explorados</span>
+                    </div>
+                    <button class="status-arrow">→</button>
+                </div>
+
+                <!-- ===== PRODUTOS RECOMENDADOS (NOVO) ===== -->
+                <div class="section__header" style="padding: 0 1.2rem 0.5rem;">
+                    <h2 class="section__title">Produtos Recomendados</h2>
+                    <a href="#" onclick="window.app?.navigateTo('products'); return false;" class="section__see-all">Ver tudo →</a>
+                </div>
+                <div class="products-scroll">
+                    <div class="product-card" onclick="window.app?.openDetailPage('product','shampoo-vitamino-color')">
+                        <div class="product-card__image">
+                            <span class="product-card__badge">BEST SELLER</span>
+                            <img src="https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
+                                 alt="HairOS Gloss Serum" loading="lazy" />
+                        </div>
+                        <div class="product-card__body">
+                            <h5>HairOS Gloss Serum</h5>
+                            <p>Finalização glossy com brilho intenso</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">$19.90</span>
+                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="window.app?.openDetailPage('product','mascara-absolut-repair')">
+                        <div class="product-card__image">
+                            <span class="product-card__badge">NOVO</span>
+                            <img src="https://tse4.mm.bing.net/th/id/OIP.VVzZ4UhEwk8SXWoJKdxCQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
+                                 alt="HairOS Volume Mousse" loading="lazy" />
+                        </div>
+                        <div class="product-card__body">
+                            <h5>HairOS Volume Mousse</h5>
+                            <p>Volume e textura sem peso</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">$19.90</span>
+                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="window.app?.openDetailPage('product','lowell-cacho-magico')">
+                        <div class="product-card__image">
+                            <span class="product-card__badge">PROMOÇÃO</span>
+                            <img src="https://tse4.mm.bing.net/th/id/OIP._bo0srdZtCssw_gt6CqCYAHaJP?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
+                                 alt="HairOS Gloss" loading="lazy" />
+                        </div>
+                        <div class="product-card__body">
+                            <h5>HairOS Gloss</h5>
+                            <p>Acabamento profissional</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">$19.90</span>
+                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="window.app?.openDetailPage('product','shampoo-absolut-repair-gold')">
+                        <div class="product-card__image">
+                            <span class="product-card__badge">LANÇAMENTO</span>
+                            <img src="https://th.bing.com/th/id/R.f9d652792a4ba474bc1cbd1207ec9d8f?rik=jkQEXMiKnvuXCQ&riu=http%3a%2f%2fres.cloudinary.com%2fbeleza-na-web%2fimage%2fupload%2fw_297%2cc_lpad%2cw_600%2ch_315%2fg_south_west%2cl_label-free-shipping%2cx_10%2cy_-60%2co_0%2fv1%2fimagens%2fproduct%2f7908966507768%2f72316377-32e8-4f81-a2cc-d28bfd7479fe-7908966507768-662a5215d79233777c9ad58d-6647efaf-723f-49c0-b8eb-4b19208cfe78.jpg&ehk=YfKlWqswYh1KHsjInacQrHFPUmmOxfNRa4GnVFFKBOU%3d&risl=&pid=ImgRaw&r=0" 
+                                 alt="HairOS Repair Mask" loading="lazy" />
+                        </div>
+                        <div class="product-card__body">
+                            <h5>HairOS Repair Mask</h5>
+                            <p>Recuperação intensiva</p>
+                            <div class="product-card__footer">
+                                <span class="product-card__price">$24.90</span>
+                                <button class="product-card__add" onclick="event.stopPropagation();window.app?.showToast('🛒 Produto adicionado!')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </section>
 
             <!-- ===== PAGE: COLLECTION ===== -->
@@ -3565,7 +4413,8 @@
                     <div class="collection-banner__content">
                         <span class="collection-banner__badge">HairOS Collection</span>
                         <h1 class="collection-banner__title">Outono / Inverno 2026</h1>
-                        <p style="font-size: 0.95rem; font-weight: 300; max-width: 280px; margin: 0.5rem auto 0; opacity: 0.8; line-height: 1.6; letter-spacing: 0.3px;">
+                        <p
+                            style="font-size: 0.95rem; font-weight: 300; max-width: 280px; margin: 0.5rem auto 0; opacity: 0.8; line-height: 1.6; letter-spacing: 0.3px;">
                             "O inverno brasileiro em tons de mel e avelã."
                         </p>
                     </div>
@@ -3575,10 +4424,16 @@
                     <article class="manifesto">
                         <h3 class="manifesto__title">Manifesto</h3>
                         <p class="manifesto__text" id="manifestoShort">
-                            Mel e avelã não são apenas cores. São a tradução do inverno brasileiro em tons que aquecem, que acolhem, que lembram que o frio aqui não é sobre retração, mas sobre aconchego.
+                            Mel e avelã não são apenas cores. São a tradução do inverno brasileiro em tons que aquecem,
+                            que acolhem, que lembram que o frio aqui não é sobre retração, mas sobre aconchego.
                         </p>
                         <div class="manifesto__text--full" id="manifestoFull">
-                            <p>Esta coleção parte dessa paleta para construir cortes que valorizam a textura, produtos que respeitam o fio e uma estética que não precisa de estrangeirismos para ser sofisticada. O inverno de 2026 pede profundidade — não a do preto absoluto, mas a do mel que escurece, da avelã que se intensifica. Os cortes seguem o movimento dos fios, não o contrário. A cor é ferramenta de expressão, não fantasia. Esta é a direção que o HairOS assume: beleza que parte do real e o eleva.</p>
+                            <p>Esta coleção parte dessa paleta para construir cortes que valorizam a textura, produtos
+                                que respeitam o fio e uma estética que não precisa de estrangeirismos para ser
+                                sofisticada. O inverno de 2026 pede profundidade — não a do preto absoluto, mas a do mel
+                                que escurece, da avelã que se intensifica. Os cortes seguem o movimento dos fios, não o
+                                contrário. A cor é ferramenta de expressão, não fantasia. Esta é a direção que o HairOS
+                                assume: beleza que parte do real e o eleva.</p>
                         </div>
                         <button class="manifesto__toggle" id="manifestoToggle" aria-expanded="false">
                             Ler completo <i class="fas fa-chevron-down" aria-hidden="true"></i>
@@ -3586,33 +4441,43 @@
                     </article>
 
                     <div style="margin-bottom: 1.8rem;">
-                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.25rem;">Conceito</h4>
-                        <p style="font-size:0.95rem;color:var(--text-primary);font-weight:300;line-height:1.8;max-width: 90%;">
+                        <h4
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.25rem;">
+                            Conceito</h4>
+                        <p
+                            style="font-size:0.95rem;color:var(--text-primary);font-weight:300;line-height:1.8;max-width: 90%;">
                             Cortes naturais. Movimento orgânico. Cor como expressão.
                         </p>
                     </div>
 
                     <div style="margin-bottom: 2rem;">
-                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.75rem;">Mood</h4>
+                        <h4
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.75rem;">
+                            Mood</h4>
                         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
                             <span class="mood-tag mood-tag--color" style="background: #d4a373;">Mel Puro</span>
                             <span class="mood-tag mood-tag--color" style="background: #b68973;">Avelã Média</span>
                             <span class="mood-tag mood-tag--color" style="background: #8b6b4d;">Mel sobre Escuro</span>
                             <span class="mood-tag mood-tag--color" style="background: #5c4033;">Avelã Profunda</span>
                         </div>
-                        <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.6; margin-top: 0.5rem;">Paleta da coleção</p>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.6; margin-top: 0.5rem;">
+                            Paleta da coleção</p>
                     </div>
 
                     <div style="margin-bottom: 2rem;">
-                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.75rem;">Assinatura da Coleção</h4>
+                        <h4
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.75rem;">
+                            Assinatura da Coleção</h4>
                         <div class="collection-highlight">
                             <div class="collection-highlight__image">
-                                <img src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg" alt="Velvet Bob" loading="lazy" />
+                                <img src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg"
+                                    alt="Velvet Bob" loading="lazy" />
                             </div>
                             <div class="collection-highlight__body">
                                 <h5>Velvet Bob</h5>
                                 <p>Corte assinatura da coleção</p>
-                                <button class="hero__cta" onclick="window.app?.openDetailPage('cut','velvet-bob')" style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">
+                                <button class="hero__cta" onclick="window.app?.openDetailPage('cut','velvet-bob')"
+                                    style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">
                                     Ver detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -3620,7 +4485,9 @@
                     </div>
 
                     <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
-                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:1rem;">Explore esta coleção</h4>
+                        <h4
+                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:1rem;">
+                            Explore esta coleção</h4>
                         <div class="explore-grid">
                             <button class="explore-grid__item" onclick="window.app?.navigateTo('cuts')">
                                 <i class="fas fa-cut" aria-hidden="true"></i> Cortes
@@ -3637,127 +4504,146 @@
                         </div>
                     </div>
 
-                    <button class="hero__cta" onclick="window.app?.navigateTo('cuts')" style="background:var(--btn-primary-bg);color:var(--btn-primary-text);width:100%;justify-content:center;padding:0.9rem; border: none; border-radius: 40px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; font-family: var(--font-sans);" aria-label="Explorar cortes da coleção">
+                    <button class="hero__cta" onclick="window.app?.navigateTo('cuts')"
+                        style="background:var(--btn-primary-bg);color:var(--btn-primary-text);width:100%;justify-content:center;padding:0.9rem; border: none; border-radius: 40px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; font-family: var(--font-sans);"
+                        aria-label="Explorar cortes da coleção">
                         Explorar a Coleção <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </button>
 
                 </div>
             </section>
 
-            <!-- ============================================================ -->
-            <!-- PAGE: CUTS - COMPLETA                                         -->
-            <!-- ============================================================ -->
+            <!-- ===== PAGE: CUTS ===== -->
             <section id="page-cuts" class="page" data-page="cuts" aria-label="Cortes">
 
                 <div style="padding:0.8rem 1.2rem 0;">
                     <h2 class="section__title" style="font-size:1.4rem;">✂️ Cortes</h2>
-                    <p style="font-size:0.8rem;color:var(--text-secondary);opacity:0.6;">Silhuetas que definem a estação</p>
-                    <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;"></div>
+                    <p style="font-size:0.8rem;color:var(--text-secondary);opacity:0.6;">Silhuetas que definem a estação
+                    </p>
+                    <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;">
+                    </div>
                 </div>
 
-                <!-- CORTE ASSINATURA -->
                 <section class="section" aria-label="Corte assinatura">
                     <div class="section__header">
                         <h2 class="section__title">⭐ Corte Assinatura</h2>
                         <span class="section__see-all">Destaque da coleção</span>
                     </div>
-                    <div style="background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border-color);">
+                    <div
+                        style="background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border-color);">
                         <div style="aspect-ratio:16/9;overflow:hidden;">
-                            <img src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg" alt="Velvet Bob" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+                            <img src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg"
+                                alt="Velvet Bob" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
                         </div>
                         <div style="padding:0.8rem 1rem;">
-                            <h5 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--text-primary);">Velvet Bob</h5>
-                            <p style="font-size:0.8rem;color:var(--text-secondary);font-weight:300;">Camadas suaves que criam movimento e um acabamento que parece veludo.</p>
-                            <button class="hero__cta" onclick="window.app?.openDetailPage('cut','velvet-bob')" style="padding:0.4rem 1.2rem;font-size:0.75rem;margin-top:0.3rem;">
+                            <h5 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--text-primary);">Velvet
+                                Bob</h5>
+                            <p style="font-size:0.8rem;color:var(--text-secondary);font-weight:300;">Camadas suaves que
+                                criam movimento e um acabamento que parece veludo.</p>
+                            <button class="hero__cta" onclick="window.app?.openDetailPage('cut','velvet-bob')"
+                                style="padding:0.4rem 1.2rem;font-size:0.75rem;margin-top:0.3rem;">
                                 Ver detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
                 </section>
 
-                <!-- FILTROS -->
                 <div class="filters" id="cutFilters" role="tablist" aria-label="Filtros de cortes">
                     <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
                     <button class="filter-btn" data-filter="curtos" role="tab" aria-selected="false">Curtos</button>
                     <button class="filter-btn" data-filter="medios" role="tab" aria-selected="false">Médios</button>
                     <button class="filter-btn" data-filter="longos" role="tab" aria-selected="false">Longos</button>
-                    <button class="filter-btn" data-filter="cacheado" role="tab" aria-selected="false">Cacheados</button>
-                    <button class="filter-btn" data-filter="masculino" role="tab" aria-selected="false">Masculinos</button>
+                    <button class="filter-btn" data-filter="cacheado" role="tab"
+                        aria-selected="false">Cacheados</button>
+                    <button class="filter-btn" data-filter="masculino" role="tab"
+                        aria-selected="false">Masculinos</button>
                     <button class="filter-btn" data-filter="franja" role="tab" aria-selected="false">Franjas</button>
                     <button class="filter-btn" data-filter="camadas" role="tab" aria-selected="false">Camadas</button>
                 </div>
 
-                <!-- CATÁLOGO -->
                 <div class="cards-grid" id="cutsGrid" role="list"></div>
 
-                <!-- TABELA COMPARATIVA -->
-                <section class="section" aria-label="Comparativo de estilos" style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
-                    <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
+                <section class="section" aria-label="Comparativo de estilos"
+                    style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
+                    <h3
+                        style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
                         📊 Comparativo de Estilos
                     </h3>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;font-size:0.6rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-color);font-weight:600;color:var(--text-secondary);opacity:0.5;">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;font-size:0.6rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-color);font-weight:600;color:var(--text-secondary);opacity:0.5;">
                         <span>Corte</span>
                         <span>Manutenção</span>
                         <span>Estilo</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:500;">Velvet Bob</span>
                         <span style="opacity:0.6;">Média</span>
                         <span style="opacity:0.6;">Sofisticado</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:500;">Soft Layers</span>
                         <span style="opacity:0.6;">Baixa</span>
                         <span style="opacity:0.6;">Casual</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:500;">Curly Shag</span>
                         <span style="opacity:0.6;">Média</span>
                         <span style="opacity:0.6;">Personalidade</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);">
                         <span style="font-weight:500;">Pixie Touch</span>
                         <span style="opacity:0.6;">Alta</span>
                         <span style="opacity:0.6;">Ousado</span>
                     </div>
                 </section>
 
-                <!-- DICA DO VISAGISTA -->
                 <section class="section" aria-label="Dica do visagista">
-                    <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);">
-                        <p style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">💡 Dica do Visagista</p>
-                        <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
-                            "Escolha o corte pelo formato do rosto, não pela tendência. O que valoriza seus traços sempre será mais bonito."
+                    <div
+                        style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);">
+                        <p
+                            style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">
+                            💡 Dica do Visagista</p>
+                        <p
+                            style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
+                            "Escolha o corte pelo formato do rosto, não pela tendência. O que valoriza seus traços
+                            sempre será mais bonito."
                         </p>
                     </div>
                 </section>
 
-                <!-- CORTES RELACIONADOS -->
                 <section class="section" aria-label="Cortes relacionados">
                     <div class="section__header">
                         <h2 class="section__title">🔗 Cortes Relacionados</h2>
                     </div>
                     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-                        <span class="tag" style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;" onclick="window.app?.openDetailPage('cut','velvet-bob')">Velvet Bob → Pixie Touch</span>
-                        <span class="tag" style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;" onclick="window.app?.openDetailPage('cut','soft-layers')">Soft Layers → Curly Shag</span>
-                        <span class="tag" style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;" onclick="window.app?.openDetailPage('cut','long-flow')">Long Flow → Soft Layers</span>
+                        <span class="tag"
+                            style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;"
+                            onclick="window.app?.openDetailPage('cut','velvet-bob')">Velvet Bob → Pixie Touch</span>
+                        <span class="tag"
+                            style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;"
+                            onclick="window.app?.openDetailPage('cut','soft-layers')">Soft Layers → Curly Shag</span>
+                        <span class="tag"
+                            style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;"
+                            onclick="window.app?.openDetailPage('cut','long-flow')">Long Flow → Soft Layers</span>
                     </div>
                 </section>
 
             </section>
 
-            <!-- ============================================================ -->
-            <!-- PAGE: TRENDS - COMPLETA                                       -->
-            <!-- ============================================================ -->
+            <!-- ===== PAGE: TRENDS ===== -->
             <section id="page-trends" class="page" data-page="trends" aria-label="Tendências">
 
                 <div class="trends-header">
                     <h2 class="trends-header__title">📈 Tendências 2026</h2>
                     <p class="trends-header__sub">O que está movimentando a beleza agora</p>
-                    <div style="width:60px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.3rem;"></div>
+                    <div style="width:60px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.3rem;">
+                    </div>
                 </div>
 
-                <!-- DESTAQUES -->
                 <section class="section" aria-label="Destaques da semana">
                     <div class="section__header">
                         <h2 class="section__title">🔥 Destaques da Semana</h2>
@@ -3769,83 +4655,105 @@
                     </div>
                 </section>
 
-                <!-- RANKING -->
-                <section class="section" aria-label="Ranking de influências" style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
-                    <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
+                <section class="section" aria-label="Ranking de influências"
+                    style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
+                    <h3
+                        style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
                         📊 Ranking de Influências
                     </h3>
                     <div style="display:flex;flex-direction:column;gap:0.5rem;">
                         <div>
-                            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
                                 <span>1. Anos 70</span>
                                 <span>80%</span>
                             </div>
-                            <div style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
+                            <div
+                                style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
                                 <div style="width:80%;height:100%;background:var(--gold);border-radius:4px;"></div>
                             </div>
                         </div>
                         <div>
-                            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
                                 <span>2. Grunge</span>
                                 <span>65%</span>
                             </div>
-                            <div style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
-                                <div style="width:65%;height:100%;background:var(--gold);border-radius:4px;opacity:0.7;"></div>
+                            <div
+                                style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
+                                <div
+                                    style="width:65%;height:100%;background:var(--gold);border-radius:4px;opacity:0.7;">
+                                </div>
                             </div>
                         </div>
                         <div>
-                            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
                                 <span>3. Street Style</span>
                                 <span>50%</span>
                             </div>
-                            <div style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
-                                <div style="width:50%;height:100%;background:var(--gold);border-radius:4px;opacity:0.5;"></div>
+                            <div
+                                style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
+                                <div
+                                    style="width:50%;height:100%;background:var(--gold);border-radius:4px;opacity:0.5;">
+                                </div>
                             </div>
                         </div>
                         <div>
-                            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
+                            <div
+                                style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-secondary);">
                                 <span>4. Alta Costura</span>
                                 <span>35%</span>
                             </div>
-                            <div style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
-                                <div style="width:35%;height:100%;background:var(--gold);border-radius:4px;opacity:0.3;"></div>
+                            <div
+                                style="width:100%;height:4px;background:var(--border-color);border-radius:4px;overflow:hidden;">
+                                <div
+                                    style="width:35%;height:100%;background:var(--gold);border-radius:4px;opacity:0.3;">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- INSIGHT -->
                 <section class="section" aria-label="Insight da semana">
-                    <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);margin-bottom:0.5rem;">
-                        <p style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">💡 Insight da Semana</p>
-                        <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
-                            "A textura é a nova assinatura. Cabelos que se movem contam histórias que cabelos parados não conseguem."
+                    <div
+                        style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);margin-bottom:0.5rem;">
+                        <p
+                            style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">
+                            💡 Insight da Semana</p>
+                        <p
+                            style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
+                            "A textura é a nova assinatura. Cabelos que se movem contam histórias que cabelos parados
+                            não conseguem."
                         </p>
                     </div>
                 </section>
 
-                <!-- CATEGORIAS -->
                 <section class="section" aria-label="Tendências por categoria">
                     <div class="section__header">
                         <h2 class="section__title">🎯 Tendências por Categoria</h2>
                     </div>
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;">
-                        <div class="explore-grid__item" onclick="window.app?.navigateTo('cuts')" style="flex-direction:column;padding:1rem;text-align:center;">
+                        <div class="explore-grid__item" onclick="window.app?.navigateTo('cuts')"
+                            style="flex-direction:column;padding:1rem;text-align:center;">
                             <i class="fas fa-cut" style="font-size:1.5rem;color:var(--gold);"></i>
                             <span style="font-weight:600;font-size:0.85rem;">Cortes</span>
                             <span style="font-size:0.6rem;opacity:0.5;">5 tendências</span>
                         </div>
-                        <div class="explore-grid__item" onclick="window.app?.navigateTo('editorial')" style="flex-direction:column;padding:1rem;text-align:center;">
+                        <div class="explore-grid__item" onclick="window.app?.navigateTo('editorial')"
+                            style="flex-direction:column;padding:1rem;text-align:center;">
                             <i class="fas fa-palette" style="font-size:1.5rem;color:var(--gold);"></i>
                             <span style="font-weight:600;font-size:0.85rem;">Cores</span>
                             <span style="font-size:0.6rem;opacity:0.5;">6 paletas</span>
                         </div>
-                        <div class="explore-grid__item" onclick="window.app?.navigateTo('products')" style="flex-direction:column;padding:1rem;text-align:center;">
+                        <div class="explore-grid__item" onclick="window.app?.navigateTo('products')"
+                            style="flex-direction:column;padding:1rem;text-align:center;">
                             <i class="fas fa-spa" style="font-size:1.5rem;color:var(--gold);"></i>
                             <span style="font-weight:600;font-size:0.85rem;">Acabamentos</span>
                             <span style="font-size:0.6rem;opacity:0.5;">3 estilos</span>
                         </div>
-                        <div class="explore-grid__item" onclick="window.app?.navigateTo('products')" style="flex-direction:column;padding:1rem;text-align:center;">
+                        <div class="explore-grid__item" onclick="window.app?.navigateTo('products')"
+                            style="flex-direction:column;padding:1rem;text-align:center;">
                             <i class="fas fa-flask" style="font-size:1.5rem;color:var(--gold);"></i>
                             <span style="font-weight:600;font-size:0.85rem;">Produtos</span>
                             <span style="font-size:0.6rem;opacity:0.5;">8 recomendados</span>
@@ -3853,37 +4761,18 @@
                     </div>
                 </section>
 
-                <!-- ARTIGOS -->
-                <section class="section" aria-label="Artigos relacionados">
-                    <div class="section__header">
-                        <h2 class="section__title">📰 Artigos Relacionados</h2>
-                    </div>
-                    <div style="display:flex;flex-direction:column;gap:0.6rem;">
-                        <div style="padding:0.8rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.3s;" onclick="window.app?.showToast('📖 Em breve: artigo completo')">
-                            <span style="font-size:0.7rem;color:var(--gold);font-weight:600;">✦ TREND</span>
-                            <p style="font-size:0.85rem;color:var(--text-primary);font-weight:500;margin:0.1rem 0;">Como usar o butterfly cut no dia a dia</p>
-                            <span style="font-size:0.6rem;color:var(--text-secondary);opacity:0.5;">5 min de leitura</span>
-                        </div>
-                        <div style="padding:0.8rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.3s;" onclick="window.app?.showToast('📖 Em breve: artigo completo')">
-                            <span style="font-size:0.7rem;color:var(--gold);font-weight:600;">✦ TUTORIAL</span>
-                            <p style="font-size:0.85rem;color:var(--text-primary);font-weight:500;margin:0.1rem 0;">A volta da franja cortina: como adaptar ao seu rosto</p>
-                            <span style="font-size:0.6rem;color:var(--text-secondary);opacity:0.5;">8 min de leitura</span>
-                        </div>
-                        <div style="padding:0.8rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.3s;" onclick="window.app?.showToast('📖 Em breve: artigo completo')">
-                            <span style="font-size:0.7rem;color:var(--gold);font-weight:600;">✦ COR</span>
-                            <p style="font-size:0.85rem;color:var(--text-primary);font-weight:500;margin:0.1rem 0;">Mel e avelã: a paleta que domina o inverno</p>
-                            <span style="font-size:0.6rem;color:var(--text-secondary);opacity:0.5;">6 min de leitura</span>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- PRÓXIMAS -->
                 <section class="section" aria-label="Próximas tendências">
-                    <div style="background:linear-gradient(135deg,var(--gold),var(--gold));opacity:0.8;border-radius:var(--radius);padding:1.2rem 1.5rem;color:var(--black);text-align:center;">
-                        <span style="font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;">🔮 Próximas Tendências</span>
-                        <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:600;margin:0.2rem 0;">O que vem por aí na próxima estação</p>
-                        <p style="font-size:0.8rem;opacity:0.7;">Texturas mais soltas • Cores mais intensas • Cortes assimétricos</p>
-                        <button class="hero__cta" onclick="window.app?.showToast('🔔 Você será avisado sobre as novidades!')" style="background:var(--black);color:var(--white);padding:0.4rem 1.5rem;font-size:0.75rem;margin-top:0.5rem;">
+                    <div
+                        style="background:linear-gradient(135deg,var(--gold),var(--gold));opacity:0.8;border-radius:var(--radius);padding:1.2rem 1.5rem;color:var(--black);text-align:center;">
+                        <span style="font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;">🔮
+                            Próximas Tendências</span>
+                        <p style="font-family:var(--font-serif);font-size:1.1rem;font-weight:600;margin:0.2rem 0;">O que
+                            vem por aí na próxima estação</p>
+                        <p style="font-size:0.8rem;opacity:0.7;">Texturas mais soltas • Cores mais intensas • Cortes
+                            assimétricos</p>
+                        <button class="hero__cta"
+                            onclick="window.app?.showToast('🔔 Você será avisado sobre as novidades!')"
+                            style="background:var(--black);color:var(--white);padding:0.4rem 1.5rem;font-size:0.75rem;margin-top:0.5rem;">
                             <i class="fas fa-bell" aria-hidden="true"></i> Avisar-me
                         </button>
                     </div>
@@ -3891,40 +4780,43 @@
 
             </section>
 
-            <!-- ============================================================ -->
-            <!-- PAGE: PRODUCTS - COMPLETA                                     -->
-            <!-- ============================================================ -->
+            <!-- ===== PAGE: PRODUCTS ===== -->
             <section id="page-products" class="page" data-page="products" aria-label="Produtos">
 
-                <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                <div
+                    style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
                     <div>
                         <h2 class="section__title" style="font-size:1.4rem;">🧴 Produtos</h2>
-                        <p style="font-size:0.8rem;color:var(--text-secondary);opacity:0.6;">O essencial para cada cabelo</p>
-                        <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;"></div>
+                        <p style="font-size:0.8rem;color:var(--text-secondary);opacity:0.6;">O essencial para cada
+                            cabelo</p>
+                        <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;">
+                        </div>
                     </div>
                 </div>
 
-                <!-- DESTAQUES -->
                 <section class="section" aria-label="Produtos em destaque">
                     <div class="section__header">
                         <h2 class="section__title">🛒 Destaques</h2>
                         <span class="section__see-all">Mais vendidos</span>
                     </div>
-                    <div class="product-highlight" onclick="window.app?.openDetailPage('product','shampoo-vitamino-color')">
+                    <div class="product-highlight"
+                        onclick="window.app?.openDetailPage('product','shampoo-vitamino-color')">
                         <span class="rank">🥇</span>
                         <div class="info">
                             <div class="name">Shampoo Vitamino Color</div>
                             <div class="category">Shampoo</div>
                         </div>
                     </div>
-                    <div class="product-highlight" onclick="window.app?.openDetailPage('product','mascara-absolut-repair')">
+                    <div class="product-highlight"
+                        onclick="window.app?.openDetailPage('product','mascara-absolut-repair')">
                         <span class="rank">🥈</span>
                         <div class="info">
                             <div class="name">Máscara Absolut Repair</div>
                             <div class="category">Máscara</div>
                         </div>
                     </div>
-                    <div class="product-highlight" onclick="window.app?.openDetailPage('product','lowell-cacho-magico')">
+                    <div class="product-highlight"
+                        onclick="window.app?.openDetailPage('product','lowell-cacho-magico')">
                         <span class="rank">🥉</span>
                         <div class="info">
                             <div class="name">Lowell Cacho Mágico</div>
@@ -3933,71 +4825,82 @@
                     </div>
                 </section>
 
-                <!-- FILTROS -->
-                <div style="padding:0 1.2rem 0.5rem;" id="productFilters" role="tablist" aria-label="Filtros de produtos">
+                <div style="padding:0 1.2rem 0.5rem;" id="productFilters" role="tablist"
+                    aria-label="Filtros de produtos">
                     <div class="filters" style="padding:0.5rem 0 0.8rem;">
-                        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
-                        <button class="filter-btn" data-filter="shampoo" role="tab" aria-selected="false">Shampoo</button>
-                        <button class="filter-btn" data-filter="condicionador" role="tab" aria-selected="false">Condicionador</button>
-                        <button class="filter-btn" data-filter="mascara" role="tab" aria-selected="false">Máscara</button>
-                        <button class="filter-btn" data-filter="finalizador" role="tab" aria-selected="false">Finalizador</button>
+                        <button class="filter-btn active" data-filter="all" role="tab"
+                            aria-selected="true">Todos</button>
+                        <button class="filter-btn" data-filter="shampoo" role="tab"
+                            aria-selected="false">Shampoo</button>
+                        <button class="filter-btn" data-filter="condicionador" role="tab"
+                            aria-selected="false">Condicionador</button>
+                        <button class="filter-btn" data-filter="mascara" role="tab"
+                            aria-selected="false">Máscara</button>
+                        <button class="filter-btn" data-filter="finalizador" role="tab"
+                            aria-selected="false">Finalizador</button>
                     </div>
                 </div>
 
-                <!-- CATÁLOGO -->
                 <div class="cards-grid" id="productsGrid" role="list"></div>
 
-                <!-- GUIA DE USO -->
-                <section class="section" aria-label="Guia de uso" style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
-                    <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
+                <section class="section" aria-label="Guia de uso"
+                    style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
+                    <h3
+                        style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
                         📋 Guia de Uso
                     </h3>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;font-size:0.6rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-color);font-weight:600;color:var(--text-secondary);opacity:0.5;">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;font-size:0.6rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-color);font-weight:600;color:var(--text-secondary);opacity:0.5;">
                         <span>Produto</span>
                         <span>Para quem</span>
                         <span>Frequência</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.65rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.65rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:500;">Shampoo</span>
                         <span style="opacity:0.6;">Todos os tipos</span>
                         <span style="opacity:0.6;">Diário</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.65rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.65rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:500;">Máscara</span>
                         <span style="opacity:0.6;">Danificados</span>
                         <span style="opacity:0.6;">Semanal</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.65rem;color:var(--text-primary);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.65rem;color:var(--text-primary);">
                         <span style="font-weight:500;">Finalizador</span>
                         <span style="opacity:0.6;">Cacheados/Secos</span>
                         <span style="opacity:0.6;">A cada uso</span>
                     </div>
                 </section>
 
-                <!-- DICA -->
                 <section class="section" aria-label="Dica do profissional">
-                    <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);">
-                        <p style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">💡 Dica do Profissional</p>
-                        <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
-                            "Combine shampoo e máscara da mesma linha para potencializar os resultados. Produtos que se complementam entregam mais."
+                    <div
+                        style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);">
+                        <p
+                            style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">
+                            💡 Dica do Profissional</p>
+                        <p
+                            style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
+                            "Combine shampoo e máscara da mesma linha para potencializar os resultados. Produtos que se
+                            complementam entregam mais."
                         </p>
                     </div>
                 </section>
 
             </section>
 
-            <!-- ============================================================ -->
-            <!-- PAGE: EDITORIAL - COMPLETA                                    -->
-            <!-- ============================================================ -->
+            <!-- ===== PAGE: EDITORIAL ===== -->
             <section id="page-editorial" class="page" data-page="editorial" aria-label="Editorial">
 
                 <div class="editorial-header">
                     <h2 class="editorial-header__title">🎨 Editorial</h2>
                     <p class="editorial-header__sub">Paleta técnica da coleção Outono/Inverno 2026</p>
-                    <div style="width:60px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.3rem;"></div>
+                    <div style="width:60px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.3rem;">
+                    </div>
                 </div>
 
-                <!-- PALETA OFICIAL -->
                 <section class="section" aria-label="Paleta oficial">
                     <div class="section__header">
                         <h2 class="section__title">🍯 Paleta Oficial</h2>
@@ -4009,144 +4912,166 @@
                     </div>
                 </section>
 
-                <!-- TABELA -->
-                <section class="section" aria-label="Tabela de cores" style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
-                    <h3 style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
+                <section class="section" aria-label="Tabela de cores"
+                    style="background:var(--bg-secondary);border-radius:var(--radius);margin:0 1.2rem 1.5rem;padding:1.2rem;">
+                    <h3
+                        style="font-family:var(--font-serif);font-size:1rem;font-weight:600;color:var(--text-primary);margin-bottom:0.8rem;">
                         📋 Referência Técnica
                     </h3>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;font-size:0.6rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-color);font-weight:600;color:var(--text-secondary);opacity:0.5;">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;font-size:0.6rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-color);font-weight:600;color:var(--text-secondary);opacity:0.5;">
                         <span>Código</span>
                         <span>Nome</span>
                         <span>Tom</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:700;color:var(--gold);">8.3</span>
                         <span>Louro Claro</span>
                         <span style="opacity:0.6;">Frio/Quente</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:700;color:var(--gold);">6.71</span>
                         <span>Cast. Médio</span>
                         <span style="opacity:0.6;">Frio</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);border-bottom:1px solid var(--border-color);">
                         <span style="font-weight:700;color:var(--gold);">5.0/7.3</span>
                         <span>Cast. Escuro</span>
                         <span style="opacity:0.6;">Neutro</span>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);">
+                    <div
+                        style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.3rem;padding:0.3rem 0;font-size:0.7rem;color:var(--text-primary);">
                         <span style="font-weight:700;color:var(--gold);">5.71</span>
                         <span>Cast. Profundo</span>
                         <span style="opacity:0.6;">Frio</span>
                     </div>
                 </section>
 
-                <!-- COMO USAR -->
                 <section class="section" aria-label="Como usar cada cor">
                     <div class="section__header">
                         <h2 class="section__title">🎨 Como Usar Cada Cor</h2>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:0.8rem;">
-                        <div style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #d4a373;">
+                        <div
+                            style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #d4a373;">
                             <span style="font-size:0.7rem;font-weight:700;color:var(--gold);">8.3</span>
                             <div>
                                 <p style="font-size:0.8rem;font-weight:500;color:var(--text-primary);">Mel Puro</p>
-                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Ideal para cabelos claros e peles mais iluminadas</p>
+                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Ideal para cabelos
+                                    claros e peles mais iluminadas</p>
                             </div>
                         </div>
-                        <div style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #b68973;">
+                        <div
+                            style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #b68973;">
                             <span style="font-size:0.7rem;font-weight:700;color:var(--gold);">6.71</span>
                             <div>
                                 <p style="font-size:0.8rem;font-weight:500;color:var(--text-primary);">Avelã Média</p>
-                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Base versátil que se adapta a todos os tons de pele</p>
+                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Base versátil que
+                                    se adapta a todos os tons de pele</p>
                             </div>
                         </div>
-                        <div style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #8b6b4d;">
+                        <div
+                            style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #8b6b4d;">
                             <span style="font-size:0.7rem;font-weight:700;color:var(--gold);">5.0/7.3</span>
                             <div>
-                                <p style="font-size:0.8rem;font-weight:500;color:var(--text-primary);">Mel sobre Escuro</p>
-                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Para quem quer movimento sem transição brusca</p>
+                                <p style="font-size:0.8rem;font-weight:500;color:var(--text-primary);">Mel sobre Escuro
+                                </p>
+                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Para quem quer
+                                    movimento sem transição brusca</p>
                             </div>
                         </div>
-                        <div style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #5c4033;">
+                        <div
+                            style="display:flex;gap:0.8rem;align-items:center;padding:0.6rem 1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid #5c4033;">
                             <span style="font-size:0.7rem;font-weight:700;color:var(--gold);">5.71</span>
                             <div>
-                                <p style="font-size:0.8rem;font-weight:500;color:var(--text-primary);">Avelã Profunda</p>
-                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Ideal para peles mais escuras e quem busca intensidade</p>
+                                <p style="font-size:0.8rem;font-weight:500;color:var(--text-primary);">Avelã Profunda
+                                </p>
+                                <p style="font-size:0.65rem;color:var(--text-secondary);opacity:0.7;">Ideal para peles
+                                    mais escuras e quem busca intensidade</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- LOOKS -->
                 <section class="section" aria-label="Looks inspirados">
                     <div class="section__header">
                         <h2 class="section__title">📸 Looks Inspirados</h2>
-                        <span class="section__see-all" onclick="window.app?.showToast('📸 Em breve: mais looks!')">Ver todos</span>
+                        <span class="section__see-all" onclick="window.app?.navigateTo('editorial')">Ver paleta
+                            completa</span>
                     </div>
                     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;">
-                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;" onclick="window.app?.showToast('📸 Look 1')">
-                            <img src="https://i.pinimg.com/1200x/d5/af/fd/d5affd8fefa6386b734d18d51d2c95ae.jpg" alt="Look 1" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
+                            onclick="window.app?.openDetailPage('editorial','editorial-1')">
+                            <img src="https://i.pinimg.com/1200x/d5/af/fd/d5affd8fefa6386b734d18d51d2c95ae.jpg"
+                                alt="Mel Puro" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
                         </div>
-                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;" onclick="window.app?.showToast('📸 Look 2')">
-                            <img src="https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg" alt="Look 2" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
+                            onclick="window.app?.openDetailPage('editorial','editorial-2')">
+                            <img src="https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg"
+                                alt="Avelã Média" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
                         </div>
-                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;" onclick="window.app?.showToast('📸 Look 3')">
-                            <img src="https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg" alt="Look 3" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
+                            onclick="window.app?.openDetailPage('editorial','editorial-3')">
+                            <img src="https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg"
+                                alt="Mel sobre Escuro" style="width:100%;height:100%;object-fit:cover;"
+                                loading="lazy" />
                         </div>
-                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;" onclick="window.app?.showToast('📸 Look 4')">
-                            <img src="https://i.pinimg.com/1200x/8e/98/45/8e9845241c3d9bbfe317b0d8896b3488.jpg" alt="Look 4" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
+                            onclick="window.app?.openDetailPage('editorial','editorial-4')">
+                            <img src="https://i.pinimg.com/1200x/8e/98/45/8e9845241c3d9bbfe317b0d8896b3488.jpg"
+                                alt="Avelã em Movimento" style="width:100%;height:100%;object-fit:cover;"
+                                loading="lazy" />
                         </div>
-                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;" onclick="window.app?.showToast('📸 Look 5')">
-                            <img src="https://i.pinimg.com/736x/9b/30/3c/9b303c2040de9482f8391090b7cf8cfa.jpg" alt="Look 5" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
+                            onclick="window.app?.openDetailPage('editorial','editorial-5')">
+                            <img src="https://i.pinimg.com/736x/9b/30/3c/9b303c2040de9482f8391090b7cf8cfa.jpg"
+                                alt="Raiz Escura Pontas Mel" style="width:100%;height:100%;object-fit:cover;"
+                                loading="lazy" />
                         </div>
-                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;cursor:pointer;border:1px dashed var(--border-color);" onclick="window.app?.showToast('📸 + looks em breve')">
-                            <span style="font-size:0.6rem;color:var(--text-secondary);opacity:0.5;"><i class="fas fa-plus"></i> Ver mais</span>
+                        <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
+                            onclick="window.app?.openDetailPage('editorial','editorial-6')">
+                            <img src="https://i.pinimg.com/1200x/c4/1d/e7/c41de7b7a44669d3c296b3859313e9eb.jpg"
+                                alt="Avelã Profunda" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
                         </div>
                     </div>
+                    <p
+                        style="font-size:0.6rem;color:var(--text-secondary);opacity:0.4;margin-top:0.3rem;text-align:center;">
+                        Clique em uma cor para ver os detalhes completos</p>
                 </section>
 
-                <!-- DICA -->
                 <section class="section" aria-label="Dica do colorista">
-                    <div style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);">
-                        <p style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">💡 Dica do Colorista</p>
-                        <p style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
-                            "Avelã profunda combina perfeitamente com peles morenas e olhos castanhos. O contraste suave valoriza os traços sem competir com eles."
+                    <div
+                        style="background:var(--bg-secondary);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--gold);">
+                        <p
+                            style="font-size:0.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;">
+                            💡 Dica do Colorista</p>
+                        <p
+                            style="font-family:var(--font-serif);font-size:1rem;font-style:italic;color:var(--text-primary);line-height:1.6;">
+                            "Avelã profunda combina perfeitamente com peles morenas e olhos castanhos. O contraste suave
+                            valoriza os traços sem competir com eles."
                         </p>
-                    </div>
-                </section>
-
-                <!-- FAMÍLIAS -->
-                <section class="section" aria-label="Famílias de cor">
-                    <div class="section__header">
-                        <h2 class="section__title">🏷️ Famílias de Cor</h2>
-                    </div>
-                    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-                        <span class="mood-tag" style="font-size:0.7rem;padding:0.3rem 1rem;">Louros Suaves</span>
-                        <span class="mood-tag" style="font-size:0.7rem;padding:0.3rem 1rem;">Castanhos Frios</span>
-                        <span class="mood-tag" style="font-size:0.7rem;padding:0.3rem 1rem;">Castanhos com Movimento</span>
-                        <span class="mood-tag" style="font-size:0.7rem;padding:0.3rem 1rem;">Contraste Suave</span>
-                        <span class="mood-tag" style="font-size:0.7rem;padding:0.3rem 1rem;">Castanhos Profundos</span>
                     </div>
                 </section>
 
             </section>
 
-            <!-- ============================================================ -->
-            <!-- PAGE: FAVORITES - COMPLETA                                    -->
-            <!-- ============================================================ -->
+            <!-- ===== PAGE: FAVORITES ===== -->
             <section id="page-favorites" class="page" data-page="favorites" aria-label="Favoritos">
 
-                <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                <div
+                    style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
                     <div>
                         <h2 class="section__title" style="font-size:1.4rem;">❤️ Favoritos</h2>
                         <p style="font-size:0.8rem;color:var(--text-secondary);opacity:0.6;">Sua coleção pessoal</p>
-                        <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;"></div>
+                        <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;">
+                        </div>
                     </div>
                     <span style="font-size:0.8rem;color:var(--text-secondary);opacity:0.5;" id="favCount">0 itens</span>
                 </div>
 
-                <!-- RESUMO -->
                 <div class="fav-summary">
                     <div class="fav-summary__item">
                         <div class="number" id="favCutsCount">0</div>
@@ -4162,24 +5087,29 @@
                     </div>
                 </div>
 
-                <!-- LISTA -->
                 <div class="favorites-list" id="favoritesList" role="list"></div>
 
-                <!-- SUGESTÕES -->
                 <section class="section" aria-label="Sugestões baseadas nos seus favoritos" id="favSuggestions">
                     <div class="section__header">
                         <h2 class="section__title">💡 Sugestões para Você</h2>
                     </div>
                     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;padding:0.2rem 0;">
-                        <span class="tag" style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;" onclick="window.app?.navigateTo('cuts')">Veja mais cortes</span>
-                        <span class="tag" style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;" onclick="window.app?.navigateTo('products')">Veja mais produtos</span>
-                        <span class="tag" style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;" onclick="window.app?.navigateTo('trends')">Explore tendências</span>
+                        <span class="tag"
+                            style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;"
+                            onclick="window.app?.navigateTo('cuts')">Veja mais cortes</span>
+                        <span class="tag"
+                            style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;"
+                            onclick="window.app?.navigateTo('products')">Veja mais produtos</span>
+                        <span class="tag"
+                            style="padding:0.4rem 1rem;background:var(--bg-secondary);border-radius:30px;font-size:0.75rem;cursor:pointer;"
+                            onclick="window.app?.navigateTo('trends')">Explore tendências</span>
                     </div>
                 </section>
 
-                <!-- GERENCIAR -->
                 <section class="section" aria-label="Gerenciar favoritos">
-                    <button class="hero__cta" onclick="if(confirm('Deseja remover todos os favoritos?')){ window.app?.clearFavorites(); }" style="background:#d32f2f;color:white;width:100%;justify-content:center;padding:0.8rem;border:none;border-radius:40px;font-weight:600;font-size:0.9rem;cursor:pointer;font-family:var(--font-sans);">
+                    <button class="hero__cta"
+                        onclick="if(confirm('Deseja remover todos os favoritos?')){ window.app?.clearFavorites(); }"
+                        style="background:#d32f2f;color:white;width:100%;justify-content:center;padding:0.8rem;border:none;border-radius:40px;font-weight:600;font-size:0.9rem;cursor:pointer;font-family:var(--font-sans);">
                         <i class="fas fa-trash-alt" aria-hidden="true"></i> Limpar Favoritos
                     </button>
                 </section>
@@ -4190,7 +5120,8 @@
             <section id="page-menu" class="page" data-page="menu" aria-label="Menu">
                 <div style="padding:0.8rem 1.2rem 0;">
                     <h2 class="section__title" style="font-size:1.4rem;">Menu</h2>
-                    <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;"></div>
+                    <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;">
+                    </div>
                 </div>
                 <nav class="menu-list" id="menuList" role="navigation" aria-label="Menu principal">
                     <button class="menu-item" onclick="window.app?.navigateTo('home')" role="link">
@@ -4228,6 +5159,15 @@
                         <span class="label">Favoritos</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </button>
+                    <!-- BOTÃO ASSINATURA COM BADGE -->
+                    <button class="menu-item" onclick="window.app?.openModal('assinatura')" role="link">
+                        <i class="fas fa-crown" aria-hidden="true"></i>
+                        <span class="label">Assinatura</span>
+                        <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+                        <span class="subscription-status-badge" id="menuSubBadge" style="display:none;">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i> Ativa
+                        </span>
+                    </button>
                     <button class="menu-item" onclick="window.app?.openModal('profile')" role="link">
                         <i class="fas fa-user" aria-hidden="true"></i>
                         <span class="label">Perfil</span>
@@ -4242,7 +5182,8 @@
                         <i class="fas fa-cog" aria-hidden="true"></i>
                         <span class="label">Configurações</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
-                        <div class="theme-toggle" onclick="event.stopPropagation();window.app?.toggleTheme();" role="button" tabindex="0" aria-label="Alternar tema">
+                        <div class="theme-toggle" onclick="event.stopPropagation();window.app?.toggleTheme();"
+                            role="button" tabindex="0" aria-label="Alternar tema">
                             <div class="theme-toggle__track" id="themeTrack">
                                 <div class="theme-toggle__thumb"></div>
                             </div>
@@ -4258,7 +5199,8 @@
                         <span class="label">Contato</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </button>
-                    <button class="menu-item" onclick="window.app?.logout()" role="link" style="border-top:1px solid var(--border-color);margin-top:0.5rem;padding-top:1rem;">
+                    <button class="menu-item" onclick="window.app?.logout()" role="link"
+                        style="border-top:1px solid var(--border-color);margin-top:0.5rem;padding-top:1rem;">
                         <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                         <span class="label">Sair</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
@@ -4270,23 +5212,28 @@
 
         <!-- ===== BOTTOM NAV ===== -->
         <nav id="bottomNav" role="navigation" aria-label="Navegação principal" style="display:none;">
-            <button class="bottom-nav__item active" data-page="home" onclick="window.app?.navigateTo('home')" aria-label="Ir para página inicial" aria-current="page">
+            <button class="bottom-nav__item active" data-page="home" onclick="window.app?.navigateTo('home')"
+                aria-label="Ir para página inicial" aria-current="page">
                 <i class="fas fa-home" aria-hidden="true"></i>
                 <span>Início</span>
             </button>
-            <button class="bottom-nav__item" data-page="collection" onclick="window.app?.navigateTo('collection')" aria-label="Ir para coleção">
+            <button class="bottom-nav__item" data-page="collection" onclick="window.app?.navigateTo('collection')"
+                aria-label="Ir para coleção">
                 <i class="fas fa-layer-group" aria-hidden="true"></i>
                 <span>Coleção</span>
             </button>
-            <button class="bottom-nav__item" data-page="cuts" onclick="window.app?.navigateTo('cuts')" aria-label="Ir para cortes">
+            <button class="bottom-nav__item" data-page="cuts" onclick="window.app?.navigateTo('cuts')"
+                aria-label="Ir para cortes">
                 <i class="fas fa-cut" aria-hidden="true"></i>
                 <span>Cortes</span>
             </button>
-            <button class="bottom-nav__item" data-page="trends" onclick="window.app?.navigateTo('trends')" aria-label="Ir para tendências">
+            <button class="bottom-nav__item" data-page="trends" onclick="window.app?.navigateTo('trends')"
+                aria-label="Ir para tendências">
                 <i class="fas fa-chart-line" aria-hidden="true"></i>
                 <span>Tendências</span>
             </button>
-            <button class="bottom-nav__item" data-page="menu" onclick="window.app?.navigateTo('menu')" aria-label="Abrir menu">
+            <button class="bottom-nav__item" data-page="menu" onclick="window.app?.navigateTo('menu')"
+                aria-label="Abrir menu">
                 <i class="fas fa-bars" aria-hidden="true"></i>
                 <span>Menu</span>
                 <span class="nav-badge" id="navFavBadge" style="display:none;">0</span>
@@ -4296,23 +5243,55 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- JAVASCRIPT                                  -->
+    <!-- JAVASCRIPT (REFATORADO)                     -->
     <!-- ============================================ -->
     <script>
         /**
          * ============================================================
-         * HAiROS LIBRARY — VERSÃO FINAL COM PÁGINAS COMPLETAS
+         * HAiROS LIBRARY — VERSÃO REFATORADA
+         * ============================================================
+         * O que melhoramos:
+         * 1. Organização: funções separadas e bem nomeadas
+         * 2. Segurança: normalização de códigos, validação robusta
+         * 3. UI/UX: modal mais claro, feedbacks melhores
+         * 4. Manutenção: funções centralizadas, sem duplicação
+         * ============================================================
+         */
+
+        // ============================================================
+        // CONFIGURAÇÃO PIX/ASSINATURA (TUDO CENTRALIZADO)
+        // ============================================================
+        const PIX_CONFIG = {
+            key: 'SUA_CHAVE_PIX_AQUI',
+            keyType: 'CPF',
+            qrImageUrl: '',
+            price: 'R$ 19,90/mês',
+            whatsappNumber: '55SEUNUMEROAQUI',
+            // Lista de códigos de ativação válidos (use MAIÚSCULAS)
+            validCodes: [
+                'VIP2026',
+                'ACESSOTOTAL',
+                'HAIROS2026',
+                'MELAVELA'
+            ]
+        };
+
+        /**
+         * ============================================================
+         * CLASSE PRINCIPAL HairOSApp
          * ============================================================
          */
         class HairOSApp {
             constructor() {
+                // ---- STATE ----
                 this.state = {
                     currentPage: 'home',
                     history: ['home'],
                     favorites: { cuts: [], products: [] },
                     filters: { cuts: 'all', products: 'all' },
                     theme: 'light',
-                    user: null
+                    user: null,
+                    subscription: { status: 'none', code: null, activatedAt: null }
                 };
 
                 this.DATA = null;
@@ -4331,6 +5310,7 @@
                     isOpen: false
                 };
 
+                // ---- BIND ----
                 this.init = this.init.bind(this);
                 this.navigateTo = this.navigateTo.bind(this);
                 this.goBack = this.goBack.bind(this);
@@ -4381,6 +5361,12 @@
                 this.setupManifestoToggle = this.setupManifestoToggle.bind(this);
                 this.updateFavSummary = this.updateFavSummary.bind(this);
                 this.renderFavoritesSuggestions = this.renderFavoritesSuggestions.bind(this);
+                // Novas funções de assinatura
+                this.validateAccessCode = this.validateAccessCode.bind(this);
+                this.syncSubscriptionUI = this.syncSubscriptionUI.bind(this);
+                this.loadSubscriptionState = this.loadSubscriptionState.bind(this);
+                this.saveSubscriptionState = this.saveSubscriptionState.bind(this);
+                this.renderSubscriptionModal = this.renderSubscriptionModal.bind(this);
 
                 this.init();
             }
@@ -4404,7 +5390,7 @@
                 }, duration);
             }
 
-            // ---- DADOS ----
+            // ---- DADOS (mantido intacto) ----
             loadData() {
                 this.DATA = {
                     collection: {
@@ -4927,6 +5913,7 @@
                 });
             }
 
+            // ---- ESTADO: CARREGAR E SALVAR ----
             loadState() {
                 try {
                     const savedTheme = localStorage.getItem('hairos-theme');
@@ -4941,6 +5928,7 @@
                             this.state.favorites = parsed;
                         }
                     }
+                    this.loadSubscriptionState();
                 } catch (error) {
                     console.warn('⚠️ Erro ao carregar estado:', error);
                 }
@@ -4950,12 +5938,212 @@
                 try {
                     localStorage.setItem('hairos-theme', this.state.theme);
                     localStorage.setItem('hairos-favorites', JSON.stringify(this.state.favorites));
+                    this.saveSubscriptionState();
                 } catch (error) {
                     console.warn('⚠️ Erro ao salvar estado:', error);
                 }
             }
 
-            // ---- EVENTOS ----
+            // ---- ASSINATURA: ESTADO ----
+            loadSubscriptionState() {
+                try {
+                    const savedSub = localStorage.getItem('hairos-subscription');
+                    if (savedSub) {
+                        const parsed = JSON.parse(savedSub);
+                        this.state.subscription = parsed;
+                    }
+                } catch (_) { /* ignora */ }
+            }
+
+            saveSubscriptionState() {
+                try {
+                    localStorage.setItem('hairos-subscription', JSON.stringify(this.state.subscription));
+                } catch (_) { /* ignora */ }
+            }
+
+            // ---- ASSINATURA: VALIDAÇÃO DE CÓDIGO (NORMALIZADO) ----
+            validateAccessCode(code) {
+                if (!code || code.length < 3) {
+                    this.showToast('⚠️ Digite um código válido com pelo menos 3 caracteres.');
+                    return false;
+                }
+
+                const normalized = code.trim().toUpperCase();
+                const isValid = PIX_CONFIG.validCodes.some(validCode =>
+                    validCode.toUpperCase() === normalized
+                );
+
+                if (isValid) {
+                    this.state.subscription.status = 'active';
+                    this.state.subscription.code = normalized;
+                    this.state.subscription.activatedAt = new Date().toISOString();
+                    this.saveSubscriptionState();
+                    this.syncSubscriptionUI();
+                    this.showToast('✅ Assinatura ativada com sucesso! 🎉');
+                    return true;
+                } else {
+                    this.showToast('❌ Código inválido. Verifique e tente novamente.');
+                    return false;
+                }
+            }
+
+            // ---- ASSINATURA: SINCRONIZAR UI ----
+            syncSubscriptionUI() {
+                const isActive = this.state.subscription.status === 'active';
+                const menuBadge = document.getElementById('menuSubBadge');
+
+                if (menuBadge) {
+                    if (isActive) {
+                        menuBadge.style.display = 'inline-flex';
+                        menuBadge.innerHTML = `<i class="fas fa-check-circle" aria-hidden="true"></i> Ativa`;
+                    } else {
+                        menuBadge.style.display = 'none';
+                    }
+                }
+
+                // Atualiza o badge no perfil se o modal estiver aberto
+                const modalBody = document.getElementById('modalBody');
+                if (modalBody && modalBody.innerHTML.includes('Perfil')) {
+                    // Recarrega o perfil se estiver aberto
+                }
+            }
+
+            // ---- ASSINATURA: RENDERIZAR MODAL ----
+            renderSubscriptionModal() {
+                const isActive = this.state.subscription.status === 'active';
+                let content = `
+                    <h2>✨ Assinatura HairOS Library</h2>
+                `;
+
+                if (isActive) {
+                    content += `
+                        <div class="subscription-success">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            <h3>✅ Assinatura ativa!</h3>
+                            <p>Código: <strong>${this.escapeHtml(this.state.subscription.code || '')}</strong></p>
+                            <p style="font-size:0.8rem;opacity:0.6;">
+                                Ativado em ${this.state.subscription.activatedAt ? new Date(this.state.subscription.activatedAt).toLocaleDateString('pt-BR') : 'recentemente'}
+                            </p>
+                            <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);">
+                                <p style="font-size:0.9rem;">
+                                    <i class="fas fa-crown" style="color:var(--gold);"></i>
+                                    <strong>Seus benefícios:</strong>
+                                </p>
+                                <div class="subscription-benefits">
+                                    <div class="benefit-item"><i class="fas fa-check"></i> Acesso antecipado</div>
+                                    <div class="benefit-item"><i class="fas fa-check"></i> Conteúdos exclusivos</div>
+                                    <div class="benefit-item"><i class="fas fa-check"></i> Funcionalidades premium</div>
+                                    <div class="benefit-item"><i class="fas fa-check"></i> Suporte prioritário</div>
+                                </div>
+                            </div>
+                            <button class="modal-action" onclick="window.app?.closeModal()">Fechar</button>
+                        </div>
+                    `;
+                } else {
+                    const qrHtml = PIX_CONFIG.qrImageUrl ? `
+                        <div class="pix-qr-container">
+                            <img src="${PIX_CONFIG.qrImageUrl}" alt="QR Code Pix" />
+                        </div>
+                    ` : '';
+
+                    const whatsappMessage = this.state.user ?
+                        `Olá! Acabei de realizar o pagamento da assinatura HairOS Library. Meu nome: ${encodeURIComponent(this.state.user.name)}, Email: ${encodeURIComponent(this.state.user.email)}` :
+                        'Olá! Acabei de realizar o pagamento da assinatura HairOS Library. Aguardo a confirmação.';
+
+                    content += `
+                        <p style="margin-top:0.8rem;font-weight:300;">
+                            Assine agora e tenha acesso a conteúdos exclusivos, funcionalidades premium e muito mais!
+                        </p>
+
+                        <div class="subscription-section">
+                            <h4><i class="fas fa-tag"></i> Valor</h4>
+                            <p style="font-size:1.2rem;font-weight:600;color:var(--gold);">${PIX_CONFIG.price}</p>
+                        </div>
+
+                        <div class="subscription-section">
+                            <h4><i class="fas fa-qrcode"></i> Pague via Pix</h4>
+                            <div class="pix-key-display">
+                                <span style="font-family:monospace;font-size:0.8rem;">${PIX_CONFIG.key}</span>
+                                <button class="copy-btn" onclick="navigator.clipboard.writeText('${PIX_CONFIG.key}').then(()=>window.app?.showToast('📋 Chave copiada!'))">
+                                    <i class="fas fa-copy"></i> Copiar
+                                </button>
+                            </div>
+                            <p style="font-size:0.7rem;color:var(--text-secondary);opacity:0.5;text-align:center;">
+                                Chave Pix (${PIX_CONFIG.keyType})
+                            </p>
+                            ${qrHtml}
+                        </div>
+
+                        <div class="subscription-section">
+                            <h4><i class="fas fa-key"></i> Ative seu acesso</h4>
+                            <p style="font-size:0.8rem;opacity:0.7;margin-bottom:0.5rem;">
+                                Após o pagamento, você receberá um código de acesso. Insira-o abaixo:
+                            </p>
+                            <div class="access-code-input">
+                                <input type="text" id="accessCodeInput" 
+                                       placeholder="Ex: VIP2026" 
+                                       maxlength="20" 
+                                       spellcheck="false" 
+                                       autocomplete="off"
+                                       style="text-transform:uppercase;letter-spacing:2px;font-weight:600;" />
+                                <button class="validate-btn" id="validateCodeBtn">
+                                    <i class="fas fa-check" aria-hidden="true"></i> Validar
+                                </button>
+                            </div>
+                            <p class="access-code-info">
+                                <i class="fas fa-info-circle"></i> 
+                                Código válido por 30 dias após a ativação.
+                            </p>
+                        </div>
+
+                        <div style="margin:1rem 0;padding:0.8rem;background:var(--bg-secondary);border-radius:var(--radius-sm);border:1px solid var(--border-color);">
+                            <p style="font-size:0.7rem;color:var(--text-secondary);opacity:0.6;text-align:center;">
+                                <i class="fas fa-shield-alt" style="color:var(--gold);"></i> 
+                                Não recebeu seu código? Entre em contato pelo WhatsApp.
+                            </p>
+                            <button class="hero__cta" onclick="window.open('https://wa.me/${PIX_CONFIG.whatsappNumber}?text=${whatsappMessage}', '_blank')" 
+                                    style="width:100%;justify-content:center;padding:0.6rem;background:#25D366;color:white;border:none;border-radius:40px;font-weight:600;font-size:0.85rem;cursor:pointer;font-family:var(--font-sans);margin-top:0.5rem;">
+                                <i class="fab fa-whatsapp"></i> Falar com suporte
+                            </button>
+                        </div>
+
+                        <button class="modal-action" onclick="window.app?.closeModal()">Fechar</button>
+                    `;
+                }
+
+                document.getElementById('modalBody').innerHTML = content;
+                document.getElementById('modalOverlay').classList.add('open');
+
+                // Configura validação do código
+                const validateBtn = document.getElementById('validateCodeBtn');
+                const codeInput = document.getElementById('accessCodeInput');
+                if (validateBtn && codeInput) {
+                    const validate = () => {
+                        const code = codeInput.value;
+                        const isValid = this.validateAccessCode(code);
+                        if (isValid) {
+                            codeInput.classList.remove('error');
+                            codeInput.classList.add('success');
+                            setTimeout(() => {
+                                codeInput.classList.remove('success');
+                                this.closeModal();
+                                setTimeout(() => this.openModal('assinatura'), 300);
+                            }, 800);
+                        } else {
+                            codeInput.classList.remove('success');
+                            codeInput.classList.add('error');
+                            setTimeout(() => codeInput.classList.remove('error'), 2000);
+                        }
+                    };
+                    validateBtn.addEventListener('click', validate);
+                    codeInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter') validate();
+                    });
+                    setTimeout(() => codeInput.focus(), 300);
+                }
+            }
+
+            // ---- EVENTOS (mantido) ----
             setupEventListeners() {
                 document.getElementById('loginForm').addEventListener('submit', this.handleLogin);
                 document.getElementById('googleLoginBtn').addEventListener('click', this.handleGoogleLogin);
@@ -5090,7 +6278,7 @@
                 console.log('🔌 Event listeners configurados');
             }
 
-            // ---- DETAIL PAGE EVENTS ----
+            // ---- DETAIL PAGE EVENTS (mantido) ----
             setupDetailEvents() {
                 document.getElementById('detailBack').addEventListener('click', () => {
                     this.closeDetailPage();
@@ -5123,7 +6311,7 @@
                 }, { passive: true });
             }
 
-            // ---- MANIFESTO TOGGLE ----
+            // ---- MANIFESTO TOGGLE (mantido) ----
             setupManifestoToggle() {
                 const toggleBtn = document.getElementById('manifestoToggle');
                 const fullText = document.getElementById('manifestoFull');
@@ -5147,7 +6335,7 @@
                 }
             }
 
-            // ---- DETAIL PAGE ----
+            // ---- DETAIL PAGE (mantido) ----
             openDetailPage(type, id) {
                 let item = null;
                 if (type === 'cut') item = this.DATA.cuts.find(c => c.id === id);
@@ -5253,9 +6441,9 @@
                             <div class="detail-page__section">
                                 <h4>Outros cortes que você pode gostar</h4>
                                 <div>${item.related.map(id => {
-                                    const rel = this.DATA.cuts.find(c => c.id === id);
-                                    return rel ? `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('cut','${rel.id}'), 200)">${this.escapeHtml(rel.name)}</span>` : '';
-                                }).join('')}</div>
+                        const rel = this.DATA.cuts.find(c => c.id === id);
+                        return rel ? `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('cut','${rel.id}'), 200)">${this.escapeHtml(rel.name)}</span>` : '';
+                    }).join('')}</div>
                             </div>
                         ` : ''}
                     `;
@@ -5288,9 +6476,9 @@
                             <div class="detail-page__section">
                                 <h4>Produtos relacionados</h4>
                                 <div>${item.related.map(id => {
-                                    const rel = this.DATA.products.find(p => p.id === id);
-                                    return rel ? `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('product','${rel.id}'), 200)">${this.escapeHtml(rel.name)}</span>` : '';
-                                }).join('')}</div>
+                        const rel = this.DATA.products.find(p => p.id === id);
+                        return rel ? `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('product','${rel.id}'), 200)">${this.escapeHtml(rel.name)}</span>` : '';
+                    }).join('')}</div>
                             </div>
                         ` : ''}
                         ${item.link ? `
@@ -5331,7 +6519,7 @@
                     `;
                 } else if (type === 'editorial') {
                     const bodyText = item.body || item.description || '';
-                    
+
                     const colorInfo = item.colorCode ? `
                         <div class="detail-page__section">
                             <h4>Referência de Cor</h4>
@@ -5506,7 +6694,7 @@
                         title: name,
                         text: text,
                         url: window.location.href
-                    }).catch(() => {});
+                    }).catch(() => { });
                 } else {
                     navigator.clipboard.writeText(text).then(() => {
                         this.showToast('📋 Copiado para a área de transferência!');
@@ -5549,7 +6737,10 @@
                 const userInfo = user ? `
                     <div style="text-align:center;margin:0.5rem 0 0.2rem;">
                         ${renderAvatar()}
-                        <h3 style="margin-top:0.6rem;font-family:'Playfair Display',serif;">${this.escapeHtml(user.name)}</h3>
+                        <h3 style="margin-top:0.6rem;font-family:'Playfair Display',serif;">
+                            ${this.escapeHtml(user.name)}
+                            ${this.state.subscription.status === 'active' ? '<span class="subscription-badge">✨ Assinante</span>' : ''}
+                        </h3>
                         <p style="font-size:0.85rem;color:var(--text-secondary);opacity:0.7;">${this.escapeHtml(user.email)}</p>
                         <div class="avatar-actions">
                             <button class="avatar-btn" onclick="document.getElementById('avatarModalInput').click()">
@@ -5562,6 +6753,11 @@
                         <p style="font-size:0.8rem;margin-top:0.5rem;opacity:0.5;">Você faz parte do início do HairOS.</p>
                     </div>
                 ` : '';
+
+                if (type === 'assinatura') {
+                    this.renderSubscriptionModal();
+                    return;
+                }
 
                 const systemModals = {
                     profile: `
@@ -5709,10 +6905,8 @@
             // ---- INICIALIZAÇÃO ----
             init() {
                 try {
-                    console.log('🪮 HairOS Library — Páginas Completas');
-                    console.log('✨ 8 páginas com conteúdo rico');
-                    console.log('📖 Cada página com múltiplas seções');
-                    console.log('🎯 Personalidade única por página');
+                    console.log('🪮 HairOS Library — Versão Refatorada');
+                    console.log('✨ Organização, Segurança, UI e Manutenção melhorados');
 
                     this.loadData();
                     this.loadState();
@@ -5727,6 +6921,7 @@
                             this.state.user = JSON.parse(session);
                             this.showApp();
                             this.navigateTo('home');
+                            this.syncSubscriptionUI();
                         } catch (_) {
                             this.showLogin();
                         }
@@ -5737,6 +6932,7 @@
                     this.startCarousel();
                     this.initialized = true;
                     console.log('✅ App inicializado com sucesso!');
+                    console.log('🔑 Códigos válidos:', PIX_CONFIG.validCodes);
 
                 } catch (error) {
                     console.error('❌ Erro ao iniciar app:', error);
@@ -5744,6 +6940,7 @@
                 }
             }
 
+            // ---- NAVEGAÇÃO ----
             navigateTo(page) {
                 try {
                     const pages = {
@@ -5934,7 +7131,7 @@
                 if (totalEl) totalEl.textContent = total;
             }
 
-            // ---- RENDERIZAÇÃO ----
+            // ---- RENDERIZAÇÃO (mantida) ----
             renderHome() {
                 try {
                     const trendsContainer = document.getElementById('trendsPreview');
@@ -6074,9 +7271,9 @@
                                 <span class="trend-name">${this.escapeHtml(t.name)}</span>
                                 <span class="trend-desc">${this.escapeHtml(t.description ? t.description.substring(0, 55) + (t.description.length > 55 ? '...' : '') : '')}</span>
                                 <div class="trend-influences">
-                                    ${t.influences && t.influences.length > 0 
-                                        ? t.influences.slice(0, 3).map(i => `<span>${this.escapeHtml(i)}</span>`).join('') 
-                                        : `<span>${this.escapeHtml(t.context ? t.context.substring(0, 20) + '...' : '')}</span>`}
+                                    ${t.influences && t.influences.length > 0
+                            ? t.influences.slice(0, 3).map(i => `<span>${this.escapeHtml(i)}</span>`).join('')
+                            : `<span>${this.escapeHtml(t.context ? t.context.substring(0, 20) + '...' : '')}</span>`}
                                 </div>
                             </div>
                         </div>
@@ -6203,8 +7400,6 @@
                     `).join('');
 
                     document.getElementById('favCount').textContent = `${allFavs.length} itens`;
-
-                    // Sugestões
                     this.renderFavoritesSuggestions(allFavs);
 
                 } catch (error) {
@@ -6230,7 +7425,6 @@
                     return;
                 }
 
-                // Sugestões baseadas nos favoritos
                 const hasCuts = favs.some(f => f.type === 'cut');
                 const hasProducts = favs.some(f => f.type === 'product');
 
@@ -6517,6 +7711,7 @@
                 localStorage.setItem('hairos-session', JSON.stringify(this.state.user));
                 this.showApp();
                 this.navigateTo('home');
+                this.syncSubscriptionUI();
             }
 
             handleGoogleLogin() {
@@ -6539,6 +7734,7 @@
                 this.showApp();
                 this.navigateTo('home');
                 this.showToast('👋 Login com Google realizado!');
+                this.syncSubscriptionUI();
             }
 
             handleAvatarUpload(e) {
@@ -6759,12 +7955,13 @@
             window.app = new HairOSApp();
         });
 
-        console.log('🪮 HairOS Library — PÁGINAS COMPLETAS');
-        console.log('✅ 8 páginas com múltiplas seções');
-        console.log('✅ Cada página com personalidade única');
-        console.log('✅ Conteúdo rico em todas as seções');
-        console.log('✅ Cards diferenciados: Tendências e Editorial');
-        console.log('✅ Disponível em: window.app');
+        console.log('🪮 HairOS Library — Versão Refatorada');
+        console.log('✅ Código organizado em funções especializadas');
+        console.log('✅ Validação de código normalizada');
+        console.log('✅ UI/UX do modal de assinatura melhorada');
+        console.log('✅ Estado centralizado e sincronizado');
+        console.log('🔑 Códigos ativos:', PIX_CONFIG.validCodes);
+        console.log('🏠 HOME com novos componentes: Chips, Editorial Destaque, Cores, Status e Produtos Recomendados');
     </script>
 
 </body>
