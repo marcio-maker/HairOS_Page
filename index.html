@@ -11,6 +11,11 @@
     <meta property="og:title" content="HairOS Library - Outono/Inverno 2026" />
     <meta property="og:description" content="Explore a nova coleção de tendências, cortes e produtos para cabelo." />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💇</text></svg>" />
 
     <link rel="manifest" href="data:application/json,{
         &quot;name&quot;: &quot;HairOS Library&quot;,
@@ -28,7 +33,6 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <!-- ===== CSP (Content Security Policy) com suporte a todos subdomínios mm.bing.net ===== -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
@@ -91,6 +95,7 @@
             --nav-bg-active: rgba(255, 255, 255, 0.12);
             --toast-bg: rgba(26, 22, 20, 0.92);
             --toast-text: var(--white);
+            --img-fallback-bg: var(--bg-secondary);
         }
 
         [data-theme="dark"] {
@@ -122,6 +127,24 @@
             --black: #f0ede8;
             --white: #12100e;
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --img-fallback-bg: #2c241e;
+        }
+
+        /* FALLBACK PARA IMAGENS QUEBRADAS */
+        .img-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--img-fallback-bg);
+            color: var(--text-secondary);
+            font-size: 2rem;
+            width: 100%;
+            height: 100%;
+            min-height: 100px;
+            opacity: 0.5;
+        }
+        .img-fallback i {
+            font-size: 2rem;
         }
 
         html {
@@ -773,6 +796,10 @@
             min-width: 280px;
         }
 
+        #bottomNav.hidden-nav {
+            display: none !important;
+        }
+
         #bottomNav.scrolled {
             transform: translateX(-50%) scale(0.92);
             opacity: 0.85;
@@ -1166,7 +1193,354 @@
         }
 
         /* ============================================================
-           COLLECTION PAGE
+           FILTERS - ESTILOS PARA CORTES E PRODUTOS
+           ============================================================ */
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem 1rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+            flex-wrap: nowrap;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .filters::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-btn {
+            flex: 0 0 auto;
+            padding: 0.5rem 1.2rem;
+            border: none;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            scroll-snap-align: start;
+            border: 1px solid var(--border-color);
+        }
+
+        .filter-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(201, 169, 110, 0.2);
+        }
+
+        .filter-btn.active {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            border-color: var(--btn-primary-bg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] .filter-btn {
+            background: #2c241e;
+            color: #c5b8aa;
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        [data-theme="dark"] .filter-btn:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        [data-theme="dark"] .filter-btn.active {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+        }
+
+        /* Ajuste para os filtros de produtos na mesma página */
+        #productFilters .filter-btn {
+            font-size: 0.65rem;
+            padding: 0.4rem 1rem;
+        }
+
+        @media (max-width: 400px) {
+            .filter-btn {
+                font-size: 0.65rem;
+                padding: 0.4rem 0.9rem;
+            }
+            #productFilters .filter-btn {
+                font-size: 0.6rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+
+        /* ============================================================
+           TRENDS PAGE - RADAR CULTURAL
+           ============================================================ */
+        .trends-header {
+            padding: 0.8rem 1.2rem 0.5rem;
+        }
+
+        .trends-header__title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .trends-header__sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            margin-top: 0.1rem;
+        }
+
+        .trend-card {
+            position: relative;
+            flex: 0 0 var(--card-preview-width);
+            aspect-ratio: 4 / 5;
+            scroll-snap-align: start;
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .trend-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .trend-card:hover .trend-card__image img {
+            transform: scale(1.06);
+        }
+
+        .trend-card__image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .trend-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .trend-card__badge {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trend-card__body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.8rem 0.6rem 0.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+            z-index: 4;
+        }
+
+        .trend-card__body .trend-vibe {
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            display: block;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .trend-card__body .trend-name {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #fff;
+            display: block;
+            line-height: 1.2;
+            margin-top: 0.1rem;
+        }
+
+        .trend-card__body .trend-desc {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            margin-top: 0.2rem;
+        }
+
+        /* ============================================================
+           EDITORIAL PAGE - REVISTA PREMIUM COM CORES
+           ============================================================ */
+        .editorial-header {
+            padding: 0.8rem 1.2rem 0.5rem;
+        }
+
+        .editorial-header__title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .editorial-header__sub {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            margin-top: 0.1rem;
+        }
+
+        .editorial-card {
+            position: relative;
+            flex: 0 0 var(--card-preview-width);
+            aspect-ratio: 4 / 5;
+            scroll-snap-align: start;
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .editorial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .editorial-card:hover .editorial-card__image img {
+            transform: scale(1.06);
+        }
+
+        .editorial-card__image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+
+        .editorial-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .editorial-card__badge {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 0.15rem 0.7rem;
+            border-radius: 20px;
+            font-family: 'Inter', monospace;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            z-index: 5;
+        }
+
+        [data-theme="dark"] .editorial-card__badge {
+            background: var(--gold);
+            color: var(--black);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .editorial-card__body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.8rem 0.6rem 0.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+            z-index: 4;
+        }
+
+        .editorial-card__body .editorial-number {
+            font-size: 0.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            opacity: 0.6;
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        .editorial-card__body .editorial-name {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #fff;
+            display: block;
+            line-height: 1.2;
+            margin-top: 0.1rem;
+        }
+
+        .editorial-card__body .editorial-color {
+            font-size: 0.55rem;
+            font-weight: 500;
+            color: var(--gold);
+            opacity: 0.85;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-top: 0.05rem;
+            font-family: 'Inter', monospace;
+        }
+
+        .editorial-card__body .editorial-concept {
+            font-size: 0.55rem;
+            font-style: italic;
+            color: var(--gold);
+            opacity: 0.8;
+            display: block;
+            margin-top: 0.1rem;
+        }
+
+        .editorial-card__body .editorial-desc {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.7);
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            margin-top: 0.2rem;
+        }
+
+        /* ============================================================
+           COLLECTION PAGE - ESTILOS REVISADOS
            ============================================================ */
         .collection-banner {
             height: 280px;
@@ -1231,7 +1605,49 @@
             color: var(--text-secondary);
             font-weight: 300;
             line-height: 1.8;
-            font-style: italic;
+        }
+
+        .manifesto__text--full {
+            display: none;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-top: 0.5rem;
+        }
+
+        .manifesto__text--full.show {
+            display: block;
+        }
+
+        .manifesto__toggle {
+            background: none;
+            border: none;
+            color: var(--gold);
+            padding: 0.2rem 0;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-family: var(--font-sans);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: opacity 0.2s;
+        }
+
+        .manifesto__toggle:hover {
+            opacity: 0.7;
+        }
+
+        .manifesto__toggle i {
+            font-size: 0.6rem;
+            transition: transform 0.3s ease;
+        }
+
+        .manifesto__toggle i.rotated {
+            transform: rotate(180deg);
         }
 
         .mood-tag {
@@ -1242,43 +1658,92 @@
             font-size: 0.75rem;
             color: var(--text-secondary);
             transition: background 0.3s;
+            border: 1px solid var(--border-color);
         }
 
-        /* ============================================================
-           FILTERS
-           ============================================================ */
-        .filters {
-            display: flex;
-            gap: 0.2rem;
-            padding: 0 1.2rem 1.2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: none;
+        .mood-tag--color {
+            color: #fff;
             border: none;
-            padding: 0.3rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-            opacity: 0.5;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: var(--font-sans);
         }
 
-        .filter-btn:hover {
-            opacity: 0.8;
+        .collection-highlight {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .collection-highlight__image {
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
             background: var(--bg-secondary);
         }
 
-        .filter-btn.active {
-            opacity: 1;
+        .collection-highlight__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .collection-highlight__body {
+            padding: 1rem 1rem 1.2rem;
+        }
+
+        .collection-highlight__body h5 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
             color: var(--text-primary);
-            border-bottom: 2px solid var(--gold);
-            border-radius: 0;
-            padding-bottom: 0.2rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .collection-highlight__body p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 0.8rem;
+        }
+
+        .explore-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .explore-grid__item {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.7rem;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            text-align: center;
+        }
+
+        .explore-grid__item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            border-color: var(--btn-primary-bg);
+        }
+
+        .explore-grid__item i {
+            font-size: 0.9rem;
         }
 
         /* ============================================================
@@ -1332,7 +1797,6 @@
             z-index: 398;
         }
 
-        /* Header da detail page */
         .detail-page__header {
             position: sticky;
             top: 0;
@@ -1409,7 +1873,6 @@
             animation: favPulse 0.4s ease;
         }
 
-        /* Corpo da detail page - scroll único */
         .detail-page__body {
             padding: 1.2rem 1.2rem 2rem;
             animation: slideUp 0.3s ease forwards;
@@ -1426,7 +1889,6 @@
             }
         }
 
-        /* Imagem principal */
         .detail-page__image-wrap {
             position: relative;
             width: 100%;
@@ -1479,7 +1941,6 @@
             right: 0.5rem;
         }
 
-        /* Miniaturas */
         .detail-page__thumbs {
             display: flex;
             gap: 0.6rem;
@@ -1519,7 +1980,6 @@
             transform: translateY(-2px);
         }
 
-        /* Título */
         .detail-page__title {
             font-family: var(--font-serif);
             font-size: 1.6rem;
@@ -1539,7 +1999,6 @@
             display: block;
         }
 
-        /* Seções de conteúdo */
         .detail-page__section {
             margin-bottom: 1.5rem;
         }
@@ -1586,19 +2045,6 @@
             padding-left: 0.8rem;
         }
 
-        .detail-page__section .step-list {
-            background: var(--bg-secondary);
-            padding: 0.8rem 1rem;
-            border-radius: var(--radius-sm);
-        }
-
-        .detail-page__section .step-list div {
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-            padding: 0.2rem 0;
-        }
-
-        /* Botão CTA */
         .detail-page__cta {
             background: var(--btn-primary-bg);
             color: var(--btn-primary-text);
@@ -1662,7 +2108,173 @@
             box-shadow: 0 8px 24px rgba(0, 102, 204, 0.3);
         }
 
-        /* Responsivo da detail page */
+        /* ESTILOS PARA DETAIL PAGE - EDITORIAL COM CORES */
+        .detail-page__editorial-header {
+            margin-bottom: 1.2rem;
+        }
+
+        .detail-page__editorial-header .detail-page__title {
+            font-size: 2rem;
+            line-height: 1.1;
+        }
+
+        .detail-page__editorial-header .detail-page__sub {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            opacity: 0.4;
+        }
+
+        .detail-page__editorial-body {
+            font-size: 0.95rem;
+            line-height: 2;
+            color: var(--text-primary);
+            font-weight: 300;
+        }
+
+        .detail-page__editorial-body p {
+            margin-bottom: 1rem;
+        }
+
+        .detail-page__editorial-body .dropcap::first-letter {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.3rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .detail-page__editorial-quote {
+            padding: 1.2rem 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            margin: 1rem 0;
+            border-left: 3px solid var(--gold);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .detail-page__editorial-quote cite {
+            display: block;
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+
+        /* CORES NA DETAIL PAGE */
+        .detail-page__color-info {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+
+        .detail-page__color-code {
+            font-family: 'Inter', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .detail-page__color-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* TEMPLATE CORTE */
+        .detail-page__cut-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin: 0.8rem 0 1.2rem;
+        }
+
+        .detail-page__cut-spec {
+            background: var(--bg-secondary);
+            padding: 0.6rem 0.8rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .detail-page__cut-spec .label {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            opacity: 0.5;
+            display: block;
+        }
+
+        .detail-page__cut-spec .value {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: block;
+            margin-top: 0.1rem;
+        }
+
+        /* TEMPLATE PRODUTO */
+        .detail-page__product-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin: 0.8rem 0 1.2rem;
+        }
+
+        .detail-page__product-benefit {
+            background: var(--bg-secondary);
+            padding: 0.6rem 0.8rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 400;
+            transition: background 0.3s;
+        }
+
+        .detail-page__product-benefit i {
+            color: var(--gold);
+            margin-right: 0.3rem;
+            font-size: 0.7rem;
+        }
+
+        /* TEMPLATE TENDÊNCIA */
+        .detail-page__trend-context {
+            background: var(--bg-secondary);
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-sm);
+            margin: 0.8rem 0 1.2rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .detail-page__trend-context p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .detail-page__trend-influences {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.8rem 0 1.2rem;
+        }
+
+        .detail-page__trend-influence {
+            background: var(--bg-secondary);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+
         @media (max-width: 400px) {
             .detail-page__thumb {
                 flex: 0 0 48px;
@@ -1677,6 +2289,17 @@
             .detail-page__back span {
                 display: none;
             }
+            .detail-page__cut-specs,
+            .detail-page__product-benefits {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.4rem;
+            }
+            .detail-page__editorial-header .detail-page__title {
+                font-size: 1.6rem;
+            }
+            .detail-page__color-code {
+                font-size: 1.1rem;
+            }
         }
 
         @media (min-width: 600px) {
@@ -1687,7 +2310,7 @@
         }
 
         /* ============================================================
-           MODAL DO SISTEMA (perfil, ajuda, etc.)
+           MODAL DO SISTEMA
            ============================================================ */
         .modal-overlay {
             position: fixed;
@@ -1811,7 +2434,6 @@
             color: var(--btn-primary-text);
         }
 
-        /* Avatar no modal */
         .avatar-preview-modal {
             width: 100px;
             height: 100px;
@@ -2549,7 +3171,6 @@
             background-position: center !important;
         }
 
-        /* Ajustes de contraste para tema escuro */
         [data-theme="dark"] .search-overlay__input {
             background: #2c241e;
             color: #f0ede8;
@@ -2651,15 +3272,15 @@
                 <form class="login-form" id="loginForm">
                     <div class="form-group">
                         <label for="loginName">Nome</label>
-                        <input type="text" id="loginName" placeholder="Seu nome completo" required />
+                        <input type="text" id="loginName" placeholder="Seu nome completo" required aria-required="true" />
                     </div>
                     <div class="form-group">
                         <label for="loginEmail">E-mail</label>
-                        <input type="email" id="loginEmail" placeholder="seu@email.com" required />
+                        <input type="email" id="loginEmail" placeholder="seu@email.com" required aria-required="true" />
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Senha</label>
-                        <input type="password" id="loginPassword" placeholder="Crie uma senha" required minlength="6" />
+                        <input type="password" id="loginPassword" placeholder="Crie uma senha" required aria-required="true" minlength="6" />
                     </div>
                     <button type="submit" class="btn-primary">Criar conta / Entrar</button>
                 </form>
@@ -2725,7 +3346,7 @@
             <div id="searchResults" class="search-overlay__results" role="listbox"></div>
         </div>
 
-        <!-- ===== DETAIL PAGE (SUBSTITUI O MODAL DE DETALHE) ===== -->
+        <!-- ===== DETAIL PAGE ===== -->
         <div class="detail-overlay" id="detailOverlay"></div>
 
         <div class="detail-page" id="detailPage" role="dialog" aria-modal="true" aria-label="Detalhes">
@@ -2894,131 +3515,84 @@
                     role="img" aria-label="Banner da coleção Outono/Inverno 2026">
                     <div class="collection-banner__overlay"></div>
                     <div class="collection-banner__content">
-                        <span class="collection-banner__badge">HairOS</span>
+                        <span class="collection-banner__badge">HairOS Collection</span>
                         <h1 class="collection-banner__title">Outono / Inverno 2026</h1>
+                        <p style="font-size: 0.95rem; font-weight: 300; max-width: 280px; margin: 0.5rem auto 0; opacity: 0.8; line-height: 1.6; letter-spacing: 0.3px;">
+                            "O inverno brasileiro em tons de mel e avelã."
+                        </p>
                     </div>
                 </div>
                 <div class="section">
+
                     <article class="manifesto">
                         <h3 class="manifesto__title">Manifesto</h3>
-                        <p class="manifesto__text">"Mel e avelã não são apenas cores. São a tradução do inverno brasileiro em tons que aquecem, que acolhem, que lembram que o frio aqui não é sobre retração, mas sobre aconchego. Esta coleção parte dessa paleta para construir cortes que valorizam a textura, produtos que respeitam o fio e uma estética que não precisa de estrangeirismos para ser sofisticada."</p>
+                        <p class="manifesto__text" id="manifestoShort">
+                            Mel e avelã não são apenas cores. São a tradução do inverno brasileiro em tons que aquecem, que acolhem, que lembram que o frio aqui não é sobre retração, mas sobre aconchego.
+                        </p>
+                        <div class="manifesto__text--full" id="manifestoFull">
+                            <p>Esta coleção parte dessa paleta para construir cortes que valorizam a textura, produtos que respeitam o fio e uma estética que não precisa de estrangeirismos para ser sofisticada. O inverno de 2026 pede profundidade — não a do preto absoluto, mas a do mel que escurece, da avelã que se intensifica. Os cortes seguem o movimento dos fios, não o contrário. A cor é ferramenta de expressão, não fantasia. Esta é a direção que o HairOS assume: beleza que parte do real e o eleva.</p>
+                        </div>
+                        <button class="manifesto__toggle" id="manifestoToggle" aria-expanded="false">
+                            Ler completo <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
                     </article>
-                    <div style="margin-bottom:1.5rem;">
-                        <h4
-                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
-                            Conceito
-                        </h4>
-                        <p style="font-size:0.95rem;color:var(--text-primary);font-weight:300;line-height:1.8;">O inverno de 2026 pede profundidade. Não a do preto absoluto, mas a do mel que escurece, da avelã que se intensifica. Os cortes seguem o movimento dos fios, não o contrário. A cor é ferramenta de expressão, não fantasia. Esta é a direção que o HairOS assume: beleza que parte do real e o eleva.</p>
-                    </div>
-                    <div style="margin-bottom:1.5rem;">
-                        <h4
-                            style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.5rem;">
-                            Mood
-                        </h4>
-                        <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
-                            <span class="mood-tag">Mel Puro</span>
-                            <span class="mood-tag">Avelã Média</span>
-                            <span class="mood-tag">Mel sobre Escuro</span>
-                            <span class="mood-tag">Avelã Profunda</span>
-                        </div>
+
+                    <div style="margin-bottom: 1.8rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.25rem;">Conceito</h4>
+                        <p style="font-size:0.95rem;color:var(--text-primary);font-weight:300;line-height:1.8;max-width: 90%;">
+                            Cortes naturais. Movimento orgânico. Cor como expressão.
+                        </p>
                     </div>
 
-                    <div class="cards-grid" id="collectionCards">
-                        <div class="card-preview" onclick="window.app?.openDetailPage('cut','velvet-bob')"
-                            role="listitem" tabindex="0">
-                            <div class="image-wrapper">
-                                <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image"
-                                    src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg"
-                                    alt="Corte Destaque" loading="lazy"
-                                    onload="this.previousElementSibling.style.display='none'" />
-                            </div>
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">Velvet Bob</span>
-                                <span class="card-preview__category">Corte Destaque</span>
-                            </div>
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.75rem;">Mood</h4>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+                            <span class="mood-tag mood-tag--color" style="background: #d4a373;">Mel Puro</span>
+                            <span class="mood-tag mood-tag--color" style="background: #b68973;">Avelã Média</span>
+                            <span class="mood-tag mood-tag--color" style="background: #8b6b4d;">Mel sobre Escuro</span>
+                            <span class="mood-tag mood-tag--color" style="background: #5c4033;">Avelã Profunda</span>
                         </div>
-                        <div class="card-preview" onclick="window.app?.openDetailPage('trend','camadas')"
-                            role="listitem" tabindex="0">
-                            <div class="image-wrapper">
-                                <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image"
-                                    src="https://i.pinimg.com/1200x/39/a4/3f/39a43f83ac8e1b1d2ce108f047d01d22.jpg"
-                                    alt="Tendência" loading="lazy"
-                                    onload="this.previousElementSibling.style.display='none'" />
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.6; margin-top: 0.5rem;">Paleta da coleção</p>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:0.75rem;">Assinatura da Coleção</h4>
+                        <div class="collection-highlight">
+                            <div class="collection-highlight__image">
+                                <img src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg" alt="Velvet Bob" loading="lazy" />
                             </div>
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">Camadas Estratégicas</span>
-                                <span class="card-preview__category">Tendência</span>
-                            </div>
-                        </div>
-                        <div class="card-preview"
-                            onclick="window.app?.openDetailPage('product','shampoo-vitamino-color')" role="listitem"
-                            tabindex="0">
-                            <div class="image-wrapper">
-                                <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image"
-                                    src="https://tse1.mm.bing.net/th/id/OIP.TxO0qEbQMc0PYD3JTacZ7wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-                                    alt="Produto" loading="lazy"
-                                    onload="this.previousElementSibling.style.display='none'" />
-                            </div>
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">Shampoo Vitamino Color</span>
-                                <span class="card-preview__category">Produto</span>
-                            </div>
-                        </div>
-                        <div class="card-preview" onclick="window.app?.openDetailPage('editorial','editorial-1')"
-                            role="listitem" tabindex="0">
-                            <div class="image-wrapper">
-                                <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image"
-                                    src="https://i.pinimg.com/736x/61/53/9d/61539dda3ba5eb0844362b440f7904e3.jpg"
-                                    alt="Editorial" loading="lazy"
-                                    onload="this.previousElementSibling.style.display='none'" />
-                            </div>
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">Mel Puro</span>
-                                <span class="card-preview__category">Editorial</span>
-                            </div>
-                        </div>
-                        <!-- NOVO CORTE LONGO ADICIONADO -->
-                        <div class="card-preview" onclick="window.app?.openDetailPage('cut','waterfall-waves')"
-                            role="listitem" tabindex="0">
-                            <div class="image-wrapper">
-                                <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image"
-                                    src="https://i.pinimg.com/1200x/6b/7d/1c/6b7d1c1ba1b7b07bbaa69cf4f2bd5222.jpg"
-                                    alt="Waterfall Waves" loading="lazy"
-                                    onload="this.previousElementSibling.style.display='none'" />
-                            </div>
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">Waterfall Waves</span>
-                                <span class="card-preview__category">Corte Longo</span>
-                            </div>
-                        </div>
-                        <!-- NOVO PRODUTO ÓLEO FINALIZADOR -->
-                        <div class="card-preview"
-                            onclick="window.app?.openDetailPage('product','oleo-finish-essencial')" role="listitem"
-                            tabindex="0">
-                            <div class="image-wrapper">
-                                <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image"
-                                    src="https://tse2.mm.bing.net/th/id/OIP.6XtdHWYQZR5aQh9GQkA07wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-                                    alt="Óleo Finalizador" loading="lazy"
-                                    onload="this.previousElementSibling.style.display='none'" />
-                            </div>
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">Óleo Finish Essencial</span>
-                                <span class="card-preview__category">Finalizador</span>
+                            <div class="collection-highlight__body">
+                                <h5>Velvet Bob</h5>
+                                <p>Corte assinatura da coleção</p>
+                                <button class="hero__cta" onclick="window.app?.openDetailPage('cut','velvet-bob')" style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">
+                                    Ver detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
 
-                    <button class="hero__cta" onclick="window.app?.navigateTo('cuts')"
-                        style="background:var(--btn-primary-bg);color:var(--btn-primary-text);width:100%;justify-content:center;padding:0.9rem;"
-                        aria-label="Explorar cortes da coleção">
-                        Explorar Cortes <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    <div style="margin-top: 1rem; margin-bottom: 1.5rem;">
+                        <h4 style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);opacity:0.5;font-weight:600;margin-bottom:1rem;">Explore esta coleção</h4>
+                        <div class="explore-grid">
+                            <button class="explore-grid__item" onclick="window.app?.navigateTo('cuts')">
+                                <i class="fas fa-cut" aria-hidden="true"></i> Cortes
+                            </button>
+                            <button class="explore-grid__item" onclick="window.app?.navigateTo('trends')">
+                                <i class="fas fa-chart-line" aria-hidden="true"></i> Cores
+                            </button>
+                            <button class="explore-grid__item" onclick="window.app?.navigateTo('products')">
+                                <i class="fas fa-flask" aria-hidden="true"></i> Produtos
+                            </button>
+                            <button class="explore-grid__item" onclick="window.app?.navigateTo('editorial')">
+                                <i class="fas fa-images" aria-hidden="true"></i> Editorial
+                            </button>
+                        </div>
+                    </div>
+
+                    <button class="hero__cta" onclick="window.app?.navigateTo('cuts')" style="background:var(--btn-primary-bg);color:var(--btn-primary-text);width:100%;justify-content:center;padding:0.9rem; border: none; border-radius: 40px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s; font-family: var(--font-sans);" aria-label="Explorar cortes da coleção">
+                        Explorar a Coleção <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </button>
+
                 </div>
             </section>
 
@@ -3032,10 +3606,8 @@
                     <button class="filter-btn" data-filter="curtos" role="tab" aria-selected="false">Curtos</button>
                     <button class="filter-btn" data-filter="medios" role="tab" aria-selected="false">Médios</button>
                     <button class="filter-btn" data-filter="longos" role="tab" aria-selected="false">Longos</button>
-                    <button class="filter-btn" data-filter="cacheado" role="tab"
-                        aria-selected="false">Cacheados</button>
-                    <button class="filter-btn" data-filter="masculino" role="tab"
-                        aria-selected="false">Masculinos</button>
+                    <button class="filter-btn" data-filter="cacheado" role="tab" aria-selected="false">Cacheados</button>
+                    <button class="filter-btn" data-filter="masculino" role="tab" aria-selected="false">Masculinos</button>
                     <button class="filter-btn" data-filter="franja" role="tab" aria-selected="false">Franjas</button>
                     <button class="filter-btn" data-filter="camadas" role="tab" aria-selected="false">Camadas</button>
                 </div>
@@ -3044,29 +3616,26 @@
 
             <!-- ===== PAGE: TRENDS ===== -->
             <section id="page-trends" class="page" data-page="trends" aria-label="Tendências">
-                <div style="padding:0.8rem 1.2rem 0;">
-                    <h2 class="section__title" style="font-size:1.4rem;">Tendências</h2>
+                <div class="trends-header">
+                    <h2 class="trends-header__title">Tendências</h2>
+                    <p class="trends-header__sub">O que está movimentando a beleza agora</p>
                 </div>
-                <div class="cards-grid" id="trendsGrid" role="list"></div>
+                <div class="cards-scroll-wrapper">
+                    <div class="cards-scroll" id="trendsGrid" role="list"></div>
+                    <div class="swipe-hint"><i class="fas fa-chevron-right"></i> deslize</div>
+                </div>
             </section>
 
             <!-- ===== PAGE: PRODUCTS ===== -->
             <section id="page-products" class="page" data-page="products" aria-label="Produtos">
-                <div
-                    style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                <div style="padding:0.8rem 1.2rem 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
                     <h2 class="section__title" style="font-size:1.4rem;">Produtos</h2>
-                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap;" id="productFilters" role="tablist"
-                        aria-label="Filtros de produtos">
-                        <button class="filter-btn active" data-filter="all" role="tab"
-                            aria-selected="true">Todos</button>
-                        <button class="filter-btn" data-filter="shampoo" role="tab"
-                            aria-selected="false">Shampoo</button>
-                        <button class="filter-btn" data-filter="condicionador" role="tab"
-                            aria-selected="false">Condicionador</button>
-                        <button class="filter-btn" data-filter="mascara" role="tab"
-                            aria-selected="false">Máscara</button>
-                        <button class="filter-btn" data-filter="finalizador" role="tab"
-                            aria-selected="false">Finalizador</button>
+                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap;" id="productFilters" role="tablist" aria-label="Filtros de produtos">
+                        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+                        <button class="filter-btn" data-filter="shampoo" role="tab" aria-selected="false">Shampoo</button>
+                        <button class="filter-btn" data-filter="condicionador" role="tab" aria-selected="false">Condicionador</button>
+                        <button class="filter-btn" data-filter="mascara" role="tab" aria-selected="false">Máscara</button>
+                        <button class="filter-btn" data-filter="finalizador" role="tab" aria-selected="false">Finalizador</button>
                     </div>
                 </div>
                 <div class="cards-grid" id="productsGrid" role="list"></div>
@@ -3074,10 +3643,14 @@
 
             <!-- ===== PAGE: EDITORIAL ===== -->
             <section id="page-editorial" class="page" data-page="editorial" aria-label="Editorial">
-                <div style="padding:0.8rem 1.2rem 0;">
-                    <h2 class="section__title" style="font-size:1.4rem;">Editorial</h2>
+                <div class="editorial-header">
+                    <h2 class="editorial-header__title">Editorial</h2>
+                    <p class="editorial-header__sub">Histórias visuais da coleção</p>
                 </div>
-                <div class="cards-grid" id="editorialGrid" role="list"></div>
+                <div class="cards-scroll-wrapper">
+                    <div class="cards-scroll" id="editorialGrid" role="list"></div>
+                    <div class="swipe-hint"><i class="fas fa-chevron-right"></i> deslize</div>
+                </div>
             </section>
 
             <!-- ===== PAGE: FAVORITES ===== -->
@@ -3144,8 +3717,7 @@
                         <i class="fas fa-cog" aria-hidden="true"></i>
                         <span class="label">Configurações</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
-                        <div class="theme-toggle" onclick="event.stopPropagation();window.app?.toggleTheme();"
-                            role="button" tabindex="0" aria-label="Alternar tema">
+                        <div class="theme-toggle" onclick="event.stopPropagation();window.app?.toggleTheme();" role="button" tabindex="0" aria-label="Alternar tema">
                             <div class="theme-toggle__track" id="themeTrack">
                                 <div class="theme-toggle__thumb"></div>
                             </div>
@@ -3161,8 +3733,7 @@
                         <span class="label">Contato</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
                     </button>
-                    <button class="menu-item" onclick="window.app?.logout()" role="link"
-                        style="border-top:1px solid var(--border-color);margin-top:0.5rem;padding-top:1rem;">
+                    <button class="menu-item" onclick="window.app?.logout()" role="link" style="border-top:1px solid var(--border-color);margin-top:0.5rem;padding-top:1rem;">
                         <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                         <span class="label">Sair</span>
                         <span class="arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
@@ -3174,28 +3745,23 @@
 
         <!-- ===== BOTTOM NAV ===== -->
         <nav id="bottomNav" role="navigation" aria-label="Navegação principal" style="display:none;">
-            <button class="bottom-nav__item active" data-page="home" onclick="window.app?.navigateTo('home')"
-                aria-label="Ir para página inicial" aria-current="page">
+            <button class="bottom-nav__item active" data-page="home" onclick="window.app?.navigateTo('home')" aria-label="Ir para página inicial" aria-current="page">
                 <i class="fas fa-home" aria-hidden="true"></i>
                 <span>Início</span>
             </button>
-            <button class="bottom-nav__item" data-page="collection" onclick="window.app?.navigateTo('collection')"
-                aria-label="Ir para coleção">
+            <button class="bottom-nav__item" data-page="collection" onclick="window.app?.navigateTo('collection')" aria-label="Ir para coleção">
                 <i class="fas fa-layer-group" aria-hidden="true"></i>
                 <span>Coleção</span>
             </button>
-            <button class="bottom-nav__item" data-page="cuts" onclick="window.app?.navigateTo('cuts')"
-                aria-label="Ir para cortes">
+            <button class="bottom-nav__item" data-page="cuts" onclick="window.app?.navigateTo('cuts')" aria-label="Ir para cortes">
                 <i class="fas fa-cut" aria-hidden="true"></i>
                 <span>Cortes</span>
             </button>
-            <button class="bottom-nav__item" data-page="trends" onclick="window.app?.navigateTo('trends')"
-                aria-label="Ir para tendências">
+            <button class="bottom-nav__item" data-page="trends" onclick="window.app?.navigateTo('trends')" aria-label="Ir para tendências">
                 <i class="fas fa-chart-line" aria-hidden="true"></i>
                 <span>Tendências</span>
             </button>
-            <button class="bottom-nav__item" data-page="menu" onclick="window.app?.navigateTo('menu')"
-                aria-label="Abrir menu">
+            <button class="bottom-nav__item" data-page="menu" onclick="window.app?.navigateTo('menu')" aria-label="Abrir menu">
                 <i class="fas fa-bars" aria-hidden="true"></i>
                 <span>Menu</span>
                 <span class="nav-badge" id="navFavBadge" style="display:none;">0</span>
@@ -3210,7 +3776,7 @@
     <script>
         /**
          * ============================================================
-         * HAiROS LIBRARY — VERSÃO FINAL COM DETAIL PAGE
+         * HAiROS LIBRARY — VERSÃO FINAL 5 ESTRELAS + SEGURANÇA
          * ============================================================
          */
         class HairOSApp {
@@ -3275,10 +3841,10 @@
                 this.closeGallery = this.closeGallery.bind(this);
                 this.goToGalleryImage = this.goToGalleryImage.bind(this);
                 this.setupGalleryEvents = this.setupGalleryEvents.bind(this);
-                this.highlightText = this.highlightText.bind(this);
                 this.clearFavorites = this.clearFavorites.bind(this);
                 this.showToast = this.showToast.bind(this);
                 this.setupScrollReveal = this.setupScrollReveal.bind(this);
+                this.escapeHtml = this.escapeHtml.bind(this);
 
                 // Métodos da detail page
                 this.openDetailPage = this.openDetailPage.bind(this);
@@ -3291,11 +3857,17 @@
                 this.toggleDetailFavorite = this.toggleDetailFavorite.bind(this);
                 this.shareDetail = this.shareDetail.bind(this);
                 this.setupDetailEvents = this.setupDetailEvents.bind(this);
-
-                // Mantém compatibilidade com chamadas antigas
-                this.openDetailModal = this.openDetailPage;
+                this.setupManifestoToggle = this.setupManifestoToggle.bind(this);
 
                 this.init();
+            }
+
+            // ---- SANITIZAÇÃO ----
+            escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
             }
 
             // ---- TOAST ----
@@ -3309,21 +3881,15 @@
                 }, duration);
             }
 
-            highlightText(text, query) {
-                if (!query || query.trim().length === 0) return text;
-                const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-                return text.replace(regex, '<strong style="color:var(--gold);">$1</strong>');
-            }
-
-            // ---- DADOS ----
+            // ---- DADOS COM CORES INCLUÍDAS ----
             loadData() {
                 this.DATA = {
                     collection: {
                         id: 'outono-inverno-2026',
                         name: 'Outono / Inverno 2026',
                         tagline: 'Inspirada nos tons da natureza e na elegância atemporal',
-                        manifesto: 'A beleza está no movimento natural, na textura que conta histórias e na elegância que não precisa de esforço. A coleção Outono/Inverno 2026 celebra a individualidade, as camadas que dançam e as franjas que emolduram o olhar.',
-                        concept: 'Uma fusão entre a sofisticação urbana e a organicidade da natureza. Tons terrosos, texturas que lembram o vento e acabamentos que valorizam a saúde dos fios.',
+                        manifesto: 'A beleza está no movimento natural, na textura que conta histórias e na elegância que não precisa de esforço.',
+                        concept: 'Uma fusão entre a sofisticação urbana e a organicidade da natureza.',
                         mood: ['Elegância natural', 'Movimento livre', 'Texturas vivas', 'Tons terrosos']
                     },
                     cuts: [{
@@ -3337,14 +3903,13 @@
                             'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg',
                             'https://i.pinimg.com/736x/71/2f/e0/712fe063c1c50369ee0c63c8f7562a9a.jpg'
                         ],
-                        description: 'O bob que não é reto nem uniforme. Camadas suaves que criam movimento e um acabamento que parece veludo. Ideal para quem quer um corte prático mas com personalidade.',
+                        description: 'O bob que não é reto nem uniforme. Camadas suaves que criam movimento e um acabamento que parece veludo.',
                         profile: 'Mulheres com cabelo fino a médio, que buscam um visual moderno sem abrir mão da leveza.',
-                        hairType: 'Liso a ondulado',
-                        faceShape: 'Oval, quadrado',
-                        maintenance: 'Médio (visitas a cada 6 semanas)',
-                        techniques: 'Tesoura de precisão com desfiamento nas pontas e camadas internas para volume controlado.',
-                        finishing: 'Secar com escova redonda e finalizar com óleo leve para dar brilho e fechar as pontas.',
-                        time: '45 minutos',
+                        faceShape: 'Redondo, Oval, Coração',
+                        texture: 'Fino a Médio',
+                        maintenance: 'Média (a cada 6 semanas)',
+                        style: 'Moderno, Prático, Sofisticado',
+                        vibe: 'Elegante sem esforço',
                         products: ['Óleo Finalizador', 'Protetor Térmico'],
                         related: ['soft-layers', 'pixie-touch']
                     }, {
@@ -3358,14 +3923,13 @@
                             'https://i.pinimg.com/736x/42/36/d4/4236d4296296aa9602fe7b7a9f9d0cd1.jpg',
                             'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg'
                         ],
-                        description: 'Camadas longas e suaves que mantêm o comprimento médio, adicionando movimento sem perder densidade. O corte que atualiza qualquer cabelo com zero esforço.',
+                        description: 'Camadas longas e suaves que mantêm o comprimento médio, adicionando movimento sem perder densidade.',
                         profile: 'Quem tem cabelo médio a longo, de qualquer textura, e quer um visual descomplicado com movimento.',
-                        hairType: 'Todos os tipos',
-                        faceShape: 'Todos',
-                        maintenance: 'Baixo',
-                        techniques: 'Camadas compridas com desfiamento suave para não abrir demais as pontas.',
-                        finishing: 'Secar com escova ou difusor, finalizar com spray texturizador para acentuar as camadas.',
-                        time: '35 minutos',
+                        faceShape: 'Todos os formatos',
+                        texture: 'Todos os tipos',
+                        maintenance: 'Baixa (a cada 8-10 semanas)',
+                        style: 'Casual, Descomplicado, Natural',
+                        vibe: 'Leveza e movimento',
                         products: ['Mousse Modeladora', 'Spray Texturizador'],
                         related: ['long-flow', 'curly-shag']
                     }, {
@@ -3379,14 +3943,13 @@
                             'https://i.pinimg.com/236x/52/40/02/52400232deed3ad1d6a19ebdfacbc0c8.jpg',
                             'https://i.pinimg.com/236x/f7/ff/bb/f7ffbb74791a4e01ad6285a5aa5ab979.jpg'
                         ],
-                        description: 'O shaggy adaptado para cachos: camadas internas que tiram peso e deixam o volume subir, com a forma que valoriza a textura natural.',
+                        description: 'O shaggy adaptado para cachos: camadas internas que tiram peso e deixam o volume subir.',
                         profile: 'Cabelos cacheados e crespos que querem definição sem ficar com formato triangular.',
-                        hairType: 'Cacheado, crespo',
-                        faceShape: 'Oval, redondo',
-                        maintenance: 'Médio',
-                        techniques: 'Camadas internas e pontilhado para manter o comprimento sem perder a forma.',
-                        finishing: 'Finalizar com creme de pentear e secar com difusor, amassando os cachos para ativar a textura.',
-                        time: '50 minutos',
+                        faceShape: 'Oval, Quadrado, Coração',
+                        texture: 'Cacheados a Crespos',
+                        maintenance: 'Média (a cada 6-8 semanas)',
+                        style: 'Volume, Definição, Personalidade',
+                        vibe: 'Atitude e movimento',
                         products: ['Máscara Revitalizante', 'Óleo Finalizador'],
                         related: ['soft-layers', 'long-flow']
                     }, {
@@ -3400,14 +3963,13 @@
                             'https://i.pinimg.com/736x/45/23/3f/45233f0f5bf2025158ac9ff72701f3c2.jpg',
                             'https://i.pinimg.com/736x/93/f8/33/93f833f887285c9641b001fc2bb588a9.jpg'
                         ],
-                        description: 'Corte masculino com textura e movimento, mais despojado que o degradê tradicional. Ideal para quem quer um visual moderno sem parecer que saiu do exército.',
+                        description: 'Corte masculino com textura e movimento, mais despojado que o degradê tradicional.',
                         profile: 'Homens com cabelo médio que buscam um estilo atual e fácil de manter.',
-                        hairType: 'Liso a ondulado',
-                        faceShape: 'Todos',
-                        maintenance: 'Baixo a médio',
-                        techniques: 'Tesoura e máquina com desfiamento, mantendo comprimento no topo e laterais mais curtas.',
-                        finishing: 'Finalizar com pomada ou cera para dar textura e controle.',
-                        time: '30 minutos',
+                        faceShape: 'Oval, Quadrado, Redondo',
+                        texture: 'Médio a Grosso',
+                        maintenance: 'Baixa (a cada 4-6 semanas)',
+                        style: 'Moderno, Despojado, Confiante',
+                        vibe: 'Atualidade sem esforço',
                         products: ['Pomada Modeladora', 'Shampoo Nutritivo'],
                         related: ['pixie-touch']
                     }, {
@@ -3423,12 +3985,11 @@
                         ],
                         description: 'Cabelos longos com camadas suaves que criam movimento e fluidez, mantendo o comprimento com elegância.',
                         profile: 'Mulheres que amam cabelos longos e querem um visual leve e com movimento.',
-                        hairType: 'Todos os tipos',
-                        faceShape: 'Todos',
-                        maintenance: 'Médio',
-                        techniques: 'Camadas longas, pontas levemente desfiadas.',
-                        finishing: 'Secar com escova e finalizar com óleo para brilho e movimento.',
-                        time: '40 minutos',
+                        faceShape: 'Todos os formatos',
+                        texture: 'Todos os tipos',
+                        maintenance: 'Baixa (a cada 8-10 semanas)',
+                        style: 'Elegante, Fluido, Natural',
+                        vibe: 'Leveza e liberdade',
                         products: ['Óleo Finalizador', 'Protetor Térmico'],
                         related: ['soft-layers', 'curly-shag']
                     }, {
@@ -3442,14 +4003,13 @@
                             'https://i.pinimg.com/736x/ed/4e/7e/ed4e7e466ab2d763d9fb47b14a69ee00.jpg',
                             'https://i.pinimg.com/736x/a2/eb/48/a2eb48f4c7874ffd4b7668ecec57d651.jpg'
                         ],
-                        description: 'O pixie moderno com textura e franja longa, que emoldura o rosto sem parecer militar. Perfeito para quem quer atitude com feminilidade.',
+                        description: 'O pixie moderno com textura e franja longa, que emoldura o rosto sem parecer militar.',
                         profile: 'Mulheres com traços marcantes e que querem um corte ousado e prático.',
-                        hairType: 'Liso a ondulado',
-                        faceShape: 'Oval, coração',
-                        maintenance: 'Alto (visitas a cada 4 semanas)',
-                        techniques: 'Tesoura e navalha para textura, franja longa e laterais levemente desfiadas.',
-                        finishing: 'Finalizar com spray texturizador e mousse para dar volume e definição.',
-                        time: '25 minutos',
+                        faceShape: 'Oval, Coração, Quadrado',
+                        texture: 'Fino a Médio',
+                        maintenance: 'Alta (a cada 4-6 semanas)',
+                        style: 'Ousado, Atitude, Feminino',
+                        vibe: 'Confiança e autenticidade',
                         products: ['Spray Texturizador', 'Mousse Modeladora'],
                         related: ['velvet-bob', 'tintired-men']
                     }, {
@@ -3465,12 +4025,11 @@
                         ],
                         description: 'Franja reta e despojada que emoldura o olhar sem pesar, ideal para quem quer mudar o visual sem cortar muito.',
                         profile: 'Todos os tipos de rosto, principalmente quem tem testa larga ou quer suavizar traços.',
-                        hairType: 'Todos os tipos',
-                        faceShape: 'Todos',
-                        maintenance: 'Alto',
-                        techniques: 'Tesoura de precisão com desfiamento nas pontas para movimento natural.',
-                        finishing: 'Secar com escova redonda e finalizar com spray texturizador.',
-                        time: '20 minutos',
+                        faceShape: 'Todos os formatos',
+                        texture: 'Todos os tipos',
+                        maintenance: 'Alta (a cada 3-4 semanas)',
+                        style: 'Despojado, Atual, Francês',
+                        vibe: 'Charme e naturalidade',
                         products: ['Spray Texturizador', 'Óleo Finalizador'],
                         related: ['soft-layers', 'velvet-bob']
                     }, {
@@ -3484,42 +4043,17 @@
                             'https://i.pinimg.com/736x/2c/ff/3e/2cff3e43ed7e8559602509e135fc826b.jpg',
                             'https://i.pinimg.com/736x/17/6d/2f/176d2f2cb767e40b4763231c666bd8e6.jpg'
                         ],
-                        description: 'O shaggy com camadas marcantes e textura, criando volume e personalidade. Versátil para qualquer comprimento médio.',
+                        description: 'O shaggy com camadas marcantes e textura, criando volume e personalidade.',
                         profile: 'Quem busca volume e movimento, especialmente cabelos finos ou sem corpo.',
-                        hairType: 'Todos os tipos',
-                        faceShape: 'Todos',
-                        maintenance: 'Médio',
-                        techniques: 'Camadas curtas e desfiamento intenso para criar estrutura.',
-                        finishing: 'Finalizar com mousse e secar com difusor ou amassando com as mãos.',
-                        time: '45 minutos',
+                        faceShape: 'Oval, Coração, Redondo',
+                        texture: 'Fino a Médio',
+                        maintenance: 'Média (a cada 6-8 semanas)',
+                        style: 'Volume, Personalidade, Grunge',
+                        vibe: 'Atitude e autenticidade',
                         products: ['Mousse Modeladora', 'Spray Texturizador'],
                         related: ['curly-shag', 'soft-layers']
-                    },
-                    // ===== NOVO CORTE LONGO ADICIONADO =====
-                    {
-                        id: 'waterfall-waves',
-                        name: 'Waterfall Waves',
-                        category: 'longos',
-                        tags: ['longos', 'feminino', 'movimento'],
-                        image: 'https://i.pinimg.com/1200x/6b/7d/1c/6b7d1c1ba1b7b07bbaa69cf4f2bd5222.jpg',
-                        images: [
-                            'https://i.pinimg.com/1200x/6b/7d/1c/6b7d1c1ba1b7b07bbaa69cf4f2bd5222.jpg',
-                            'https://i.pinimg.com/736x/8f/2f/3a/8f2f3a9b5e7f3a8f2f3a9b5e7f3a8f2f.jpg',
-                            'https://i.pinimg.com/736x/9c/3d/4e/9c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f.jpg'
-                        ],
-                        description: 'Cortes longos com movimento fluido que lembram cascatas. Camadas estratégicas criam volume e leveza, com um acabamento natural que valoriza o comprimento sem pesar.',
-                        profile: 'Mulheres com cabelos longos que buscam um visual moderno, com movimento e fluidez, sem perder o comprimento.',
-                        hairType: 'Liso a ondulado',
-                        faceShape: 'Todos os tipos',
-                        maintenance: 'Médio (visitas a cada 8 semanas)',
-                        techniques: 'Camadas compridas com desfiamento suave, criando um efeito cascata que acompanha o movimento natural dos fios.',
-                        finishing: 'Secar com escova redonda puxando para baixo e finalizar com óleo para dar brilho e movimento.',
-                        time: '50 minutos',
-                        products: ['Óleo Finalizador', 'Mousse Modeladora', 'Spray Texturizador'],
-                        related: ['long-flow', 'soft-layers']
-                    }
-                ],
-                products: [{
+                    }],
+                    products: [{
                         id: 'shampoo-vitamino-color',
                         name: 'Shampoo Vitamino Color 750ml',
                         category: 'shampoo',
@@ -3530,9 +4064,9 @@
                             'https://i.pinimg.com/736x/da/fe/12/dafe123ec0af05e28c1284fa75b7413d.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/2wJK2SK',
-                        description: 'Shampoo que protege a cor e mantém o brilho dos cabelos coloridos. Limpeza suave sem agredir a fibra.',
-                        benefits: 'Proteção da cor, brilho intenso, maciez, limpeza suave.',
-                        usage: 'Aplicar nos cabelos molhados, massagear o couro cabeludo e enxaguar. Repita se necessário.',
+                        description: 'Shampoo que protege a cor e mantém o brilho dos cabelos coloridos.',
+                        benefits: 'Proteção da cor, brilho intenso, maciez, limpeza suave',
+                        usage: 'Aplicar nos cabelos molhados, massagear o couro cabeludo e enxaguar.',
                         indication: 'Cabelos coloridos ou com mechas.',
                         related: ['mascara-absolut-repair', 'shampoo-absolut-repair-gold']
                     }, {
@@ -3546,8 +4080,8 @@
                             'https://i.pinimg.com/736x/5c/fb/bc/5cfbbc5d6d6967494e0c536185551fac.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/1T8Ucwp',
-                        description: 'Máscara de reconstrução profunda com proteína de trigo. Devolve força e elasticidade aos fios danificados.',
-                        benefits: 'Reconstrução, nutrição profunda, brilho, força.',
+                        description: 'Máscara de reconstrução profunda com proteína de trigo.',
+                        benefits: 'Reconstrução, nutrição profunda, brilho, força',
                         usage: 'Aplicar nos fios úmidos após o shampoo, deixar agir por 5 minutos e enxaguar.',
                         indication: 'Cabelos danificados e quimicamente tratados.',
                         related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
@@ -3562,8 +4096,8 @@
                             'https://i.pinimg.com/736x/78/8d/23/788d2303aa3cf99214dcae3c74401cd2.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/2VVxFB1',
-                        description: 'Máscara de reconstrução intensa da linha Résistance. Restaura a fibra capilar e devolve a elasticidade perdida.',
-                        benefits: 'Reconstrução intensa, força renovada, reparação, elasticidade.',
+                        description: 'Máscara de reconstrução intensa da linha Résistance.',
+                        benefits: 'Reconstrução intensa, força renovada, reparação, elasticidade',
                         usage: 'Aplicar após o shampoo, deixar agir e enxaguar completamente.',
                         indication: 'Cabelos muito danificados e fragilizados.',
                         related: ['mascara-absolut-repair', 'condicionador-joico']
@@ -3578,11 +4112,11 @@
                             'https://i.pinimg.com/736x/cd/12/a9/cd12a9ed93db2fde11af4ec7f3151d8d.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/1jdT4rg',
-                        description: 'Spray de fixação forte para penteados duradouros. Mantém a forma sem pesar e com brilho.',
-                        benefits: 'Fixação forte, brilho, duração prolongada, controle de frizz.',
+                        description: 'Spray de fixação forte para penteados duradouros.',
+                        benefits: 'Fixação forte, brilho, duração prolongada, controle de frizz',
                         usage: 'Aplicar a 30cm dos cabelos secos para finalizar o penteado.',
                         indication: 'Todos os tipos de cabelo.',
-                        related: ['spray-texturizador', 'oleo-finish-essencial']
+                        related: ['lowell-cacho-magico']
                     }, {
                         id: 'lowell-cacho-magico',
                         name: 'Lowell Cacho Mágico 200ml',
@@ -3594,11 +4128,11 @@
                             'https://i.pinimg.com/1200x/98/b9/5a/98b95a2d7ff1873bfbfc8b83cbb508f4.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/1RKdy8e',
-                        description: 'Fluido ativador de cachos que define e hidrata sem deixar o fio duro. Ideal para cachos que pedem movimento.',
-                        benefits: 'Definição de cachos, hidratação, controle de frizz, maciez.',
+                        description: 'Fluido ativador de cachos que define e hidrata sem deixar o fio duro.',
+                        benefits: 'Definição de cachos, hidratação, controle de frizz, maciez',
                         usage: 'Aplicar nos cabelos úmidos e modelar os cachos com as mãos ou difusor.',
                         indication: 'Cabelos cacheados e crespos.',
-                        related: ['spray-silhouette', 'mousse-modeladora']
+                        related: ['spray-silhouette']
                     }, {
                         id: 'shampoo-silver',
                         name: 'Shampoo L\'Oréal Silver 300ml',
@@ -3610,8 +4144,8 @@
                             'https://i.pinimg.com/1200x/52/77/45/5277459ef9364596d15fa25439659bb9.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/1uQ9ppW',
-                        description: 'Shampoo matizador para cabelos grisalhos e com mechas. Neutraliza tons amarelos e realça o brilho prateado.',
-                        benefits: 'Matização, brilho, neutraliza tons amarelos, hidratação.',
+                        description: 'Shampoo matizador para cabelos grisalhos e com mechas.',
+                        benefits: 'Matização, brilho, neutraliza tons amarelos, hidratação',
                         usage: 'Aplicar e deixar agir 2-5 minutos antes de enxaguar completamente.',
                         indication: 'Cabelos grisalhos, brancos ou descoloridos.',
                         related: ['shampoo-vitamino-color', 'shampoo-absolut-repair-gold']
@@ -3626,9 +4160,9 @@
                             'https://i.pinimg.com/736x/ee/5d/ab/ee5dabfab9fa5b8e016ebc8931dd3492.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/1jX3Cvq',
-                        description: 'Shampoo reconstructor com Quinoa e Proteína. Devolve força e nutrição a cabelos danificados.',
-                        benefits: 'Reconstrução, nutrição, brilho, força renovada.',
-                        usage: 'Aplicar nos cabelos molhados, massagear e enxaguar. Repita se necessário.',
+                        description: 'Shampoo reconstructor com Quinoa e Proteína.',
+                        benefits: 'Reconstrução, nutrição, brilho, força renovada',
+                        usage: 'Aplicar nos cabelos molhados, massagear e enxaguar.',
                         indication: 'Cabelos danificados e ressecados.',
                         related: ['shampoo-vitamino-color', 'mascara-absolut-repair']
                     }, {
@@ -3642,32 +4176,13 @@
                             'https://i.pinimg.com/1200x/5b/53/8f/5b538f30589b753ff074ef689bc5d13c.jpg'
                         ],
                         link: 'https://mercadolivre.com/sec/26hayjy',
-                        description: 'Condicionador de hidratação profunda para cabelos secos e grossos. Desembaraça, macia e dá brilho.',
-                        benefits: 'Hidratação intensa, desembaraço, maciez, brilho.',
+                        description: 'Condicionador de hidratação profunda para cabelos secos e grossos.',
+                        benefits: 'Hidratação intensa, desembaraço, maciez, brilho',
                         usage: 'Aplicar após o shampoo, deixar agir por 2-3 minutos e enxaguar.',
                         indication: 'Cabelos secos, grossos e ressecados.',
                         related: ['shampoo-absolut-repair-gold', 'mascara-kerastase']
-                    },
-                    // ===== NOVO ÓLEO FINALIZADOR ADICIONADO =====
-                    {
-                        id: 'oleo-finish-essencial',
-                        name: 'Óleo Finish Essencial 100ml',
-                        category: 'finalizador',
-                        image: 'https://tse2.mm.bing.net/th/id/OIP.6XtdHWYQZR5aQh9GQkA07wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                        images: [
-                            'https://tse2.mm.bing.net/th/id/OIP.6XtdHWYQZR5aQh9GQkA07wHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-                            'https://i.pinimg.com/736x/5d/2b/99/5d2b99b04c57a5512011b5ee0a1a9bb0.jpg',
-                            'https://i.pinimg.com/736x/42/36/d4/4236d4296296aa9602fe7b7a9f9d0cd1.jpg'
-                        ],
-                        link: 'https://mercadolivre.com/sec/1Xy7Kz8',
-                        description: 'Óleo finalizador leve e nutritivo com blend de óleos vegetais (argão, coco e macadâmia). Proporciona brilho intenso, controle de frizz e proteção térmica sem pesar nos fios.',
-                        benefits: 'Brilho intenso, controle de frizz, proteção térmica, nutrição, maciez, leveza.',
-                        usage: 'Aplicar 1-2 gotas nas mãos, espalhar e passar nos cabelos secos ou úmidos, concentrando nas pontas e comprimentos. Não enxaguar.',
-                        indication: 'Todos os tipos de cabelo, especialmente cabelos secos, danificados e com frizz.',
-                        related: ['spray-silhouette', 'mascara-absolut-repair']
-                    }
-                ],
-                trends: [{
+                    }],
+                    trends: [{
                         id: 'camadas',
                         name: 'Butterfly Cut',
                         image: 'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
@@ -3676,17 +4191,11 @@
                             'https://i.pinimg.com/736x/a8/32/0c/a8320cac67f98908fd296e6a34ff2559.jpg',
                             'https://i.pinimg.com/736x/f4/6d/76/f46d76af2c1588dc14d9720e25d3ece8.jpg'
                         ],
-                        description: 'O butterfly cut é a evolução do wolf cut, com camadas mais suaves e uma franja que se abre como asas. Trouxe leveza e movimento para os salões brasileiros em 2026, sendo a escolha de quem quer volume sem perder a feminilidade.',
-                        level: 'Intermediário',
-                        time: '30 min',
+                        description: 'O butterfly cut é a evolução do wolf cut, com camadas mais suaves e uma franja que se abre como asas.',
                         products: ['Spray Texturizador', 'Mousse Modeladora', 'Óleo Finalizador'],
-                        tip: 'Peça camadas longas e franja que comece na altura dos olhos. O segredo está na textura suave das pontas.',
-                        tutorial: [
-                            '1. Divida o cabelo em seções horizontais.',
-                            '2. Corte as camadas superiores mais curtas, criando um efeito em V.',
-                            '3. Use a tesoura de ponta para desfiar as pontas e criar movimento.',
-                            '4. Finalize com spray texturizador para dar leveza e definição.'
-                        ]
+                        context: 'Movimento de resgate dos anos 70 com interpretação contemporânea',
+                        influences: ['Anos 70', 'Grunge', 'Street Style'],
+                        vibe: 'Leveza e movimento'
                     }, {
                         id: 'franjas',
                         name: 'Curtain Bangs',
@@ -3696,17 +4205,11 @@
                             'https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg',
                             'https://i.pinimg.com/736x/e1/69/0a/e1690a55e7cc557de8fc4d8d9a29b171.jpg'
                         ],
-                        description: 'A franja cortina que divide ao meio e emoldura o rosto. Voltou com força em 2026, mais longa e despojada que a versão anos 70.',
-                        level: 'Iniciante',
-                        time: '15 min',
+                        description: 'A franja cortina que divide ao meio e emoldura o rosto. Voltou com força em 2026.',
                         products: ['Spray Texturizador', 'Mousse Modeladora'],
-                        tip: 'A franja deve começar no meio da testa e se alongar até as maçãs do rosto.',
-                        tutorial: [
-                            '1. Separe a franja em duas partes.',
-                            '2. Corte cada lado em diagonal, do centro para fora.',
-                            '3. Desfie as pontas para não ficar reto.',
-                            '4. Seque com escova redonda puxando para os lados.'
-                        ]
+                        context: 'O retorno da franja como elemento de estilo, não mais como correção',
+                        influences: ['Anos 70', 'Cinema Francês', 'Brigitte Bardot'],
+                        vibe: 'Charme e naturalidade'
                     }, {
                         id: 'movimento',
                         name: 'Textura Movimento',
@@ -3716,17 +4219,11 @@
                             'https://i.pinimg.com/736x/3e/08/65/3e0865833599c47473882c25165ecbfc.jpg',
                             'https://i.pinimg.com/736x/01/85/d2/0185d2431d7e7f789a5725665c3f37c5.jpg'
                         ],
-                        description: 'A tendência de 2026 é o cabelo que se move. Nada de rigidez: cortes que acompanham o gesto, com camadas que respiram e finalizações que não pesam.',
-                        level: 'Fácil',
-                        time: '20 min',
+                        description: 'A tendência de 2026 é o cabelo que se move. Nada de rigidez: cortes que acompanham o gesto.',
                         products: ['Óleo Finalizador', 'Spray Texturizador'],
-                        tip: 'Use produtos leves e evite finalizações que travam o fio.',
-                        tutorial: [
-                            '1. Lave com shampoo suave e condicionador leve.',
-                            '2. Aplique um leave-in e amasse os fios.',
-                            '3. Seque com difusor sem mexer muito.',
-                            '4. Finalize com spray texturizador para manter a leveza.'
-                        ]
+                        context: 'Reação à estética "perfeita" e engomada das últimas temporadas',
+                        influences: ['Dança', 'Artes Cênicas', 'Street Style'],
+                        vibe: 'Liberdade e movimento'
                     }, {
                         id: 'texturas',
                         name: 'Acabamento Aveludado',
@@ -3736,17 +4233,11 @@
                             'https://i.pinimg.com/736x/23/30/46/233046bbedfc1312e61ba72b32ac6c12.jpg',
                             'https://i.pinimg.com/736x/d1/4d/4e/d14d4e387e3f710a3c224d722c1a78fa.jpg'
                         ],
-                        description: 'O brilho não é mais o único objetivo: a textura aveludada, que parece macia ao toque, é o que dá o tom sofisticado em 2026.',
-                        level: 'Intermediário',
-                        time: '25 min',
+                        description: 'O brilho não é mais o único objetivo: a textura aveludada é o que dá o tom sofisticado em 2026.',
                         products: ['Óleo Finalizador', 'Protetor Térmico', 'Máscara Revitalizante'],
-                        tip: 'Invista em finalizadores com óleos secos, que dão brilho sem pesar.',
-                        tutorial: [
-                            '1. Aplique máscara hidratante e enxágue bem.',
-                            '2. Seque com escova redonda.',
-                            '3. Aplique óleo finalizador nas pontas.',
-                            '4. Finalize com spray de brilho leve.'
-                        ]
+                        context: 'A beleza tátil como novo padrão de sofisticação',
+                        influences: ['Alta Costura', 'Arte Têxtil', 'Design de Superfície'],
+                        vibe: 'Sofisticação tátil'
                     }, {
                         id: 'volumes',
                         name: 'Volume Raiz',
@@ -3756,17 +4247,11 @@
                             'https://i.pinimg.com/736x/b0/f1/d6/b0f1d6fdfc4df443e6409aeea819567d.jpg',
                             'https://i.pinimg.com/1200x/6f/a5/d2/6fa5d295a950aa8e62b690d2b6d7cb16.jpg'
                         ],
-                        description: 'O volume na raiz é a grande pedida do inverno 2026. Nada de cabelo colado: a raiz levantada e as camadas soltas criam um visual poderoso.',
-                        level: 'Avançado',
-                        time: '40 min',
+                        description: 'O volume na raiz é a grande pedida do inverno 2026. Nada de cabelo colado.',
                         products: ['Mousse Modeladora', 'Spray Texturizador', 'Pomada Modeladora'],
-                        tip: 'Use mousse na raiz antes de secar e seque de cabeça para baixo.',
-                        tutorial: [
-                            '1. Aplique mousse na raiz do cabelo úmido.',
-                            '2. Seque com a cabeça virada para baixo.',
-                            '3. Use escova redonda para modelar as camadas.',
-                            '4. Finalize com spray texturizador para fixação.'
-                        ]
+                        context: 'A força da raiz como metáfora de poder e autoconfiança',
+                        influences: ['Anos 80', 'Moda Street', 'Arquitetura Brutalista'],
+                        vibe: 'Força e presença'
                     }, {
                         id: 'acabamentos',
                         name: 'Brilho Natural',
@@ -3776,17 +4261,11 @@
                             'https://i.pinimg.com/736x/58/1f/87/581f87188095c4a9b5e6d81c4b14a77c.jpg',
                             'https://i.pinimg.com/736x/47/58/ab/4758ab5f1200c5f05ddd258ecb0d50c6.jpg'
                         ],
-                        description: 'O brilho que vem de dentro, sem exageros. Produtos que polêm o fio e refletem a luz de forma natural são o que há de mais atual.',
-                        level: 'Fácil',
-                        time: '15 min',
+                        description: 'O brilho que vem de dentro, sem exageros. Produtos que polêm o fio e refletem a luz de forma natural.',
                         products: ['Óleo Finalizador', 'Máscara Revitalizante', 'Spray Texturizador'],
-                        tip: 'Enxágue com água fria para fechar as cutículas e potencializar o brilho.',
-                        tutorial: [
-                            '1. Lave com shampoo nutritivo.',
-                            '2. Aplique máscara revitalizante.',
-                            '3. Enxágue com água fria.',
-                            '4. Finalize com óleo nas pontas.'
-                        ]
+                        context: 'A beleza saudável como padrão de qualidade',
+                        influences: ['Skinimalism', 'Slow Beauty', 'Wellness'],
+                        vibe: 'Beleza saudável'
                     }],
                     editorialItems: [{
                         id: 'editorial-1',
@@ -3797,8 +4276,17 @@
                             'https://i.pinimg.com/736x/0e/33/84/0e3384311b75d7a66fc747d6d9cc2265.jpg'
                         ],
                         title: 'Mel Puro',
-                        description: 'O tom mais claro da paleta. Dourado como o mel recém-colhido, ilumina peles mais claras e traz leveza aos fios. É o tom que anuncia o inverno sem pesar.',
-                        concept: 'A luz do inverno começa aqui.'
+                        colorCode: '8.3',
+                        colorName: 'Louro Claro Dourado Suave',
+                        colorFamily: 'Louros Suaves',
+                        tone: 'Frio com toque quente',
+                        depth: 'Claro',
+                        base: '8',
+                        matizacao: '61',
+                        description: 'O tom mais claro da paleta. Dourado como o mel recém-colhido, ilumina peles mais claras.',
+                        concept: 'A luz do inverno começa aqui.',
+                        body: 'O mel puro é o primeiro sopro de luz na estação. Como os primeiros raios de sol após uma manhã fria, ele ilumina sem ofuscar. Em cabelos loiros, traz calor; em cabelos castanhos, cria um ponto de luz estratégico.',
+                        products: ['Shampoo Vitamino Color', 'Máscara Absolut Repair']
                     }, {
                         id: 'editorial-2',
                         image: 'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
@@ -3808,8 +4296,17 @@
                             'https://i.pinimg.com/736x/8e/4d/21/8e4d210db0ffc08fa3b1192e61d508a8.jpg'
                         ],
                         title: 'Avelã Média',
-                        description: 'O tom âncora da coleção. Um castanho médio com fundo quente que equilibra o olhar e a pele. Funciona em qualquer tom de pele e é a base da paleta Mel & Avelã.',
-                        concept: 'O equilíbrio perfeito entre o mel e a avelã.'
+                        colorCode: '6.71',
+                        colorName: 'Castanho Médio Acinzentado',
+                        colorFamily: 'Castanhos Frios',
+                        tone: 'Frio com leve violeta',
+                        depth: 'Médio',
+                        base: '6',
+                        matizacao: '71',
+                        description: 'O tom âncora da coleção. Um castanho médio com fundo quente que equilibra o olhar e a pele.',
+                        concept: 'O equilíbrio perfeito entre o mel e a avelã.',
+                        body: 'A avelã média é o ponto de partida para todas as transformações da coleção. Nem muito claro, nem muito escuro. O castanho que serve de base para babylights e reflexos.',
+                        products: ['Máscara Kérastase Résistance', 'Óleo Finalizador']
                     }, {
                         id: 'editorial-3',
                         image: 'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
@@ -3819,8 +4316,17 @@
                             'https://i.pinimg.com/736x/0e/33/84/0e3384311b75d7a66fc747d6d9cc2265.jpg'
                         ],
                         title: 'Mel sobre Escuro',
-                        description: 'Babylights mel em base escura. O contraste que aquece sem gritar. Ideal para quem quer luz sem descolorir tudo.',
-                        concept: 'Luz que não precisa de explicação.'
+                        colorCode: '5.0 / 7.3',
+                        colorName: 'Castanho Escuro com Luzes Médias',
+                        colorFamily: 'Castanhos com Movimento',
+                        tone: 'Frio com reflexos quentes',
+                        depth: 'Escuro com movimento',
+                        base: '5',
+                        matizacao: '77',
+                        description: 'Babylights mel em base escura. O contraste que aquece sem gritar.',
+                        concept: 'Luz que não precisa de explicação.',
+                        body: 'Mel sobre escuro é a tendência que não precisa de anúncio. É a luz que aparece quando o fio se move, que revela camadas e texturas. Perfeito para quem quer sofisticação sem transição brusca.',
+                        products: ['Shampoo Vitamino Color', 'Máscara Absolut Repair']
                     }, {
                         id: 'editorial-4',
                         image: 'https://i.pinimg.com/1200x/8e/98/45/8e9845241c3d9bbfe317b0d8896b3488.jpg',
@@ -3830,8 +4336,17 @@
                             'https://i.pinimg.com/1200x/d6/53/0e/d6530e3bfd849bfae89c2649876b1d1e.jpg'
                         ],
                         title: 'Avelã em Movimento',
-                        description: 'A cor que se revela quando o fio se move. Tons de avelã que variam entre o caramelo e o mogno, criando profundidade e dimensão.',
-                        concept: 'A cor que não para.'
+                        colorCode: '6.3 / 8.3',
+                        colorName: 'Castanho Médio com Luzes Douradas',
+                        colorFamily: 'Castanhos com Movimento',
+                        tone: 'Frio com toque quente',
+                        depth: 'Médio com movimento',
+                        base: '6.3',
+                        matizacao: '61',
+                        description: 'A cor que se revela quando o fio se move. Tons de avelã que variam entre o caramelo e o mogno.',
+                        concept: 'A cor que não para.',
+                        body: 'Avelã em movimento é sobre transição. Sobre como a luz muda a percepção de uma cor. É o castanho que não é plano, que tem história, que se revela aos poucos.',
+                        products: ['Máscara Kérastase Résistance', 'Óleo Finalizador']
                     }, {
                         id: 'editorial-5',
                         image: 'https://i.pinimg.com/736x/9b/30/3c/9b303c2040de9482f8391090b7cf8cfa.jpg',
@@ -3841,8 +4356,17 @@
                             'https://i.pinimg.com/736x/28/50/89/2850897e9734da3e676eadee4322db43.jpg'
                         ],
                         title: 'Raiz Escura Pontas Mel',
-                        description: 'A transição intencional que dominou 2026. Raiz escura, pontas mais claras, sem degradê óbvio. Um efeito que valoriza a textura e o movimento.',
-                        concept: 'O contraste que não precisa de transição.'
+                        colorCode: '5.0 / 8.3',
+                        colorName: 'Castanho Escuro com Pontas Douradas',
+                        colorFamily: 'Contraste Suave',
+                        tone: 'Frio/Quente equilibrado',
+                        depth: 'Escuro/Claro',
+                        base: '5',
+                        matizacao: '77',
+                        description: 'A transição intencional que dominou 2026. Raiz escura, pontas mais claras, sem degradê óbvio.',
+                        concept: 'O contraste que não precisa de transição.',
+                        body: 'Raiz escura, pontas mel. A tendência que trouxe naturalidade de volta. Sem degradê forçado, sem transição óbvia. Apenas o contraste que a natureza já conhece.',
+                        products: ['Shampoo L\'Oréal Silver', 'Máscara Absolut Repair']
                     }, {
                         id: 'editorial-6',
                         image: 'https://i.pinimg.com/1200x/c4/1d/e7/c41de7b7a44669d3c296b3859313e9eb.jpg',
@@ -3852,31 +4376,32 @@
                             'https://i.pinimg.com/1200x/20/0b/cc/200bccee1dd3c42d062738b6d8589e04.jpg'
                         ],
                         title: 'Avelã Profunda',
-                        description: 'O tom mais fechado da paleta. Um castanho quase mogno, que aquece a pele e traz densidade ao cabelo. Sem concessão ao claro.',
-                        concept: 'O inverno em sua forma mais intensa.'
+                        colorCode: '5.71',
+                        colorName: 'Castanho Escuro Acinzentado',
+                        colorFamily: 'Castanhos Profundos',
+                        tone: 'Frio com violeta',
+                        depth: 'Profundo',
+                        base: '5',
+                        matizacao: '71',
+                        description: 'O tom mais fechado da paleta. Um castanho quase mogno, que aquece a pele e traz densidade ao cabelo.',
+                        concept: 'O inverno em sua forma mais intensa.',
+                        body: 'Avelã profunda é o inverno no seu ápice. Escuro, mas não opaco. Rico, mas não pesado. O castanho que não precisa de luz para brilhar porque tem sua própria intensidade.',
+                        products: ['Shampoo Absolut Repair Gold', 'Condicionador Joico Moisture Recovery']
                     }]
                 };
 
-                // Garantir que todos os itens tenham images array
+                // Garantir images array
                 this.DATA.cuts.forEach(c => {
-                    if (!c.images || c.images.length === 0) {
-                        c.images = [c.image, c.image, c.image];
-                    }
+                    if (!c.images || c.images.length === 0) c.images = [c.image, c.image, c.image];
                 });
                 this.DATA.products.forEach(p => {
-                    if (!p.images || p.images.length === 0) {
-                        p.images = [p.image, p.image, p.image];
-                    }
+                    if (!p.images || p.images.length === 0) p.images = [p.image, p.image, p.image];
                 });
                 this.DATA.trends.forEach(t => {
-                    if (!t.images || t.images.length === 0) {
-                        t.images = [t.image, t.image, t.image];
-                    }
+                    if (!t.images || t.images.length === 0) t.images = [t.image, t.image, t.image];
                 });
                 this.DATA.editorialItems.forEach(e => {
-                    if (!e.images || e.images.length === 0) {
-                        e.images = [e.image, e.image, e.image];
-                    }
+                    if (!e.images || e.images.length === 0) e.images = [e.image, e.image, e.image];
                 });
             }
 
@@ -3913,7 +4438,6 @@
                 document.getElementById('loginForm').addEventListener('submit', this.handleLogin);
                 document.getElementById('googleLoginBtn').addEventListener('click', this.handleGoogleLogin);
                 document.getElementById('avatarInput').addEventListener('change', this.handleAvatarUpload);
-
                 document.getElementById('backButton').addEventListener('click', this.goBack);
 
                 document.getElementById('searchToggle').addEventListener('click', () => {
@@ -3977,8 +4501,7 @@
                         const interactive = target.closest(
                             '[onclick], [role="button"], [role="link"], .menu-item, .card-preview, .fav-item, .tag, .mood-tag, .hero__cta'
                         );
-                        if (interactive && interactive !== target && target.tagName !== 'BUTTON' && target
-                            .tagName !== 'A') {
+                        if (interactive && interactive !== target && target.tagName !== 'BUTTON' && target.tagName !== 'A') {
                             e.preventDefault();
                             const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
                             interactive.dispatchEvent(clickEvent);
@@ -3991,18 +4514,10 @@
                         const searchOverlay = document.getElementById('searchOverlay');
                         const modalOverlay = document.getElementById('modalOverlay');
                         const galleryOverlay = document.getElementById('galleryOverlay');
-                        if (searchOverlay.classList.contains('open')) {
-                            searchOverlay.classList.remove('open');
-                        }
-                        if (modalOverlay.classList.contains('open')) {
-                            this.closeModal();
-                        }
-                        if (galleryOverlay.classList.contains('open')) {
-                            this.closeGallery();
-                        }
-                        if (this.detailState.isOpen) {
-                            this.closeDetailPage();
-                        }
+                        if (searchOverlay.classList.contains('open')) searchOverlay.classList.remove('open');
+                        if (modalOverlay.classList.contains('open')) this.closeModal();
+                        if (galleryOverlay.classList.contains('open')) this.closeGallery();
+                        if (this.detailState.isOpen) this.closeDetailPage();
                     }
                     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                         e.preventDefault();
@@ -4034,13 +4549,11 @@
 
                 window.addEventListener('scroll', () => {
                     const scrollY = window.scrollY;
-
                     if (scrollY > 40) {
                         bottomNav.classList.add('scrolled');
                     } else {
                         bottomNav.classList.remove('scrolled');
                     }
-
                     if (scrollY > lastScrollY && scrollY > 100) {
                         bottomNav.style.transform = 'translateX(-50%) scale(0.88)';
                         bottomNav.style.opacity = '0.7';
@@ -4053,9 +4566,7 @@
                             bottomNav.style.opacity = '1';
                         }
                     }
-
                     lastScrollY = scrollY;
-
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         if (scrollY > 40) {
@@ -4076,20 +4587,16 @@
                 document.getElementById('detailBack').addEventListener('click', () => {
                     this.closeDetailPage();
                 });
-
                 document.getElementById('detailOverlay').addEventListener('click', () => {
                     this.closeDetailPage();
                 });
-
                 document.getElementById('detailFavorite').addEventListener('click', () => {
                     this.toggleDetailFavorite();
                 });
-
                 document.getElementById('detailShare').addEventListener('click', () => {
                     this.shareDetail();
                 });
 
-                // Fechar ao rolar para baixo no mobile (estilo Instagram)
                 let startY = 0;
                 const detailPage = document.getElementById('detailPage');
                 detailPage.addEventListener('touchstart', (e) => {
@@ -4108,18 +4615,37 @@
                 }, { passive: true });
             }
 
+            // ---- MANIFESTO TOGGLE ----
+            setupManifestoToggle() {
+                const toggleBtn = document.getElementById('manifestoToggle');
+                const fullText = document.getElementById('manifestoFull');
+                const shortText = document.getElementById('manifestoShort');
+
+                if (toggleBtn && fullText && shortText) {
+                    toggleBtn.addEventListener('click', () => {
+                        const isExpanded = fullText.classList.contains('show');
+                        if (isExpanded) {
+                            fullText.classList.remove('show');
+                            shortText.style.display = 'block';
+                            toggleBtn.innerHTML = 'Ler completo <i class="fas fa-chevron-down" aria-hidden="true"></i>';
+                            toggleBtn.setAttribute('aria-expanded', 'false');
+                        } else {
+                            fullText.classList.add('show');
+                            shortText.style.display = 'none';
+                            toggleBtn.innerHTML = 'Ler menos <i class="fas fa-chevron-up" aria-hidden="true"></i>';
+                            toggleBtn.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                }
+            }
+
             // ---- DETAIL PAGE ----
             openDetailPage(type, id) {
                 let item = null;
-                if (type === 'cut') {
-                    item = this.DATA.cuts.find(c => c.id === id);
-                } else if (type === 'product') {
-                    item = this.DATA.products.find(p => p.id === id);
-                } else if (type === 'trend') {
-                    item = this.DATA.trends.find(t => t.id === id);
-                } else if (type === 'editorial') {
-                    item = this.DATA.editorialItems.find(e => e.id === id);
-                }
+                if (type === 'cut') item = this.DATA.cuts.find(c => c.id === id);
+                else if (type === 'product') item = this.DATA.products.find(p => p.id === id);
+                else if (type === 'trend') item = this.DATA.trends.find(t => t.id === id);
+                else if (type === 'editorial') item = this.DATA.editorialItems.find(e => e.id === id);
 
                 if (!item) {
                     this.showToast('Item não encontrado.');
@@ -4131,6 +4657,11 @@
                 this.detailState.images = item.images || [item.image];
                 this.detailState.index = 0;
                 this.detailState.isOpen = true;
+
+                const bottomNav = document.getElementById('bottomNav');
+                const topBar = document.getElementById('topBar');
+                if (bottomNav) bottomNav.classList.add('hidden-nav');
+                if (topBar) topBar.style.display = 'none';
 
                 document.body.classList.add('detail-open');
                 document.getElementById('detailOverlay').classList.add('open');
@@ -4150,6 +4681,17 @@
                 this.detailState.item = null;
                 this.detailState.images = [];
                 this.detailState.index = 0;
+
+                const bottomNav = document.getElementById('bottomNav');
+                const topBar = document.getElementById('topBar');
+                if (bottomNav) bottomNav.classList.remove('hidden-nav');
+                if (topBar) {
+                    if (this.state.user) {
+                        topBar.style.display = 'flex';
+                    } else {
+                        topBar.style.display = 'none';
+                    }
+                }
             }
 
             renderDetailPage() {
@@ -4160,43 +4702,86 @@
                 const category = item.category || '';
 
                 let textHTML = '';
+
                 if (type === 'cut') {
+                    const specs = [
+                        { label: 'Formato de Rosto', value: item.faceShape || 'Versátil' },
+                        { label: 'Textura', value: item.texture || 'Todos os tipos' },
+                        { label: 'Manutenção', value: item.maintenance || 'Média' },
+                        { label: 'Estilo', value: item.style || 'Moderno' }
+                    ];
+
                     textHTML = `
                         <div class="detail-page__section">
-                            <h4>Descrição</h4>
-                            <p>${item.description}</p>
+                            <h4>O que é este corte?</h4>
+                            <p>${this.escapeHtml(item.description)}</p>
                         </div>
                         <div class="detail-page__section">
-                            <h4>Perfil Indicado</h4>
-                            <p>${item.profile}</p>
+                            <h4>Para quem é?</h4>
+                            <p>${this.escapeHtml(item.profile)}</p>
                         </div>
                         <div class="detail-page__section">
-                            <h4>Detalhes Técnicos</h4>
-                            <p><strong>Tipo de cabelo:</strong> ${item.hairType}</p>
-                            <p><strong>Formato de rosto:</strong> ${item.faceShape}</p>
-                            <p><strong>Manutenção:</strong> ${item.maintenance}</p>
-                            <p><strong>Tempo médio:</strong> ${item.time}</p>
+                            <h4>Especificações</h4>
+                            <div class="detail-page__cut-specs">
+                                ${specs.map(s => `
+                                    <div class="detail-page__cut-spec">
+                                        <span class="label">${this.escapeHtml(s.label)}</span>
+                                        <span class="value">${this.escapeHtml(s.value)}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
                         </div>
                         <div class="detail-page__section">
-                            <h4>Técnicas Utilizadas</h4>
-                            <p>${item.techniques}</p>
-                        </div>
-                        <div class="detail-page__section">
-                            <h4>Como Finalizar</h4>
-                            <p>${item.finishing}</p>
+                            <h4>Personalidade</h4>
+                            <p class="highlight">"${this.escapeHtml(item.vibe || 'Um estilo que conta sua história')}"</p>
                         </div>
                         ${item.products ? `
                             <div class="detail-page__section">
                                 <h4>Produtos Sugeridos</h4>
-                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.navigateTo('products'), 200)">${p}</span>`).join('')}</div>
+                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.navigateTo('products'), 200)">${this.escapeHtml(p)}</span>`).join('')}</div>
                             </div>
                         ` : ''}
                         ${item.related ? `
                             <div class="detail-page__section">
-                                <h4>Relacionados</h4>
+                                <h4>Outros cortes que você pode gostar</h4>
                                 <div>${item.related.map(id => {
                                     const rel = this.DATA.cuts.find(c => c.id === id);
-                                    return rel ? `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('cut','${rel.id}'), 200)">${rel.name}</span>` : '';
+                                    return rel ? `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('cut','${rel.id}'), 200)">${this.escapeHtml(rel.name)}</span>` : '';
+                                }).join('')}</div>
+                            </div>
+                        ` : ''}
+                    `;
+                } else if (type === 'product') {
+                    const benefits = item.benefits ? item.benefits.split(',').map(b => b.trim()) : ['Hidratação', 'Nutrição'];
+                    textHTML = `
+                        <div class="detail-page__section">
+                            <h4>O que faz?</h4>
+                            <p>${this.escapeHtml(item.description)}</p>
+                        </div>
+                        <div class="detail-page__section">
+                            <h4>Benefícios</h4>
+                            <div class="detail-page__product-benefits">
+                                ${benefits.map(b => `
+                                    <div class="detail-page__product-benefit">
+                                        <i class="fas fa-check" aria-hidden="true"></i> ${this.escapeHtml(b)}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        <div class="detail-page__section">
+                            <h4>Como usar</h4>
+                            <p>${this.escapeHtml(item.usage)}</p>
+                        </div>
+                        <div class="detail-page__section">
+                            <h4>Indicação</h4>
+                            <p>${this.escapeHtml(item.indication)}</p>
+                        </div>
+                        ${item.related ? `
+                            <div class="detail-page__section">
+                                <h4>Produtos relacionados</h4>
+                                <div>${item.related.map(id => {
+                                    const rel = this.DATA.products.find(p => p.id === id);
+                                    return rel ? `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('product','${rel.id}'), 200)">${this.escapeHtml(rel.name)}</span>` : '';
                                 }).join('')}</div>
                             </div>
                         ` : ''}
@@ -4206,125 +4791,121 @@
                             </a>
                         ` : ''}
                     `;
-                } else if (type === 'product') {
-                    textHTML = `
-                        <div class="detail-page__section">
-                            <h4>Descrição</h4>
-                            <p>${item.description}</p>
-                        </div>
-                        <div class="detail-page__section">
-                            <h4>Benefícios</h4>
-                            <p>${item.benefits}</p>
-                        </div>
-                        <div class="detail-page__section">
-                            <h4>Modo de Uso</h4>
-                            <p>${item.usage}</p>
-                        </div>
-                        <div class="detail-page__section">
-                            <h4>Indicação</h4>
-                            <p>${item.indication}</p>
-                        </div>
-                        ${item.link ? `
-                            <a href="${item.link}" target="_blank" rel="noopener" class="detail-page__link-btn">
-                                <i class="fas fa-shopping-cart"></i> Ver no Mercado Livre
-                            </a>
-                        ` : ''}
-                    `;
                 } else if (type === 'trend') {
+                    const influences = item.influences || ['Moda', 'Cultura', 'Comportamento'];
                     textHTML = `
                         <div class="detail-page__section">
-                            <h4>Descrição</h4>
-                            <p>${item.description}</p>
+                            <h4>Contexto</h4>
+                            <div class="detail-page__trend-context">
+                                <p>${this.escapeHtml(item.context || 'Uma tendência que define o momento')}</p>
+                            </div>
                         </div>
                         <div class="detail-page__section">
-                            <h4>Nível</h4>
-                            <p>${item.level || 'Intermediário'}</p>
+                            <h4>O que é?</h4>
+                            <p>${this.escapeHtml(item.description)}</p>
                         </div>
                         <div class="detail-page__section">
-                            <h4>Tempo</h4>
-                            <p>${item.time || '30 min'}</p>
+                            <h4>Influências</h4>
+                            <div class="detail-page__trend-influences">
+                                ${influences.map(i => `<span class="detail-page__trend-influence">${this.escapeHtml(i)}</span>`).join('')}
+                            </div>
+                        </div>
+                        <div class="detail-page__section">
+                            <h4>Vibe</h4>
+                            <p class="highlight">"${this.escapeHtml(item.vibe || 'Movimento e autenticidade')}"</p>
                         </div>
                         ${item.products ? `
                             <div class="detail-page__section">
-                                <h4>Produtos</h4>
-                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.navigateTo('products'), 200)">${p}</span>`).join('')}</div>
-                            </div>
-                        ` : ''}
-                        ${item.tutorial ? `
-                            <div class="detail-page__section">
-                                <h4>Passo a passo</h4>
-                                <div class="step-list">
-                                    ${item.tutorial.map(step => `<div>${step}</div>`).join('')}
-                                </div>
-                            </div>
-                        ` : ''}
-                        ${item.tip ? `
-                            <div class="detail-page__section">
-                                <h4>Dica</h4>
-                                <p>💡 ${item.tip}</p>
+                                <h4>Produtos para este look</h4>
+                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.navigateTo('products'), 200)">${this.escapeHtml(p)}</span>`).join('')}</div>
                             </div>
                         ` : ''}
                     `;
                 } else if (type === 'editorial') {
-                    textHTML = `
+                    const bodyText = item.body || item.description || '';
+                    
+                    // ⭐ INFORMAÇÕES DE COR
+                    const colorInfo = item.colorCode ? `
                         <div class="detail-page__section">
-                            <h4>Descrição</h4>
-                            <p>${item.description}</p>
+                            <h4>Referência de Cor</h4>
+                            <div class="detail-page__color-info">
+                                <span class="detail-page__color-code">${this.escapeHtml(item.colorCode)}</span>
+                                <span class="detail-page__color-name">${this.escapeHtml(item.colorName || '')}</span>
+                                <span class="mood-tag" style="font-size:0.65rem;">${this.escapeHtml(item.colorFamily || '')}</span>
+                                <span class="mood-tag" style="font-size:0.65rem;">${this.escapeHtml(item.tone || '')}</span>
+                                <span class="mood-tag" style="font-size:0.65rem;">${this.escapeHtml(item.depth || '')}</span>
+                            </div>
+                            ${item.base ? `
+                                <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-secondary);opacity:0.6;">
+                                    Base: ${this.escapeHtml(item.base)} • Matização: ${this.escapeHtml(item.matizacao || '')}
+                                </div>
+                            ` : ''}
                         </div>
-                        <div class="detail-page__section">
-                            <h4>Conceito</h4>
-                            <p class="highlight">"${item.concept}"</p>
+                    ` : '';
+
+                    textHTML = `
+                        <div class="detail-page__editorial-header">
+                            <span class="detail-page__sub">${this.escapeHtml(item.concept || 'Editorial HairOS')}</span>
+                            <h1 class="detail-page__title">${this.escapeHtml(item.title)}</h1>
+                        </div>
+                        ${colorInfo}
+                        <div class="detail-page__editorial-body">
+                            <p class="dropcap">${this.escapeHtml(bodyText)}</p>
+                        </div>
+                        ${item.products ? `
+                            <div class="detail-page__section" style="margin-top:1.5rem;">
+                                <h4>Produtos que conversam com este editorial</h4>
+                                <div>${item.products.map(p => `<span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('product','${p.id}'), 200)">${this.escapeHtml(p)}</span>`).join('')}</div>
+                            </div>
+                        ` : ''}
+                        <div class="detail-page__section" style="margin-top:1rem;">
+                            <h4>Leia mais</h4>
+                            <div class="detail-page__trend-influences">
+                                ${this.DATA.editorialItems.filter(e => e.id !== item.id).slice(0, 3).map(e => `
+                                    <span class="tag" onclick="window.app?.closeDetailPage(); setTimeout(() => window.app?.openDetailPage('editorial','${e.id}'), 200)">${this.escapeHtml(e.title)}</span>
+                                `).join('')}
+                            </div>
                         </div>
                     `;
                 }
 
-                // Thumbs HTML
                 const thumbsHTML = images.map((img, i) => `
                     <div class="detail-page__thumb ${i === 0 ? 'active' : ''}" onclick="window.app?.detailThumb(${i})">
-                        <img src="${img}" alt="Miniatura ${i + 1}" loading="lazy" />
+                        <img src="${img}" alt="Miniatura ${i + 1}" loading="lazy" 
+                             onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                     </div>
                 `).join('');
 
                 const body = document.getElementById('detailBody');
                 body.innerHTML = `
-                    <!-- Imagem principal -->
                     <div class="detail-page__image-wrap">
-                        <img id="detailMainImg" src="${images[0]}" alt="${name}" 
-                             onclick="window.app?.openGallery(window.app.detailState.images, window.app.detailState.index)" />
+                        <img id="detailMainImg" src="${images[0]}" alt="${this.escapeHtml(name)}" 
+                             onclick="window.app?.openGallery(window.app.detailState.images, window.app.detailState.index)"
+                             onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                         ${images.length > 1 ? `
                             <button class="nav-btn nav-btn--prev" onclick="window.app?.detailPrev()">‹</button>
                             <button class="nav-btn nav-btn--next" onclick="window.app?.detailNext()">›</button>
                         ` : ''}
                     </div>
-
-                    <!-- Miniaturas -->
                     ${images.length > 1 ? `
                         <div class="detail-page__thumbs" id="detailThumbs">
                             ${thumbsHTML}
                         </div>
                     ` : ''}
-
-                    <!-- Título -->
-                    <h1 class="detail-page__title">${name}</h1>
-                    <span class="detail-page__sub">${category ? category.toUpperCase() : type.toUpperCase()}</span>
-
-                    <!-- Conteúdo -->
+                    <h1 class="detail-page__title">${this.escapeHtml(name)}</h1>
+                    <span class="detail-page__sub">${category ? this.escapeHtml(category.toUpperCase()) : this.escapeHtml(type.toUpperCase())}</span>
                     ${textHTML}
-
-                    <!-- Botão favoritar -->
                     ${type === 'cut' || type === 'product' ? `
                         <button class="detail-page__cta" id="detailCtaFavorite">
                             <i class="fas fa-heart" aria-hidden="true"></i> 
                             <span>${this.isFavorite(type, item.id) ? 'Favoritado' : 'Favoritar'}</span>
                         </button>
                     ` : ''}
-
                     <div class="detail-page__footer">
-                        Esta peça faz parte da curadoria HairOS para o inverno 2026.
+                        ${type === 'editorial' ? 'Uma publicação HairOS Library' : 'Esta peça faz parte da curadoria HairOS para o inverno 2026.'}
                     </div>
                 `;
 
-                // Evento do botão favoritar via CTA
                 const ctaBtn = document.getElementById('detailCtaFavorite');
                 if (ctaBtn) {
                     ctaBtn.addEventListener('click', () => {
@@ -4380,7 +4961,6 @@
                 if (!item || (type !== 'cut' && type !== 'product')) return;
 
                 this.toggleFavorite(type, item.id);
-
                 this.updateDetailFavoriteButton();
 
                 const ctaBtn = document.getElementById('detailCtaFavorite');
@@ -4462,8 +5042,8 @@
                 const userInfo = user ? `
                     <div style="text-align:center;margin:0.5rem 0 0.2rem;">
                         ${renderAvatar()}
-                        <h3 style="margin-top:0.6rem;font-family:'Playfair Display',serif;">${user.name}</h3>
-                        <p style="font-size:0.85rem;color:var(--text-secondary);opacity:0.7;">${user.email}</p>
+                        <h3 style="margin-top:0.6rem;font-family:'Playfair Display',serif;">${this.escapeHtml(user.name)}</h3>
+                        <p style="font-size:0.85rem;color:var(--text-secondary);opacity:0.7;">${this.escapeHtml(user.email)}</p>
                         <div class="avatar-actions">
                             <button class="avatar-btn" onclick="document.getElementById('avatarModalInput').click()">
                                 <i class="fas fa-camera"></i> Trocar foto
@@ -4487,11 +5067,11 @@
                     `,
                     about: `
                         <h2>Sobre o HairOS</h2>
-                        <p style="margin-top:0.8rem;">O HairOS nasceu da união entre mais de vinte anos de experiência em beleza, visagismo, colorimetria e imagem pessoal, com o desenvolvimento de software e inteligência artificial. Esta primeira coleção, HairOS Library, é a materialização de uma metodologia que integra referências internacionais e uma visão moderna da beleza. O projeto está em evolução contínua, e novas coleções, ferramentas e experiências serão incorporadas naturalmente. Acompanhe a jornada.</p>
+                        <p style="margin-top:0.8rem;">O HairOS nasceu da união entre mais de vinte anos de experiência em beleza, visagismo, colorimetria e imagem pessoal, com o desenvolvimento de software e inteligência artificial. Esta primeira coleção, HairOS Library, é a materialização de uma metodologia que integra referências internacionais e uma visão moderna da beleza.</p>
                         <div style="margin-top:1rem;padding:1rem;background:var(--bg-secondary);border-radius:var(--radius-sm);">
                             <p style="font-size:0.85rem;"><strong>Versão:</strong> 3.2.0</p>
                             <p style="font-size:0.85rem;"><strong>Coleção atual:</strong> Outono/Inverno 2026</p>
-                            <p style="font-size:0.85rem;"><strong>Usuário:</strong> ${user ? user.name : 'Não logado'}</p>
+                            <p style="font-size:0.85rem;"><strong>Usuário:</strong> ${user ? this.escapeHtml(user.name) : 'Não logado'}</p>
                         </div>
                         <button class="modal-action" onclick="window.app?.closeModal()">Fechar</button>
                     `,
@@ -4527,7 +5107,7 @@
                     `,
                     help: `
                         <h2>Ajuda</h2>
-                        <p style="margin-top:0.8rem;">O HairOS Library foi criado para inspirar e conectar profissionais e apaixonados por beleza. Navegue pelas seções, explore a coleção e salve suas referências. Cada detalhe foi pensado para uma experiência intuitiva e elegante. Em breve, novas funcionalidades inteligentes farão parte do ecossistema.</p>
+                        <p style="margin-top:0.8rem;">O HairOS Library foi criado para inspirar e conectar profissionais e apaixonados por beleza. Navegue pelas seções, explore a coleção e salve suas referências.</p>
                         <div style="margin-top:1rem;">
                             <div style="padding:0.8rem 0;border-bottom:1px solid var(--border-color);">
                                 <strong>📱 Como navegar?</strong>
@@ -4562,7 +5142,7 @@
                     `,
                     contact: `
                         <h2>Contato</h2>
-                        <p style="margin-top:0.8rem;">Entre em contato para compartilhar sugestões, ideias ou simplesmente para acompanhar a evolução do HairOS. Sua participação é fundamental para construirmos juntos o futuro da referência em beleza.</p>
+                        <p style="margin-top:0.8rem;">Entre em contato para compartilhar sugestões, ideias ou simplesmente para acompanhar a evolução do HairOS.</p>
                         <div style="margin-top:1rem;">
                             <p><strong>📧 Email:</strong> ma.gemelli2020@gmail.com</p>
                             <p><strong>📱 WhatsApp:</strong> +55 (11) 91486-9693</p>
@@ -4584,7 +5164,6 @@
                             <p><strong>2. Propriedade</strong><br/>Os direitos autorais das imagens e textos pertencem aos seus respectivos proprietários.</p>
                             <p><strong>3. Responsabilidade</strong><br/>O HairOS não se responsabiliza por danos decorrentes do uso das informações.</p>
                             <p><strong>4. Modificações</strong><br/>Os termos podem ser atualizados a qualquer momento sem aviso prévio.</p>
-                            <p style="margin-top:0.5rem;font-size:0.85rem;opacity:0.6;">Este projeto está em constante evolução e seus termos podem ser atualizados para refletir novas experiências.</p>
                         </div>
                         <button class="modal-action" onclick="window.app?.closeModal()" style="margin-top:1rem;">Fechar</button>
                     `,
@@ -4596,7 +5175,6 @@
                             <p><strong>🔒 Segurança</strong><br/>Todos os dados são armazenados localmente no seu navegador (localStorage).</p>
                             <p><strong>🍪 Cookies</strong><br/>Utilizamos apenas localStorage, sem cookies de rastreamento externos.</p>
                             <p><strong>📧 Contato</strong><br/>Para dúvidas sobre privacidade, entre em contato pelo e-mail: ma.gemelli2020@gmail.com</p>
-                            <p style="margin-top:0.5rem;font-size:0.85rem;opacity:0.6;">Este projeto está em constante evolução e sua política pode ser atualizada para refletir novas experiências.</p>
                         </div>
                         <button class="modal-action" onclick="window.app?.closeModal()" style="margin-top:1rem;">Fechar</button>
                     `
@@ -4624,12 +5202,18 @@
             // ---- INICIALIZAÇÃO ----
             init() {
                 try {
-                    console.log('🪮 HairOS Library — Versão com Detail Page');
+                    console.log('🪮 HairOS Library — Versão 5 Estrelas + Segurança');
+                    console.log('✨ Páginas com personalidade única');
+                    console.log('📖 Cards diferenciados por tipo');
+                    console.log('🎯 Experiência editorial premium');
+                    console.log('🔒 XSS e autenticação corrigidos');
+
                     this.loadData();
                     this.loadState();
                     this.setupEventListeners();
                     this.setupDetailEvents();
                     this.setupGalleryEvents();
+                    this.setupManifestoToggle();
 
                     const session = localStorage.getItem('hairos-session');
                     if (session) {
@@ -4653,9 +5237,6 @@
                     this.showError('Não foi possível carregar o aplicativo. Recarregue a página.');
                 }
             }
-
-            // ---- OS DEMAIS MÉTODOS (navigateTo, renderHome, renderCuts, renderTrends, renderProducts, renderEditorial, renderFavorites, etc.) PERMANECEM IGUAIS ----
-            // Incluídos abaixo para completude
 
             navigateTo(page) {
                 try {
@@ -4833,10 +5414,12 @@
                         <div class="card-preview" onclick="window.app?.openDetailPage('trend','${t.id}')" role="listitem" tabindex="0">
                             <div class="image-wrapper">
                                 <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image" src="${t.image}" alt="${t.name}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img class="card-preview__image" src="${t.image}" alt="${this.escapeHtml(t.name)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                             </div>
                             <div class="card-preview__body">
-                                <span class="card-preview__name">${t.name}</span>
+                                <span class="card-preview__name">${this.escapeHtml(t.name)}</span>
                                 <span class="card-preview__category">Tendência</span>
                             </div>
                         </div>
@@ -4847,11 +5430,13 @@
                         <div class="card-preview" onclick="window.app?.openDetailPage('cut','${c.id}')" role="listitem" tabindex="0">
                             <div class="image-wrapper">
                                 <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image" src="${c.image}" alt="${c.name}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img class="card-preview__image" src="${c.image}" alt="${this.escapeHtml(c.name)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                             </div>
                             <div class="card-preview__body">
-                                <span class="card-preview__name">${c.name}</span>
-                                <span class="card-preview__category">${c.category}</span>
+                                <span class="card-preview__name">${this.escapeHtml(c.name)}</span>
+                                <span class="card-preview__category">${this.escapeHtml(c.category)}</span>
                             </div>
                         </div>
                     `).join('');
@@ -4861,11 +5446,13 @@
                         <div class="card-preview" onclick="window.app?.openDetailPage('product','${p.id}')" role="listitem" tabindex="0">
                             <div class="image-wrapper">
                                 <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image" src="${p.image}" alt="${p.name}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img class="card-preview__image" src="${p.image}" alt="${this.escapeHtml(p.name)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                             </div>
                             <div class="card-preview__body">
-                                <span class="card-preview__name">${p.name}</span>
-                                <span class="card-preview__category">${p.category}</span>
+                                <span class="card-preview__name">${this.escapeHtml(p.name)}</span>
+                                <span class="card-preview__category">${this.escapeHtml(p.category)}</span>
                             </div>
                         </div>
                     `).join('');
@@ -4876,10 +5463,12 @@
                             <div class="card-preview" onclick="window.app?.openDetailPage('editorial','${item.id}')" role="listitem" tabindex="0">
                                 <div class="image-wrapper">
                                     <div class="skeleton-placeholder"></div>
-                                    <img class="card-preview__image" src="${item.image}" alt="${item.title}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                    <img class="card-preview__image" src="${item.image}" alt="${this.escapeHtml(item.title)}" loading="lazy" 
+                                         onload="this.previousElementSibling.style.display='none'"
+                                         onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                                 </div>
                                 <div class="card-preview__body">
-                                    <span class="card-preview__name">${item.title}</span>
+                                    <span class="card-preview__name">${this.escapeHtml(item.title)}</span>
                                     <span class="card-preview__category">Editorial</span>
                                 </div>
                             </div>
@@ -4917,13 +5506,15 @@
                         <div class="card-preview" onclick="window.app?.openDetailPage('cut','${c.id}')" role="listitem" tabindex="0">
                             <div class="image-wrapper">
                                 <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image" src="${c.image}" alt="${c.name}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img class="card-preview__image" src="${c.image}" alt="${this.escapeHtml(c.name)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                             </div>
                             <div class="card-preview__body">
-                                <span class="card-preview__name">${c.name}</span>
-                                <span class="card-preview__category">${c.category}</span>
+                                <span class="card-preview__name">${this.escapeHtml(c.name)}</span>
+                                <span class="card-preview__category">${this.escapeHtml(c.category)}</span>
                                 <div class="card-preview__tags">
-                                    ${c.tags.slice(0, 2).map(t => `<span>${t}</span>`).join('')}
+                                    ${c.tags.slice(0, 2).map(t => `<span>${this.escapeHtml(t)}</span>`).join('')}
                                 </div>
                             </div>
                         </div>
@@ -4939,14 +5530,18 @@
                     const container = document.getElementById('trendsGrid');
 
                     container.innerHTML = this.DATA.trends.map(t => `
-                        <div class="card-preview" onclick="window.app?.openDetailPage('trend','${t.id}')" role="listitem" tabindex="0">
-                            <div class="image-wrapper">
+                        <div class="trend-card" onclick="window.app?.openDetailPage('trend','${t.id}')" role="listitem" tabindex="0">
+                            <div class="trend-card__image">
                                 <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image" src="${t.image}" alt="${t.name}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img src="${t.image}" alt="${this.escapeHtml(t.name)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
+                                ${t.influences ? `<span class="trend-card__badge">${this.escapeHtml(t.influences[0])}</span>` : ''}
                             </div>
-                            <div class="card-preview__body">
-                                <span class="card-preview__name">${t.name}</span>
-                                <span class="card-preview__category">Tendência</span>
+                            <div class="trend-card__body">
+                                <span class="trend-vibe">✦ ${this.escapeHtml(t.vibe || 'Movimento')}</span>
+                                <span class="trend-name">${this.escapeHtml(t.name)}</span>
+                                <span class="trend-desc">${this.escapeHtml(t.description ? t.description.substring(0, 60) + (t.description.length > 60 ? '...' : '') : '')}</span>
                             </div>
                         </div>
                     `).join('');
@@ -4980,11 +5575,13 @@
                         <div class="card-preview" onclick="window.app?.openDetailPage('product','${p.id}')" role="listitem" tabindex="0">
                             <div class="image-wrapper">
                                 <div class="skeleton-placeholder"></div>
-                                <img class="card-preview__image" src="${p.image}" alt="${p.name}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img class="card-preview__image" src="${p.image}" alt="${this.escapeHtml(p.name)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                             </div>
                             <div class="card-preview__body">
-                                <span class="card-preview__name">${p.name}</span>
-                                <span class="card-preview__category">${p.category}</span>
+                                <span class="card-preview__name">${this.escapeHtml(p.name)}</span>
+                                <span class="card-preview__category">${this.escapeHtml(p.category)}</span>
                             </div>
                         </div>
                     `).join('');
@@ -4999,15 +5596,23 @@
                     const container = document.getElementById('editorialGrid');
 
                     if (this.DATA.editorialItems && this.DATA.editorialItems.length > 0) {
-                        container.innerHTML = this.DATA.editorialItems.map(item => `
-                            <div class="card-preview" onclick="window.app?.openDetailPage('editorial','${item.id}')" role="listitem" tabindex="0">
-                                <div class="image-wrapper">
+                        container.innerHTML = this.DATA.editorialItems.map((item, index) => `
+                            <div class="editorial-card" onclick="window.app?.openDetailPage('editorial','${item.id}')" role="listitem" tabindex="0">
+                                <div class="editorial-card__image">
                                     <div class="skeleton-placeholder"></div>
-                                    <img class="card-preview__image" src="${item.image}" alt="${item.title}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                    <img src="${item.image}" alt="${this.escapeHtml(item.title)}" loading="lazy" 
+                                         onload="this.previousElementSibling.style.display='none'"
+                                         onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
+                                    <!-- ⭐ BADGE COM O CÓDIGO DA COR -->
+                                    <span class="editorial-card__badge">${this.escapeHtml(item.colorCode || 'Editorial')}</span>
                                 </div>
-                                <div class="card-preview__body">
-                                    <span class="card-preview__name">${item.title}</span>
-                                    <span class="card-preview__category">Editorial</span>
+                                <div class="editorial-card__body">
+                                    <span class="editorial-number">${String(index + 1).padStart(2, '0')}</span>
+                                    <span class="editorial-name">${this.escapeHtml(item.title)}</span>
+                                    <!-- ⭐ NOME TÉCNICO DA COR -->
+                                    ${item.colorName ? `<span class="editorial-color">${this.escapeHtml(item.colorName)}</span>` : ''}
+                                    <span class="editorial-concept">"${this.escapeHtml(item.concept || 'Beleza em movimento')}"</span>
+                                    <span class="editorial-desc">${this.escapeHtml(item.description ? item.description.substring(0, 40) + (item.description.length > 40 ? '...' : '') : '')}</span>
                                 </div>
                             </div>
                         `).join('');
@@ -5034,7 +5639,7 @@
                             <div style="text-align:center;padding:3rem 0;color:var(--text-secondary);opacity:0.5;">
                                 <i class="fas fa-heart" style="font-size:2.5rem;display:block;margin-bottom:0.8rem;" aria-hidden="true"></i>
                                 <p style="font-size:0.95rem;">Sua coleção pessoal ainda está vazia.</p>
-                                <p style="font-size:0.8rem;">Explore a coleção e salve suas inspirações favoritas para construir sua própria referência.</p>
+                                <p style="font-size:0.8rem;">Explore a coleção e salve suas inspirações favoritas.</p>
                             </div>
                         `;
                         document.getElementById('favCount').textContent = '0 itens';
@@ -5045,11 +5650,13 @@
                         <div class="fav-item" onclick="window.app?.openDetailPage('${item.type}','${item.id}')" role="listitem" tabindex="0">
                             <div class="image-wrapper">
                                 <div class="skeleton-placeholder"></div>
-                                <img src="${item.image}" alt="${item.name}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img src="${item.image}" alt="${this.escapeHtml(item.name)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                             </div>
                             <div class="info">
-                                <div class="name">${item.name}</div>
-                                <div class="category">${item.type === 'cut' ? 'Corte' : 'Produto'} • ${item.category}</div>
+                                <div class="name">${this.escapeHtml(item.name)}</div>
+                                <div class="category">${item.type === 'cut' ? 'Corte' : 'Produto'} • ${this.escapeHtml(item.category)}</div>
                             </div>
                             <button class="remove" onclick="event.stopPropagation();window.app?.toggleFavorite('${item.type}','${item.id}')" aria-label="Remover dos favoritos">
                                 <i class="fas fa-times" aria-hidden="true"></i>
@@ -5124,8 +5731,8 @@
                 this.DATA.trends.forEach(t => {
                     if (t.name.toLowerCase().includes(q) ||
                         t.description.toLowerCase().includes(q) ||
-                        (t.tip && t.tip.toLowerCase().includes(q)) ||
-                        (t.products && t.products.some(p => p.toLowerCase().includes(q)))) {
+                        t.context.toLowerCase().includes(q) ||
+                        t.influences.some(i => i.toLowerCase().includes(q))) {
                         results.push({ ...t, type: 'trend' });
                     }
                 });
@@ -5134,7 +5741,8 @@
                     this.DATA.editorialItems.forEach(item => {
                         if (item.title.toLowerCase().includes(q) ||
                             item.description.toLowerCase().includes(q) ||
-                            item.concept.toLowerCase().includes(q)) {
+                            item.concept.toLowerCase().includes(q) ||
+                            item.body.toLowerCase().includes(q)) {
                             results.push({ ...item, type: 'editorial' });
                         }
                     });
@@ -5159,10 +5767,11 @@
                 }
 
                 if (results.length === 0) {
+                    // ⭐ CORREÇÃO XSS: escape do termo de busca
                     container.innerHTML = `
                         <div class="empty-state">
                             <i class="fas fa-search" aria-hidden="true"></i>
-                            <p>Nenhum resultado encontrado para "${this.highlightText(q, q)}"</p>
+                            <p>Nenhum resultado encontrado para "${this.escapeHtml(q)}"</p>
                         </div>
                     `;
                     return;
@@ -5175,11 +5784,13 @@
                         <div class="result-item" onclick="window.app?.openDetailPage('${targetType}', '${targetId}')" role="option">
                             <div class="image-wrapper">
                                 <div class="skeleton-placeholder"></div>
-                                <img src="${item.image}" alt="${item.name || item.title}" loading="lazy" onload="this.previousElementSibling.style.display='none'" />
+                                <img src="${item.image}" alt="${this.escapeHtml(item.name || item.title)}" loading="lazy" 
+                                     onload="this.previousElementSibling.style.display='none'"
+                                     onerror="this.style.display='none';this.parentElement.innerHTML+='<div class=\\'img-fallback\\'><i class=\\'fas fa-image\\'></i></div>'" />
                             </div>
                             <div class="info">
-                                <div class="name">${this.highlightText(item.name || item.title, q)}</div>
-                                <div class="category">${item.type}</div>
+                                <div class="name">${this.escapeHtml(item.name || item.title)}</div>
+                                <div class="category">${this.escapeHtml(item.type)}</div>
                             </div>
                         </div>
                     `;
@@ -5253,15 +5864,12 @@
 
             setupGalleryEvents() {
                 document.getElementById('galleryClose').addEventListener('click', () => this.closeGallery());
-
                 document.getElementById('galleryPrev').addEventListener('click', () => {
                     this.goToGalleryImage(this.galleryCurrentIndex - 1);
                 });
-
                 document.getElementById('galleryNext').addEventListener('click', () => {
                     this.goToGalleryImage(this.galleryCurrentIndex + 1);
                 });
-
                 document.getElementById('galleryOverlay').addEventListener('click', (e) => {
                     if (e.target === document.getElementById('galleryOverlay')) {
                         this.closeGallery();
@@ -5270,7 +5878,6 @@
 
                 document.addEventListener('keydown', (e) => {
                     if (!document.getElementById('galleryOverlay').classList.contains('open')) return;
-
                     if (e.key === 'Escape') {
                         this.closeGallery();
                     } else if (e.key === 'ArrowLeft') {
@@ -5300,9 +5907,16 @@
                 const existing = localStorage.getItem('hairos-users');
                 let users = existing ? JSON.parse(existing) : [];
                 const found = users.find(u => u.email === email);
+                
+                // ⭐ CORREÇÃO DE SEGURANÇA: verificar senha
                 if (found) {
-                    this.state.user = { name: found.name, email: found.email, avatar: found.avatar || null };
-                    this.showToast('👋 Bem-vindo de volta, ' + found.name + '!');
+                    if (found.password === password) {
+                        this.state.user = { name: found.name, email: found.email, avatar: found.avatar || null };
+                        this.showToast('👋 Bem-vindo de volta, ' + found.name + '!');
+                    } else {
+                        this.showToast('⚠️ Senha incorreta. Tente novamente.');
+                        return;
+                    }
                 } else {
                     const avatar = this.state.user?.avatar || null;
                     const newUser = { name, email, password, avatar };
@@ -5442,6 +6056,7 @@
                 document.getElementById('topBar').style.display = 'flex';
                 document.getElementById('mainContent').style.display = 'block';
                 document.getElementById('bottomNav').style.display = 'flex';
+                document.getElementById('bottomNav').classList.remove('hidden-nav');
                 this.updateProfileIcon();
                 setTimeout(() => this.setupScrollReveal(), 300);
             }
@@ -5483,7 +6098,7 @@
                     rootMargin: '0px 0px -20px 0px'
                 });
 
-                document.querySelectorAll('.card-preview').forEach(el => {
+                document.querySelectorAll('.card-preview, .trend-card, .editorial-card').forEach(el => {
                     if (!el.classList.contains('reveal')) {
                         el.classList.add('reveal');
                         observer.observe(el);
@@ -5498,7 +6113,7 @@
                     <div style="text-align:center;padding:4rem 1.5rem;">
                         <i class="fas fa-exclamation-triangle" style="font-size:3rem;color:var(--gold);display:block;margin-bottom:1rem;"></i>
                         <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);">Oops!</h2>
-                        <p style="color:var(--text-secondary);margin-top:0.5rem;">${message}</p>
+                        <p style="color:var(--text-secondary);margin-top:0.5rem;">${this.escapeHtml(message)}</p>
                         <button onclick="location.reload()" class="hero__cta" style="margin-top:1.5rem;background:var(--gold);color:white;">
                             <i class="fas fa-sync" aria-hidden="true"></i> Recarregar
                         </button>
@@ -5556,11 +6171,16 @@
             window.app = new HairOSApp();
         });
 
-        console.log('🪮 HairOS Library — VERSÃO FINAL COM DETAIL PAGE');
-        console.log('✅ Substituição completa do modal por tela de detalhes');
-        console.log('✅ Scroll único e navegação nativa');
+        console.log('🪮 HairOS Library — VERSÃO FINAL 5 ESTRELAS + SEGURANÇA');
+        console.log('✅ Páginas com personalidade única');
+        console.log('✅ Cards diferenciados: Tendências e Editorial');
+        console.log('✅ Detail Page com templates premium');
+        console.log('✅ CORES DE CABELO INCLUÍDAS NOS EDITORIAIS');
+        console.log('✅ XSS e autenticação corrigidos');
+        console.log('✅ Fallback de imagens implementado');
         console.log('✅ Disponível em: window.app');
     </script>
 
 </body>
+
 </html>
