@@ -3905,7 +3905,7 @@
                 <div class="hero" id="heroCarousel" aria-label="Carrossel de destaques">
                     <div class="hero__slider" id="heroSlider">
                         <div class="hero__slide active"
-                            style="background-image: url('https://i.pinimg.com/1200x/79/c4/34/79c434dd54fba458ac5335b5e0fc3b6d.jpg');"
+                            style="background-image: url('https://i.pinimg.com/1200x/c8/33/f1/c833f10c4eecb915aca10301cf52eb4c.jpg');"
                             role="img" aria-label="Coleção Outono/Inverno 2026">
                             <div class="overlay"></div>
                             <div class="hero__content">
@@ -3958,12 +3958,12 @@
                     </div>
                 </div>
 
-                <!-- ===== CHIPS NAVIGATION (NOVO) ===== -->
+                <!-- ===== CHIPS NAVIGATION (CORRIGIDO) ===== -->
                 <div class="chips-container">
-                    <button class="chip active" onclick="window.app?.navigateTo('cuts')">✂️ Curto</button>
-                    <button class="chip" onclick="window.app?.navigateTo('cuts')">📏 Longo</button>
+                    <button class="chip active" onclick="window.app?.filterAndNavigate('cuts','curtos')">✂️ Curto</button>
+                    <button class="chip" onclick="window.app?.filterAndNavigate('cuts','longos')">📏 Longo</button>
                     <button class="chip" onclick="window.app?.navigateTo('trends')">🔥 Tendência</button>
-                    <button class="chip" onclick="window.app?.navigateTo('cuts')">✂️ Corte Assinatura</button>
+                    <button class="chip" onclick="window.app?.openDetailPage('cut','velvet-bob')">✂️ Corte Assinatura</button>
                     <button class="chip" onclick="window.app?.navigateTo('products')">🧴 Produtos</button>
                 </div>
 
@@ -4019,7 +4019,7 @@
                     </div>
                 </section>
 
-                <!-- ===== STATUS CARD (ÚNICO NOVO) ===== -->
+                <!-- ===== STATUS CARD ===== -->
                 <div class="status-card" onclick="window.app?.navigateTo('favorites')">
                     <div class="status-icon">📊</div>
                     <div class="status-content">
@@ -4100,7 +4100,7 @@
                             Assinatura da Coleção</h4>
                         <div class="collection-highlight">
                             <div class="collection-highlight__image">
-                                <img src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg"
+                                <img src="https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg"
                                     alt="Velvet Bob" loading="lazy" />
                             </div>
                             <div class="collection-highlight__body">
@@ -4153,30 +4153,6 @@
                     <div style="width:40px;height:3px;background:var(--gold);border-radius:4px;margin-top:0.2rem;">
                     </div>
                 </div>
-
-                <section class="section" aria-label="Corte assinatura">
-                    <div class="section__header">
-                        <h2 class="section__title">⭐ Corte Assinatura</h2>
-                        <span class="section__see-all">Destaque da coleção</span>
-                    </div>
-                    <div
-                        style="background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border-color);">
-                        <div style="aspect-ratio:16/9;overflow:hidden;">
-                            <img src="https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg"
-                                alt="Velvet Bob" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-                        </div>
-                        <div style="padding:0.8rem 1rem;">
-                            <h5 style="font-family:var(--font-serif);font-size:1.1rem;color:var(--text-primary);">Velvet
-                                Bob</h5>
-                            <p style="font-size:0.8rem;color:var(--text-secondary);font-weight:300;">Camadas suaves que
-                                criam movimento e um acabamento que parece veludo.</p>
-                            <button class="hero__cta" onclick="window.app?.openDetailPage('cut','velvet-bob')"
-                                style="padding:0.4rem 1.2rem;font-size:0.75rem;margin-top:0.3rem;">
-                                Ver detalhes <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </section>
 
                 <div class="filters" id="cutFilters" role="tablist" aria-label="Filtros de cortes">
                     <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
@@ -4635,23 +4611,23 @@
                     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;">
                         <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
                             onclick="window.app?.openDetailPage('editorial','editorial-1')">
-                            <img src="https://i.pinimg.com/1200x/d5/af/fd/d5affd8fefa6386b734d18d51d2c95ae.jpg"
+                            <img src="https://i.pinimg.com/736x/f7/9a/b5/f79ab5d88598eb15f6deab862cd92fe3.jpg"
                                 alt="Mel Puro" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
                         </div>
                         <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
                             onclick="window.app?.openDetailPage('editorial','editorial-2')">
-                            <img src="https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg"
+                            <img src="https://i.pinimg.com/1200x/a0/59/bd/a059bdb3874a83a06f18387b4715e7f2.jpg"
                                 alt="Avelã Média" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
                         </div>
                         <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
                             onclick="window.app?.openDetailPage('editorial','editorial-3')">
-                            <img src="https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg"
+                            <img src="https://i.pinimg.com/1200x/14/cd/22/14cd220fda3277f4b835e71a3f82014e.jpg"
                                 alt="Mel sobre Escuro" style="width:100%;height:100%;object-fit:cover;"
                                 loading="lazy" />
                         </div>
                         <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
                             onclick="window.app?.openDetailPage('editorial','editorial-4')">
-                            <img src="https://i.pinimg.com/1200x/8e/98/45/8e9845241c3d9bbfe317b0d8896b3488.jpg"
+                            <img src="https://i.pinimg.com/1200x/9c/38/2e/9c382e31a4eaafd69ce5d685d82f238b.jpg"
                                 alt="Avelã em Movimento" style="width:100%;height:100%;object-fit:cover;"
                                 loading="lazy" />
                         </div>
@@ -4663,7 +4639,7 @@
                         </div>
                         <div style="aspect-ratio:1;background:var(--bg-secondary);border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;border:1px solid var(--border-color);"
                             onclick="window.app?.openDetailPage('editorial','editorial-6')">
-                            <img src="https://i.pinimg.com/1200x/c4/1d/e7/c41de7b7a44669d3c296b3859313e9eb.jpg"
+                            <img src="https://i.pinimg.com/1200x/48/ee/44/48ee440c6712e07c385f64752e866ae9.jpg"
                                 alt="Avelã Profunda" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
                         </div>
                     </div>
@@ -4872,23 +4848,22 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- JAVASCRIPT (REFATORADO)                     -->
+    <!-- JAVASCRIPT (VERSÃO FINAL)                   -->
     <!-- ============================================ -->
     <script>
         /**
          * ============================================================
-         * HAiROS LIBRARY — VERSÃO REFATORADA
+         * HAiROS LIBRARY — VERSÃO FINAL
          * ============================================================
-         * O que melhoramos:
-         * 1. Organização: funções separadas e bem nomeadas
-         * 2. Segurança: normalização de códigos, validação robusta
-         * 3. UI/UX: modal mais claro, feedbacks melhores
-         * 4. Manutenção: funções centralizadas, sem duplicação
+         * Correções aplicadas:
+         * 1. Chips da Home agora funcionam com filtros
+         * 2. Corte Assinatura abre diretamente o detalhe
+         * 3. Método filterAndNavigate adicionado
          * ============================================================
          */
 
         // ============================================================
-        // CONFIGURAÇÃO PIX/ASSINATURA (TUDO CENTRALIZADO)
+        // CONFIGURAÇÃO PIX/ASSINATURA
         // ============================================================
         const PIX_CONFIG = {
             key: 'SUA_CHAVE_PIX_AQUI',
@@ -4896,7 +4871,6 @@
             qrImageUrl: '',
             price: 'R$ 19,90/mês',
             whatsappNumber: '55SEUNUMEROAQUI',
-            // Lista de códigos de ativação válidos (use MAIÚSCULAS)
             validCodes: [
                 'VIP2026',
                 'ACESSOTOTAL',
@@ -4943,6 +4917,7 @@
                 this.init = this.init.bind(this);
                 this.navigateTo = this.navigateTo.bind(this);
                 this.goBack = this.goBack.bind(this);
+                this.filterAndNavigate = this.filterAndNavigate.bind(this);
                 this.toggleTheme = this.toggleTheme.bind(this);
                 this.openModal = this.openModal.bind(this);
                 this.closeModal = this.closeModal.bind(this);
@@ -4990,7 +4965,6 @@
                 this.setupManifestoToggle = this.setupManifestoToggle.bind(this);
                 this.updateFavSummary = this.updateFavSummary.bind(this);
                 this.renderFavoritesSuggestions = this.renderFavoritesSuggestions.bind(this);
-                // Novas funções de assinatura
                 this.validateAccessCode = this.validateAccessCode.bind(this);
                 this.syncSubscriptionUI = this.syncSubscriptionUI.bind(this);
                 this.loadSubscriptionState = this.loadSubscriptionState.bind(this);
@@ -5019,7 +4993,7 @@
                 }, duration);
             }
 
-            // ---- DADOS (mantido intacto) ----
+            // ---- DADOS ----
             loadData() {
                 this.DATA = {
                     collection: {
@@ -5035,9 +5009,9 @@
                         name: 'Velvet Bob',
                         category: 'curtos',
                         tags: ['bob', 'feminino'],
-                        image: 'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
+                        image: 'https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/86/40/43/8640432c6560da64e2e380f18c4e603d.jpg',
+                            'https://i.pinimg.com/736x/29/9e/a8/299ea87e158f4270f4bd39c9a3a13c10.jpg',
                             'https://i.pinimg.com/736x/b3/6c/d3/b36cd33b1ed1393de79c40882a7d51c7.jpg',
                             'https://i.pinimg.com/736x/71/2f/e0/712fe063c1c50369ee0c63c8f7562a9a.jpg'
                         ],
@@ -5326,8 +5300,8 @@
                         image: 'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
                         images: [
                             'https://i.pinimg.com/736x/82/47/a6/8247a6d404fefa0a7455646bb3ff74a7.jpg',
-                            'https://i.pinimg.com/736x/a8/32/0c/a8320cac67f98908fd296e6a34ff2559.jpg',
-                            'https://i.pinimg.com/736x/f4/6d/76/f46d76af2c1588dc14d9720e25d3ece8.jpg'
+                            'https://i.pinimg.com/1200x/33/57/b2/3357b2fd2041dd93adda096095757b2b.jpg',
+                            'https://i.pinimg.com/1200x/e1/f2/a9/e1f2a966fbdef95f857e5ef348c6d362.jpg'
                         ],
                         description: 'O butterfly cut é a evolução do wolf cut, com camadas mais suaves e uma franja que se abre como asas.',
                         products: ['Spray Texturizador', 'Mousse Modeladora', 'Óleo Finalizador'],
@@ -5337,9 +5311,9 @@
                     }, {
                         id: 'franjas',
                         name: 'Curtain Bangs',
-                        image: 'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
+                        image: 'https://i.pinimg.com/1200x/f5/92/fc/f592fc5b01136dfbbd657939d7c36c81.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/aa/77/14/aa7714d9e07489c00231d4dc66106858.jpg',
+                            'https://i.pinimg.com/1200x/f5/92/fc/f592fc5b01136dfbbd657939d7c36c81.jpg',
                             'https://i.pinimg.com/736x/ff/5a/7e/ff5a7eb07eb5263b20a8f8d4e3b03669.jpg',
                             'https://i.pinimg.com/736x/e1/69/0a/e1690a55e7cc557de8fc4d8d9a29b171.jpg'
                         ],
@@ -5407,11 +5381,11 @@
                     }],
                     editorialItems: [{
                         id: 'editorial-1',
-                        image: 'https://i.pinimg.com/1200x/d5/af/fd/d5affd8fefa6386b734d18d51d2c95ae.jpg',
+                        image: 'https://i.pinimg.com/736x/f7/9a/b5/f79ab5d88598eb15f6deab862cd92fe3.jpg',
                         images: [
-                            'https://i.pinimg.com/1200x/d5/af/fd/d5affd8fefa6386b734d18d51d2c95ae.jpg',
-                            'https://i.pinimg.com/736x/2b/93/62/2b936201040763501177f1cc4c1106c3.jpg',
-                            'https://i.pinimg.com/736x/0e/33/84/0e3384311b75d7a66fc747d6d9cc2265.jpg'
+                            'https://i.pinimg.com/736x/f7/9a/b5/f79ab5d88598eb15f6deab862cd92fe3.jpg',
+                            'https://i.pinimg.com/736x/fa/a5/b7/faa5b7c1adedbfb1af0e96a9925a653b.jpg',
+                            'https://i.pinimg.com/736x/17/7a/79/177a79286f9b8a7831e8a3ccaa76f543.jpg'
                         ],
                         title: 'Mel Puro',
                         colorCode: '8.3',
@@ -5427,11 +5401,11 @@
                         products: ['Shampoo Vitamino Color', 'Máscara Absolut Repair']
                     }, {
                         id: 'editorial-2',
-                        image: 'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
+                        image: 'https://i.pinimg.com/1200x/a0/59/bd/a059bdb3874a83a06f18387b4715e7f2.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/3e/5e/9a/3e5e9a970febd6c745d287a93a254058.jpg',
-                            'https://i.pinimg.com/1200x/c9/34/8c/c9348c0e3ae914e596c52a8ba5977f8f.jpg',
-                            'https://i.pinimg.com/736x/8e/4d/21/8e4d210db0ffc08fa3b1192e61d508a8.jpg'
+                            'https://i.pinimg.com/1200x/a0/59/bd/a059bdb3874a83a06f18387b4715e7f2.jpg',
+                            'https://i.pinimg.com/736x/8c/2f/fb/8c2ffb69266317402f17c8e2fd120420.jpg',
+                            'https://i.pinimg.com/736x/28/0a/18/280a18d2fd5ca3da2c6bed6ce44330bd.jpg'
                         ],
                         title: 'Avelã Média',
                         colorCode: '6.71',
@@ -5447,11 +5421,11 @@
                         products: ['Máscara Kérastase Résistance', 'Óleo Finalizador']
                     }, {
                         id: 'editorial-3',
-                        image: 'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
+                        image: 'https://i.pinimg.com/1200x/14/cd/22/14cd220fda3277f4b835e71a3f82014e.jpg',
                         images: [
-                            'https://i.pinimg.com/736x/45/5e/13/455e1342b1a768dd4c9026b65c6e17bc.jpg',
+                            'https://i.pinimg.com/1200x/14/cd/22/14cd220fda3277f4b835e71a3f82014e.jpg',
                             'https://i.pinimg.com/736x/34/5f/2d/345f2d80758ccf6d92b4890ac4a25f32.jpg',
-                            'https://i.pinimg.com/736x/0e/33/84/0e3384311b75d7a66fc747d6d9cc2265.jpg'
+                            'https://i.pinimg.com/1200x/16/89/e7/1689e783150f45c0f661b2b0c852cfe9.jpg'
                         ],
                         title: 'Mel sobre Escuro',
                         colorCode: '5.0 / 7.3',
@@ -5467,11 +5441,11 @@
                         products: ['Shampoo Vitamino Color', 'Máscara Absolut Repair']
                     }, {
                         id: 'editorial-4',
-                        image: 'https://i.pinimg.com/1200x/8e/98/45/8e9845241c3d9bbfe317b0d8896b3488.jpg',
+                        image: 'https://i.pinimg.com/1200x/9c/38/2e/9c382e31a4eaafd69ce5d685d82f238b.jpg',
                         images: [
-                            'https://i.pinimg.com/1200x/8e/98/45/8e9845241c3d9bbfe317b0d8896b3488.jpg',
-                            'https://i.pinimg.com/736x/19/08/05/19080576347a6e5eb85007cfbd2a4e14.jpg',
-                            'https://i.pinimg.com/1200x/d6/53/0e/d6530e3bfd849bfae89c2649876b1d1e.jpg'
+                            'https://i.pinimg.com/1200x/9c/38/2e/9c382e31a4eaafd69ce5d685d82f238b.jpg',
+                            'https://i.pinimg.com/1200x/85/03/4b/85034b9e76143badec90e47cdac4ae36.jpg',
+                            'https://i.pinimg.com/1200x/e9/ed/53/e9ed53e7b8a7eba9a3d1763425c3bf88.jpg'
                         ],
                         title: 'Avelã em Movimento',
                         colorCode: '6.3 / 8.3',
@@ -5491,7 +5465,7 @@
                         images: [
                             'https://i.pinimg.com/736x/9b/30/3c/9b303c2040de9482f8391090b7cf8cfa.jpg',
                             'https://i.pinimg.com/1200x/80/f3/bb/80f3bbce1fb5bb37fd8c921cd8ada7d2.jpg',
-                            'https://i.pinimg.com/736x/28/50/89/2850897e9734da3e676eadee4322db43.jpg'
+                            'https://i.pinimg.com/1200x/ba/ea/88/baea88db56d4ee70ac25ef7ebe6b4bfa.jpg'
                         ],
                         title: 'Raiz Escura Pontas Mel',
                         colorCode: '5.0 / 8.3',
@@ -5507,11 +5481,11 @@
                         products: ['Shampoo L\'Oréal Silver', 'Máscara Absolut Repair']
                     }, {
                         id: 'editorial-6',
-                        image: 'https://i.pinimg.com/1200x/c4/1d/e7/c41de7b7a44669d3c296b3859313e9eb.jpg',
+                        image: 'https://i.pinimg.com/1200x/48/ee/44/48ee440c6712e07c385f64752e866ae9.jpg',
                         images: [
-                            'https://i.pinimg.com/1200x/c4/1d/e7/c41de7b7a44669d3c296b3859313e9eb.jpg',
-                            'https://i.pinimg.com/1200x/68/29/88/68298867b800ad64e7bfd020ef9004ee.jpg',
-                            'https://i.pinimg.com/1200x/20/0b/cc/200bccee1dd3c42d062738b6d8589e04.jpg'
+                            'https://i.pinimg.com/1200x/48/ee/44/48ee440c6712e07c385f64752e866ae9.jpg',
+                            'https://i.pinimg.com/736x/23/ed/1a/23ed1a0d684e9c188c09ae26b62ff6cb.jpg',
+                            'https://i.pinimg.com/736x/c8/68/95/c8689579f77d930f3cb347d695ef9cdf.jpg'
                         ],
                         title: 'Avelã Profunda',
                         colorCode: '5.71',
@@ -5590,7 +5564,7 @@
                 } catch (_) { /* ignora */ }
             }
 
-            // ---- ASSINATURA: VALIDAÇÃO DE CÓDIGO (NORMALIZADO) ----
+            // ---- ASSINATURA: VALIDAÇÃO DE CÓDIGO ----
             validateAccessCode(code) {
                 if (!code || code.length < 3) {
                     this.showToast('⚠️ Digite um código válido com pelo menos 3 caracteres.');
@@ -5628,12 +5602,6 @@
                     } else {
                         menuBadge.style.display = 'none';
                     }
-                }
-
-                // Atualiza o badge no perfil se o modal estiver aberto
-                const modalBody = document.getElementById('modalBody');
-                if (modalBody && modalBody.innerHTML.includes('Perfil')) {
-                    // Recarrega o perfil se estiver aberto
                 }
             }
 
@@ -5743,7 +5711,6 @@
                 document.getElementById('modalBody').innerHTML = content;
                 document.getElementById('modalOverlay').classList.add('open');
 
-                // Configura validação do código
                 const validateBtn = document.getElementById('validateCodeBtn');
                 const codeInput = document.getElementById('accessCodeInput');
                 if (validateBtn && codeInput) {
@@ -5772,7 +5739,7 @@
                 }
             }
 
-            // ---- EVENTOS (mantido) ----
+            // ---- EVENTOS ----
             setupEventListeners() {
                 document.getElementById('loginForm').addEventListener('submit', this.handleLogin);
                 document.getElementById('googleLoginBtn').addEventListener('click', this.handleGoogleLogin);
@@ -5907,7 +5874,7 @@
                 console.log('🔌 Event listeners configurados');
             }
 
-            // ---- DETAIL PAGE EVENTS (mantido) ----
+            // ---- DETAIL PAGE EVENTS ----
             setupDetailEvents() {
                 document.getElementById('detailBack').addEventListener('click', () => {
                     this.closeDetailPage();
@@ -5940,7 +5907,7 @@
                 }, { passive: true });
             }
 
-            // ---- MANIFESTO TOGGLE (mantido) ----
+            // ---- MANIFESTO TOGGLE ----
             setupManifestoToggle() {
                 const toggleBtn = document.getElementById('manifestoToggle');
                 const fullText = document.getElementById('manifestoFull');
@@ -5964,7 +5931,7 @@
                 }
             }
 
-            // ---- DETAIL PAGE (mantido) ----
+            // ---- DETAIL PAGE ----
             openDetailPage(type, id) {
                 let item = null;
                 if (type === 'cut') item = this.DATA.cuts.find(c => c.id === id);
@@ -6534,8 +6501,9 @@
             // ---- INICIALIZAÇÃO ----
             init() {
                 try {
-                    console.log('🪮 HairOS Library — Versão Refatorada');
-                    console.log('✨ Organização, Segurança, UI e Manutenção melhorados');
+                    console.log('🪮 HairOS Library — Versão Final');
+                    console.log('✅ Chips da Home corrigidos');
+                    console.log('✅ Método filterAndNavigate adicionado');
 
                     this.loadData();
                     this.loadState();
@@ -6561,7 +6529,6 @@
                     this.startCarousel();
                     this.initialized = true;
                     console.log('✅ App inicializado com sucesso!');
-                    console.log('🔑 Códigos válidos:', PIX_CONFIG.validCodes);
 
                 } catch (error) {
                     console.error('❌ Erro ao iniciar app:', error);
@@ -6656,6 +6623,35 @@
                     this.state.history.pop();
                     const prev = this.state.history[this.state.history.length - 1];
                     this.navigateTo(prev);
+                }
+            }
+
+            // ---- NAVEGAÇÃO COM FILTRO PRÉ-APLICADO (usado pelos chips da Home) ----
+            filterAndNavigate(page, filterValue) {
+                try {
+                    if (this.state.filters && Object.prototype.hasOwnProperty.call(this.state.filters, page)) {
+                        this.state.filters[page] = filterValue;
+                    }
+
+                    this.navigateTo(page);
+
+                    const filtersContainerId = page === 'cuts' ? 'cutFilters'
+                        : page === 'products' ? 'productFilters'
+                        : null;
+
+                    if (filtersContainerId) {
+                        const container = document.getElementById(filtersContainerId);
+                        if (container) {
+                            container.querySelectorAll('.filter-btn').forEach(btn => {
+                                const isActive = btn.dataset.filter === filterValue;
+                                btn.classList.toggle('active', isActive);
+                                btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.error('❌ Erro ao filtrar e navegar:', error);
+                    this.navigateTo(page);
                 }
             }
 
@@ -6760,7 +6756,7 @@
                 if (totalEl) totalEl.textContent = total;
             }
 
-            // ---- RENDERIZAÇÃO (mantida) ----
+            // ---- RENDERIZAÇÃO ----
             renderHome() {
                 try {
                     const trendsContainer = document.getElementById('trendsPreview');
@@ -7584,13 +7580,10 @@
             window.app = new HairOSApp();
         });
 
-        console.log('🪮 HairOS Library — Versão Refatorada');
-        console.log('✅ Código organizado em funções especializadas');
-        console.log('✅ Validação de código normalizada');
-        console.log('✅ UI/UX do modal de assinatura melhorada');
-        console.log('✅ Estado centralizado e sincronizado');
-        console.log('🔑 Códigos ativos:', PIX_CONFIG.validCodes);
-        console.log('🏠 HOME com Chips e Status Card apenas (sem duplicidades)');
+        console.log('🪮 HairOS Library — Versão Final');
+        console.log('✅ Chips da Home corrigidos com filterAndNavigate');
+        console.log('✅ Corte Assinatura abre diretamente o detalhe');
+        console.log('✅ Nenhuma outra página foi alterada');
     </script>
 
 </body>
